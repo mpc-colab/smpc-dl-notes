@@ -1,9 +1,10 @@
 project:
   type: book
+  output-dir: docs
 
 book:
   title: "Smpc-dl-notes"
-  author: "Norah Jones"
+  author: :"Yoshi234"
   date: "1/30/2024"
   chapters:
     - index.qmd
