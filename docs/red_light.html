@@ -20,7 +20,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -136,6 +155,10 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#motivation" id="toc-motivation" class="nav-link active" data-scroll-target="#motivation"><span class="header-section-number">1.1</span> Motivation</a></li>
+  <li><a href="#vehicle-to-infrastructure-based-algorithms-for-traffic-light-detection-red-light-violation-and-wrong-way-entry-applications" id="toc-vehicle-to-infrastructure-based-algorithms-for-traffic-light-detection-red-light-violation-and-wrong-way-entry-applications" class="nav-link" data-scroll-target="#vehicle-to-infrastructure-based-algorithms-for-traffic-light-detection-red-light-violation-and-wrong-way-entry-applications"><span class="header-section-number">1.2</span> Vehicle-to-Infrastructure based Algorithms for Traffic Light Detection, Red Light Violation, and Wrong-Way Entry Applications</a>
+  <ul class="collapse">
+  <li><a href="#red-light-violation-detection-algorithm" id="toc-red-light-violation-detection-algorithm" class="nav-link" data-scroll-target="#red-light-violation-detection-algorithm"><span class="header-section-number">1.2.1</span> Red Light Violation Detection Algorithm</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -169,8 +192,25 @@ x + y &amp;= 3 \\
 2x - y &amp;= 1
 \end{align}
 \]</span></p>
+</section>
+<section id="vehicle-to-infrastructure-based-algorithms-for-traffic-light-detection-red-light-violation-and-wrong-way-entry-applications" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="vehicle-to-infrastructure-based-algorithms-for-traffic-light-detection-red-light-violation-and-wrong-way-entry-applications"><span class="header-section-number">1.2</span> Vehicle-to-Infrastructure based Algorithms for Traffic Light Detection, Red Light Violation, and Wrong-Way Entry Applications</h2>
+<blockquote class="blockquote">
+<p>The authors of this paper have constructed V2I mechanisms for red light running (RLR) detection, wrong way entry (WWE), and an array of other import tasks in the context of V2X. See the citation <span class="citation" data-cites="dokur2022etal">Dokur and Katkoori (<a href="references.html#ref-dokur2022etal" role="doc-biblioref">2022</a>)</span></p>
+</blockquote>
+<section id="red-light-violation-detection-algorithm" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="red-light-violation-detection-algorithm"><span class="header-section-number">1.2.1</span> Red Light Violation Detection Algorithm</h3>
+<p>The proposed system utilizes the following logic to detect whether a car will violate a red light. A car which is approaching an intersection is connected to road-side units (RSUs) which are installed at traffic lights in an intersection.</p>
+<p>Each light is said to be located at points <span class="math inline">\(B(x_{2}, y_{2}, z_{2})\)</span>, <span class="math inline">\(C(x_{3}, y_{3}, z_{3})\)</span>, <span class="math inline">\(D(x_{4}, y_{4}, z_{4})\)</span> and <span class="math inline">\(E(x_{5}, y_{5}, z_{5})\)</span> respectively.</p>
+<p>Unlike image-based systems, this system assumes V2I communication between the traffic lights and the vehicle in question. This means that the traffic state does not need to be determined by an image classifier. Rather, we already have this information by default.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-dokur2022etal" class="csl-entry" role="listitem">
+Dokur, O., and S. Katkoori. 2022. <span>“Vehicle-to-Infrastructure Based Algorithms for Traffic Light Detection, Red Light Violation, and Wrong-Way Entry Applications.”</span> <em>IEEE International Symposium on Smart Electronic Systems</em>.
+</div>
+</div>
+</section>
 </section>
 
 </main> <!-- /main -->
