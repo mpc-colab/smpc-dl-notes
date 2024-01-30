@@ -1,5 +1,12 @@
 # Preface {.unnumbered}
 
-This is a Quarto book.
+This is a Quarto book. To learn more about Quarto books 
+visit <https://quarto.org/docs/books>.
 
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
+## Contents {.unnumbered}
+
+The quarto book contains an organized structure of notes
+on a variety of secure multiparty computation protocols, implementation 
+details, and a discussion of v2x applications and relevant deep 
+learning models. The authors hope that any readers find these resources
+useful. 
