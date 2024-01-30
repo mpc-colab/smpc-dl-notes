@@ -19,12 +19,5 @@
     "title": "1  Red Light Violation Detection",
     "section": "1.1 Motivation",
     "text": "1.1 Motivation\nSecure Red Light Violation detection is an important application of secure machine learning protocols. Oftentimes, these systems will require the use of image segmentation and object recognition protocols. The images used for this task expose often-times sensitive data about individual users.\nIn the practical setting of interest, this means exposing license-plate information, associated vehicles, and location information available from the images themselves.\n\\[\n\\begin{align}\nx + y &= 3 \\\\\n2x - y &= 1\n\\end{align}\n\\]"
-  },
-  {
-    "objectID": "summary.html",
-    "href": "summary.html",
-    "title": "2  Summary",
-    "section": "",
-    "text": "In summary, this book has no content whatsoever."
   }
 ]

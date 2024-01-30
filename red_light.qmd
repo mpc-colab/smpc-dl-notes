@@ -1,3 +1,5 @@
 # Red Light Violation Detection
 
-{{< include _red_light1.qmd >}}
+{{< include v2x/_red_light1.qmd >}}
+
+{{< include v2x/_dokur2022etal >}}

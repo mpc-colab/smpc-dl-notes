@@ -10,3 +10,14 @@ on a variety of secure multiparty computation protocols, implementation
 details, and a discussion of v2x applications and relevant deep 
 learning models. The authors hope that any readers find these resources
 useful. 
+
+## Resources {.unnumbered}
+
+The [matcha editor](https://www.mathcha.io/) is used to construct
+some of the mathematical diagrams shown in this book. In order to 
+export a matcha diagram, you need to enter the full-screen mode
+for the diagram, and click on the "export" drop-down which becomes
+available. This will allow you to save the math diagram as a png
+image. We will make liberal use of these throughout the book, 
+especially for explaining complex security primitives such as 
+beaver's triples and homomorphic encryption.
