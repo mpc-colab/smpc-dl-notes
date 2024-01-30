@@ -1,0 +1,18 @@
+## Motivation
+
+Secure Red Light Violation detection is an important application
+of secure machine learning protocols. 
+Oftentimes, these systems will require the use of image segmentation
+and object recognition protocols. The images used for this 
+task expose often-times sensitive data about individual users. 
+
+In the practical setting of interest, this means exposing license-plate
+information, associated vehicles, and location information 
+available from the images themselves. 
+
+$$
+\begin{align}
+x + y &= 3 \\
+2x - y &= 1
+\end{align}
+$$

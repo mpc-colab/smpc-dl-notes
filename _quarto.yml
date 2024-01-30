@@ -3,12 +3,12 @@ project:
   output-dir: docs
 
 book:
-  title: "Smpc-dl-notes"
-  author: :"Yoshi234"
+  title: "Secure Multiparty Computation Meets Deep Learning"
+  author: "Yoshi234"
   date: "1/30/2024"
   chapters:
     - index.qmd
-    - intro.qmd
+    - red_light.qmd
     - summary.qmd
     - references.qmd
 
@@ -16,7 +16,7 @@ bibliography: references.bib
 
 format:
   html:
-    theme: cosmo
+    theme: darkly
   pdf:
     documentclass: scrreprt
 
