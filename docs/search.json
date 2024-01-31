@@ -25,7 +25,7 @@
     "href": "red_light.html#motivation",
     "title": "1  Red Light Violation Detection",
     "section": "1.1 Motivation",
-    "text": "1.1 Motivation\nSecure Red Light Violation detection is an important application of secure machine learning protocols. Oftentimes, these systems will require the use of image segmentation and object recognition protocols. The images used for this task expose often-times sensitive data about individual users.\nIn the practical setting of interest, this means exposing license-plate information, associated vehicles, and location information available from the images themselves.\n\\[\n\\begin{align}\nx + y &= 3 \\\\\n2x - y &= 1\n\\end{align}\n\\]"
+    "text": "1.1 Motivation\nSecure Red Light Violation detection is an important application of secure machine learning protocols. Oftentimes, these systems will require the use of image segmentation and object recognition protocols. The images used for this task expose often-times sensitive data about individual users.\nIn the practical setting of interest, this means exposing license-plate information, associated vehicles, and location information available from the images themselves."
   },
   {
     "objectID": "red_light.html#vehicle-to-infrastructure-based-algorithms-for-traffic-light-detection-red-light-violation-and-wrong-way-entry-applications",
@@ -35,10 +35,24 @@
     "text": "1.2 Vehicle-to-Infrastructure based Algorithms for Traffic Light Detection, Red Light Violation, and Wrong-Way Entry Applications\n\nThe authors of this paper have constructed V2I mechanisms for red light running (RLR) detection, wrong way entry (WWE), and an array of other import tasks in the context of V2X. See the citation Dokur and Katkoori (2022)\n\n\n1.2.1 Red Light Violation Detection Algorithm\nThe proposed system utilizes the following logic to detect whether a car will violate a red light. A car which is approaching an intersection is connected to road-side units (RSUs) which are installed at traffic lights in an intersection.\nEach light is said to be located at points \\(B(x_{2}, y_{2}, z_{2})\\), \\(C(x_{3}, y_{3}, z_{3})\\), \\(D(x_{4}, y_{4}, z_{4})\\) and \\(E(x_{5}, y_{5}, z_{5})\\) respectively.\nUnlike image-based systems, this system assumes V2I communication between the traffic lights and the vehicle in question. This means that the traffic state does not need to be determined by an image classifier. Rather, we already have this information by default.\n\n\n\n\nDokur, O., and S. Katkoori. 2022. “Vehicle-to-Infrastructure Based Algorithms for Traffic Light Detection, Red Light Violation, and Wrong-Way Entry Applications.” IEEE International Symposium on Smart Electronic Systems."
   },
   {
+    "objectID": "traffic_flow.html#attention-based-spatial-temporal-graph-convolutional-networks-for-traffic-flow-forecasting",
+    "href": "traffic_flow.html#attention-based-spatial-temporal-graph-convolutional-networks-for-traffic-flow-forecasting",
+    "title": "2  Traffic Flow Forecasting",
+    "section": "2.1 Attention Based Spatial-Temporal Graph Convolutional Networks for Traffic Flow Forecasting",
+    "text": "2.1 Attention Based Spatial-Temporal Graph Convolutional Networks for Traffic Flow Forecasting\n\nIn this paper, S. Guo (2019) proposed a method for traffic flow prediction which utilized an attention based spatial-temporal graph convolutional network. They aimed to model several time-dependencies: (1) recent, (2) daily-periodic, and (3) weekly-periodic dependencies. The attention mechanism captures spatial-temporal patterns in the traffic data and the spatial-temporal convolution is used to capture spatial patterns while standard convolutions describe temporal features.\n\n\n2.1.1 Core Contributions of ASTGCN\nDifficulties of the traffic forecasting problem\n\nit is difficult to handle unstable and nonlinear data\nprediction performance of models require extensive feature engineering\n\ndomain expertise is necessary\n\ncnn - spatial feature extraction from grid-based data, gcn - describe spatial correlation of grid based data\n\nfails to simultaneously model spatial temporal features and dynamic correlations of traffic data\n\n\nAddressing these issues:\n\ndevelop a spatial-temporal attention mechanism\n\nlearns dynamic spatial-temporal correlations of traffic data\ntemporal attention is applied to capture dynamic temporal correlations for different times\n\nDesign of spatial-temporal convolution module\n\nhas graph convolution for modeling graph structure\nhas convolution in temporal dimension (kind of like 3-d convolution)\n\n\n\n\n\n\nS. Guo, N. Feng, Y. Lin. 2019. “Attention Based Spatial-Temporal Graph Convolutional Networks for Traffic Flow Forecasting.” The Thirty-Third AAAI Conference on Artificial Intelligence."
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "3  Summary",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever."
+  },
+  {
     "objectID": "references.html",
     "href": "references.html",
     "title": "References",
     "section": "",
-    "text": "Dokur, O., and S. Katkoori. 2022. “Vehicle-to-Infrastructure Based\nAlgorithms for Traffic Light Detection, Red Light Violation, and\nWrong-Way Entry Applications.” IEEE International Symposium\non Smart Electronic Systems."
+    "text": "Dokur, O., and S. Katkoori. 2022. “Vehicle-to-Infrastructure Based\nAlgorithms for Traffic Light Detection, Red Light Violation, and\nWrong-Way Entry Applications.” IEEE International Symposium\non Smart Electronic Systems.\n\n\nS. Guo, N. Feng, Y. Lin. 2019. “Attention Based Spatial-Temporal\nGraph Convolutional Networks for Traffic Flow Forecasting.”\nThe Thirty-Third AAAI Conference on Artificial Intelligence."
   }
 ]

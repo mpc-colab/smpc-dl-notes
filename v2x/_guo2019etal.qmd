@@ -1,0 +1,31 @@
+##  Attention Based Spatial-Temporal Graph Convolutional Networks for Traffic Flow Forecasting
+
+> In this paper, @guo2019etal proposed a method for traffic flow prediction
+which utilized an **attention based spatial-temporal graph convolutional network**.
+They aimed to model several time-dependencies: (1) recent, (2) daily-periodic, 
+and (3) weekly-periodic dependencies. The *attention mechanism* captures 
+spatial-temporal patterns in the traffic data and the *spatial-temporal convolution*
+is used to capture spatial patterns while *standard convolutions* describe temporal
+features. 
+
+### Core Contributions of ASTGCN
+
+Difficulties of the traffic forecasting problem
+
+1. it is difficult to handle unstable and nonlinear data
+2. prediction performance of models require extensive feature engineering
+   1. domain expertise is necessary
+3. cnn - spatial feature extraction from grid-based data, gcn - describe spatial
+   correlation of grid based data
+   1. fails to simultaneously model spatial temporal features and dynamic correlations
+   of traffic data
+
+Addressing these issues:
+
+1. develop a *spatial-temporal attention mechanism* 
+   1. learns dynamic spatial-temporal correlations of traffic data
+   2. temporal attention is applied to capture dynamic temporal correlations
+    for different times
+2. Design of *spatial-temporal convolution module*
+   1. has graph convolution for modeling graph structure
+   2. has convolution in temporal dimension (kind of like 3-d convolution)

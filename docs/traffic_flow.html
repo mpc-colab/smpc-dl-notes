@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Secure Multiparty Computation Meets Deep Learning - 3&nbsp; Summary</title>
+<title>Secure Multiparty Computation Meets Deep Learning - 2&nbsp; Traffic Flow Forecasting</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -30,8 +49,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
-<link href="./traffic_flow.html" rel="prev">
+<link href="./summary.html" rel="next">
+<link href="./red_light.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -74,7 +93,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./summary.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summary</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./traffic_flow.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Traffic Flow Forecasting</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -113,13 +132,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./traffic_flow.html" class="sidebar-item-text sidebar-link">
+  <a href="./traffic_flow.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Traffic Flow Forecasting</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link active">
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
@@ -135,14 +154,23 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#attention-based-spatial-temporal-graph-convolutional-networks-for-traffic-flow-forecasting" id="toc-attention-based-spatial-temporal-graph-convolutional-networks-for-traffic-flow-forecasting" class="nav-link active" data-scroll-target="#attention-based-spatial-temporal-graph-convolutional-networks-for-traffic-flow-forecasting"><span class="header-section-number">2.1</span> Attention Based Spatial-Temporal Graph Convolutional Networks for Traffic Flow Forecasting</a>
+  <ul class="collapse">
+  <li><a href="#core-contributions-of-astgcn" id="toc-core-contributions-of-astgcn" class="nav-link" data-scroll-target="#core-contributions-of-astgcn"><span class="header-section-number">2.1.1</span> Core Contributions of ASTGCN</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summary</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Traffic Flow Forecasting</span></h1>
 </div>
 
 
@@ -157,9 +185,47 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>In summary, this book has no content whatsoever.</p>
+<section id="attention-based-spatial-temporal-graph-convolutional-networks-for-traffic-flow-forecasting" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="attention-based-spatial-temporal-graph-convolutional-networks-for-traffic-flow-forecasting"><span class="header-section-number">2.1</span> Attention Based Spatial-Temporal Graph Convolutional Networks for Traffic Flow Forecasting</h2>
+<blockquote class="blockquote">
+<p>In this paper, <span class="citation" data-cites="guo2019etal">S. Guo (<a href="references.html#ref-guo2019etal" role="doc-biblioref">2019</a>)</span> proposed a method for traffic flow prediction which utilized an <strong>attention based spatial-temporal graph convolutional network</strong>. They aimed to model several time-dependencies: (1) recent, (2) daily-periodic, and (3) weekly-periodic dependencies. The <em>attention mechanism</em> captures spatial-temporal patterns in the traffic data and the <em>spatial-temporal convolution</em> is used to capture spatial patterns while <em>standard convolutions</em> describe temporal features.</p>
+</blockquote>
+<section id="core-contributions-of-astgcn" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="core-contributions-of-astgcn"><span class="header-section-number">2.1.1</span> Core Contributions of ASTGCN</h3>
+<p>Difficulties of the traffic forecasting problem</p>
+<ol type="1">
+<li>it is difficult to handle unstable and nonlinear data</li>
+<li>prediction performance of models require extensive feature engineering
+<ol type="1">
+<li>domain expertise is necessary</li>
+</ol></li>
+<li>cnn - spatial feature extraction from grid-based data, gcn - describe spatial correlation of grid based data
+<ol type="1">
+<li>fails to simultaneously model spatial temporal features and dynamic correlations of traffic data</li>
+</ol></li>
+</ol>
+<p>Addressing these issues:</p>
+<ol type="1">
+<li>develop a <em>spatial-temporal attention mechanism</em>
+<ol type="1">
+<li>learns dynamic spatial-temporal correlations of traffic data</li>
+<li>temporal attention is applied to capture dynamic temporal correlations for different times</li>
+</ol></li>
+<li>Design of <em>spatial-temporal convolution module</em>
+<ol type="1">
+<li>has graph convolution for modeling graph structure</li>
+<li>has convolution in temporal dimension (kind of like 3-d convolution)</li>
+</ol></li>
+</ol>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-guo2019etal" class="csl-entry" role="listitem">
+S. Guo, N. Feng, Y. Lin. 2019. <span>“Attention Based Spatial-Temporal Graph Convolutional Networks for Traffic Flow Forecasting.”</span> <em>The Thirty-Third AAAI Conference on Artificial Intelligence</em>.
+</div>
+</div>
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -397,13 +463,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./traffic_flow.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Traffic Flow Forecasting</span></span>
+      <a href="./red_light.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Red Light Violation Detection</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./summary.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

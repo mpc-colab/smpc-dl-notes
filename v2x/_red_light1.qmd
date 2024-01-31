@@ -9,10 +9,3 @@ task expose often-times sensitive data about individual users.
 In the practical setting of interest, this means exposing license-plate
 information, associated vehicles, and location information 
 available from the images themselves. 
-
-$$
-\begin{align}
-x + y &= 3 \\
-2x - y &= 1
-\end{align}
-$$
