@@ -1,0 +1,6 @@
+## SSD: Single Shot MultiBox Detector
+
+> The single shot multibox detector is an algorithm presented
+by @liu2016etal for the purpose of taking a 300 x 300 input
+and generating bounding boxes on objects of interest within
+the image. The paper is linked [here](https://arxiv.org/abs/1512.02325)

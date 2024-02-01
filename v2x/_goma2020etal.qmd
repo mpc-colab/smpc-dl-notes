@@ -6,3 +6,6 @@ Specifically, they achieve **100%** accuracy on red light running
 detection and **92.1%** accuracy for over-speeding violations. 
 They accomplish these results using a CNN applied to an SSD
 (single deep neural network)
+
+### Methods and System Design
+

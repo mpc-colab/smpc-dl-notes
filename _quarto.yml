@@ -8,6 +8,7 @@ book:
   date: "1/30/2024"
   chapters:
     - index.qmd
+    - object_detection.qmd
     - red_light.qmd
     - traffic_flow.qmd
     - summary.qmd
