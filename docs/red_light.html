@@ -169,6 +169,7 @@ div.csl-indent {
   <ul class="collapse">
   <li><a href="#problem-setting" id="toc-problem-setting" class="nav-link" data-scroll-target="#problem-setting"><span class="header-section-number">1.3.1</span> Problem Setting</a></li>
   <li><a href="#system-design-and-solution-approach" id="toc-system-design-and-solution-approach" class="nav-link" data-scroll-target="#system-design-and-solution-approach"><span class="header-section-number">1.3.2</span> System Design and Solution Approach</a></li>
+  <li><a href="#primary-contributions" id="toc-primary-contributions" class="nav-link" data-scroll-target="#primary-contributions"><span class="header-section-number">1.3.3</span> Primary Contributions</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -237,12 +238,42 @@ div.csl-indent {
 </figure>
 </div>
 <ul>
-<li>vehicle tracking - performed every 5 frames
+<li><strong>vehicle tracking</strong> - performed every 5 frames
 <ul>
 <li>if IOU (intersection over union) of bounding box is close to one from a previous frame, then the car is assumed to be the same one from that frame.</li>
-<li></li>
+</ul></li>
+<li><strong>violation line detection</strong>
+<ul>
+<li>image processing is used to determine traffic lines</li>
+<li>boundary lines are drawn onto frames captured by the camera later</li>
+</ul></li>
+<li><strong>traffic state detection</strong>
+<ul>
+<li>color filters and image processing used to detect changes in the state of the traffic light</li>
 </ul></li>
 </ul>
+</section>
+<section id="primary-contributions" class="level3" data-number="1.3.3">
+<h3 data-number="1.3.3" class="anchored" data-anchor-id="primary-contributions"><span class="header-section-number">1.3.3</span> Primary Contributions</h3>
+<ol type="1">
+<li>Implementation of modified <em>YOLOv5s</em> model
+<ol type="1">
+<li>used parameter changes from original model</li>
+<li>achieved following accuracy results:
+<ol type="1">
+<li><span style="color:LightGreen"> 82% - vehicle identification </span></li>
+<li><span style="color:LightGreen"> 90% - traffic signal status change </span></li>
+<li><span style="color:LightGreen"> 86% - violation detection </span></li>
+</ol></li>
+</ol></li>
+<li>Best Performing Architecture given below (v3 / v4)</li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="v2x/imgs/conv_v3_arc.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption class="figure-caption">modified Yolo architecture</figcaption>
+</figure>
+</div>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
