@@ -1,4 +1,4 @@
-## Vehicle-to-Infrastructure based Algorithms for Traffic Light Detection, Red Light Violation, and Wrong-Way Entry Applications
+## V2I Algorithms for RLR Detection
 
 > The authors of this paper have constructed V2I mechanisms for 
 red light running (RLR) detection, wrong way entry (WWE), and 
