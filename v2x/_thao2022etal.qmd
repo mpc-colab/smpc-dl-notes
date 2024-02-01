@@ -1,0 +1,56 @@
+## Thao et.al on Traffic Violation Detection
+
+> The paper proposed by @thao2022etal introduces a mechanism
+for detecting red light violations automatically. There paper is 
+titled: 
+*Automatic Traffic Red-Light Violation Detection Using AI*
+
+### Problem Setting
+
+The reason AI technologies (image classification and detection)
+systems are better suited than standard sensor technologies is 
+that they are able to operate more consistently, even when the
+number of vehicles in the setting increases dramatically. 
+
+### System Design and Solution Approach
+
+Separate the task into three parts:
+
+1. vehicle violation detection
+2. red signal change monitoring
+3. vehicle recognition
+
+**Vehicle Violation Detection**
+
+The <span style="color:LightGreen"> YOLOv5s pretrained model (COCO dataset) </span> 
+is used for detecting violating
+vehicles. After detecting violation, following frames are used
+to try and determine the license plate (identfy vehicle).
+
+Below, a picture of the overall system flow is presented:
+
+![system flow](v2x/imgs/thao_diagram.png){width=80% fig-align="center"}
+
+* **vehicle tracking** - performed every 5 frames
+  * if IOU (intersection over union) of bounding box is close to one 
+    from a previous frame, then the car is assumed to be the same one
+    from that frame.
+* **violation line detection**
+  * image processing is used to determine traffic lines
+  * boundary lines are drawn onto frames captured by the camera later
+* **traffic state detection**
+  * color filters and image processing used to detect changes in the
+    state of the traffic light
+
+### Primary Contributions
+
+1. Implementation of modified *YOLOv5s* model 
+   1. used parameter changes from original model
+   2. achieved following accuracy results:
+      1. <span style="color:LightGreen"> 82% - vehicle identification </span>
+      2. <span style="color:LightGreen"> 90% - traffic signal status change </span>
+      3. <span style="color:LightGreen"> 86% - violation detection </span>
+2. Best Performing Architecture given below (v3 / v4)
+
+![modified Yolo architecture](v2x/imgs/conv_v3_arc.png){width=70% fig-align="center"}
+

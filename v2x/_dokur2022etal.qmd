@@ -8,16 +8,20 @@ citation @dokur2022etal
 ### Red Light Violation Detection Algorithm
 
 The proposed system utilizes the following logic to detect whether 
-a car will violate a red light. A car which is approaching 
-an intersection is connected to road-side units (RSUs) which 
+a car will violate a red light. 
+<span style="color:LightGreen">
+A car which is approaching 
+an intersection is connected to road-side units (RSUs) </span>
+which 
 are installed at traffic lights in an intersection. 
 
 Each light is said to be located at points $B(x_{2}, y_{2}, z_{2})$, 
 $C(x_{3}, y_{3}, z_{3})$, $D(x_{4}, y_{4}, z_{4})$ and 
 $E(x_{5}, y_{5}, z_{5})$ respectively. 
 
-Unlike image-based systems, this system assumes V2I communication
-between the traffic lights and the vehicle in question. 
+Unlike image-based systems, this system <span style="color:LightGreen"> 
+assumes V2I communication
+between the traffic lights and the vehicle in question. </span>
 This means that the traffic state does not need to be determined by 
 an image classifier. Rather, we already have this information by 
 default. 
