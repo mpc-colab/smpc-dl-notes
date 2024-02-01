@@ -5,3 +5,5 @@
 {{< include v2x/_dokur2022etal.qmd >}}
 
 {{< include v2x/_thao2022etal.qmd >}}
+
+{{< include v2x/_goma2020etal.qmd >}}
