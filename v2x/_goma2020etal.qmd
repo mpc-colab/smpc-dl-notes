@@ -1,6 +1,6 @@
 ## Goma et.al on RLR Detection with SSD (Single Shot Detector)
 
-> Work by @goma2022etal demonstrates the ability to detect
+> Work by @goma2020etal demonstrates the ability to detect
 red-light-running and over-speeding with a high level of accuracy.
 Specifically, they achieve **100%** accuracy on red light running 
 detection and **92.1%** accuracy for over-speeding violations. 
