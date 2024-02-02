@@ -78,7 +78,7 @@ and sliding window methods.
 The output coordinates of the bounding box were detected using more
 straightforward regression techniques
 
-#### YOLOv1
+#### YOLOv1 {#sec-yolo1}
 
 <span style="color:Crimson"> AP: 63.4% </span>
 
@@ -146,7 +146,7 @@ Loss functions:
 
 ![yolo v1 loss function](deeplearn/imgs/yolov1_loss.png){width=85% fig-align="center"}
 
-#### YOLOv2 (YOLO 9000)
+#### YOLOv2 (YOLO 9000) {#sec-yolo2}
 
 <span style="color:Crimson"> AP: 78.6% </span>
 
