@@ -1,0 +1,190 @@
+## A Comprehensive Review of YOLO (v1 to v8+)
+
+> @terven2023etal present review and analysis of the evolution 
+of the Yolo algorithm, with a focus on the innovations and 
+contributions made by each iteration, as well as the major changes
+in network architecture (and training tricks) which have been 
+implemented over time. 
+
+![A timeline of YOLO development](deeplearn/imgs/yolo_timeline.png){fig-align="center" width="80%"}
+
+### Applications of YOLO
+
+Yolo has proven invaluable for a number of different applications
+
+* autonomous vehicles
+  * enables quick identification and tracking of objects like vehicles, 
+    pedestrians, bicycles and other obstacles
+* action recognition 
+* video surveillance
+* sports analysis
+* human-computer interaction
+* crop, disease, pest detection and classsification
+* face detection - biometrics, security, facial recognition
+* cancer detection 
+* skin segmentation 
+* pill identification 
+* remote sensing
+  * satellite and aerial imagery object detection / classification
+  * land use mapping
+  * urban planning
+* security systems
+* smart transportation systems
+* robotics and drones 
+
+### Evaluation Metrics
+
+Average Precision (AP) and Mean Average Precision (mAP) are the most
+common metrics used in the object detection task. <span style="color:lightGreen"> 
+It measures average precision across all categories, providing a single value to 
+compare different models </span> 
+
+#### How AP works
+
+* mAP is the average precision for accuracy of predictions across all 
+  classes of objects contained within an image
+  * individual AP values are determined for each category separately.
+* IOU (intersection over union)
+  * measures the proportion of the predicted bounding box which overlaps
+    which overlaps with the true bounding box
+
+![Intersection over union in practice](deeplearn/imgs/iou_img.png){fig-align="center"}
+
+Different methods are used to compute AP when evaluating object detection 
+methods on the COCO and VOC datasets (PASCAL-VOC)
+
+### Non-Maximum Suppression
+
+A post-processing technique - reduces number of overlapping boxes and 
+improves detection quality. Object detectors typically generate multiple 
+bounding boxes around the same object. Non-max suppression picks the best
+ones and gets rid of the others.
+
+The algorithm for this is defined below:
+
+![Non-Max Suppression Alg](deeplearn/imgs/nms_alg.png){fig-align="center" width=80%}
+
+A useful visualization is also provided:
+
+![Non-Max Supression Vis](deeplearn/imgs/nms_vis.png)
+
+### YOLO
+
+The original authors of YOLO titled it as such for the reason that it 
+only required a single pass on the image to accomplish the detection 
+task. This is contrast to the other approaches used by Fast R-CNN 
+and sliding window methods. 
+
+The output coordinates of the bounding box were detected using more
+straightforward regression techniques
+
+#### YOLOv1
+
+<span style="color:Crimson"> AP: 63.4% </span>
+
+YOLOv1 predicted all bounding boxes simultaneously by the following 
+process:
+
+1. divide image into $S \times S$ grid 
+2. predict $B$ bounding boxes of the same class and confidence for $C$
+   different classes per grid element
+3. each bounding box had five values:
+    1. $Pc$ - confidence score for the bounding box - how likely it 
+        contains an object and the accuracy of the box
+    2. $bx$ and $by$ - coordinates of center of box relative to grid
+        cell. 
+    3. $bh$ and $bw$ - height and width of box relative to full 
+4. output an $S \times S \times (B \times 5 + C)$ tensor
+5. (optional) NMS used to remove redundant bounding boxes
+
+Here is an example of that output: 
+
+![yolo output prediction](deeplearn/imgs/yolo_out.png){width=80% fig-align="center"}
+
+##### v1 Architecture
+
+**Normal Architecture**
+
+* <span style="color:yellow"> 24 conv layers </span>
+  * $1 \times 1$ conv layers are used - reduce number of feature maps and 
+    keep parameters lower
+  * <span style="color:pink"> leaky rectified linear unit activations
+* <span style="color:orange"> 2 fc layers </span>
+  * predict bounding box coordinates / probs
+  * <span style="color:pink"> linear activation function for final layer </span>
+
+**FastYOLO**
+
+* Used 9 conv layers instead of 24 for greater speed (at the cost of reduced
+  accuracy)
+
+![yolo v1 architecture](deeplearn/imgs/yolov1_arc.png){width=80% fig-align="center"}
+
+##### v1 Training
+
+Basic training process:
+
+1. pretrain first 20 layers at resolution $224 \times 224$ with *ImageNet* dataset
+2. add last four layers with randomly initialized weights - fine tune model 
+   with PASCAL VOC 2007 and PASCAL VOC 2012 at resolution $448 \times 448$
+
+Loss functions: 
+
+* scaling factors
+  * $\lambda_{coord} = 5$ - gives more weight to boxes with objects
+  * $\lambda_{noobj} = 0.5$ - reduces importance of boxes with no object
+* localization loss:
+  * first two terms 
+  * computes error in predicted bounding box locations $(x,y)$ and $(w,h)$
+  * only penalizes boxes with objects in them
+* confidence loss:
+  * confidence error when object is detected (third term)
+  * confidence error when no object is in box (fourth term)
+* classification loss:
+  * squared error of class conditional probabilities for each class if an 
+    object appears in the cell
+
+![yolo v1 loss function](deeplearn/imgs/yolov1_loss.png){width=85% fig-align="center"}
+
+#### YOLOv2 (YOLO 9000)
+
+<span style="color:Crimson"> AP: 78.6% </span>
+
+**Improvements / Changes**
+
+1. Batch normalization - included on all convolutional layers
+2. Higher resolution classifier - pretrained model (224 x 224) 
+   and then fine-tuned with ImageNet at a higher reoslution (448 x 448) 
+   for ten epochs
+3. fully convolutional - remove dense layers and use fully conv architecture
+4. use anchor boxes to predict bounding boxes
+   1. anchor box - box with predefined shapes for prototypical objects 
+   2. defined for each grid cell
+   3. system predicts coordinates and class for every anchor box
+
+![yolo v2 anchor boxes](deeplearn/imgs/yolov2_anchor.png){width=80% fig-align="center"}
+
+5. Dimension clusters - pick good anchor boxes using k-means clustering on the
+   training bounding boxes - improves accuracy of bounding boxes
+6. Direct Location Prediction 
+7. Finer-grained features
+   1. removed pooling layer - get feature 13 x 13 feature map for 416 x 416 images
+   2. passthrough layer - 26 x 26 x 512 feature map -> stack adjacent features into 
+      different channels
+8. Multi-scale training - train on different input sizes to make model robust to 
+   different input types
+
+##### v2 Architecture
+
+* backbone architecture -> <span style="color:Yellow"> Darknet-19 </span>
+  * 19 conv layers
+  * 5 max pool layers
+    * non-linear operation - uses OT to perform efficiently
+  * use $1 \times 1$ conv between $3 \times 3$ to reduce parameters
+  * batch normalization to help convergence
+  * object classification head (replaces last 4 conv layers of YOLOv1)
+    * 1 conv layer (1000 filters)
+    * GAP layer
+    * Softmax classifier
+  
+![yolo v2 architecture](deeplearn/imgs/yolov2_arc.png){width=80% fig-align="center"}

@@ -1,3 +1,5 @@
 # Object Detection Algorithms
 
 {{< include deeplearn/_liu2016etal.qmd >}}
+
+{{< include deeplearn/_terven2023etal.qmd >}}
