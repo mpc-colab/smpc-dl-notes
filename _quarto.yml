@@ -8,9 +8,17 @@ book:
   date: "1/30/2024"
   chapters:
     - index.qmd
-    - object_detection.qmd
-    - red_light.qmd
-    - traffic_flow.qmd
+    - part: secure_primitives.qmd
+      chapters:
+        - secure_prim/beavers_triples.qmd
+        - secure_prim/oblivious_transfer.qmd
+    - part: deep_learning.qmd
+      chapters:
+        -  object_detection.qmd
+    - part: v2x_apps.qmd
+      chapters:
+        - red_light.qmd
+        - traffic_flow.qmd
     - summary.qmd
     - references.qmd
 

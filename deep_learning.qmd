@@ -1,0 +1,8 @@
+# Deep Learning
+
+This portion of the text deals with deep learning and artificial
+intelligence applications. Specifically, it covers topics such
+as object detection and classification with computer vision, 
+neural network primitives, and others. Other machine learning 
+applications and import resources may also be included in this 
+portion of the text

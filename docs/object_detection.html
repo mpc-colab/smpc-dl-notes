@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Secure Multiparty Computation Meets Deep Learning - 1&nbsp; Object Detection Algorithms</title>
+<title>Secure Multiparty Computation Meets Deep Learning - 3&nbsp; Object Detection Algorithms</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -49,8 +49,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./red_light.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./v2x_apps.html" rel="next">
+<link href="./deep_learning.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -95,7 +95,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./object_detection.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Object Detection Algorithms</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./deep_learning.html">Deep Learning</a></li><li class="breadcrumb-item"><a href="./object_detection.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Object Detection Algorithms</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -126,28 +126,73 @@ div.csl-indent {
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./secure_primitives.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Secure Multiparty Computation Primitives</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./secure_prim/beavers_triples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Beaver’s Triples Explained</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./secure_prim/oblivious_transfer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Oblivious Transfer</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./deep_learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./object_detection.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Object Detection Algorithms</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Object Detection Algorithms</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./v2x_apps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">V2X Applications</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./red_light.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Red Light Violation Detection</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Red Light Violation Detection</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./traffic_flow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Traffic Flow Forecasting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Traffic Flow Forecasting</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -166,13 +211,13 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#ssd-single-shot-multibox-detector" id="toc-ssd-single-shot-multibox-detector" class="nav-link active" data-scroll-target="#ssd-single-shot-multibox-detector"><span class="header-section-number">1.1</span> SSD: Single Shot MultiBox Detector</a></li>
-  <li><a href="#a-comprehensive-review-of-yolo-v1-to-v8" id="toc-a-comprehensive-review-of-yolo-v1-to-v8" class="nav-link" data-scroll-target="#a-comprehensive-review-of-yolo-v1-to-v8"><span class="header-section-number">1.2</span> A Comprehensive Review of YOLO (v1 to v8+)</a>
+  <li><a href="#ssd-single-shot-multibox-detector" id="toc-ssd-single-shot-multibox-detector" class="nav-link active" data-scroll-target="#ssd-single-shot-multibox-detector"><span class="header-section-number">3.1</span> SSD: Single Shot MultiBox Detector</a></li>
+  <li><a href="#a-comprehensive-review-of-yolo-v1-to-v8" id="toc-a-comprehensive-review-of-yolo-v1-to-v8" class="nav-link" data-scroll-target="#a-comprehensive-review-of-yolo-v1-to-v8"><span class="header-section-number">3.2</span> A Comprehensive Review of YOLO (v1 to v8+)</a>
   <ul class="collapse">
-  <li><a href="#applications-of-yolo" id="toc-applications-of-yolo" class="nav-link" data-scroll-target="#applications-of-yolo"><span class="header-section-number">1.2.1</span> Applications of YOLO</a></li>
-  <li><a href="#evaluation-metrics" id="toc-evaluation-metrics" class="nav-link" data-scroll-target="#evaluation-metrics"><span class="header-section-number">1.2.2</span> Evaluation Metrics</a></li>
-  <li><a href="#non-maximum-suppression" id="toc-non-maximum-suppression" class="nav-link" data-scroll-target="#non-maximum-suppression"><span class="header-section-number">1.2.3</span> Non-Maximum Suppression</a></li>
-  <li><a href="#yolo" id="toc-yolo" class="nav-link" data-scroll-target="#yolo"><span class="header-section-number">1.2.4</span> YOLO</a></li>
+  <li><a href="#applications-of-yolo" id="toc-applications-of-yolo" class="nav-link" data-scroll-target="#applications-of-yolo"><span class="header-section-number">3.2.1</span> Applications of YOLO</a></li>
+  <li><a href="#evaluation-metrics" id="toc-evaluation-metrics" class="nav-link" data-scroll-target="#evaluation-metrics"><span class="header-section-number">3.2.2</span> Evaluation Metrics</a></li>
+  <li><a href="#non-maximum-suppression" id="toc-non-maximum-suppression" class="nav-link" data-scroll-target="#non-maximum-suppression"><span class="header-section-number">3.2.3</span> Non-Maximum Suppression</a></li>
+  <li><a href="#yolo" id="toc-yolo" class="nav-link" data-scroll-target="#yolo"><span class="header-section-number">3.2.4</span> YOLO</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -182,7 +227,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Object Detection Algorithms</span></h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Object Detection Algorithms</span></h1>
 </div>
 
 
@@ -197,14 +242,14 @@ div.csl-indent {
 
 </header>
 
-<section id="ssd-single-shot-multibox-detector" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="ssd-single-shot-multibox-detector"><span class="header-section-number">1.1</span> SSD: Single Shot MultiBox Detector</h2>
+<section id="ssd-single-shot-multibox-detector" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="ssd-single-shot-multibox-detector"><span class="header-section-number">3.1</span> SSD: Single Shot MultiBox Detector</h2>
 <blockquote class="blockquote">
 <p>The single shot multibox detector is an algorithm presented by <span class="citation" data-cites="liu2016etal">W. Liu (<a href="references.html#ref-liu2016etal" role="doc-biblioref">2016</a>)</span> for the purpose of taking a 300 x 300 input and generating bounding boxes on objects of interest within the image. The paper is linked <a href="https://arxiv.org/abs/1512.02325">here</a></p>
 </blockquote>
 </section>
-<section id="a-comprehensive-review-of-yolo-v1-to-v8" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="a-comprehensive-review-of-yolo-v1-to-v8"><span class="header-section-number">1.2</span> A Comprehensive Review of YOLO (v1 to v8+)</h2>
+<section id="a-comprehensive-review-of-yolo-v1-to-v8" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="a-comprehensive-review-of-yolo-v1-to-v8"><span class="header-section-number">3.2</span> A Comprehensive Review of YOLO (v1 to v8+)</h2>
 <blockquote class="blockquote">
 <p><span class="citation" data-cites="terven2023etal">J. Terven (<a href="references.html#ref-terven2023etal" role="doc-biblioref">2023</a>)</span> present review and analysis of the evolution of the Yolo algorithm, with a focus on the innovations and contributions made by each iteration, as well as the major changes in network architecture (and training tricks) which have been implemented over time.</p>
 </blockquote>
@@ -214,8 +259,8 @@ div.csl-indent {
 <figcaption class="figure-caption">A timeline of YOLO development</figcaption>
 </figure>
 </div>
-<section id="applications-of-yolo" class="level3" data-number="1.2.1">
-<h3 data-number="1.2.1" class="anchored" data-anchor-id="applications-of-yolo"><span class="header-section-number">1.2.1</span> Applications of YOLO</h3>
+<section id="applications-of-yolo" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="applications-of-yolo"><span class="header-section-number">3.2.1</span> Applications of YOLO</h3>
 <p>Yolo has proven invaluable for a number of different applications</p>
 <ul>
 <li>autonomous vehicles
@@ -242,11 +287,11 @@ div.csl-indent {
 <li>robotics and drones</li>
 </ul>
 </section>
-<section id="evaluation-metrics" class="level3" data-number="1.2.2">
-<h3 data-number="1.2.2" class="anchored" data-anchor-id="evaluation-metrics"><span class="header-section-number">1.2.2</span> Evaluation Metrics</h3>
+<section id="evaluation-metrics" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="evaluation-metrics"><span class="header-section-number">3.2.2</span> Evaluation Metrics</h3>
 <p>Average Precision (AP) and Mean Average Precision (mAP) are the most common metrics used in the object detection task. <span style="color:lightGreen"> It measures average precision across all categories, providing a single value to compare different models </span></p>
-<section id="how-ap-works" class="level4" data-number="1.2.2.1">
-<h4 data-number="1.2.2.1" class="anchored" data-anchor-id="how-ap-works"><span class="header-section-number">1.2.2.1</span> How AP works</h4>
+<section id="how-ap-works" class="level4" data-number="3.2.2.1">
+<h4 data-number="3.2.2.1" class="anchored" data-anchor-id="how-ap-works"><span class="header-section-number">3.2.2.1</span> How AP works</h4>
 <ul>
 <li>mAP is the average precision for accuracy of predictions across all classes of objects contained within an image
 <ul>
@@ -266,8 +311,8 @@ div.csl-indent {
 <p>Different methods are used to compute AP when evaluating object detection methods on the COCO and VOC datasets (PASCAL-VOC)</p>
 </section>
 </section>
-<section id="non-maximum-suppression" class="level3" data-number="1.2.3">
-<h3 data-number="1.2.3" class="anchored" data-anchor-id="non-maximum-suppression"><span class="header-section-number">1.2.3</span> Non-Maximum Suppression</h3>
+<section id="non-maximum-suppression" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="non-maximum-suppression"><span class="header-section-number">3.2.3</span> Non-Maximum Suppression</h3>
 <p>A post-processing technique - reduces number of overlapping boxes and improves detection quality. Object detectors typically generate multiple bounding boxes around the same object. Non-max suppression picks the best ones and gets rid of the others.</p>
 <p>The algorithm for this is defined below:</p>
 <div class="quarto-figure quarto-figure-center">
@@ -284,12 +329,12 @@ div.csl-indent {
 </figure>
 </div>
 </section>
-<section id="yolo" class="level3" data-number="1.2.4">
-<h3 data-number="1.2.4" class="anchored" data-anchor-id="yolo"><span class="header-section-number">1.2.4</span> YOLO</h3>
+<section id="yolo" class="level3" data-number="3.2.4">
+<h3 data-number="3.2.4" class="anchored" data-anchor-id="yolo"><span class="header-section-number">3.2.4</span> YOLO</h3>
 <p>The original authors of YOLO titled it as such for the reason that it only required a single pass on the image to accomplish the detection task. This is contrast to the other approaches used by Fast R-CNN and sliding window methods.</p>
 <p>The output coordinates of the bounding box were detected using more straightforward regression techniques</p>
-<section id="sec-yolo1" class="level4" data-number="1.2.4.1">
-<h4 data-number="1.2.4.1" class="anchored" data-anchor-id="sec-yolo1"><span class="header-section-number">1.2.4.1</span> YOLOv1</h4>
+<section id="sec-yolo1" class="level4" data-number="3.2.4.1">
+<h4 data-number="3.2.4.1" class="anchored" data-anchor-id="sec-yolo1"><span class="header-section-number">3.2.4.1</span> YOLOv1</h4>
 <p><span style="color:Crimson"> AP: 63.4% </span></p>
 <p>YOLOv1 predicted all bounding boxes simultaneously by the following process:</p>
 <ol type="1">
@@ -311,8 +356,8 @@ div.csl-indent {
 <figcaption class="figure-caption">yolo output prediction</figcaption>
 </figure>
 </div>
-<section id="v1-architecture" class="level5" data-number="1.2.4.1.1">
-<h5 data-number="1.2.4.1.1" class="anchored" data-anchor-id="v1-architecture"><span class="header-section-number">1.2.4.1.1</span> v1 Architecture</h5>
+<section id="v1-architecture" class="level5" data-number="3.2.4.1.1">
+<h5 data-number="3.2.4.1.1" class="anchored" data-anchor-id="v1-architecture"><span class="header-section-number">3.2.4.1.1</span> v1 Architecture</h5>
 <p><strong>Normal Architecture</strong></p>
 <ul>
 <li><span style="color:yellow"> 24 conv layers </span>
@@ -337,8 +382,8 @@ div.csl-indent {
 </figure>
 </div>
 </section>
-<section id="v1-training" class="level5" data-number="1.2.4.1.2">
-<h5 data-number="1.2.4.1.2" class="anchored" data-anchor-id="v1-training"><span class="header-section-number">1.2.4.1.2</span> v1 Training</h5>
+<section id="v1-training" class="level5" data-number="3.2.4.1.2">
+<h5 data-number="3.2.4.1.2" class="anchored" data-anchor-id="v1-training"><span class="header-section-number">3.2.4.1.2</span> v1 Training</h5>
 <p>Basic training process:</p>
 <ol type="1">
 <li>pretrain first 20 layers at resolution <span class="math inline">\(224 \times 224\)</span> with <em>ImageNet</em> dataset</li>
@@ -375,8 +420,8 @@ div.csl-indent {
 </div>
 </section>
 </section>
-<section id="sec-yolo2" class="level4" data-number="1.2.4.2">
-<h4 data-number="1.2.4.2" class="anchored" data-anchor-id="sec-yolo2"><span class="header-section-number">1.2.4.2</span> YOLOv2 (YOLO 9000)</h4>
+<section id="sec-yolo2" class="level4" data-number="3.2.4.2">
+<h4 data-number="3.2.4.2" class="anchored" data-anchor-id="sec-yolo2"><span class="header-section-number">3.2.4.2</span> YOLOv2 (YOLO 9000)</h4>
 <p><span style="color:Crimson"> AP: 78.6% </span></p>
 <p><strong>Improvements / Changes</strong></p>
 <ol type="1">
@@ -406,8 +451,8 @@ div.csl-indent {
 </ol></li>
 <li>Multi-scale training - train on different input sizes to make model robust to different input types</li>
 </ol>
-<section id="v2-architecture" class="level5" data-number="1.2.4.2.1">
-<h5 data-number="1.2.4.2.1" class="anchored" data-anchor-id="v2-architecture"><span class="header-section-number">1.2.4.2.1</span> v2 Architecture</h5>
+<section id="v2-architecture" class="level5" data-number="3.2.4.2.1">
+<h5 data-number="3.2.4.2.1" class="anchored" data-anchor-id="v2-architecture"><span class="header-section-number">3.2.4.2.1</span> v2 Architecture</h5>
 <ul>
 <li>backbone architecture -&gt; <span style="color:Yellow"> Darknet-19 </span>
 <ul>
@@ -683,13 +728,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      <a href="./deep_learning.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Deep Learning</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./red_light.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Red Light Violation Detection</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./v2x_apps.html" class="pagination-link">
+        <span class="nav-page-text">V2X Applications</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

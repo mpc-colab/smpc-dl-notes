@@ -17,11 +17,9 @@ these from the field $F_{2}^{2}$ which simply means that we select two
 random bits from $\{0,1\}$
 
 $$
-\begin{array}{cc}
-    \text{Alice} & \space & \text{Bob} \\
-    \mathbb{F}_{2}^{2} \overset{\$}{\rightarrow} (a_{A}, b_{A}) & 
-        \overbrace{}^{\&} & 
-        \mathbb{F}_{2}^{2} \overset{\$}{\rightarrow} (a_{B}, b_{B})
+\begin{array}{ccc}
+    \text{Alice} & {} & \text{Bob} \\
+    \mathbb{F}_{2}^{2} \overset{\$}{\rightarrow} (a_{A}, b_{A}) & \overbrace{}^{\&} & \mathbb{F}_{2}^{2} \overset{\$}{\rightarrow} (a_{B}, b_{B})
 \end{array}
 $$
 
@@ -29,10 +27,9 @@ Next, Bob and Alice each generate random masking values $r_{A}$ and
 $r_{B}$ respectively. 
 
 $$
-\begin{array}{cc}
-    \text{Alice} & \space & \text{Bob} \\
-    \mathbb{F}_{2} \overset{\$}{\rightarrow} r_{A} & \space & 
-        \mathbb{F}_{2} \overset{\$}{\rightarrow} r_{B}
+\begin{array}{ccc}
+    \text{Alice} & {} & \text{Bob} \\
+    \mathbb{F}_{2} \overset{\$}{\rightarrow} r_{A} & \space & \mathbb{F}_{2} \overset{\$}{\rightarrow} r_{B}
 \end{array}
 $$
 
@@ -45,14 +42,10 @@ When Bob receives this, he obtains $b_{B}a_{A} \oplus r_{A}$
 and then sends $(r_{B}, r_{B} \oplus a_{B})$ to Alice
 
 $$
-\begin{array}{cc}
-    \text{Alice} & \mskip{1em} & \text{Bob} \\
-    \text{Snd } = (r_{A}, r_{A}\oplus a_{A}) & 
-        \overset{OT}{\longrightarrow} & 
-        \text{Rcv } = b_{B}a_{A} \oplus r_{A} \\
-    \text{Rcv } = b_{A}a_{B} \oplus r_{B} & 
-        \overset{OT}{\longleftarrow} & 
-        \text{Snd } = (r_{B}, r_{B} \oplus a_{B})
+\begin{array}{ccc}
+    \text{Alice} & {} & \text{Bob} \\
+    \text{Snd } = (r_{A}, r_{A}\oplus a_{A}) & \overset{OT}{\longrightarrow} & \text{Rcv } = b_{B}a_{A} \oplus r_{A} \\
+    \text{Rcv } = b_{A}a_{B} \oplus r_{B} & \overset{OT}{\longleftarrow} & \text{Snd } = (r_{B}, r_{B} \oplus a_{B})
 \end{array}
 $$
 

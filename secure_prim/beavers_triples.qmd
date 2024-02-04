@@ -1,0 +1,10 @@
+# Beaver's Triples Explained
+
+In order to mask fixed-point multiplication inputs, 
+we need to use a secure primitive known as Beaver's 
+triples. These were originally introduced by @beaver1991 in his paper: 
+[Efficient Multiparty Protocols Using Circuit Randomization](https://link.springer.com/chapter/10.1007/3-540-46766-1_34)
+
+{{< include beavers_triples/generation.qmd >}}
+
+{{< include beavers_triples/application.qmd >}}

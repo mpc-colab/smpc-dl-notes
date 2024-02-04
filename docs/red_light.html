@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Secure Multiparty Computation Meets Deep Learning - 2&nbsp; Red Light Violation Detection</title>
+<title>Secure Multiparty Computation Meets Deep Learning - 4&nbsp; Red Light Violation Detection</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -50,7 +50,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./traffic_flow.html" rel="next">
-<link href="./object_detection.html" rel="prev">
+<link href="./v2x_apps.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -95,7 +95,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./red_light.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Red Light Violation Detection</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./v2x_apps.html">V2X Applications</a></li><li class="breadcrumb-item"><a href="./red_light.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Red Light Violation Detection</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -126,28 +126,73 @@ div.csl-indent {
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./secure_primitives.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Secure Multiparty Computation Primitives</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./secure_prim/beavers_triples.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Beaver’s Triples Explained</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./secure_prim/oblivious_transfer.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Oblivious Transfer</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./deep_learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deep Learning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./object_detection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Object Detection Algorithms</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Object Detection Algorithms</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./v2x_apps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">V2X Applications</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./red_light.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Red Light Violation Detection</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Red Light Violation Detection</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./traffic_flow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Traffic Flow Forecasting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Traffic Flow Forecasting</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -166,20 +211,20 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#motivation" id="toc-motivation" class="nav-link active" data-scroll-target="#motivation"><span class="header-section-number">2.1</span> Motivation</a></li>
-  <li><a href="#v2i-algorithms-for-rlr-detection" id="toc-v2i-algorithms-for-rlr-detection" class="nav-link" data-scroll-target="#v2i-algorithms-for-rlr-detection"><span class="header-section-number">2.2</span> V2I Algorithms for RLR Detection</a>
+  <li><a href="#motivation" id="toc-motivation" class="nav-link active" data-scroll-target="#motivation"><span class="header-section-number">4.1</span> Motivation</a></li>
+  <li><a href="#v2i-algorithms-for-rlr-detection" id="toc-v2i-algorithms-for-rlr-detection" class="nav-link" data-scroll-target="#v2i-algorithms-for-rlr-detection"><span class="header-section-number">4.2</span> V2I Algorithms for RLR Detection</a>
   <ul class="collapse">
-  <li><a href="#red-light-violation-detection-algorithm" id="toc-red-light-violation-detection-algorithm" class="nav-link" data-scroll-target="#red-light-violation-detection-algorithm"><span class="header-section-number">2.2.1</span> Red Light Violation Detection Algorithm</a></li>
+  <li><a href="#red-light-violation-detection-algorithm" id="toc-red-light-violation-detection-algorithm" class="nav-link" data-scroll-target="#red-light-violation-detection-algorithm"><span class="header-section-number">4.2.1</span> Red Light Violation Detection Algorithm</a></li>
   </ul></li>
-  <li><a href="#thao-et.al-on-traffic-violation-detection" id="toc-thao-et.al-on-traffic-violation-detection" class="nav-link" data-scroll-target="#thao-et.al-on-traffic-violation-detection"><span class="header-section-number">2.3</span> Thao et.al on Traffic Violation Detection</a>
+  <li><a href="#thao-et.al-on-traffic-violation-detection" id="toc-thao-et.al-on-traffic-violation-detection" class="nav-link" data-scroll-target="#thao-et.al-on-traffic-violation-detection"><span class="header-section-number">4.3</span> Thao et.al on Traffic Violation Detection</a>
   <ul class="collapse">
-  <li><a href="#problem-setting" id="toc-problem-setting" class="nav-link" data-scroll-target="#problem-setting"><span class="header-section-number">2.3.1</span> Problem Setting</a></li>
-  <li><a href="#system-design-and-solution-approach" id="toc-system-design-and-solution-approach" class="nav-link" data-scroll-target="#system-design-and-solution-approach"><span class="header-section-number">2.3.2</span> System Design and Solution Approach</a></li>
-  <li><a href="#primary-contributions" id="toc-primary-contributions" class="nav-link" data-scroll-target="#primary-contributions"><span class="header-section-number">2.3.3</span> Primary Contributions</a></li>
+  <li><a href="#problem-setting" id="toc-problem-setting" class="nav-link" data-scroll-target="#problem-setting"><span class="header-section-number">4.3.1</span> Problem Setting</a></li>
+  <li><a href="#system-design-and-solution-approach" id="toc-system-design-and-solution-approach" class="nav-link" data-scroll-target="#system-design-and-solution-approach"><span class="header-section-number">4.3.2</span> System Design and Solution Approach</a></li>
+  <li><a href="#primary-contributions" id="toc-primary-contributions" class="nav-link" data-scroll-target="#primary-contributions"><span class="header-section-number">4.3.3</span> Primary Contributions</a></li>
   </ul></li>
-  <li><a href="#goma-et.al-on-rlr-detection-with-ssd-single-shot-detector" id="toc-goma-et.al-on-rlr-detection-with-ssd-single-shot-detector" class="nav-link" data-scroll-target="#goma-et.al-on-rlr-detection-with-ssd-single-shot-detector"><span class="header-section-number">2.4</span> Goma et.al on RLR Detection with SSD (Single Shot Detector)</a>
+  <li><a href="#goma-et.al-on-rlr-detection-with-ssd-single-shot-detector" id="toc-goma-et.al-on-rlr-detection-with-ssd-single-shot-detector" class="nav-link" data-scroll-target="#goma-et.al-on-rlr-detection-with-ssd-single-shot-detector"><span class="header-section-number">4.4</span> Goma et.al on RLR Detection with SSD (Single Shot Detector)</a>
   <ul class="collapse">
-  <li><a href="#methods-and-system-design" id="toc-methods-and-system-design" class="nav-link" data-scroll-target="#methods-and-system-design"><span class="header-section-number">2.4.1</span> Methods and System Design</a></li>
+  <li><a href="#methods-and-system-design" id="toc-methods-and-system-design" class="nav-link" data-scroll-target="#methods-and-system-design"><span class="header-section-number">4.4.1</span> Methods and System Design</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -189,7 +234,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Red Light Violation Detection</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Red Light Violation Detection</span></h1>
 </div>
 
 
@@ -204,34 +249,34 @@ div.csl-indent {
 
 </header>
 
-<section id="motivation" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="motivation"><span class="header-section-number">2.1</span> Motivation</h2>
+<section id="motivation" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="motivation"><span class="header-section-number">4.1</span> Motivation</h2>
 <p>Secure Red Light Violation detection is an important application of secure machine learning protocols. Oftentimes, these systems will require the use of image segmentation and object recognition protocols. The images used for this task expose often-times sensitive data about individual users.</p>
 <p>In the practical setting of interest, this means exposing license-plate information, associated vehicles, and location information available from the images themselves.</p>
 </section>
-<section id="v2i-algorithms-for-rlr-detection" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="v2i-algorithms-for-rlr-detection"><span class="header-section-number">2.2</span> V2I Algorithms for RLR Detection</h2>
+<section id="v2i-algorithms-for-rlr-detection" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="v2i-algorithms-for-rlr-detection"><span class="header-section-number">4.2</span> V2I Algorithms for RLR Detection</h2>
 <blockquote class="blockquote">
 <p>The authors of this paper have constructed V2I mechanisms for red light running (RLR) detection, wrong way entry (WWE), and an array of other import tasks in the context of V2X. See the citation <span class="citation" data-cites="dokur2022etal">Dokur and Katkoori (<a href="references.html#ref-dokur2022etal" role="doc-biblioref">2022</a>)</span></p>
 </blockquote>
-<section id="red-light-violation-detection-algorithm" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="red-light-violation-detection-algorithm"><span class="header-section-number">2.2.1</span> Red Light Violation Detection Algorithm</h3>
+<section id="red-light-violation-detection-algorithm" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="red-light-violation-detection-algorithm"><span class="header-section-number">4.2.1</span> Red Light Violation Detection Algorithm</h3>
 <p>The proposed system utilizes the following logic to detect whether a car will violate a red light. <span style="color:LightGreen"> A car which is approaching an intersection is connected to road-side units (RSUs) </span> which are installed at traffic lights in an intersection.</p>
 <p>Each light is said to be located at points <span class="math inline">\(B(x_{2}, y_{2}, z_{2})\)</span>, <span class="math inline">\(C(x_{3}, y_{3}, z_{3})\)</span>, <span class="math inline">\(D(x_{4}, y_{4}, z_{4})\)</span> and <span class="math inline">\(E(x_{5}, y_{5}, z_{5})\)</span> respectively.</p>
 <p>Unlike image-based systems, this system <span style="color:LightGreen"> assumes V2I communication between the traffic lights and the vehicle in question. </span> This means that the traffic state does not need to be determined by an image classifier. Rather, we already have this information by default.</p>
 </section>
 </section>
-<section id="thao-et.al-on-traffic-violation-detection" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="thao-et.al-on-traffic-violation-detection"><span class="header-section-number">2.3</span> Thao et.al on Traffic Violation Detection</h2>
+<section id="thao-et.al-on-traffic-violation-detection" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="thao-et.al-on-traffic-violation-detection"><span class="header-section-number">4.3</span> Thao et.al on Traffic Violation Detection</h2>
 <blockquote class="blockquote">
 <p>The paper proposed by <span class="citation" data-cites="thao2022etal">L. Thao (<a href="references.html#ref-thao2022etal" role="doc-biblioref">2022</a>)</span> introduces a mechanism for detecting red light violations automatically. There paper is titled: <em>Automatic Traffic Red-Light Violation Detection Using AI</em></p>
 </blockquote>
-<section id="problem-setting" class="level3" data-number="2.3.1">
-<h3 data-number="2.3.1" class="anchored" data-anchor-id="problem-setting"><span class="header-section-number">2.3.1</span> Problem Setting</h3>
+<section id="problem-setting" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="problem-setting"><span class="header-section-number">4.3.1</span> Problem Setting</h3>
 <p>The reason AI technologies (image classification and detection) systems are better suited than standard sensor technologies is that they are able to operate more consistently, even when the number of vehicles in the setting increases dramatically.</p>
 </section>
-<section id="system-design-and-solution-approach" class="level3" data-number="2.3.2">
-<h3 data-number="2.3.2" class="anchored" data-anchor-id="system-design-and-solution-approach"><span class="header-section-number">2.3.2</span> System Design and Solution Approach</h3>
+<section id="system-design-and-solution-approach" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="system-design-and-solution-approach"><span class="header-section-number">4.3.2</span> System Design and Solution Approach</h3>
 <p>Separate the task into three parts:</p>
 <ol type="1">
 <li>vehicle violation detection</li>
@@ -239,7 +284,7 @@ div.csl-indent {
 <li>vehicle recognition</li>
 </ol>
 <p><strong>Vehicle Violation Detection</strong></p>
-<p>The <span style="color:LightGreen"> YOLOv5s pretrained model (COCO dataset) </span> is used for detecting violating vehicles. After detecting violation, following frames are used to try and determine the license plate (identfy vehicle). See <a href="object_detection.html#sec-yolo1"><span>Section&nbsp;1.2.4.1</span></a> for more information on the YOLO object detection model.</p>
+<p>The <span style="color:LightGreen"> YOLOv5s pretrained model (COCO dataset) </span> is used for detecting violating vehicles. After detecting violation, following frames are used to try and determine the license plate (identfy vehicle). See <a href="object_detection.html#sec-yolo1"><span>Section&nbsp;3.2.4.1</span></a> for more information on the YOLO object detection model.</p>
 <p>Below, a picture of the overall system flow is presented:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -263,8 +308,8 @@ div.csl-indent {
 </ul></li>
 </ul>
 </section>
-<section id="primary-contributions" class="level3" data-number="2.3.3">
-<h3 data-number="2.3.3" class="anchored" data-anchor-id="primary-contributions"><span class="header-section-number">2.3.3</span> Primary Contributions</h3>
+<section id="primary-contributions" class="level3" data-number="4.3.3">
+<h3 data-number="4.3.3" class="anchored" data-anchor-id="primary-contributions"><span class="header-section-number">4.3.3</span> Primary Contributions</h3>
 <ol type="1">
 <li>Implementation of modified <em>YOLOv5s</em> model
 <ol type="1">
@@ -286,13 +331,13 @@ div.csl-indent {
 </div>
 </section>
 </section>
-<section id="goma-et.al-on-rlr-detection-with-ssd-single-shot-detector" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="goma-et.al-on-rlr-detection-with-ssd-single-shot-detector"><span class="header-section-number">2.4</span> Goma et.al on RLR Detection with SSD (Single Shot Detector)</h2>
+<section id="goma-et.al-on-rlr-detection-with-ssd-single-shot-detector" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="goma-et.al-on-rlr-detection-with-ssd-single-shot-detector"><span class="header-section-number">4.4</span> Goma et.al on RLR Detection with SSD (Single Shot Detector)</h2>
 <blockquote class="blockquote">
 <p>Work by <span class="citation" data-cites="goma2020etal">J. Goma (<a href="references.html#ref-goma2020etal" role="doc-biblioref">2020</a>)</span> demonstrates the ability to detect red-light-running and over-speeding with a high level of accuracy. Specifically, they achieve <strong>100%</strong> accuracy on red light running detection and <strong>92.1%</strong> accuracy for over-speeding violations. They accomplish these results using a CNN applied to an SSD (single deep neural network)</p>
 </blockquote>
-<section id="methods-and-system-design" class="level3" data-number="2.4.1">
-<h3 data-number="2.4.1" class="anchored" data-anchor-id="methods-and-system-design"><span class="header-section-number">2.4.1</span> Methods and System Design</h3>
+<section id="methods-and-system-design" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="methods-and-system-design"><span class="header-section-number">4.4.1</span> Methods and System Design</h3>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
@@ -545,13 +590,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./object_detection.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Object Detection Algorithms</span></span>
+      <a href="./v2x_apps.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">V2X Applications</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./traffic_flow.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Traffic Flow Forecasting</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Traffic Flow Forecasting</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

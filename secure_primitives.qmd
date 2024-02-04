@@ -1,0 +1,7 @@
+# Secure Multiparty Computation Primitives
+
+---
+
+This section of the text discusses a number of secure
+multiparty computation protocols in-depth and
+provides sample implementation to get you started.

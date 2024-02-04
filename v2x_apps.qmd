@@ -1,0 +1,5 @@
+# V2X Applications
+
+This portion of the text deals specifically with discussions
+of V2X applications and papers which have tackled these sorts
+of the problems in the past. 
