@@ -1,0 +1,44 @@
+# Residual connections {#sec-residual_connections}
+
+> This section discusses residual connections based
+on the information provided by @wong2021 in his 
+medium article
+
+## Motivation for Residual connections
+
+Deep Neural Networks such as YOLO (see @sec-yolov3) allow for
+greater accuracy and performance. However, deep networks like this 
+make it more difficult for the model to converge during training. 
+
+**Residual connections** help to make training networks easier.
+
+## Formulation
+
+Residual connections - allow data to reach other parts of a 
+sequential network by <span style="color:LightGreen"> skipping 
+layers </span> 
+
+This flow is depicted well by the following image: 
+
+![residual connection diagram](deeplearn/imgs/res_conn_outline.png){width=80% fig-align="center"}
+
+**Steps**:
+
+1. Apply identity mapping to $x$ - perform element-wise addition 
+    $F(x) + x$: this is the **residual block**
+    1. residual blocks may also include a ReLU actiation applied
+        to $F(x) + x$. *This works when dimensions of $F(x)$ and $x$ 
+        are the same
+    1. If dimensions of $F(x)$ and $x$ are NOT the same, then 
+        you can multiply $x$ by some matrix of constants $W$ to 
+        scale it. $F(x) + Wx$
+
+## The Utility of Residual Blocks for Training Deep Networks    
+
+Empirical results have demonstrated that residual blocks increase the
+speed and ease of network convergence. There are a number of 
+suspected reasons as to why this enables such performance gains.
+
+### Ensemble of Shallow Neural Networks
+
+###

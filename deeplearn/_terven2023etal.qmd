@@ -188,3 +188,23 @@ Loss functions:
     * Softmax classifier
   
 ![yolo v2 architecture](deeplearn/imgs/yolov2_arc.png){width=80% fig-align="center"}
+
+#### YOLOv3 {#sec-yolov3}
+
+##### YOLOv3 Architecture
+
+YOLOv3 makes use of a larger network architecture (backbone) called
+Darknet-53. 
+
+* replaces all max-pooling layers with **strided convolutions** and 
+  added residual connections (what are residual connections?) - see 
+  @sec-residual_connections for more information on this primitive.
+
+![yolo v3 architecture](deeplearn/imgs/yolov3_arc.png){width=80% fig-align="center"}
+
+##### Multi-Scale predictions
+
+* enables multi-scale predictions (predictions at multiple grid sizes)
+* this helps to obtain finer detailed boxes (improves prediction of 
+  smaller boxes)
+* 

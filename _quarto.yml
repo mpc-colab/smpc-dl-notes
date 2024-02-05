@@ -14,6 +14,7 @@ book:
         - secure_prim/oblivious_transfer.qmd
     - part: deep_learning.qmd
       chapters:
+        -  deeplearn/deep_primitives/residual_connection.qmd
         -  object_detection.qmd
     - part: v2x_apps.qmd
       chapters:
