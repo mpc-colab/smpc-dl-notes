@@ -20,7 +20,7 @@ layers </span>
 
 This flow is depicted well by the following image: 
 
-![residual connection diagram](deeplearn/imgs/res_conn_outline.png){width=80% fig-align="center"}
+![residual connection diagram](../imgs/res_conn_outline.png){width=80% fig-align="center"}
 
 **Steps**:
 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Secure Multiparty Computation Meets Deep Learning - 5&nbsp; Traffic Flow Forecasting</title>
+<title>Secure Multiparty Computation Meets Deep Learning - 6&nbsp; Traffic Flow Forecasting</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -93,7 +93,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./v2x_apps.html">V2X Applications</a></li><li class="breadcrumb-item"><a href="./traffic_flow.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Traffic Flow Forecasting</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./v2x_apps.html">V2X Applications</a></li><li class="breadcrumb-item"><a href="./traffic_flow.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Traffic Flow Forecasting</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -158,8 +158,14 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./deeplearn/deep_primitives/residual_connection.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Residual connections</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./object_detection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Object Detection Algorithms</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Object Detection Algorithms</span></span></a>
   </div>
 </li>
       </ul>
@@ -176,13 +182,13 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./red_light.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Red Light Violation Detection</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Red Light Violation Detection</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./traffic_flow.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Traffic Flow Forecasting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Traffic Flow Forecasting</span></span></a>
   </div>
 </li>
       </ul>
@@ -190,7 +196,7 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -209,9 +215,9 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#attention-based-spatial-temporal-graph-convolutional-networks-for-traffic-flow-forecasting" id="toc-attention-based-spatial-temporal-graph-convolutional-networks-for-traffic-flow-forecasting" class="nav-link active" data-scroll-target="#attention-based-spatial-temporal-graph-convolutional-networks-for-traffic-flow-forecasting"><span class="header-section-number">5.1</span> Attention Based Spatial-Temporal Graph Convolutional Networks for Traffic Flow Forecasting</a>
+  <li><a href="#attention-based-spatial-temporal-graph-convolutional-networks-for-traffic-flow-forecasting" id="toc-attention-based-spatial-temporal-graph-convolutional-networks-for-traffic-flow-forecasting" class="nav-link active" data-scroll-target="#attention-based-spatial-temporal-graph-convolutional-networks-for-traffic-flow-forecasting"><span class="header-section-number">6.1</span> Attention Based Spatial-Temporal Graph Convolutional Networks for Traffic Flow Forecasting</a>
   <ul class="collapse">
-  <li><a href="#core-contributions-of-astgcn" id="toc-core-contributions-of-astgcn" class="nav-link" data-scroll-target="#core-contributions-of-astgcn"><span class="header-section-number">5.1.1</span> Core Contributions of ASTGCN</a></li>
+  <li><a href="#core-contributions-of-astgcn" id="toc-core-contributions-of-astgcn" class="nav-link" data-scroll-target="#core-contributions-of-astgcn"><span class="header-section-number">6.1.1</span> Core Contributions of ASTGCN</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -221,7 +227,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Traffic Flow Forecasting</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Traffic Flow Forecasting</span></h1>
 </div>
 
 
@@ -236,13 +242,13 @@ div.csl-indent {
 
 </header>
 
-<section id="attention-based-spatial-temporal-graph-convolutional-networks-for-traffic-flow-forecasting" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="attention-based-spatial-temporal-graph-convolutional-networks-for-traffic-flow-forecasting"><span class="header-section-number">5.1</span> Attention Based Spatial-Temporal Graph Convolutional Networks for Traffic Flow Forecasting</h2>
+<section id="attention-based-spatial-temporal-graph-convolutional-networks-for-traffic-flow-forecasting" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="attention-based-spatial-temporal-graph-convolutional-networks-for-traffic-flow-forecasting"><span class="header-section-number">6.1</span> Attention Based Spatial-Temporal Graph Convolutional Networks for Traffic Flow Forecasting</h2>
 <blockquote class="blockquote">
 <p>In this paper, <span class="citation" data-cites="guo2019etal">S. Guo (<a href="references.html#ref-guo2019etal" role="doc-biblioref">2019</a>)</span> proposed a method for traffic flow prediction which utilized an <strong>attention based spatial-temporal graph convolutional network</strong>. They aimed to model several time-dependencies: (1) recent, (2) daily-periodic, and (3) weekly-periodic dependencies. The <em>attention mechanism</em> captures spatial-temporal patterns in the traffic data and the <em>spatial-temporal convolution</em> is used to capture spatial patterns while <em>standard convolutions</em> describe temporal features.</p>
 </blockquote>
-<section id="core-contributions-of-astgcn" class="level3" data-number="5.1.1">
-<h3 data-number="5.1.1" class="anchored" data-anchor-id="core-contributions-of-astgcn"><span class="header-section-number">5.1.1</span> Core Contributions of ASTGCN</h3>
+<section id="core-contributions-of-astgcn" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="core-contributions-of-astgcn"><span class="header-section-number">6.1.1</span> Core Contributions of ASTGCN</h3>
 <p>Difficulties of the traffic forecasting problem</p>
 <ol type="1">
 <li>it is difficult to handle unstable and nonlinear data</li>
@@ -515,12 +521,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./red_light.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Red Light Violation Detection</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Red Light Violation Detection</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./summary.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

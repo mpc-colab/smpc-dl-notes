@@ -191,6 +191,9 @@ Loss functions:
 
 #### YOLOv3 {#sec-yolov3}
 
+The code used to run YOLOv3 in `Torch` is provided at this 
+[repository](https://github.com/ultralytics/yolov3/blob/master/models/yolo.py)
+
 ##### YOLOv3 Architecture
 
 YOLOv3 makes use of a larger network architecture (backbone) called
@@ -202,9 +205,55 @@ Darknet-53.
 
 ![yolo v3 architecture](deeplearn/imgs/yolov3_arc.png){width=80% fig-align="center"}
 
+The darknet architecture is presented here as well (visually):
+
+![darknet 53 backbone](deeplearn/imgs/darknet_53_arc.png){width=80% fig-align="center"}
+
 ##### Multi-Scale predictions
 
 * enables multi-scale predictions (predictions at multiple grid sizes)
 * this helps to obtain finer detailed boxes (improves prediction of 
   smaller boxes)
-* 
+* YOLOv3 generates three separate outputs: 
+  * **y1**: $13 \times 13$ grid defines the output
+  * **y2**: concatenating output after $(Res \times 4)$ with output 
+    of $(Res \times 8)$ - upsampling occurs from **y1** since 
+    the feature maps are of different sizes $(13 \times 13)$ and 
+    $(26 \times 26)$
+  * **y3**: upsample **y2** output to match $52\times 52$ feature 
+    maps
+
+##### Backbone, Neck, and Head 
+
+After release of YOLOv3, object detectors began to be described in 
+terms of the backbone, neck, and head 
+
+**Backbone**
+
++ Extracts useful features from the input image. 
++ A convolutional nerual network trained on large-scale image 
+  classifications task (ImageNet)
++ captures hierarchical features at different scales
+  + low-level features - earlier layers
+  + high-level features - deeper layers
+  
+**Neck**
+
++ aggregates / refines features extracted by backbone
+  + enhance spatial / semantic information across different scales
+  + includes conv layers
+  + includes feature pyramid networks
+
+**Head**
+
++ makes predictions based on features provided by backbone and neck
++ consists of task-specific subnetworks to perform *classification*,
+  *localization*, *localization*, *instance segmentation* and 
+  *pose estimation*
++ non-maximum supression filters out overlapping predictions 
+  (retains only most confident detections)
+
+### YOLOv4 {#sec-yolov4}
+
+
+
