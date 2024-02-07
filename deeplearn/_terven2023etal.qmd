@@ -230,7 +230,7 @@ The darknet architecture is presented here as well (visually):
 After release of YOLOv3, object detectors began to be described in 
 terms of the backbone, neck, and head 
 
-![modern object detection architecture](deeplearn/imgs/high_level_yolo_v4.png){width=60% fig-align="center"}
+![modern object detection architecture](deeplearn/imgs/high_level_yolo_v4.png){width=80% fig-align="center"}
 
 **Backbone**
 
@@ -312,4 +312,193 @@ categories: *bag of freebies* and *bag of specials*
 
 ##### YOLOv4 Architecture 
 
-![yolo v4 architecture](deeplearn/imgs/yolov4_arc.png){width=70% fig-align="center"}
+![yolo v4 architecture](deeplearn/imgs/yolov4_arc.png){width=80% fig-align="center"}
+
+#### YOLOv5 {#sec-yolov5}
+
+<span style="color:Crimson"> YOLOv5x MS COCO AP: 50.7% AP(50): X% </span>
+
+No paper exists for YOLOv5 but there are several key advantages to using it
+
++ It is developed in PyTorch instead of Darknet
++ is open source and actively maintained by ultralytics
++ is easy to use, train, and deploy
++ many integrations for labeling, training, and deployment (mobile)
+
+There are several scaled versions of this model:
+
++ **YOLOv5n** (nano)
++ **YOLOv5s** (small)
++ **YOLOv5m** (medium)
++ **YOLOv5l** (large)
++ **YOLOv5x** (extra large)
+
+This is useful for V2X privacy preserving applications because 
+we will want to make use of smaller networks than might otherwise be used
+and compare their performance (efficiency) against larger networks. 
+
+This helps to answer the question of whether the accuracy tradeoff is
+worth the speedup. 
+
+##### Results
+
+YOLOv5x achieves the following results
+
++ AP 50.7% on COCO [batch size = 32, 640 pixels]
++ AP 55.8% on COCO [1536 pixels]
+
+#### Scaled-YOLOv4 {#sec-yolov4_scaled}
+
+<span style="color:Crimson"> YOLOv4-large MS COCO AP: 55.6% </span> 
+
+Utilized scaling techniques (making larger to increase accuracy at 
+the expense of speed, and scaling down increases speed at the 
+expense of accuracy). <span style="color:LightGreen"> Scaled-down models 
+require less compute power and can run on embedded systems </span>
+
+Like YOLOv5, was developed in **PyTorch** instead of **Darknet**
+
+##### Results
+
++ YOLOv4-large - MS COCO AP: 56%
++ YOLOv4-tiny - MS COCO AP: 22%
+
+#### YOLOR {#sec-yolor}
+
+<span style="color:Crimson"> MS COCO AP: 55.4% AP(50): 73.3% </span>
+
+YOLOR stands for "you only learn one representation" and is novel 
+for introducing multi-task learnin approach which creates a single
+model for multiple tasks (classification, detection, pose estimation)
+by learning a general representation and using sub-networks to 
+create task-specific representations!
+
+##### Results
+
++ YOLOR - MS COCO AP: 55.4% AP(50): 73.3%
+
+#### YOLOX
+
+<span style="color:Crimson"> MS COCO AP: 50.1% </span> 
+
+Was designed off the back of the Ultralytics YOLOv3 (see @sec-yolov3) in 
+PyTorch. 
+
+##### Model Changes and Improvements
+
+* Anchor Free - simplified training and decoding process
+* Multi Positives - center sampling (assigned center $3 \times 3$ area
+  as positives) to account for imbalances produced by lack of anchors
+* Decoupled Head - classification confidence and localization accuracy 
+  separated into two heads (connecting them leads to some misalignment)
+  - **sped up model convergence** and **improved accuracy**
+* Advanced Label Assignment - ambiguities were associated with ground 
+  truth bounding boxes (box overlap) - this is addressed with 
+  assigning procedure as <span style="color:LightBlue"> Optimal
+  Transport Problem </span>. The authors develop a 
+  simplified version called <span style="color:LightBlue"> simOTA </span>
+* Strong augmentations - <span style="color:LightBlue"> MixUP </span> and
+  <span style="color:LightBlue"> Mosaic augmentations </span> were used
+
+##### Architecture
+
+![yolox architecture](deeplearn/imgs/yolox_arc.png){width=80% fig-align="center"}
+
+#### YOLOv6
+
+<span style="color:Crimson"> MS COCO AP: 52.5% AP(50): 70% </span>
+
+Adopted an anchor-free detector and provided a series of models
+at different scales for nuanced applications.
+
+##### Model Changes and Improvements
+
++ New architecture backbone based on <span style="color:LightBlue"> RepVGG </span>.
+  <span style="color:LightGreen"> higher parallelism </span> and use of 
+  neck based on <span style="color:LightBlue"> RepBlocks </span> or 
+  <span style="color:LightBlue"> CSPStackRep Blocks </span> and developed an 
+  efficient decoupld head
++ Label Assignment with <span style="color:LightBlue"> TOOD </span>
++ New classification and regression losses using <span style="color:LightBlue">
+  VariFocal loss </span> and <span style="color:LightBlue">SIoU / GioU regression 
+  loss </span>
++ self-distillation for regression and classification tasks
++ quantization scheme for detection with <span style="color:LightBlue"> RepOptimizer </span> 
+  <span style="color:LightBlue"> channel-wise distillation </span> for a faster detector
+
+#### YOLOv7 
+
+<span style="color:Crimson"> MS COCO AP: 55.9% AP(50): 73.5% - input 1280 pixels </style>
+
+Compared to YOLOv4 and YOLOR, YOLOv7 achieves a significant reduction in 
+parameters used, and improves average precision by a meaningful increase in 
+average precision as well.
+
+##### Model Changes and Improvements
+
+**Architectural Changes**
+
++ Extended efficient layer aggregation network - <span style="color:LightBlue"> ELAN </span>
+  allows for more efficient training and convergence
++ Model Scaling for concatenation-based models - maintain optimal structure of the model
+  by scaling thedepth and width of the block with the same factor
+
+**Bag-of-Freebies**
+
++ Planned re-parameterized convolution - Architecture is inspired by <span style="color:LightBlue">
+  RepConv </span>. <span style="color:LightBlue">Identity connection</span> outperforms 
+  residual in Resnet (@sec-residual_connections) and <span style="color:LightBlue"> concatenation in 
+  DenseNet </span>
++ Coarse label assignment for auxiliary head (training) 
+  and fine label assignment for the lead head (final out)
++ Batch normalization in conv-bn-activation - integrates mean and variance of batch normalization
+  into weight and bias of convolutional layer at inference stage (batch norm folding)
++ Implicit knowledge (see @sec-yolov7)
++ Exponential moving average as final inference model
+
+#### DAMO-YOLO
+
+<span style="color:Crimson"> MS COCO AP: 50.0% </span>
+
+Was inspired by a series of technologies relevant at the time
+and provided tiny/small/medium scaled model variants
+
++ Neural architecture search (this was also used in Delphi) -
+  <span style="color:LightBlue"> MAE NAS </span> - 
++ a large neck
++ a small head
++ <span style="color:LightBlue"> aligned OTA label assignment </span> - uses 
+  focal loss for classification cost and IoU of prediction / ground truth box
+  as *soft label*. Enables selection of *aligned samples* for targets
++ <span style="color:LightBlue"> knowledge distillation </span>
+  + (1) teacher guiding student (stage 1)
+  + (2) student fine-tuning (stage 2)
+  + enhancements in distillation approach
+    + align module - adapts student features to same resolution as teacher's
+    + channel-wise dynamic temperature - normalizes teacher and student features
+  
+#### YOLOv8 
+
+<span style="color:Crimson"> YOLOv8x MS COCO AP: 53.9% (640 pixels) </span>
+
+A version of YOLO released by ultralytics which is anchor free and uses 
+mosaic augmentation for training up to the last ten epochs. It provides
+five scaled versions
+
+1. YOLOv8n (nano)
+2. YOLOv8s (small)
+3. YOLOv8m (medium)
+4. YOLOv8l (large)
+5. YOLOv8x (extra large)
+
+### PP-YOLO
+
+The PP-YOLO models were developed in parallel with the standard 
+YOLO variants. These models were based on YOLOv3 but were developed in 
+the <span style="color:LightBlue"> PaddlePaddle </span> deep learning 
+platform instead. The goal of their work was to show how an object
+detector should be constructed step-by-step, not to provide any 
+novel functionality or a new approach.
+
+#### Divergence from YOLO
+
