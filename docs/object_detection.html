@@ -219,11 +219,32 @@ div.csl-indent {
   <ul>
   <li><a href="#ssd-single-shot-multibox-detector" id="toc-ssd-single-shot-multibox-detector" class="nav-link active" data-scroll-target="#ssd-single-shot-multibox-detector"><span class="header-section-number">4.1</span> SSD: Single Shot MultiBox Detector</a></li>
   <li><a href="#a-comprehensive-review-of-yolo-v1-to-v8" id="toc-a-comprehensive-review-of-yolo-v1-to-v8" class="nav-link" data-scroll-target="#a-comprehensive-review-of-yolo-v1-to-v8"><span class="header-section-number">4.2</span> A Comprehensive Review of YOLO (v1 to v8+)</a>
-  <ul class="collapse">
+  <ul>
   <li><a href="#applications-of-yolo" id="toc-applications-of-yolo" class="nav-link" data-scroll-target="#applications-of-yolo"><span class="header-section-number">4.2.1</span> Applications of YOLO</a></li>
-  <li><a href="#evaluation-metrics" id="toc-evaluation-metrics" class="nav-link" data-scroll-target="#evaluation-metrics"><span class="header-section-number">4.2.2</span> Evaluation Metrics</a></li>
+  <li><a href="#evaluation-metrics" id="toc-evaluation-metrics" class="nav-link" data-scroll-target="#evaluation-metrics"><span class="header-section-number">4.2.2</span> Evaluation Metrics</a>
+  <ul>
+  <li><a href="#how-ap-works" id="toc-how-ap-works" class="nav-link" data-scroll-target="#how-ap-works"><span class="header-section-number">4.2.2.1</span> How AP works</a></li>
+  </ul></li>
   <li><a href="#non-maximum-suppression" id="toc-non-maximum-suppression" class="nav-link" data-scroll-target="#non-maximum-suppression"><span class="header-section-number">4.2.3</span> Non-Maximum Suppression</a></li>
-  <li><a href="#yolo" id="toc-yolo" class="nav-link" data-scroll-target="#yolo"><span class="header-section-number">4.2.4</span> YOLO</a></li>
+  <li><a href="#yolo" id="toc-yolo" class="nav-link" data-scroll-target="#yolo"><span class="header-section-number">4.2.4</span> YOLO</a>
+  <ul>
+  <li><a href="#sec-yolo1" id="toc-sec-yolo1" class="nav-link" data-scroll-target="#sec-yolo1"><span class="header-section-number">4.2.4.1</span> YOLOv1</a>
+  <ul class="collapse">
+  <li><a href="#v1-architecture" id="toc-v1-architecture" class="nav-link" data-scroll-target="#v1-architecture"><span class="header-section-number">4.2.4.1.1</span> v1 Architecture</a></li>
+  <li><a href="#v1-training" id="toc-v1-training" class="nav-link" data-scroll-target="#v1-training"><span class="header-section-number">4.2.4.1.2</span> v1 Training</a></li>
+  </ul></li>
+  <li><a href="#sec-yolo2" id="toc-sec-yolo2" class="nav-link" data-scroll-target="#sec-yolo2"><span class="header-section-number">4.2.4.2</span> YOLOv2 (YOLO 9000)</a>
+  <ul class="collapse">
+  <li><a href="#v2-architecture" id="toc-v2-architecture" class="nav-link" data-scroll-target="#v2-architecture"><span class="header-section-number">4.2.4.2.1</span> v2 Architecture</a></li>
+  </ul></li>
+  <li><a href="#sec-yolov3" id="toc-sec-yolov3" class="nav-link" data-scroll-target="#sec-yolov3"><span class="header-section-number">4.2.4.3</span> YOLOv3</a>
+  <ul class="collapse">
+  <li><a href="#yolov3-architecture" id="toc-yolov3-architecture" class="nav-link" data-scroll-target="#yolov3-architecture"><span class="header-section-number">4.2.4.3.1</span> YOLOv3 Architecture</a></li>
+  <li><a href="#multi-scale-predictions" id="toc-multi-scale-predictions" class="nav-link" data-scroll-target="#multi-scale-predictions"><span class="header-section-number">4.2.4.3.2</span> Multi-Scale predictions</a></li>
+  <li><a href="#backbone-neck-and-head" id="toc-backbone-neck-and-head" class="nav-link" data-scroll-target="#backbone-neck-and-head"><span class="header-section-number">4.2.4.3.3</span> Backbone, Neck, and Head</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#sec-yolov4" id="toc-sec-yolov4" class="nav-link" data-scroll-target="#sec-yolov4"><span class="header-section-number">4.2.5</span> YOLOv4</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -487,6 +508,7 @@ div.csl-indent {
 </section>
 <section id="sec-yolov3" class="level4" data-number="4.2.4.3">
 <h4 data-number="4.2.4.3" class="anchored" data-anchor-id="sec-yolov3"><span class="header-section-number">4.2.4.3</span> YOLOv3</h4>
+<p>The code used to run YOLOv3 in <code>Torch</code> is provided at this <a href="https://github.com/ultralytics/yolov3/blob/master/models/yolo.py">repository</a></p>
 <section id="yolov3-architecture" class="level5" data-number="4.2.4.3.1">
 <h5 data-number="4.2.4.3.1" class="anchored" data-anchor-id="yolov3-architecture"><span class="header-section-number">4.2.4.3.1</span> YOLOv3 Architecture</h5>
 <p>YOLOv3 makes use of a larger network architecture (backbone) called Darknet-53.</p>
@@ -499,14 +521,60 @@ div.csl-indent {
 <figcaption class="figure-caption">yolo v3 architecture</figcaption>
 </figure>
 </div>
+<p>The darknet architecture is presented here as well (visually):</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="deeplearn/imgs/darknet_53_arc.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption class="figure-caption">darknet 53 backbone</figcaption>
+</figure>
+</div>
 </section>
 <section id="multi-scale-predictions" class="level5" data-number="4.2.4.3.2">
 <h5 data-number="4.2.4.3.2" class="anchored" data-anchor-id="multi-scale-predictions"><span class="header-section-number">4.2.4.3.2</span> Multi-Scale predictions</h5>
 <ul>
 <li>enables multi-scale predictions (predictions at multiple grid sizes)</li>
 <li>this helps to obtain finer detailed boxes (improves prediction of smaller boxes)</li>
-<li></li>
+<li>YOLOv3 generates three separate outputs:
+<ul>
+<li><strong>y1</strong>: <span class="math inline">\(13 \times 13\)</span> grid defines the output</li>
+<li><strong>y2</strong>: concatenating output after <span class="math inline">\((Res \times 4)\)</span> with output of <span class="math inline">\((Res \times 8)\)</span> - upsampling occurs from <strong>y1</strong> since the feature maps are of different sizes <span class="math inline">\((13 \times 13)\)</span> and <span class="math inline">\((26 \times 26)\)</span></li>
+<li><strong>y3</strong>: upsample <strong>y2</strong> output to match <span class="math inline">\(52\times 52\)</span> feature maps</li>
+</ul></li>
 </ul>
+</section>
+<section id="backbone-neck-and-head" class="level5" data-number="4.2.4.3.3">
+<h5 data-number="4.2.4.3.3" class="anchored" data-anchor-id="backbone-neck-and-head"><span class="header-section-number">4.2.4.3.3</span> Backbone, Neck, and Head</h5>
+<p>After release of YOLOv3, object detectors began to be described in terms of the backbone, neck, and head</p>
+<p><strong>Backbone</strong></p>
+<ul>
+<li>Extracts useful features from the input image.</li>
+<li>A convolutional nerual network trained on large-scale image classifications task (ImageNet)</li>
+<li>captures hierarchical features at different scales
+<ul>
+<li>low-level features - earlier layers</li>
+<li>high-level features - deeper layers</li>
+</ul></li>
+</ul>
+<p><strong>Neck</strong></p>
+<ul>
+<li>aggregates / refines features extracted by backbone
+<ul>
+<li>enhance spatial / semantic information across different scales</li>
+<li>includes conv layers</li>
+<li>includes feature pyramid networks</li>
+</ul></li>
+</ul>
+<p><strong>Head</strong></p>
+<ul>
+<li>makes predictions based on features provided by backbone and neck</li>
+<li>consists of task-specific subnetworks to perform <em>classification</em>, <em>localization</em>, <em>localization</em>, <em>instance segmentation</em> and <em>pose estimation</em></li>
+<li>non-maximum supression filters out overlapping predictions (retains only most confident detections)</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="sec-yolov4" class="level3" data-number="4.2.5">
+<h3 data-number="4.2.5" class="anchored" data-anchor-id="sec-yolov4"><span class="header-section-number">4.2.5</span> YOLOv4</h3>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
@@ -517,8 +585,6 @@ J. Terven, D. Cordova-Esparaza. 2023. <span>“A Comprehensive Review of YOLO: F
 W. Liu, D. Erhan, D. Anguelov. 2016. <span>“SSD: Single Shot MultiBox Detector.”</span> <em>ECCV</em>.
 </div>
 </div>
-</section>
-</section>
 </section>
 </section>
 
