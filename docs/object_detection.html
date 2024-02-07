@@ -246,6 +246,7 @@ div.csl-indent {
   <li><a href="#sec-yolov4" id="toc-sec-yolov4" class="nav-link" data-scroll-target="#sec-yolov4"><span class="header-section-number">4.2.4.4</span> YOLOv4</a>
   <ul class="collapse">
   <li><a href="#model-improvements" id="toc-model-improvements" class="nav-link" data-scroll-target="#model-improvements"><span class="header-section-number">4.2.4.4.1</span> Model Improvements</a></li>
+  <li><a href="#yolov4-architecture" id="toc-yolov4-architecture" class="nav-link" data-scroll-target="#yolov4-architecture"><span class="header-section-number">4.2.4.4.2</span> YOLOv4 Architecture</a></li>
   </ul></li>
   </ul></li>
   </ul></li>
@@ -598,28 +599,28 @@ div.csl-indent {
 <li>improve accuracy of the model (MaP)</li>
 <li>examples include
 <ul>
-<li><span style="color:Red"> enlarging receptive field ??? </span></li>
-<li><span style="color:Red"> combining features ??? </span></li>
-<li><span style="color:Red"> post-processing ??? </span></li>
+<li><span style="color:LightBlue"> enlarging receptive field ??? </span></li>
+<li><span style="color:LightBlue"> combining features ??? </span></li>
+<li><span style="color:LightBlue"> post-processing ??? </span></li>
 </ul></li>
 </ul>
 <section id="model-improvements" class="level5" data-number="4.2.4.4.1">
 <h5 data-number="4.2.4.4.1" class="anchored" data-anchor-id="model-improvements"><span class="header-section-number">4.2.4.4.1</span> Model Improvements</h5>
 <ul>
-<li>Enhanced network architecture with Bag-of-Specials
+<li><strong>Enhanced network architecture with Bag-of-Specials</strong>
 <ul>
-<li>backbone: <strong>Darknet-53</strong> + <span style="color:Red"> Cross-stage Partial Connections (CSPNet) ?? </span> + <span style="color:Red"> Mish Activation Function ?? </span>
+<li>backbone: <strong>Darknet-53</strong> + <span style="color:LightBlue"> Cross-stage Partial Connections (CSPNet) ?? </span> + <span style="color:LightBlue"> Mish Activation Function ?? </span>
 <ul>
 <li><em>tested several backbone architectures to choose best option</em></li>
 <li>CSP reduces computation while maintaining accuracy</li>
 </ul></li>
-<li>neck: <span style="color:Red"> Spatial Pyramid Pooling (SPP)?? </span> + <strong>Multi-scale predictions</strong> + modified <span style="color:Red"> path aggregation network PANet </span> + <span style="color:Red"> modified spatial attention module (SAM) </span>
+<li>neck: <span style="color:LightBlue"> Spatial Pyramid Pooling (SPP)?? </span> + <strong>Multi-scale predictions</strong> + modified <span style="color:LightBlue"> path aggregation network PANet </span> + <span style="color:LightBlue"> modified spatial attention module (SAM) </span>
 <ul>
 <li>SPP increases receptive field without affecting inference speed</li>
 </ul></li>
 <li>detection head: <strong>Same anchors as YOLOv3</strong></li>
 </ul></li>
-<li>Advanced training with Bag-of-Freebies
+<li><strong>Advanced training with Bag-of-Freebies</strong>
 <ul>
 <li>regular augmentation
 <ul>
@@ -639,23 +640,25 @@ div.csl-indent {
 </ul></li>
 </ul></li>
 </ul></li>
-<li>Self-adversarial Training
+<li><strong>Self-adversarial Training</strong>
 <ul>
 <li>improves model robustness to perturbations</li>
 </ul></li>
-<li>Hyperparameter optimization with Genetic Algorithms
+<li><strong>Hyperparameter optimization with Genetic Algorithms</strong>
 <ul>
-<li><span style="color:Red"> genetic algs </span> used on first 10% of periods</li>
-<li><span style="color:Red"> cosine annealing scheduler </span> to alter learning rate during training</li>
+<li><span style="color:LightBlue"> genetic algs </span> used on first 10% of periods</li>
+<li><span style="color:LightBlue"> cosine annealing scheduler </span> to alter learning rate during training</li>
+</ul></li>
 </ul>
-<h5 id="yolov4-architecture" data-number="4.2.4.4.2" class="anchored"><span class="header-section-number">4.2.4.4.2</span> YOLOv4 Architecture</h5>
+</section>
+<section id="yolov4-architecture" class="level5" data-number="4.2.4.4.2">
+<h5 data-number="4.2.4.4.2" class="anchored" data-anchor-id="yolov4-architecture"><span class="header-section-number">4.2.4.4.2</span> YOLOv4 Architecture</h5>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="deeplearn/imgs/yolov4_arc.png" class="img-fluid figure-img" style="width:70.0%"></p>
 <figcaption class="figure-caption">yolo v4 architecture</figcaption>
 </figure>
-</div></li>
-</ul>
+</div>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">

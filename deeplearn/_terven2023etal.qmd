@@ -275,24 +275,24 @@ categories: *bag of freebies* and *bag of specials*
 + increase inference time / cost
 + improve accuracy of the model (MaP)
 + examples include
-  + <span style="color:Red"> enlarging receptive field ??? </span>
-  + <span style="color:Red"> combining features ??? </span>
-  + <span style="color:Red"> post-processing ??? </span>
+  + <span style="color:LightBlue"> enlarging receptive field ??? </span>
+  + <span style="color:LightBlue"> combining features ??? </span>
+  + <span style="color:LightBlue"> post-processing ??? </span>
 
 ##### Model Improvements
 
-+ Enhanced network architecture with Bag-of-Specials
-  + backbone: **Darknet-53** + <span style="color:Red"> Cross-stage Partial Connections
-   (CSPNet) ?? </span> + <span style="color:Red"> Mish Activation Function ?? </span>
++ **Enhanced network architecture with Bag-of-Specials**
+  + backbone: **Darknet-53** + <span style="color:LightBlue"> Cross-stage Partial Connections
+   (CSPNet) ?? </span> + <span style="color:LightBlue"> Mish Activation Function ?? </span>
     + *tested several backbone architectures to choose best option*
     + CSP reduces computation while maintaining accuracy
-  + neck: <span style="color:Red"> Spatial Pyramid Pooling (SPP)?? </span> + 
-    **Multi-scale predictions** + modified <span style="color:Red"> path aggregation
-    network PANet </span> + <span style="color:Red"> modified spatial attention module 
+  + neck: <span style="color:LightBlue"> Spatial Pyramid Pooling (SPP)?? </span> + 
+    **Multi-scale predictions** + modified <span style="color:LightBlue"> path aggregation
+    network PANet </span> + <span style="color:LightBlue"> modified spatial attention module 
     (SAM) </span>
     + SPP increases receptive field without affecting inference speed
   + detection head: **Same anchors as YOLOv3**
-+ Advanced training with Bag-of-Freebies
++ **Advanced training with Bag-of-Freebies**
   + regular augmentation
     + random brightness, contrast, scaling, cropping, flipping, rotation
   + special
@@ -303,13 +303,13 @@ categories: *bag of freebies* and *bag of specials*
     + **CIoU** loss and Cross mini-batch nomralization **CmBN** for collecting 
       statistics from the entire batch instead of just mini-batches
       + these changes improve the **detector**
-+ Self-adversarial Training
++ **Self-adversarial Training**
   + improves model robustness to perturbations
-+ Hyperparameter optimization with Genetic Algorithms
-  + <span style="color:Red"> genetic algs </span> used on first 10% of periods
-  + <span style="color:Red"> cosine annealing scheduler </span> to alter learning rate 
++ **Hyperparameter optimization with Genetic Algorithms**
+  + <span style="color:LightBlue"> genetic algs </span> used on first 10% of periods
+  + <span style="color:LightBlue"> cosine annealing scheduler </span> to alter learning rate 
     during training
 
-  ##### YOLOv4 Architecture 
+##### YOLOv4 Architecture 
 
-  ![yolo v4 architecture](deeplearn/imgs/yolov4_arc.png){width=70% fig-align="center"}
+![yolo v4 architecture](deeplearn/imgs/yolov4_arc.png){width=70% fig-align="center"}
