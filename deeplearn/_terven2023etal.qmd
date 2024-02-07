@@ -500,5 +500,24 @@ platform instead. The goal of their work was to show how an object
 detector should be constructed step-by-step, not to provide any 
 novel functionality or a new approach.
 
-#### Divergence from YOLO
+#### Divergence from YOLOv3
+
++ <span style="color:LightBlue"> ResNet50-vd backbone </span> + 
+  deformable convolutions replace DarkNet-53 (@sec-yolov3) - achieves
+  higher classification accuracy on Imagenet
++ Larger batch size - improves training stability 
++ Maintained moving averages for trained parameters
++ <span style="color:LightBlue"> DropBlock </span> applied on FPN
++ <span style="color:LightBlue">IoU</span> loss added with L1-Loss for bounding
+  box regression
++ <span style="color:LightBlue">IoU prediction branch</span> for measuring localization
+  accuracy (and optimization)
++ Grid Sensitive Approach like YOLOv4 (@sec-yolov4) - improves bounding box center 
+  prediction at grid boundary
++ <span style="color:LightBlue">Matrix NMS</span> (parallelized NMS for faster computation)
++ <span style="color:LightBlue">CoordConv</span> - $1\times 1$ convolution of the 
+  <span style="color:LightBlue">FPN</span>. Allows for learning <span style="color:LightBlue">
+  translational invariance </span>
++ <span style="color:LightBlue">Spatial Pyramid Pooling</span> increases receptive field
+  of the backbone
 
