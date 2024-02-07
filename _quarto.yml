@@ -4,6 +4,7 @@ project:
 
 book:
   title: "Secure Multiparty Computation Meets Deep Learning"
+  number-depth: 8
   author: "Yoshi234"
   date: "1/30/2024"
   chapters:
