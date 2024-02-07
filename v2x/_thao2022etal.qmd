@@ -55,3 +55,6 @@ Below, a picture of the overall system flow is presented:
 
 ![modified Yolo architecture](v2x/imgs/conv_v3_arc.png){width=70% fig-align="center"}
 
+According to a labmate, it may only be necessary to fine tune the YOLO model
+on 10 epochs. It may not be necessary to do any more than that. 
+
