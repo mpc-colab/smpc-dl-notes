@@ -243,8 +243,11 @@ div.csl-indent {
   <li><a href="#multi-scale-predictions" id="toc-multi-scale-predictions" class="nav-link" data-scroll-target="#multi-scale-predictions"><span class="header-section-number">4.2.4.3.2</span> Multi-Scale predictions</a></li>
   <li><a href="#backbone-neck-and-head" id="toc-backbone-neck-and-head" class="nav-link" data-scroll-target="#backbone-neck-and-head"><span class="header-section-number">4.2.4.3.3</span> Backbone, Neck, and Head</a></li>
   </ul></li>
+  <li><a href="#sec-yolov4" id="toc-sec-yolov4" class="nav-link" data-scroll-target="#sec-yolov4"><span class="header-section-number">4.2.4.4</span> YOLOv4</a>
+  <ul class="collapse">
+  <li><a href="#model-improvements" id="toc-model-improvements" class="nav-link" data-scroll-target="#model-improvements"><span class="header-section-number">4.2.4.4.1</span> Model Improvements</a></li>
   </ul></li>
-  <li><a href="#sec-yolov4" id="toc-sec-yolov4" class="nav-link" data-scroll-target="#sec-yolov4"><span class="header-section-number">4.2.5</span> YOLOv4</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -362,7 +365,7 @@ div.csl-indent {
 <p>The output coordinates of the bounding box were detected using more straightforward regression techniques</p>
 <section id="sec-yolo1" class="level4" data-number="4.2.4.1">
 <h4 data-number="4.2.4.1" class="anchored" data-anchor-id="sec-yolo1"><span class="header-section-number">4.2.4.1</span> YOLOv1</h4>
-<p><span style="color:Crimson"> AP: 63.4% </span></p>
+<p><span style="color:Crimson"> PASCAL-VOC AP: 63.4% </span></p>
 <p>YOLOv1 predicted all bounding boxes simultaneously by the following process:</p>
 <ol type="1">
 <li>divide image into <span class="math inline">\(S \times S\)</span> grid</li>
@@ -449,7 +452,7 @@ div.csl-indent {
 </section>
 <section id="sec-yolo2" class="level4" data-number="4.2.4.2">
 <h4 data-number="4.2.4.2" class="anchored" data-anchor-id="sec-yolo2"><span class="header-section-number">4.2.4.2</span> YOLOv2 (YOLO 9000)</h4>
-<p><span style="color:Crimson"> AP: 78.6% </span></p>
+<p><span style="color:Crimson"> PASCAL-VOC AP: 78.6% </span></p>
 <p><strong>Improvements / Changes</strong></p>
 <ol type="1">
 <li>Batch normalization - included on all convolutional layers</li>
@@ -508,6 +511,7 @@ div.csl-indent {
 </section>
 <section id="sec-yolov3" class="level4" data-number="4.2.4.3">
 <h4 data-number="4.2.4.3" class="anchored" data-anchor-id="sec-yolov3"><span class="header-section-number">4.2.4.3</span> YOLOv3</h4>
+<p><span style="color:Crimson"> MS COCO AP: 36.2% AP(50): 60.6% </span></p>
 <p>The code used to run YOLOv3 in <code>Torch</code> is provided at this <a href="https://github.com/ultralytics/yolov3/blob/master/models/yolo.py">repository</a></p>
 <section id="yolov3-architecture" class="level5" data-number="4.2.4.3.1">
 <h5 data-number="4.2.4.3.1" class="anchored" data-anchor-id="yolov3-architecture"><span class="header-section-number">4.2.4.3.1</span> YOLOv3 Architecture</h5>
@@ -545,6 +549,12 @@ div.csl-indent {
 <section id="backbone-neck-and-head" class="level5" data-number="4.2.4.3.3">
 <h5 data-number="4.2.4.3.3" class="anchored" data-anchor-id="backbone-neck-and-head"><span class="header-section-number">4.2.4.3.3</span> Backbone, Neck, and Head</h5>
 <p>After release of YOLOv3, object detectors began to be described in terms of the backbone, neck, and head</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="deeplearn/imgs/high_level_yolo_v4.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption class="figure-caption">modern object detection architecture</figcaption>
+</figure>
+</div>
 <p><strong>Backbone</strong></p>
 <ul>
 <li>Extracts useful features from the input image.</li>
@@ -572,9 +582,80 @@ div.csl-indent {
 </ul>
 </section>
 </section>
-</section>
-<section id="sec-yolov4" class="level3" data-number="4.2.5">
-<h3 data-number="4.2.5" class="anchored" data-anchor-id="sec-yolov4"><span class="header-section-number">4.2.5</span> YOLOv4</h3>
+<section id="sec-yolov4" class="level4" data-number="4.2.4.4">
+<h4 data-number="4.2.4.4" class="anchored" data-anchor-id="sec-yolov4"><span class="header-section-number">4.2.4.4</span> YOLOv4</h4>
+<p><span style="color:Crimson"> MS COCO AP: 43.5% AP(50): 65.7% </span></p>
+<p>The philosophy of YOLOv4 approaches optimization of the model into two categories: <em>bag of freebies</em> and <em>bag of specials</em></p>
+<p><strong>Bag of Freebies</strong>:</p>
+<ul>
+<li>increase training time / cost</li>
+<li>do not affect inference time</li>
+<li>examples include <em>data augmentation</em></li>
+</ul>
+<p><strong>Bag of Specials</strong>:</p>
+<ul>
+<li>increase inference time / cost</li>
+<li>improve accuracy of the model (MaP)</li>
+<li>examples include
+<ul>
+<li><span style="color:Red"> enlarging receptive field ??? </span></li>
+<li><span style="color:Red"> combining features ??? </span></li>
+<li><span style="color:Red"> post-processing ??? </span></li>
+</ul></li>
+</ul>
+<section id="model-improvements" class="level5" data-number="4.2.4.4.1">
+<h5 data-number="4.2.4.4.1" class="anchored" data-anchor-id="model-improvements"><span class="header-section-number">4.2.4.4.1</span> Model Improvements</h5>
+<ul>
+<li>Enhanced network architecture with Bag-of-Specials
+<ul>
+<li>backbone: <strong>Darknet-53</strong> + <span style="color:Red"> Cross-stage Partial Connections (CSPNet) ?? </span> + <span style="color:Red"> Mish Activation Function ?? </span>
+<ul>
+<li><em>tested several backbone architectures to choose best option</em></li>
+<li>CSP reduces computation while maintaining accuracy</li>
+</ul></li>
+<li>neck: <span style="color:Red"> Spatial Pyramid Pooling (SPP)?? </span> + <strong>Multi-scale predictions</strong> + modified <span style="color:Red"> path aggregation network PANet </span> + <span style="color:Red"> modified spatial attention module (SAM) </span>
+<ul>
+<li>SPP increases receptive field without affecting inference speed</li>
+</ul></li>
+<li>detection head: <strong>Same anchors as YOLOv3</strong></li>
+</ul></li>
+<li>Advanced training with Bag-of-Freebies
+<ul>
+<li>regular augmentation
+<ul>
+<li>random brightness, contrast, scaling, cropping, flipping, rotation</li>
+</ul></li>
+<li>special
+<ul>
+<li><strong>mosaic augmentation</strong>:
+<ul>
+<li>combines four images into a single one</li>
+<li>reduces need for large mini-batches for batch normalization</li>
+</ul></li>
+<li><strong>DropBlock</strong> regularization (instead of <em>Dropout</em>)</li>
+<li><strong>CIoU</strong> loss and Cross mini-batch nomralization <strong>CmBN</strong> for collecting statistics from the entire batch instead of just mini-batches
+<ul>
+<li>these changes improve the <strong>detector</strong></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>Self-adversarial Training
+<ul>
+<li>improves model robustness to perturbations</li>
+</ul></li>
+<li>Hyperparameter optimization with Genetic Algorithms
+<ul>
+<li><span style="color:Red"> genetic algs </span> used on first 10% of periods</li>
+<li><span style="color:Red"> cosine annealing scheduler </span> to alter learning rate during training</li>
+</ul>
+<h5 id="yolov4-architecture" data-number="4.2.4.4.2" class="anchored"><span class="header-section-number">4.2.4.4.2</span> YOLOv4 Architecture</h5>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="deeplearn/imgs/yolov4_arc.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption class="figure-caption">yolo v4 architecture</figcaption>
+</figure>
+</div></li>
+</ul>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
@@ -585,6 +666,8 @@ J. Terven, D. Cordova-Esparaza. 2023. <span>“A Comprehensive Review of YOLO: F
 W. Liu, D. Erhan, D. Anguelov. 2016. <span>“SSD: Single Shot MultiBox Detector.”</span> <em>ECCV</em>.
 </div>
 </div>
+</section>
+</section>
 </section>
 </section>
 
