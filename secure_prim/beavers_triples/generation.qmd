@@ -49,5 +49,45 @@ $$
 \end{array}
 $$
 
+After receiving these shares, Alice and Bob each received shares
+from one another, they `XOR` the product **(intersection)** of their shares with the 
+ones received from the other party
 
+$$
+\begin{array}{ccc}
+    \text{Alice} & & \text{Bob} \\
+    c_{A}: \overbrace{r_{A}\oplus a_{A}b_{A}}{\text{Alice's og share}}\oplus b_{A}a_{B} \oplus r_{B} & & 
+    c_{B}: \overbrace{r_{B}\oplus a_{B}b_{B}}{\text{Bob's og share}}\oplus b_{B}a_{A} \oplus r_{A} \\
+    \downarrow & & \downarrow \\
+    c_{A}:\text{---}{r_{A}}\text{---}\oplus a_{A}b_{A} \oplus b_{A}a_{B} \oplus \text{---}{r_{B}}\text{---} & & \\
+    c_{B}: \text{---}{r_{B}}\text{---}\oplus a_{B}b_{B} \oplus b_{B}a_{A} \oplus \text{---}{r_{A}}\text{---}
+\end{array}
+$$
 
+### Step 3: Final Simplification
+
+Now that each party has obtaiined a preliminary share of $C$, $C_{A}$ and $C_{B}$
+possessed by Alice and Bob respectively, we take the `XOR` of the two components to 
+get the product $a \cdot b = c$
+
+First, let us simplify $c_{A}$ and $c_{B}$ a bit more
+
+$$
+c_{A} = a_{A}b_{A}\oplus b_{A}a_{B} \\[5pt]
+a_{A} \oplus a_{B} = a \space\space\space b_{A} \oplus b_{A} = b_{A} \\[15pt]
+c_{B} = a_{B}b_{B}\oplus b_{B}a_{A} \\[5pt] 
+a_{B} \oplus a_{B} = a \space\space\space b_{B} \oplus b_{B} = b_{B} \\[15pt]
+c_{A} = a(b_{A}) \space\space\space c_{B} = a(b_{B})
+$$
+
+Now that we have simplified these terms, we can compute the final result
+
+$$
+c = c_{A} \oplus c_{B} \\
+c = a(b_{A}) \oplus a(b_{B}) \\
+c = a(b_{A} \oplus b_{B}) \\
+c = a\cdot b
+$$
+
+Thus, we have shown how beaver's triples are randomly generated to 
+achieve the desired output.

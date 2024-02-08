@@ -81,8 +81,22 @@ div.csl-indent {
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 </head>
 
@@ -268,7 +282,7 @@ div.csl-indent {
 <section id="red-light-violation-detection-algorithm" class="level3" data-number="5.2.1">
 <h3 data-number="5.2.1" class="anchored" data-anchor-id="red-light-violation-detection-algorithm"><span class="header-section-number">5.2.1</span> Red Light Violation Detection Algorithm</h3>
 <p>The proposed system utilizes the following logic to detect whether a car will violate a red light. <span style="color:LightGreen"> A car which is approaching an intersection is connected to road-side units (RSUs) </span> which are installed at traffic lights in an intersection.</p>
-<p>Each light is said to be located at points <span class="math inline">\(B(x_{2}, y_{2}, z_{2})\)</span>, <span class="math inline">\(C(x_{3}, y_{3}, z_{3})\)</span>, <span class="math inline">\(D(x_{4}, y_{4}, z_{4})\)</span> and <span class="math inline">\(E(x_{5}, y_{5}, z_{5})\)</span> respectively.</p>
+<p>Each light is said to be located at points <span class="math inline">B(x_{2}, y_{2}, z_{2})</span>, <span class="math inline">C(x_{3}, y_{3}, z_{3})</span>, <span class="math inline">D(x_{4}, y_{4}, z_{4})</span> and <span class="math inline">E(x_{5}, y_{5}, z_{5})</span> respectively.</p>
 <p>Unlike image-based systems, this system <span style="color:LightGreen"> assumes V2I communication between the traffic lights and the vehicle in question. </span> This means that the traffic state does not need to be determined by an image classifier. Rather, we already have this information by default.</p>
 </section>
 </section>

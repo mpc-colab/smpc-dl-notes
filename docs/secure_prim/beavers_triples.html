@@ -81,8 +81,22 @@ div.csl-indent {
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 </head>
 
@@ -221,6 +235,7 @@ div.csl-indent {
   <ul>
   <li><a href="#step-1-generating-inputs" id="toc-step-1-generating-inputs" class="nav-link" data-scroll-target="#step-1-generating-inputs"><span class="header-section-number">1.1.1</span> Step 1: Generating Inputs</a></li>
   <li><a href="#step-2-sending-and-receiving-shares" id="toc-step-2-sending-and-receiving-shares" class="nav-link" data-scroll-target="#step-2-sending-and-receiving-shares"><span class="header-section-number">1.1.2</span> Step 2: Sending and Receiving Shares</a></li>
+  <li><a href="#step-3-final-simplification" id="toc-step-3-final-simplification" class="nav-link" data-scroll-target="#step-3-final-simplification"><span class="header-section-number">1.1.3</span> Step 3: Final Simplification</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -248,36 +263,67 @@ div.csl-indent {
 <p>In order to mask fixed-point multiplication inputs, we need to use a secure primitive known as Beaver’s triples. These were originally introduced by <span class="citation" data-cites="beaver1991">Beaver (<a href="../references.html#ref-beaver1991" role="doc-biblioref">1991</a>)</span> in his paper: <a href="https://link.springer.com/chapter/10.1007/3-540-46766-1_34">Efficient Multiparty Protocols Using Circuit Randomization</a></p>
 <section id="generating-beavers-triples" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="generating-beavers-triples"><span class="header-section-number">1.1</span> Generating Beaver’s Triples</h2>
-<p>The first step in masking multiplications is to generate Beaver’s Triples. These are random values <span class="math inline">\(a, b, c\)</span> such that <span class="math inline">\(a \cdot b = c\)</span></p>
+<p>The first step in masking multiplications is to generate Beaver’s Triples. These are random values <span class="math inline">a, b, c</span> such that <span class="math inline">a \cdot b = c</span></p>
 <section id="step-1-generating-inputs" class="level3" data-number="1.1.1">
 <h3 data-number="1.1.1" class="anchored" data-anchor-id="step-1-generating-inputs"><span class="header-section-number">1.1.1</span> Step 1: Generating Inputs</h3>
 <p>Suppose we have two parties, <strong>Alice</strong> and <strong>Bob</strong>. Here, we will suppose that Alice is the sender, and Bob is the receiver. All this really means is that Alice sends her values to Bob first, with Bob sending his values to Alice thereafter.</p>
-<p>We begin by first generating a random pair <span class="math inline">\((a_{i}, b_{i})\)</span> for each party where <span class="math inline">\(i\)</span> corresponds to the party in question. We generate these from the field <span class="math inline">\(F_{2}^{2}\)</span> which simply means that we select two random bits from <span class="math inline">\(\{0,1\}\)</span></p>
-<p><span class="math display">\[
+<p>We begin by first generating a random pair <span class="math inline">(a_{i}, b_{i})</span> for each party where <span class="math inline">i</span> corresponds to the party in question. We generate these from the field <span class="math inline">F_{2}^{2}</span> which simply means that we select two random bits from <span class="math inline">\{0,1\}</span></p>
+<p><span class="math display">
 \begin{array}{ccc}
     \text{Alice} &amp; {} &amp; \text{Bob} \\
     \mathbb{F}_{2}^{2} \overset{\$}{\rightarrow} (a_{A}, b_{A}) &amp; \overbrace{}^{\&amp;} &amp; \mathbb{F}_{2}^{2} \overset{\$}{\rightarrow} (a_{B}, b_{B})
 \end{array}
-\]</span></p>
-<p>Next, Bob and Alice each generate random masking values <span class="math inline">\(r_{A}\)</span> and <span class="math inline">\(r_{B}\)</span> respectively.</p>
-<p><span class="math display">\[
+</span></p>
+<p>Next, Bob and Alice each generate random masking values <span class="math inline">r_{A}</span> and <span class="math inline">r_{B}</span> respectively.</p>
+<p><span class="math display">
 \begin{array}{ccc}
     \text{Alice} &amp; {} &amp; \text{Bob} \\
     \mathbb{F}_{2} \overset{\$}{\rightarrow} r_{A} &amp; \space &amp; \mathbb{F}_{2} \overset{\$}{\rightarrow} r_{B}
 \end{array}
-\]</span></p>
+</span></p>
 </section>
 <section id="step-2-sending-and-receiving-shares" class="level3" data-number="1.1.2">
 <h3 data-number="1.1.2" class="anchored" data-anchor-id="step-2-sending-and-receiving-shares"><span class="header-section-number">1.1.2</span> Step 2: Sending and Receiving Shares</h3>
-<p>After these masking values are generated, Alice uses oblivious transfer (see <a href="oblivious_transfer.html"><span>Chapter&nbsp;2</span></a>) to send <span class="math inline">\((r_{A}, r_{A}\oplus a_{A})\)</span> to Bob.</p>
-<p>When Bob receives this, he obtains <span class="math inline">\(b_{B}a_{A} \oplus r_{A}\)</span> and then sends <span class="math inline">\((r_{B}, r_{B} \oplus a_{B})\)</span> to Alice</p>
-<p><span class="math display">\[
+<p>After these masking values are generated, Alice uses oblivious transfer (see <a href="oblivious_transfer.html"><span>Chapter&nbsp;2</span></a>) to send <span class="math inline">(r_{A}, r_{A}\oplus a_{A})</span> to Bob.</p>
+<p>When Bob receives this, he obtains <span class="math inline">b_{B}a_{A} \oplus r_{A}</span> and then sends <span class="math inline">(r_{B}, r_{B} \oplus a_{B})</span> to Alice</p>
+<p><span class="math display">
 \begin{array}{ccc}
     \text{Alice} &amp; {} &amp; \text{Bob} \\
     \text{Snd } = (r_{A}, r_{A}\oplus a_{A}) &amp; \overset{OT}{\longrightarrow} &amp; \text{Rcv } = b_{B}a_{A} \oplus r_{A} \\
     \text{Rcv } = b_{A}a_{B} \oplus r_{B} &amp; \overset{OT}{\longleftarrow} &amp; \text{Snd } = (r_{B}, r_{B} \oplus a_{B})
 \end{array}
-\]</span></p>
+</span></p>
+<p>After receiving these shares, Alice and Bob each received shares from one another, they <code>XOR</code> the product <strong>(intersection)</strong> of their shares with the ones received from the other party</p>
+<p><span class="math display">
+\begin{array}{ccc}
+    \text{Alice} &amp; &amp; \text{Bob} \\
+    c_{A}: \overbrace{r_{A}\oplus a_{A}b_{A}}{\text{Alice's og share}}\oplus b_{A}a_{B} \oplus r_{B} &amp; &amp;
+    c_{B}: \overbrace{r_{B}\oplus a_{B}b_{B}}{\text{Bob's og share}}\oplus b_{B}a_{A} \oplus r_{A} \\
+    \downarrow &amp; &amp; \downarrow \\
+    c_{A}:\text{---}{r_{A}}\text{---}\oplus a_{A}b_{A} \oplus b_{A}a_{B} \oplus \text{---}{r_{B}}\text{---} &amp; &amp; \\
+    c_{B}: \text{---}{r_{B}}\text{---}\oplus a_{B}b_{B} \oplus b_{B}a_{A} \oplus \text{---}{r_{A}}\text{---}
+\end{array}
+</span></p>
+</section>
+<section id="step-3-final-simplification" class="level3" data-number="1.1.3">
+<h3 data-number="1.1.3" class="anchored" data-anchor-id="step-3-final-simplification"><span class="header-section-number">1.1.3</span> Step 3: Final Simplification</h3>
+<p>Now that each party has obtaiined a preliminary share of <span class="math inline">C</span>, <span class="math inline">C_{A}</span> and <span class="math inline">C_{B}</span> possessed by Alice and Bob respectively, we take the <code>XOR</code> of the two components to get the product <span class="math inline">a \cdot b = c</span></p>
+<p>First, let us simplify <span class="math inline">c_{A}</span> and <span class="math inline">c_{B}</span> a bit more</p>
+<p><span class="math display">
+c_{A} = a_{A}b_{A}\oplus b_{A}a_{B} \\[5pt]
+a_{A} \oplus a_{B} = a \space\space\space b_{A} \oplus b_{A} = b_{A} \\[15pt]
+c_{B} = a_{B}b_{B}\oplus b_{B}a_{A} \\[5pt]
+a_{B} \oplus a_{B} = a \space\space\space b_{B} \oplus b_{B} = b_{B} \\[15pt]
+c_{A} = a(b_{A}) \space\space\space c_{B} = a(b_{B})
+</span></p>
+<p>Now that we have simplified these terms, we can compute the final result</p>
+<p><span class="math display">
+c = c_{A} \oplus c_{B} \\
+c = a(b_{A}) \oplus a(b_{B}) \\
+c = a(b_{A} \oplus b_{B}) \\
+c = a\cdot b
+</span></p>
+<p>Thus, we have shown how beaver’s triples are randomly generated to achieve the desired output.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">

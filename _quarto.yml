@@ -1,6 +1,8 @@
 project:
   type: book
   output-dir: docs
+  preview:
+    watch-inputs: false
 
 book:
   title: "Secure Multiparty Computation Meets Deep Learning"
@@ -27,11 +29,11 @@ bibliography: references.bib
 
 format:
   html:
+    html-math-method: katex
     toc-depth: 5
     number-depth: 5
     theme: darkly
   pdf:
     documentclass: scrreprt
-
 
 
