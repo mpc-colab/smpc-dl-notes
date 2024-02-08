@@ -426,7 +426,7 @@ at different scales for nuanced applications.
 + quantization scheme for detection with <span style="color:LightBlue"> RepOptimizer </span> 
   <span style="color:LightBlue"> channel-wise distillation </span> for a faster detector
 
-#### YOLOv7 
+#### YOLOv7 {#sec-yolov7}
 
 <span style="color:Crimson"> MS COCO AP: 55.9% AP(50): 73.5% - input 1280 pixels </style>
 
