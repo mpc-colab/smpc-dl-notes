@@ -260,7 +260,7 @@ div.csl-indent {
   <ul class="collapse">
   <li><a href="#results-2" id="toc-results-2" class="nav-link" data-scroll-target="#results-2"><span class="header-section-number">4.2.4.7.1</span> Results</a></li>
   </ul></li>
-  <li><a href="#yolox" id="toc-yolox" class="nav-link" data-scroll-target="#yolox"><span class="header-section-number">4.2.4.8</span> YOLOX</a>
+  <li><a href="#sec-yolox" id="toc-sec-yolox" class="nav-link" data-scroll-target="#sec-yolox"><span class="header-section-number">4.2.4.8</span> YOLOX</a>
   <ul class="collapse">
   <li><a href="#model-changes-and-improvements" id="toc-model-changes-and-improvements" class="nav-link" data-scroll-target="#model-changes-and-improvements"><span class="header-section-number">4.2.4.8.1</span> Model Changes and Improvements</a></li>
   <li><a href="#architecture" id="toc-architecture" class="nav-link" data-scroll-target="#architecture"><span class="header-section-number">4.2.4.8.2</span> Architecture</a></li>
@@ -276,10 +276,23 @@ div.csl-indent {
   <li><a href="#damo-yolo" id="toc-damo-yolo" class="nav-link" data-scroll-target="#damo-yolo"><span class="header-section-number">4.2.4.11</span> DAMO-YOLO</a></li>
   <li><a href="#yolov8" id="toc-yolov8" class="nav-link" data-scroll-target="#yolov8"><span class="header-section-number">4.2.4.12</span> YOLOv8</a></li>
   </ul></li>
-  <li><a href="#pp-yolo" id="toc-pp-yolo" class="nav-link" data-scroll-target="#pp-yolo"><span class="header-section-number">4.2.5</span> PP-YOLO</a>
+  <li><a href="#sec-pp_yolo" id="toc-sec-pp_yolo" class="nav-link" data-scroll-target="#sec-pp_yolo"><span class="header-section-number">4.2.5</span> PP-YOLO Models</a>
   <ul>
-  <li><a href="#divergence-from-yolov3" id="toc-divergence-from-yolov3" class="nav-link" data-scroll-target="#divergence-from-yolov3"><span class="header-section-number">4.2.5.1</span> Divergence from YOLOv3</a></li>
+  <li><a href="#pp-yolo" id="toc-pp-yolo" class="nav-link" data-scroll-target="#pp-yolo"><span class="header-section-number">4.2.5.1</span> PP-YOLO</a>
+  <ul class="collapse">
+  <li><a href="#divergence-from-yolov3" id="toc-divergence-from-yolov3" class="nav-link" data-scroll-target="#divergence-from-yolov3"><span class="header-section-number">4.2.5.1.1</span> Divergence from YOLOv3</a></li>
+  <li><a href="#pp-yolo-augmentations-and-preprocessing" id="toc-pp-yolo-augmentations-and-preprocessing" class="nav-link" data-scroll-target="#pp-yolo-augmentations-and-preprocessing"><span class="header-section-number">4.2.5.1.2</span> PP-YOLO Augmentations and Preprocessing</a></li>
   </ul></li>
+  <li><a href="#pp-yolov2" id="toc-pp-yolov2" class="nav-link" data-scroll-target="#pp-yolov2"><span class="header-section-number">4.2.5.2</span> PP-YOLOv2</a>
+  <ul class="collapse">
+  <li><a href="#changes-and-improvements" id="toc-changes-and-improvements" class="nav-link" data-scroll-target="#changes-and-improvements"><span class="header-section-number">4.2.5.2.1</span> Changes and Improvements</a></li>
+  </ul></li>
+  <li><a href="#pp-yoloe" id="toc-pp-yoloe" class="nav-link" data-scroll-target="#pp-yoloe"><span class="header-section-number">4.2.5.3</span> PP-YOLOE</a>
+  <ul class="collapse">
+  <li><a href="#changes-and-improvements-1" id="toc-changes-and-improvements-1" class="nav-link" data-scroll-target="#changes-and-improvements-1"><span class="header-section-number">4.2.5.3.1</span> Changes and Improvements</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#summary-of-yolo" id="toc-summary-of-yolo" class="nav-link" data-scroll-target="#summary-of-yolo"><span class="header-section-number">4.2.6</span> Summary of YOLO</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -317,7 +330,7 @@ div.csl-indent {
 </blockquote>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="deeplearn/imgs/yolo_timeline.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p><img src="deeplearn/imgs/yolo_timeline.png" class="img-fluid figure-img"></p>
 <figcaption class="figure-caption">A timeline of YOLO development</figcaption>
 </figure>
 </div>
@@ -379,7 +392,7 @@ div.csl-indent {
 <p>The algorithm for this is defined below:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="deeplearn/imgs/nms_alg.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p><img src="deeplearn/imgs/nms_alg.png" class="img-fluid figure-img"></p>
 <figcaption class="figure-caption">Non-Max Suppression Alg</figcaption>
 </figure>
 </div>
@@ -414,7 +427,7 @@ div.csl-indent {
 <p>Here is an example of that output:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="deeplearn/imgs/yolo_out.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p><img src="deeplearn/imgs/yolo_out.png" class="img-fluid figure-img"></p>
 <figcaption class="figure-caption">yolo output prediction</figcaption>
 </figure>
 </div>
@@ -553,14 +566,14 @@ div.csl-indent {
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="deeplearn/imgs/yolov3_arc.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p><img src="deeplearn/imgs/yolov3_arc.png" class="img-fluid figure-img"></p>
 <figcaption class="figure-caption">yolo v3 architecture</figcaption>
 </figure>
 </div>
 <p>The darknet architecture is presented here as well (visually):</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="deeplearn/imgs/darknet_53_arc.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p><img src="deeplearn/imgs/darknet_53_arc.png" class="img-fluid figure-img"></p>
 <figcaption class="figure-caption">darknet 53 backbone</figcaption>
 </figure>
 </div>
@@ -583,7 +596,7 @@ div.csl-indent {
 <p>After release of YOLOv3, object detectors began to be described in terms of the backbone, neck, and head</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="deeplearn/imgs/high_level_yolo_v4.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p><img src="deeplearn/imgs/high_level_yolo_v4.png" class="img-fluid figure-img"></p>
 <figcaption class="figure-caption">modern object detection architecture</figcaption>
 </figure>
 </div>
@@ -686,7 +699,7 @@ div.csl-indent {
 <h5 data-number="4.2.4.4.2" class="anchored" data-anchor-id="yolov4-architecture"><span class="header-section-number">4.2.4.4.2</span> YOLOv4 Architecture</h5>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="deeplearn/imgs/yolov4_arc.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p><img src="deeplearn/imgs/yolov4_arc.png" class="img-fluid figure-img"></p>
 <figcaption class="figure-caption">yolo v4 architecture</figcaption>
 </figure>
 </div>
@@ -745,8 +758,8 @@ div.csl-indent {
 </ul>
 </section>
 </section>
-<section id="yolox" class="level4" data-number="4.2.4.8">
-<h4 data-number="4.2.4.8" class="anchored" data-anchor-id="yolox"><span class="header-section-number">4.2.4.8</span> YOLOX</h4>
+<section id="sec-yolox" class="level4" data-number="4.2.4.8">
+<h4 data-number="4.2.4.8" class="anchored" data-anchor-id="sec-yolox"><span class="header-section-number">4.2.4.8</span> YOLOX</h4>
 <p><span style="color:Crimson"> MS COCO AP: 50.1% </span></p>
 <p>Was designed off the back of the Ultralytics YOLOv3 (see <a href="#sec-yolov3"><span>Section&nbsp;4.2.4.3</span></a>) in PyTorch.</p>
 <section id="model-changes-and-improvements" class="level5" data-number="4.2.4.8.1">
@@ -766,7 +779,7 @@ div.csl-indent {
 <h5 data-number="4.2.4.8.2" class="anchored" data-anchor-id="architecture"><span class="header-section-number">4.2.4.8.2</span> Architecture</h5>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="deeplearn/imgs/yolox_arc.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<p><img src="deeplearn/imgs/yolox_arc.png" class="img-fluid figure-img"></p>
 <figcaption class="figure-caption">yolox architecture</figcaption>
 </figure>
 </div>
@@ -846,11 +859,14 @@ div.csl-indent {
 </ol>
 </section>
 </section>
-<section id="pp-yolo" class="level3" data-number="4.2.5">
-<h3 data-number="4.2.5" class="anchored" data-anchor-id="pp-yolo"><span class="header-section-number">4.2.5</span> PP-YOLO</h3>
+<section id="sec-pp_yolo" class="level3" data-number="4.2.5">
+<h3 data-number="4.2.5" class="anchored" data-anchor-id="sec-pp_yolo"><span class="header-section-number">4.2.5</span> PP-YOLO Models</h3>
 <p>The PP-YOLO models were developed in parallel with the standard YOLO variants. These models were based on YOLOv3 but were developed in the <span style="color:LightBlue"> PaddlePaddle </span> deep learning platform instead. The goal of their work was to show how an object detector should be constructed step-by-step, not to provide any novel functionality or a new approach.</p>
-<section id="divergence-from-yolov3" class="level4" data-number="4.2.5.1">
-<h4 data-number="4.2.5.1" class="anchored" data-anchor-id="divergence-from-yolov3"><span class="header-section-number">4.2.5.1</span> Divergence from YOLOv3</h4>
+<section id="pp-yolo" class="level4" data-number="4.2.5.1">
+<h4 data-number="4.2.5.1" class="anchored" data-anchor-id="pp-yolo"><span class="header-section-number">4.2.5.1</span> PP-YOLO</h4>
+<p><span style="color:Crimson"> MS COCO AP:45.9% AP(50): 65.2% </span></p>
+<section id="divergence-from-yolov3" class="level5" data-number="4.2.5.1.1">
+<h5 data-number="4.2.5.1.1" class="anchored" data-anchor-id="divergence-from-yolov3"><span class="header-section-number">4.2.5.1.1</span> Divergence from YOLOv3</h5>
 <ul>
 <li><span style="color:LightBlue"> ResNet50-vd backbone </span> + deformable convolutions replace DarkNet-53 (<a href="#sec-yolov3"><span>Section&nbsp;4.2.4.3</span></a>) - achieves higher classification accuracy on Imagenet</li>
 <li>Larger batch size - improves training stability</li>
@@ -863,6 +879,66 @@ div.csl-indent {
 <li><span style="color:LightBlue">CoordConv</span> - <span class="math inline">\(1\times 1\)</span> convolution of the <span style="color:LightBlue">FPN</span>. Allows for learning <span style="color:LightBlue"> translational invariance </span></li>
 <li><span style="color:LightBlue">Spatial Pyramid Pooling</span> increases receptive field of the backbone</li>
 </ul>
+</section>
+<section id="pp-yolo-augmentations-and-preprocessing" class="level5" data-number="4.2.5.1.2">
+<h5 data-number="4.2.5.1.2" class="anchored" data-anchor-id="pp-yolo-augmentations-and-preprocessing"><span class="header-section-number">4.2.5.1.2</span> PP-YOLO Augmentations and Preprocessing</h5>
+<ul>
+<li><span style="color:LightBlue">Mixup Training</span> - weights <span class="math inline">\(\sim Beta(\alpha=1.5, \beta=1.5)\)</span></li>
+<li><span style="color:LightBlue">Random color distortion</span></li>
+<li><span style="color:LightBlue">Random expand</span></li>
+<li>Random crop and random flip with probability 0.5</li>
+<li>RGB channel z-score normalization <span class="math inline">\(\mu = [0.485, 0.456, 0.406]\)</span> and <span class="math inline">\(\sigma=[0.229,0.224,0.225]\)</span></li>
+</ul>
+</section>
+</section>
+<section id="pp-yolov2" class="level4" data-number="4.2.5.2">
+<h4 data-number="4.2.5.2" class="anchored" data-anchor-id="pp-yolov2"><span class="header-section-number">4.2.5.2</span> PP-YOLOv2</h4>
+<p><span style="color:Crimson"> MS COCO AP: 49.5% </span></p>
+<section id="changes-and-improvements" class="level5" data-number="4.2.5.2.1">
+<h5 data-number="4.2.5.2.1" class="anchored" data-anchor-id="changes-and-improvements"><span class="header-section-number">4.2.5.2.1</span> Changes and Improvements</h5>
+<ul>
+<li>Backbone changed from <span style="color:LightBlue">ResNet50</span> to <span style="color:LightBlue">ResNet101</span></li>
+<li><span style="color:LightBlue">Path aggregation network</span> instead of <span style="color:LightBlue">FPN</span></li>
+<li><span style="color:LightBlue">Mish Activation function</span> applied to the detection neck</li>
+<li>Larger input sizes - increases performance on small objects</li>
+<li>Modified IoU aware branch - soft label format instead of soft weight format</li>
+</ul>
+</section>
+</section>
+<section id="pp-yoloe" class="level4" data-number="4.2.5.3">
+<h4 data-number="4.2.5.3" class="anchored" data-anchor-id="pp-yoloe"><span class="header-section-number">4.2.5.3</span> PP-YOLOE</h4>
+<p><span style="color:Crimson"> MS COCO AP: 51.4% (78.1 FPS NVIDIA V100) </span></p>
+<section id="changes-and-improvements-1" class="level5" data-number="4.2.5.3.1">
+<h5 data-number="4.2.5.3.1" class="anchored" data-anchor-id="changes-and-improvements-1"><span class="header-section-number">4.2.5.3.1</span> Changes and Improvements</h5>
+<ul>
+<li>Anchor Free (following trends of other yolo models)</li>
+<li>New backbone and neck - modified neck wtih <span style="color:LightBlue"> RepResBlocks</span> (combine dense and residual connections)</li>
+<li>task alignment learning (see <a href="#sec-yolox"><span>Section&nbsp;4.2.4.8</span></a>)</li>
+<li>efficient task-aligned head (ET-head) - single head based on <span style="color:LightBlue"> TOOD </span> instead of splitting the classification / detection heads like with YOLOX (<a href="#sec-yolox"><span>Section&nbsp;4.2.4.8</span></a>)</li>
+<li><span style="color:LightBlue"> varifocal (VFL) </span> and <span style="color:LightBlue">distribution focal loss (DFL)</span>
+<ul>
+<li>VFL weights positive samples using a target score which places a greater importance on high-quality samples during training</li>
+<li>DFL extends Focal Loss from discrete to continuous labels - better for representations which combine qualtiy estimation and class prediction - this allows for better depiction of flexible distributions in real data (eliminates risk of inconsistency)</li>
+</ul></li>
+</ul>
+<p>The authors provide several scaled modesl</p>
+<ul>
+<li>PP-YOLOE-s (small)</li>
+<li>PP-YOLOE-m (medium)</li>
+<li>PP-YOLOE-1 (large)</li>
+<li>PP-YOLOE-x (extra large)</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="summary-of-yolo" class="level3" data-number="4.2.6">
+<h3 data-number="4.2.6" class="anchored" data-anchor-id="summary-of-yolo"><span class="header-section-number">4.2.6</span> Summary of YOLO</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="deeplearn/imgs/yolo_summary.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">summary of yolo architectures and results</figcaption>
+</figure>
+</div>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
@@ -873,7 +949,6 @@ J. Terven, D. Cordova-Esparaza. 2023. <span>“A Comprehensive Review of YOLO: F
 W. Liu, D. Erhan, D. Anguelov. 2016. <span>“SSD: Single Shot MultiBox Detector.”</span> <em>ECCV</em>.
 </div>
 </div>
-</section>
 </section>
 </section>
 

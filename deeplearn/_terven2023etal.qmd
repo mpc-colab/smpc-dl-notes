@@ -6,7 +6,7 @@ contributions made by each iteration, as well as the major changes
 in network architecture (and training tricks) which have been 
 implemented over time. 
 
-![A timeline of YOLO development](deeplearn/imgs/yolo_timeline.png){fig-align="center" width="80%"}
+![A timeline of YOLO development](deeplearn/imgs/yolo_timeline.png){fig-align="center"}
 
 ### Applications of YOLO
 
@@ -62,7 +62,7 @@ ones and gets rid of the others.
 
 The algorithm for this is defined below:
 
-![Non-Max Suppression Alg](deeplearn/imgs/nms_alg.png){fig-align="center" width=80%}
+![Non-Max Suppression Alg](deeplearn/imgs/nms_alg.png){fig-align="center"}
 
 A useful visualization is also provided:
 
@@ -99,7 +99,7 @@ process:
 
 Here is an example of that output: 
 
-![yolo output prediction](deeplearn/imgs/yolo_out.png){width=80% fig-align="center"}
+![yolo output prediction](deeplearn/imgs/yolo_out.png){fig-align="center"}
 
 ##### v1 Architecture
 
@@ -205,11 +205,11 @@ Darknet-53.
   added residual connections (what are residual connections?) - see 
   @sec-residual_connections for more information on this primitive.
 
-![yolo v3 architecture](deeplearn/imgs/yolov3_arc.png){width=80% fig-align="center"}
+![yolo v3 architecture](deeplearn/imgs/yolov3_arc.png){fig-align="center"}
 
 The darknet architecture is presented here as well (visually):
 
-![darknet 53 backbone](deeplearn/imgs/darknet_53_arc.png){width=80% fig-align="center"}
+![darknet 53 backbone](deeplearn/imgs/darknet_53_arc.png){fig-align="center"}
 
 ##### Multi-Scale predictions
 
@@ -230,7 +230,7 @@ The darknet architecture is presented here as well (visually):
 After release of YOLOv3, object detectors began to be described in 
 terms of the backbone, neck, and head 
 
-![modern object detection architecture](deeplearn/imgs/high_level_yolo_v4.png){width=80% fig-align="center"}
+![modern object detection architecture](deeplearn/imgs/high_level_yolo_v4.png){fig-align="center"}
 
 **Backbone**
 
@@ -312,7 +312,7 @@ categories: *bag of freebies* and *bag of specials*
 
 ##### YOLOv4 Architecture 
 
-![yolo v4 architecture](deeplearn/imgs/yolov4_arc.png){width=80% fig-align="center"}
+![yolo v4 architecture](deeplearn/imgs/yolov4_arc.png){fig-align="center"}
 
 #### YOLOv5 {#sec-yolov5}
 
@@ -377,7 +377,7 @@ create task-specific representations!
 
 + YOLOR - MS COCO AP: 55.4% AP(50): 73.3%
 
-#### YOLOX
+#### YOLOX {#sec-yolox}
 
 <span style="color:Crimson"> MS COCO AP: 50.1% </span> 
 
@@ -402,7 +402,7 @@ PyTorch.
 
 ##### Architecture
 
-![yolox architecture](deeplearn/imgs/yolox_arc.png){width=80% fig-align="center"}
+![yolox architecture](deeplearn/imgs/yolox_arc.png){fig-align="center"}
 
 #### YOLOv6
 
@@ -491,7 +491,7 @@ five scaled versions
 4. YOLOv8l (large)
 5. YOLOv8x (extra large)
 
-### PP-YOLO
+### PP-YOLO Models {#sec-pp_yolo}
 
 The PP-YOLO models were developed in parallel with the standard 
 YOLO variants. These models were based on YOLOv3 but were developed in 
@@ -500,7 +500,11 @@ platform instead. The goal of their work was to show how an object
 detector should be constructed step-by-step, not to provide any 
 novel functionality or a new approach.
 
-#### Divergence from YOLOv3
+#### PP-YOLO 
+
+<span style="color:Crimson"> MS COCO AP:45.9% AP(50): 65.2% </span>
+
+##### Divergence from YOLOv3
 
 + <span style="color:LightBlue"> ResNet50-vd backbone </span> + 
   deformable convolutions replace DarkNet-53 (@sec-yolov3) - achieves
@@ -520,4 +524,63 @@ novel functionality or a new approach.
   translational invariance </span>
 + <span style="color:LightBlue">Spatial Pyramid Pooling</span> increases receptive field
   of the backbone
+
+##### PP-YOLO Augmentations and Preprocessing
+
++ <span style="color:LightBlue">Mixup Training</span> - weights $\sim Beta(\alpha=1.5, \beta=1.5)$
++ <span style="color:LightBlue">Random color distortion</span>
++ <span style="color:LightBlue">Random expand</span>
++ Random crop and random flip with probability 0.5
++ RGB channel z-score normalization $\mu = [0.485, 0.456, 0.406]$ and 
+  $\sigma=[0.229,0.224,0.225]$
+
+#### PP-YOLOv2 
+
+<span style="color:Crimson"> MS COCO AP: 49.5% </span>
+
+##### Changes and Improvements
+
++ Backbone changed from <span style="color:LightBlue">ResNet50</span> to 
+  <span style="color:LightBlue">ResNet101</span>
++ <span style="color:LightBlue">Path aggregation network</span> instead of 
+  <span style="color:LightBlue">FPN</span>
++ <span style="color:LightBlue">Mish Activation function</span> applied to
+  the detection neck
++ Larger input sizes - increases performance on small objects
++ Modified IoU aware branch - soft label format instead of soft weight format
+
+#### PP-YOLOE
+
+<span style="color:Crimson"> MS COCO AP: 51.4% (78.1 FPS NVIDIA V100) </span>
+
+##### Changes and Improvements
+
++ Anchor Free (following trends of other yolo models)
++ New backbone and neck - modified neck wtih <span style="color:LightBlue">
+  RepResBlocks</span> (combine dense and residual connections)
++ task alignment learning (see @sec-yolox)
++ efficient task-aligned head (ET-head) - single head based on 
+  <span style="color:LightBlue"> TOOD </span> instead of splitting
+  the classification / detection heads like with YOLOX (@sec-yolox)
++ <span style="color:LightBlue"> varifocal (VFL) </span>
+  and <span style="color:LightBlue">distribution focal loss (DFL)</span>
+  + VFL weights positive samples using a target score which places a 
+    greater importance on high-quality samples during training
+  + DFL extends Focal Loss from discrete to continuous labels - better for
+    representations which combine qualtiy estimation and class prediction -
+    this allows for better depiction of flexible distributions in real data
+    (eliminates risk of inconsistency)
+
+The authors provide several scaled modesl
+
++ PP-YOLOE-s (small)
++ PP-YOLOE-m (medium)
++ PP-YOLOE-1 (large)
++ PP-YOLOE-x (extra large)
+
+### Summary of YOLO
+
+![summary of yolo architectures and results](deeplearn/imgs/yolo_summary.png)
+
+
 
