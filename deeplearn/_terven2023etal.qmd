@@ -428,7 +428,7 @@ at different scales for nuanced applications.
 
 #### YOLOv7 {#sec-yolov7}
 
-<span style="color:Crimson"> MS COCO AP: 55.9% AP(50): 73.5% - input 1280 pixels </style>
+<span style="color:Crimson"> MS COCO AP: 55.9% AP(50): 73.5% - input 1280 pixels </span>
 
 Compared to YOLOv4 and YOLOR, YOLOv7 achieves a significant reduction in 
 parameters used, and improves average precision by a meaningful increase in 
