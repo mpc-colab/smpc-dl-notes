@@ -1,3 +1,9 @@
+---
+authors:
+  - name: "Johua Lee"
+  - name: "Ali Arastehfard"
+---
+
 # Beaver's Triples Explained
 
 In order to mask fixed-point multiplication inputs, 
