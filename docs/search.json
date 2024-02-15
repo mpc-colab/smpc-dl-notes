@@ -4,28 +4,40 @@
     "href": "index.html",
     "title": "Secure Multiparty Computation Meets Deep Learning",
     "section": "",
-    "text": "Preface\nThis is a Quarto book. To learn more about Quarto books visit https://quarto.org/docs/books."
+    "text": "Preface\nThis is a Quarto book. To learn more about Quarto books visit https://quarto.org/docs/books.",
+    "crumbs": [
+      "Preface"
+    ]
   },
   {
     "objectID": "index.html#contents",
     "href": "index.html#contents",
     "title": "Secure Multiparty Computation Meets Deep Learning",
     "section": "Contents",
-    "text": "Contents\nThe quarto book contains an organized structure of notes on a variety of secure multiparty computation protocols, implementation details, and a discussion of v2x applications and relevant deep learning models. The authors hope that any readers find these resources useful."
+    "text": "Contents\nThe quarto book contains an organized structure of notes on a variety of secure multiparty computation protocols, implementation details, and a discussion of v2x applications and relevant deep learning models. The authors hope that any readers find these resources useful.",
+    "crumbs": [
+      "Preface"
+    ]
   },
   {
     "objectID": "index.html#resources",
     "href": "index.html#resources",
     "title": "Secure Multiparty Computation Meets Deep Learning",
     "section": "Resources",
-    "text": "Resources\nThe matcha editor is used to construct some of the mathematical diagrams shown in this book. In order to export a matcha diagram, you need to enter the full-screen mode for the diagram, and click on the “export” drop-down which becomes available. This will allow you to save the math diagram as a png image. We will make liberal use of these throughout the book, especially for explaining complex security primitives such as beaver’s triples and homomorphic encryption."
+    "text": "Resources\nThe matcha editor is used to construct some of the mathematical diagrams shown in this book. In order to export a matcha diagram, you need to enter the full-screen mode for the diagram, and click on the “export” drop-down which becomes available. This will allow you to save the math diagram as a png image. We will make liberal use of these throughout the book, especially for explaining complex security primitives such as beaver’s triples and homomorphic encryption.",
+    "crumbs": [
+      "Preface"
+    ]
   },
   {
     "objectID": "secure_primitives.html",
     "href": "secure_primitives.html",
     "title": "Secure Multiparty Computation Primitives",
     "section": "",
-    "text": "This section of the text discusses a number of secure multiparty computation protocols in-depth and provides sample implementation to get you started."
+    "text": "This section of the text discusses a number of secure multiparty computation protocols in-depth and provides sample implementation to get you started.",
+    "crumbs": [
+      "Secure Multiparty Computation Primitives"
+    ]
   },
   {
     "objectID": "secure_prim/beavers_triples.html#generating-beavers-triples",
@@ -81,7 +93,10 @@
     "href": "v2x_apps.html",
     "title": "V2X Applications",
     "section": "",
-    "text": "This portion of the text deals specifically with discussions of V2X applications and papers which have tackled these sorts of the problems in the past."
+    "text": "This portion of the text deals specifically with discussions of V2X applications and papers which have tackled these sorts of the problems in the past.",
+    "crumbs": [
+      "V2X Applications"
+    ]
   },
   {
     "objectID": "red_light.html#motivation",
@@ -115,15 +130,22 @@
     "objectID": "traffic_flow.html#attention-based-spatial-temporal-graph-convolutional-networks-for-traffic-flow-forecasting",
     "href": "traffic_flow.html#attention-based-spatial-temporal-graph-convolutional-networks-for-traffic-flow-forecasting",
     "title": "6  Traffic Flow Forecasting",
-    "section": "6.1 Attention Based Spatial-Temporal Graph Convolutional Networks for Traffic Flow Forecasting",
-    "text": "6.1 Attention Based Spatial-Temporal Graph Convolutional Networks for Traffic Flow Forecasting\n\nIn this paper, S. Guo (2019) proposed a method for traffic flow prediction which utilized an attention based spatial-temporal graph convolutional network. They aimed to model several time-dependencies: (1) recent, (2) daily-periodic, and (3) weekly-periodic dependencies. The attention mechanism captures spatial-temporal patterns in the traffic data and the spatial-temporal convolution is used to capture spatial patterns while standard convolutions describe temporal features.\n\n\n6.1.1 Core Contributions of ASTGCN\nDifficulties of the traffic forecasting problem\n\nit is difficult to handle unstable and nonlinear data\nprediction performance of models require extensive feature engineering\n\ndomain expertise is necessary\n\ncnn - spatial feature extraction from grid-based data, gcn - describe spatial correlation of grid based data\n\nfails to simultaneously model spatial temporal features and dynamic correlations of traffic data\n\n\nAddressing these issues:\n\ndevelop a spatial-temporal attention mechanism\n\nlearns dynamic spatial-temporal correlations of traffic data\ntemporal attention is applied to capture dynamic temporal correlations for different times\n\nDesign of spatial-temporal convolution module\n\nhas graph convolution for modeling graph structure\nhas convolution in temporal dimension (kind of like 3-d convolution)\n\n\n\n\n\n\nS. Guo, N. Feng, Y. Lin. 2019. “Attention Based Spatial-Temporal Graph Convolutional Networks for Traffic Flow Forecasting.” The Thirty-Third AAAI Conference on Artificial Intelligence."
+    "section": "",
+    "text": "In this paper, S. Guo (2019) proposed a method for traffic flow prediction which utilized an attention based spatial-temporal graph convolutional network. They aimed to model several time-dependencies: (1) recent, (2) daily-periodic, and (3) weekly-periodic dependencies. The attention mechanism captures spatial-temporal patterns in the traffic data and the spatial-temporal convolution is used to capture spatial patterns while standard convolutions describe temporal features.\n\n\n6.1.1 Core Contributions of ASTGCN\nDifficulties of the traffic forecasting problem\n\nit is difficult to handle unstable and nonlinear data\nprediction performance of models require extensive feature engineering\n\ndomain expertise is necessary\n\ncnn - spatial feature extraction from grid-based data, gcn - describe spatial correlation of grid based data\n\nfails to simultaneously model spatial temporal features and dynamic correlations of traffic data\n\n\nAddressing these issues:\n\ndevelop a spatial-temporal attention mechanism\n\nlearns dynamic spatial-temporal correlations of traffic data\ntemporal attention is applied to capture dynamic temporal correlations for different times\n\nDesign of spatial-temporal convolution module\n\nhas graph convolution for modeling graph structure\nhas convolution in temporal dimension (kind of like 3-d convolution)\n\n\n\n\n\n\nS. Guo, N. Feng, Y. Lin. 2019. “Attention Based Spatial-Temporal Graph Convolutional Networks for Traffic Flow Forecasting.” The Thirty-Third AAAI Conference on Artificial Intelligence.",
+    "crumbs": [
+      "V2X Applications",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Traffic Flow Forecasting</span>"
+    ]
   },
   {
     "objectID": "summary.html",
     "href": "summary.html",
     "title": "7  Summary",
     "section": "",
-    "text": "In summary, this book has no content whatsoever."
+    "text": "In summary, this book has no content whatsoever.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Summary</span>"
+    ]
   },
   {
     "objectID": "references.html",
@@ -131,5 +153,38 @@
     "title": "References",
     "section": "",
     "text": "Beaver, D. 1991. “Efficient Multiparty Protocols Using Circuit\nRandomization.” Advances in Cryptology. https://link.springer.com/chapter/10.1007/3-540-46766-1_34.\n\n\nDokur, O., and S. Katkoori. 2022. “Vehicle-to-Infrastructure Based\nAlgorithms for Traffic Light Detection, Red Light Violation, and\nWrong-Way Entry Applications.” IEEE International Symposium\non Smart Electronic Systems.\n\n\nJ. Goma, R. Bautista, M. Eviota. 2020. “Detecting Red-Light\nRunners (RLR) and Speeding Violtion Through Video Capture.”\nIEEE 7th International Conference on Industrial Engineering and\nApplications.\n\n\nJ. Terven, D. Cordova-Esparaza. 2023. “A Comprehensive Review of\nYOLO: From YOLOv1 to YOLOv8 and Beyond.” ACM Computing\nSurveys. https://arxiv.org/pdf/2304.00501v1.pdf.\n\n\nL. Thao, N. Anh, D. Cuong. 2022. “Automatic Traffic Red-Light\nViolation Detection Using AI.” International Information and\nEngineering Technology Association.\n\n\nS. Guo, N. Feng, Y. Lin. 2019. “Attention Based Spatial-Temporal\nGraph Convolutional Networks for Traffic Flow Forecasting.”\nThe Thirty-Third AAAI Conference on Artificial Intelligence.\n\n\nW. Liu, D. Erhan, D. Anguelov. 2016. “SSD: Single Shot MultiBox\nDetector.” ECCV.\n\n\nWong, W. 2021. “What Is Residual Connection?” https://towardsdatascience.com/what-is-residual-connection-efb07cab0d55."
+  },
+  {
+    "objectID": "traffic_flow.html",
+    "href": "traffic_flow.html",
+    "title": "6  Traffic Flow Forecasting",
+    "section": "",
+    "text": "6.1 Attention Based Spatial-Temporal Graph Convolutional Networks for Traffic Flow Forecasting",
+    "crumbs": [
+      "V2X Applications",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Traffic Flow Forecasting</span>"
+    ]
+  },
+  {
+    "objectID": "secure_prim/beavers_triples.html",
+    "href": "secure_prim/beavers_triples.html",
+    "title": "1  Beaver’s Triples Explained",
+    "section": "",
+    "text": "1.1 Generating Boolean Beaver’s Triples\nThe first step in masking the AND operation is to generate Boolean Beaver’s Triples. These are random bits a, b, and c such that c = a \\cdot b, where \\cdot represents the AND operation. Throughout this tutorial we define a = a_A \\oplus a_B, b = b_A \\oplus b_B, c = c_A \\oplus c_B, and r = r_A \\oplus r_B.",
+    "crumbs": [
+      "Secure Multiparty Computation Primitives",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Beaver's Triples Explained</span>"
+    ]
+  },
+  {
+    "objectID": "secure_prim/beavers_triples.html#generating-boolean-beavers-triples",
+    "href": "secure_prim/beavers_triples.html#generating-boolean-beavers-triples",
+    "title": "1  Beaver’s Triples Explained",
+    "section": "",
+    "text": "1.1.1 Step 1: Generating Inputs\nSuppose we have two parties, Alice and Bob. We begin by first generating a random pair (a_{i}, b_{i}) for each party where i corresponds to the party in question. We generate these from the field F_{2}^{2} which simply means that we select two random bits from \\{0,1\\}.\n\n\\begin{array}{ccc}\n    \\text{Alice} & {} & \\text{Bob} \\\\\n    \\mathbb{F}_{2}^{2} \\overset{\\$}{\\rightarrow} (a_{A}, b_{A}) & \\space & \\mathbb{F}_{2}^{2} \\overset{\\$}{\\rightarrow} (a_{B}, b_{B})\n\\end{array}\n\nNext, Bob and Alice each generate random masking bits r_{A} and r_{B} respectively.\n\n\\begin{array}{ccc}\n    \\text{Alice} & {} & \\text{Bob} \\\\\n    \\mathbb{F}_{2} \\overset{\\$}{\\rightarrow} r_{A} & \\space & \\mathbb{F}_{2} \\overset{\\$}{\\rightarrow} r_{B}\n\\end{array}\n\n\n\n1.1.2 Step 2: Obtaining Shares of c\nAfter generating the masking bits, Alice and Bob invoke an instance of 2 \\choose 1-OT_2 (see Chapter 2), where Alice acts as the sender with inputs (r_{A}, r_{A} \\oplus a_{A}), and Bob acts as the receiver with input b_B. Bob obtains b_{B}a_{A} \\oplus r_{A}.\nNow, Alice and Bob invoke another instance of 2 \\choose 1-OT_2. This time, Bob serves as the sender with inputs (r_{B}, r_{B} \\oplus a_{B}), and Alice serves as the receiver with input b_A. Consequently, Alice obtains b_{A}a_{B} \\oplus r_{B}.\n\n\\begin{array}{ccc}\n    \\text{Alice} & {} & \\text{Bob} \\\\\n    \\text{Snd } = (r_{A}, r_{A}\\oplus a_{A}) & \\overset{{2 \\choose 1}\\text{-OT}_2}{\\longrightarrow} & \\text{Rcv } = b_{B}a_{A} \\oplus r_{A} \\\\\n    \\text{Rcv } = b_{A}a_{B} \\oplus r_{B} & \\overset{{2 \\choose 1}\\text{-OT}_2}{\\longleftarrow} & \\text{Snd } = (r_{B}, r_{B} \\oplus a_{B})\n\\end{array}\n\nNote that objective is for Alice and Bob to each hold shares of c, denoted as c_A and c_B, respectively, such that their combination satisfies the equation c = ab.\nAlice had received b_{A}a_{B} \\oplus r_{B} from Bob, and she already has b_{A}a_{A} \\oplus r_{A}. She computes b_{A}a_{B} \\oplus r_{B} \\oplus b_{A}a_{A} \\oplus r_{A}, which simplifies to b_{A}a \\oplus r. Alice sets c_A = b_{A}a \\oplus r.\nSimilarly, Bob computes b_{B}a_{A} \\oplus r_{A} \\oplus b_{B}a_{B} \\oplus r_{B}, which simplifies to b_{B}a \\oplus r. Bob sets c_B = b_{B}a \\oplus r.\n\n\\begin{array}{ccc}\n    \\text{Alice} & & \\text{Bob} \\\\\n    c_A = b_{A}a \\oplus r & \\space & c_B = b_{B}a \\oplus r\n\\end{array}\n\nIt is easy to see that c = c_A \\oplus c_B = b_{A}a \\oplus r \\oplus b_{B}a \\oplus r = ab.\nThus, we have shown how Boolean Beaver’s triples are randomly generated such that c = c_A \\oplus c_B.\n\n\n\n\nBeaver, D. 1991. “Efficient Multiparty Protocols Using Circuit Randomization.” Advances in Cryptology. https://link.springer.com/chapter/10.1007/3-540-46766-1_34.",
+    "crumbs": [
+      "Secure Multiparty Computation Primitives",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Beaver's Triples Explained</span>"
+    ]
   }
 ]
