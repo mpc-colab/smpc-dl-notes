@@ -1,29 +1,22 @@
-## Generating Beaver's Triples
+## Generating Boolean Beaver's Triples
 
-The first step in masking multiplications is to 
-generate Beaver's Triples. These are random 
-values $a, b, c$ such that $a \cdot b = c$
+The first step in masking the AND operation is to generate Boolean Beaver's Triples. These are random bits $a$, $b$, and $c$ such that $c = a \cdot b$, where $\cdot$ represents the AND operation. Throughout this tutorial we define $a = a_A \oplus a_B$, $b = b_A \oplus b_B$, $c = c_A \oplus c_B$, and $r = r_A \oplus r_B$.
 
 ### Step 1: Generating Inputs
 
-Suppose we have two parties, **Alice** and **Bob**. Here, we will 
-suppose that Alice is the sender, and Bob is the receiver. All this 
-really means is that Alice sends her values to Bob first, with Bob
-sending his values to Alice thereafter. 
-
-We begin by first generating a random pair $(a_{i}, b_{i})$ for each 
+Suppose we have two parties, **Alice** and **Bob**. We begin by first generating a random pair $(a_{i}, b_{i})$ for each 
 party where $i$ corresponds to the party in question. We generate 
 these from the field $F_{2}^{2}$ which simply means that we select two
-random bits from $\{0,1\}$
+random bits from $\{0,1\}$.
 
 $$
 \begin{array}{ccc}
     \text{Alice} & {} & \text{Bob} \\
-    \mathbb{F}_{2}^{2} \overset{\$}{\rightarrow} (a_{A}, b_{A}) & \overbrace{}^{\&} & \mathbb{F}_{2}^{2} \overset{\$}{\rightarrow} (a_{B}, b_{B})
+    \mathbb{F}_{2}^{2} \overset{\$}{\rightarrow} (a_{A}, b_{A}) & \space & \mathbb{F}_{2}^{2} \overset{\$}{\rightarrow} (a_{B}, b_{B})
 \end{array}
 $$
 
-Next, Bob and Alice each generate random masking values $r_{A}$ and 
+Next, Bob and Alice each generate random masking bits $r_{A}$ and 
 $r_{B}$ respectively. 
 
 $$
@@ -33,61 +26,33 @@ $$
 \end{array}
 $$
 
-### Step 2: Sending and Receiving Shares
+### Step 2: Obtaining Shares of $c$
 
-After these masking values are generated, Alice uses
-oblivious transfer (see @sec-oblivious_transfer) to send $(r_{A}, r_{A}\oplus a_{A})$ to Bob. 
+After generating the masking bits, Alice and Bob invoke an instance of $2 \choose 1$-OT$_2$ (see @sec-oblivious_transfer), where Alice acts as the sender with inputs $(r_{A}, r_{A} \oplus a_{A})$, and Bob acts as the receiver with input $b_B$. Bob obtains $b_{B}a_{A} \oplus r_{A}$.
 
-When Bob receives this, he obtains $b_{B}a_{A} \oplus r_{A}$
-and then sends $(r_{B}, r_{B} \oplus a_{B})$ to Alice
+Now, Alice and Bob invoke another instance of $2 \choose 1$-OT$_2$. This time, Bob serves as the sender with inputs $(r_{B}, r_{B} \oplus a_{B})$, and Alice serves as the receiver with input $b_A$. Consequently, Alice obtains $b_{A}a_{B} \oplus r_{B}$.
 
 $$
 \begin{array}{ccc}
     \text{Alice} & {} & \text{Bob} \\
-    \text{Snd } = (r_{A}, r_{A}\oplus a_{A}) & \overset{OT}{\longrightarrow} & \text{Rcv } = b_{B}a_{A} \oplus r_{A} \\
-    \text{Rcv } = b_{A}a_{B} \oplus r_{B} & \overset{OT}{\longleftarrow} & \text{Snd } = (r_{B}, r_{B} \oplus a_{B})
+    \text{Snd } = (r_{A}, r_{A}\oplus a_{A}) & \overset{{2 \choose 1}\text{-OT}_2}{\longrightarrow} & \text{Rcv } = b_{B}a_{A} \oplus r_{A} \\
+    \text{Rcv } = b_{A}a_{B} \oplus r_{B} & \overset{{2 \choose 1}\text{-OT}_2}{\longleftarrow} & \text{Snd } = (r_{B}, r_{B} \oplus a_{B})
 \end{array}
 $$
 
-After receiving these shares, Alice and Bob each received shares
-from one another, they `XOR` the product **(intersection)** of their shares with the 
-ones received from the other party
+Note that objective is for Alice and Bob to each hold shares of $c$, denoted as $c_A$ and $c_B$, respectively, such that their combination satisfies the equation $c = ab$. 
+
+Alice had received $b_{A}a_{B} \oplus r_{B}$ from Bob, and she already has $b_{A}a_{A} \oplus r_{A}$. She computes $b_{A}a_{B} \oplus r_{B} \oplus b_{A}a_{A} \oplus r_{A}$, which simplifies to $b_{A}a \oplus r$. Alice sets $c_A = b_{A}a \oplus r$.
+
+Similarly, Bob computes $b_{B}a_{A} \oplus r_{A} \oplus b_{B}a_{B} \oplus r_{B}$, which simplifies to $b_{B}a \oplus r$. Bob sets $c_B = b_{B}a \oplus r$.
 
 $$
 \begin{array}{ccc}
     \text{Alice} & & \text{Bob} \\
-    c_{A}: \overbrace{r_{A}\oplus a_{A}b_{A}}{\text{Alice's og share}}\oplus b_{A}a_{B} \oplus r_{B} & & 
-    c_{B}: \overbrace{r_{B}\oplus a_{B}b_{B}}{\text{Bob's og share}}\oplus b_{B}a_{A} \oplus r_{A} \\
-    \downarrow & & \downarrow \\
-    c_{A}:\text{---}{r_{A}}\text{---}\oplus a_{A}b_{A} \oplus b_{A}a_{B} \oplus \text{---}{r_{B}}\text{---} & & \\
-    c_{B}: \text{---}{r_{B}}\text{---}\oplus a_{B}b_{B} \oplus b_{B}a_{A} \oplus \text{---}{r_{A}}\text{---}
+    c_A = b_{A}a \oplus r & \space & c_B = b_{B}a \oplus r
 \end{array}
 $$
 
-### Step 3: Final Simplification
+It is easy to see that $c = c_A \oplus c_B = b_{A}a \oplus r \oplus b_{B}a \oplus r = ab$.
 
-Now that each party has obtaiined a preliminary share of $C$, $C_{A}$ and $C_{B}$
-possessed by Alice and Bob respectively, we take the `XOR` of the two components to 
-get the product $a \cdot b = c$
-
-First, let us simplify $c_{A}$ and $c_{B}$ a bit more
-
-$$
-c_{A} = a_{A}b_{A}\oplus b_{A}a_{B} \\[5pt]
-a_{A} \oplus a_{B} = a \space\space\space b_{A} \oplus b_{A} = b_{A} \\[15pt]
-c_{B} = a_{B}b_{B}\oplus b_{B}a_{A} \\[5pt] 
-a_{B} \oplus a_{B} = a \space\space\space b_{B} \oplus b_{B} = b_{B} \\[15pt]
-c_{A} = a(b_{A}) \space\space\space c_{B} = a(b_{B})
-$$
-
-Now that we have simplified these terms, we can compute the final result
-
-$$
-c = c_{A} \oplus c_{B} \\
-c = a(b_{A}) \oplus a(b_{B}) \\
-c = a(b_{A} \oplus b_{B}) \\
-c = a\cdot b
-$$
-
-Thus, we have shown how beaver's triples are randomly generated to 
-achieve the desired output.
+Thus, we have shown how Boolean Beaver's triples are randomly generated such that $c = c_A \oplus c_B$.
