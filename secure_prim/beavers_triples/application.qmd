@@ -1,0 +1,43 @@
+## Application of Random Beaver's Triples
+
+Now that randomized triples $(a_{A}, b_{A}, c_{A})$ and 
+$(a_{B}, b_{B}, c_{B})$ have been generated for Alice and Bob 
+respectively, we can use them cooperatively compute the outpute of 
+some multiplication $x \cdot y$.
+
+Suppose that Alice has shares of $x$ and $y$ $(x_{A}, y_{A})$ and Bob has
+shares $(x_{B}, y_{B})$. 
+
+$$
+\begin{array}{ccc}
+    \text{Alice} & {} & \text{Bob} \\
+    f_{A} = y_{A} \oplus b_{A} & {} & f_{B} = y_{B} \oplus b_{B} \\
+    e_{A} = x_{A} \oplus a_{A} & {} & e_{B} = x_{B} \oplus a_{B} \\
+    {} & f = y \oplus b & {} \\
+    {} & e = x \oplus a & {}
+\end{array}
+$$
+
+Now that functional shares have been computed, we can use those to 
+compute shares $z_{A}$ and $z_{B}$ for collectively obtaining the value
+of $x \cdot y$
+
+$$
+\begin{array}{ccc}
+    \text{Alice} & {} & \text{Bob} \\
+    z_{A} = f \cdot a_{A} \oplus e \cdot b_{A} \oplus c_{A} & {} & z_{B} = f \cdot a_{B} \oplus e \cdot b_{B} \oplus c_{B} \\
+\end{array}
+$$
+
+> Note: in the computation above, we approach the binary case of 
+multiplication. Thus, the $\cdot$ operation is equivalent to the 
+$\cap$ operation
+
+We `XOR` these shares $z_{A}$ and $z_{B}$ together to get the following
+
+\begin{align*}
+    z_{A} \oplus z_{B} &= [(y \oplus b) \cdot (x \oplus a) \oplus (y \oplus b) \cdot a] \oplus [(x \oplus a) \cdot b \oplus c] \\
+    &= (y \oplus b) (x \oplus a\ ) \oplus xb \oplus ab \oplus c \\
+    &= (y \oplus b) x \oplus xb \\
+    &= yx \oplus xb \oplus xb = yx 
+\end{align*}

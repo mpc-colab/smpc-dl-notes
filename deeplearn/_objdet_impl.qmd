@@ -1,0 +1,33 @@
+# Implementation Guides for Yolo Object Detectors
+
+Yolo5 is an extremely popular choice of object detector model. It 
+has empirically demonstrated a high mean average precision, is 
+efficient, supports an array of model scales, and is very 
+easy to implement. Moreover, it is a torch port of the yolo family, 
+which makes it even more popular among machine learning researchers 
+and the like. 
+
+This guide provides a simple explanation for implementing the 
+Yolov5 model on a very simple example. <span style="color:Crimson"> 
+Please note that this tutorial borrows heavily from the article 
+written by @GaruavMaindola21 </span>. Practically speaking, 
+the purpose of this entry is for is ease of use in connecting 
+to other useful references throughout the remainder of this book. 
+
+## YOLOv5 Architecture In Depth
+
+A comprehensive description of the YOLOv5 network architecture is 
+provided at the [documentation source from ultralytics](https://docs.ultralytics.com/yolov5/tutorials/architecture_description/#1-model-structure).
+
+[Open Genus](https://iq.opengenus.org/yolov5/) also provides some 
+good refernece material on the architecture of the Yolo5 
+architecture. 
+
+This [youtube video](https://www.youtube.com/watch?v=Q1JCrG1bJ-A) 
+also provides a useful explanation for the partial
+connections structure of the YOLO model architecture. 
+
+Tensors are either added or concatenated together when they are 
+passed through the network. YOLO makes exclusive use of 
+tensor concatenation. 
+

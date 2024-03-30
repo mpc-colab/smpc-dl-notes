@@ -18,6 +18,7 @@ book:
       chapters:
         -  deeplearn/deep_primitives/residual_connection.qmd
         -  object_detection.qmd
+        -  deeplearn/_objdet_impl.qmd
     - part: v2x_apps.qmd
       chapters:
         - red_light.qmd

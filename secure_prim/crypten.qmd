@@ -1,0 +1,16 @@
+# CrypTen {#sec-crypten}
+
+CrypTen is a secure multiparty computation framework introduced by
+@knott2022. CrypTen is significant because it takes concepts which are 
+well-established within the context of multiparty computation, and 
+establishes an easy-to-use system which will feel familiar to 
+researchers already know PyTorch. This is extremely important since the
+widespread adoption of secure computation techniques up to this point 
+have largely been limited to (1) the complexity of primitives associated
+and (2) the low-level implementation used by most state-of-the-art 
+systems such as Delphi and Cheetah. 
+
+## Encrypting Models with CrypTen 
+
+In other systems such as Delphi, model encryption is treated as an issue 
+of 
