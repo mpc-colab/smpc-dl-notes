@@ -1,1 +1,54 @@
 # Oblivious Transfer {#sec-oblivious_transfer}
+
+## What is Oblivious Transfer?
+
+In standard computing practice, we often run into the issue
+of wanting to transfer values between parties. This problem can 
+be modeled as follows:
+
+> Suppose that Alice has a set of values $\{s_{1},s_{2},\dots,s_{n}\}$ 
+and Bob holds a selection bit $i$. Bob would like to obtain the value
+of $s_{i}$ from Alice.  
+
+Without accounting for security, this can easily be accomplished
+by Bob sending his selection bit to Alice, and Alice sending the 
+corresponding value $s_{i}$ to Bob or Alice sending her entire set of
+values to Bob, and Bob picking the desired value $s_{i}$ from the 
+obtained set. 
+
+However, in Secure MPC (multi-party computation) we are concerned 
+with the security of this process. More specifically, it is important
+that *Bob doesn't learn anything about* Alice's $s_{i}\text{'s}$ *other*
+*than the one he receives* and *Alice doesn't learn anything about Bob's*
+*selection bit* $i$. Oblivious transfer is the secure mechanism by 
+which we achieve this outcome. This is an extremely important Secure MPC
+tool because it has been proven that **OT is complete for all Secure MPC 
+operations** [@goldrich1987, @kilian1988]. 
+
+As such, OT forms the basis for many secure computation protocols which 
+have been developed in the past 40 years or so. 
+
+## Extending Oblivious Transfer
+
+Due to the the time complexity associated with Oblivious Transfer, 
+researchers have been motivated to search for efficiency gains. Towards
+this end, several important developments have been made over time:
+
++ It was demonstrated by @impagliazzo1989 that if a reduction of OT to 
+  one-way-functions (black-box reduction) could be performed, it would imply that 
+  $P \ne NP$ (polynomial-class algorithm problems and NP class problems are not 
+  complexity-equivalent) 
+  + in other words, OT is harder than one-way-functions which form the basis of 
+    symmetric key encryption. See @sec-one_way_functions for more information on 
+    this (OWF) one-way-functions.
++ Beaver demonstrated one could extend a series of small base OT's to 
+  a large number of OT's using ONLY OWF's @beaver1996
++ IKNP OT - (proposed in @ishai2003) 
+  + uses ROM (random oracle model) and symmetric key primitives to increase 
+    security and improve efficiency of OT
++ Silent OT (Ferret) - (proposed in @yang2020)
++ Exponential Correlated OTs based on LPN Assumption (proposed in @boyle2020)
+
+## Fundamentals of Oblivious Transfer
+
+### Random Oblivious Transfer (ROT)

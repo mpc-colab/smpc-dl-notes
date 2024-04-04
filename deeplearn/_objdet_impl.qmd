@@ -10,7 +10,7 @@ and the like.
 This guide provides a simple explanation for implementing the 
 Yolov5 model on a very simple example. <span style="color:Crimson"> 
 Please note that this tutorial borrows heavily from the article 
-written by @GaruavMaindola21 </span>. Practically speaking, 
+written by @GauravMaindola21 </span>. Practically speaking, 
 the purpose of this entry is for is ease of use in connecting 
 to other useful references throughout the remainder of this book. 
 

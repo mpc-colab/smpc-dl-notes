@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Secure Multiparty Computation Meets Deep Learning - 4&nbsp; Object Detection Algorithms</title>
+<title>Secure Multiparty Computation Meets Deep Learning - 6&nbsp; Object Detection Algorithms</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -109,7 +109,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./deep_learning.html">Deep Learning</a></li><li class="breadcrumb-item"><a href="./object_detection.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Object Detection Algorithms</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./deep_learning.html">Deep Learning</a></li><li class="breadcrumb-item"><a href="./object_detection.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Object Detection Algorithms</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -161,6 +161,18 @@ div.csl-indent {
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Oblivious Transfer</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./secure_prim/one_way_functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">One-Way-Functions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./secure_prim/crypten.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">CrypTen</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -175,19 +187,19 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./deeplearn/deep_primitives/residual_connection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Residual connections</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Residual connections</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./object_detection.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Object Detection Algorithms</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Object Detection Algorithms</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./deeplearn/_objdet_impl.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Implementation Guides for Yolo Object Detectors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Implementation Guides for Yolo Object Detectors</span></span></a>
   </div>
 </li>
       </ul>
@@ -204,13 +216,13 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./red_light.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Red Light Violation Detection</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Red Light Violation Detection</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./traffic_flow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Traffic Flow Forecasting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Traffic Flow Forecasting</span></span></a>
   </div>
 </li>
       </ul>
@@ -218,7 +230,7 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -237,82 +249,82 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#ssd-single-shot-multibox-detector" id="toc-ssd-single-shot-multibox-detector" class="nav-link active" data-scroll-target="#ssd-single-shot-multibox-detector"><span class="header-section-number">4.1</span> SSD: Single Shot MultiBox Detector</a></li>
-  <li><a href="#a-comprehensive-review-of-yolo-v1-to-v8" id="toc-a-comprehensive-review-of-yolo-v1-to-v8" class="nav-link" data-scroll-target="#a-comprehensive-review-of-yolo-v1-to-v8"><span class="header-section-number">4.2</span> A Comprehensive Review of YOLO (v1 to v8+)</a>
+  <li><a href="#ssd-single-shot-multibox-detector" id="toc-ssd-single-shot-multibox-detector" class="nav-link active" data-scroll-target="#ssd-single-shot-multibox-detector"><span class="header-section-number">6.1</span> SSD: Single Shot MultiBox Detector</a></li>
+  <li><a href="#a-comprehensive-review-of-yolo-v1-to-v8" id="toc-a-comprehensive-review-of-yolo-v1-to-v8" class="nav-link" data-scroll-target="#a-comprehensive-review-of-yolo-v1-to-v8"><span class="header-section-number">6.2</span> A Comprehensive Review of YOLO (v1 to v8+)</a>
   <ul>
-  <li><a href="#applications-of-yolo" id="toc-applications-of-yolo" class="nav-link" data-scroll-target="#applications-of-yolo"><span class="header-section-number">4.2.1</span> Applications of YOLO</a></li>
-  <li><a href="#evaluation-metrics" id="toc-evaluation-metrics" class="nav-link" data-scroll-target="#evaluation-metrics"><span class="header-section-number">4.2.2</span> Evaluation Metrics</a>
+  <li><a href="#applications-of-yolo" id="toc-applications-of-yolo" class="nav-link" data-scroll-target="#applications-of-yolo"><span class="header-section-number">6.2.1</span> Applications of YOLO</a></li>
+  <li><a href="#evaluation-metrics" id="toc-evaluation-metrics" class="nav-link" data-scroll-target="#evaluation-metrics"><span class="header-section-number">6.2.2</span> Evaluation Metrics</a>
   <ul>
-  <li><a href="#how-ap-works" id="toc-how-ap-works" class="nav-link" data-scroll-target="#how-ap-works"><span class="header-section-number">4.2.2.1</span> How AP works</a></li>
+  <li><a href="#how-ap-works" id="toc-how-ap-works" class="nav-link" data-scroll-target="#how-ap-works"><span class="header-section-number">6.2.2.1</span> How AP works</a></li>
   </ul></li>
-  <li><a href="#non-maximum-suppression" id="toc-non-maximum-suppression" class="nav-link" data-scroll-target="#non-maximum-suppression"><span class="header-section-number">4.2.3</span> Non-Maximum Suppression</a></li>
-  <li><a href="#yolo" id="toc-yolo" class="nav-link" data-scroll-target="#yolo"><span class="header-section-number">4.2.4</span> YOLO</a>
+  <li><a href="#non-maximum-suppression" id="toc-non-maximum-suppression" class="nav-link" data-scroll-target="#non-maximum-suppression"><span class="header-section-number">6.2.3</span> Non-Maximum Suppression</a></li>
+  <li><a href="#yolo" id="toc-yolo" class="nav-link" data-scroll-target="#yolo"><span class="header-section-number">6.2.4</span> YOLO</a>
   <ul>
-  <li><a href="#sec-yolo1" id="toc-sec-yolo1" class="nav-link" data-scroll-target="#sec-yolo1"><span class="header-section-number">4.2.4.1</span> YOLOv1</a>
+  <li><a href="#sec-yolo1" id="toc-sec-yolo1" class="nav-link" data-scroll-target="#sec-yolo1"><span class="header-section-number">6.2.4.1</span> YOLOv1</a>
   <ul class="collapse">
-  <li><a href="#v1-architecture" id="toc-v1-architecture" class="nav-link" data-scroll-target="#v1-architecture"><span class="header-section-number">4.2.4.1.1</span> v1 Architecture</a></li>
-  <li><a href="#v1-training" id="toc-v1-training" class="nav-link" data-scroll-target="#v1-training"><span class="header-section-number">4.2.4.1.2</span> v1 Training</a></li>
+  <li><a href="#v1-architecture" id="toc-v1-architecture" class="nav-link" data-scroll-target="#v1-architecture"><span class="header-section-number">6.2.4.1.1</span> v1 Architecture</a></li>
+  <li><a href="#v1-training" id="toc-v1-training" class="nav-link" data-scroll-target="#v1-training"><span class="header-section-number">6.2.4.1.2</span> v1 Training</a></li>
   </ul></li>
-  <li><a href="#sec-yolo2" id="toc-sec-yolo2" class="nav-link" data-scroll-target="#sec-yolo2"><span class="header-section-number">4.2.4.2</span> YOLOv2 (YOLO 9000)</a>
+  <li><a href="#sec-yolo2" id="toc-sec-yolo2" class="nav-link" data-scroll-target="#sec-yolo2"><span class="header-section-number">6.2.4.2</span> YOLOv2 (YOLO 9000)</a>
   <ul class="collapse">
-  <li><a href="#v2-architecture" id="toc-v2-architecture" class="nav-link" data-scroll-target="#v2-architecture"><span class="header-section-number">4.2.4.2.1</span> v2 Architecture</a></li>
+  <li><a href="#v2-architecture" id="toc-v2-architecture" class="nav-link" data-scroll-target="#v2-architecture"><span class="header-section-number">6.2.4.2.1</span> v2 Architecture</a></li>
   </ul></li>
-  <li><a href="#sec-yolov3" id="toc-sec-yolov3" class="nav-link" data-scroll-target="#sec-yolov3"><span class="header-section-number">4.2.4.3</span> YOLOv3</a>
+  <li><a href="#sec-yolov3" id="toc-sec-yolov3" class="nav-link" data-scroll-target="#sec-yolov3"><span class="header-section-number">6.2.4.3</span> YOLOv3</a>
   <ul class="collapse">
-  <li><a href="#yolov3-architecture" id="toc-yolov3-architecture" class="nav-link" data-scroll-target="#yolov3-architecture"><span class="header-section-number">4.2.4.3.1</span> YOLOv3 Architecture</a></li>
-  <li><a href="#multi-scale-predictions" id="toc-multi-scale-predictions" class="nav-link" data-scroll-target="#multi-scale-predictions"><span class="header-section-number">4.2.4.3.2</span> Multi-Scale predictions</a></li>
-  <li><a href="#backbone-neck-and-head" id="toc-backbone-neck-and-head" class="nav-link" data-scroll-target="#backbone-neck-and-head"><span class="header-section-number">4.2.4.3.3</span> Backbone, Neck, and Head</a></li>
+  <li><a href="#yolov3-architecture" id="toc-yolov3-architecture" class="nav-link" data-scroll-target="#yolov3-architecture"><span class="header-section-number">6.2.4.3.1</span> YOLOv3 Architecture</a></li>
+  <li><a href="#multi-scale-predictions" id="toc-multi-scale-predictions" class="nav-link" data-scroll-target="#multi-scale-predictions"><span class="header-section-number">6.2.4.3.2</span> Multi-Scale predictions</a></li>
+  <li><a href="#backbone-neck-and-head" id="toc-backbone-neck-and-head" class="nav-link" data-scroll-target="#backbone-neck-and-head"><span class="header-section-number">6.2.4.3.3</span> Backbone, Neck, and Head</a></li>
   </ul></li>
-  <li><a href="#sec-yolov4" id="toc-sec-yolov4" class="nav-link" data-scroll-target="#sec-yolov4"><span class="header-section-number">4.2.4.4</span> YOLOv4</a>
+  <li><a href="#sec-yolov4" id="toc-sec-yolov4" class="nav-link" data-scroll-target="#sec-yolov4"><span class="header-section-number">6.2.4.4</span> YOLOv4</a>
   <ul class="collapse">
-  <li><a href="#model-improvements" id="toc-model-improvements" class="nav-link" data-scroll-target="#model-improvements"><span class="header-section-number">4.2.4.4.1</span> Model Improvements</a></li>
-  <li><a href="#yolov4-architecture" id="toc-yolov4-architecture" class="nav-link" data-scroll-target="#yolov4-architecture"><span class="header-section-number">4.2.4.4.2</span> YOLOv4 Architecture</a></li>
+  <li><a href="#model-improvements" id="toc-model-improvements" class="nav-link" data-scroll-target="#model-improvements"><span class="header-section-number">6.2.4.4.1</span> Model Improvements</a></li>
+  <li><a href="#yolov4-architecture" id="toc-yolov4-architecture" class="nav-link" data-scroll-target="#yolov4-architecture"><span class="header-section-number">6.2.4.4.2</span> YOLOv4 Architecture</a></li>
   </ul></li>
-  <li><a href="#sec-yolov5" id="toc-sec-yolov5" class="nav-link" data-scroll-target="#sec-yolov5"><span class="header-section-number">4.2.4.5</span> YOLOv5</a>
+  <li><a href="#sec-yolov5" id="toc-sec-yolov5" class="nav-link" data-scroll-target="#sec-yolov5"><span class="header-section-number">6.2.4.5</span> YOLOv5</a>
   <ul class="collapse">
-  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><span class="header-section-number">4.2.4.5.1</span> Results</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><span class="header-section-number">6.2.4.5.1</span> Results</a></li>
   </ul></li>
-  <li><a href="#sec-yolov4_scaled" id="toc-sec-yolov4_scaled" class="nav-link" data-scroll-target="#sec-yolov4_scaled"><span class="header-section-number">4.2.4.6</span> Scaled-YOLOv4</a>
+  <li><a href="#sec-yolov4_scaled" id="toc-sec-yolov4_scaled" class="nav-link" data-scroll-target="#sec-yolov4_scaled"><span class="header-section-number">6.2.4.6</span> Scaled-YOLOv4</a>
   <ul class="collapse">
-  <li><a href="#results-1" id="toc-results-1" class="nav-link" data-scroll-target="#results-1"><span class="header-section-number">4.2.4.6.1</span> Results</a></li>
+  <li><a href="#results-1" id="toc-results-1" class="nav-link" data-scroll-target="#results-1"><span class="header-section-number">6.2.4.6.1</span> Results</a></li>
   </ul></li>
-  <li><a href="#sec-yolor" id="toc-sec-yolor" class="nav-link" data-scroll-target="#sec-yolor"><span class="header-section-number">4.2.4.7</span> YOLOR</a>
+  <li><a href="#sec-yolor" id="toc-sec-yolor" class="nav-link" data-scroll-target="#sec-yolor"><span class="header-section-number">6.2.4.7</span> YOLOR</a>
   <ul class="collapse">
-  <li><a href="#results-2" id="toc-results-2" class="nav-link" data-scroll-target="#results-2"><span class="header-section-number">4.2.4.7.1</span> Results</a></li>
+  <li><a href="#results-2" id="toc-results-2" class="nav-link" data-scroll-target="#results-2"><span class="header-section-number">6.2.4.7.1</span> Results</a></li>
   </ul></li>
-  <li><a href="#sec-yolox" id="toc-sec-yolox" class="nav-link" data-scroll-target="#sec-yolox"><span class="header-section-number">4.2.4.8</span> YOLOX</a>
+  <li><a href="#sec-yolox" id="toc-sec-yolox" class="nav-link" data-scroll-target="#sec-yolox"><span class="header-section-number">6.2.4.8</span> YOLOX</a>
   <ul class="collapse">
-  <li><a href="#model-changes-and-improvements" id="toc-model-changes-and-improvements" class="nav-link" data-scroll-target="#model-changes-and-improvements"><span class="header-section-number">4.2.4.8.1</span> Model Changes and Improvements</a></li>
-  <li><a href="#architecture" id="toc-architecture" class="nav-link" data-scroll-target="#architecture"><span class="header-section-number">4.2.4.8.2</span> Architecture</a></li>
+  <li><a href="#model-changes-and-improvements" id="toc-model-changes-and-improvements" class="nav-link" data-scroll-target="#model-changes-and-improvements"><span class="header-section-number">6.2.4.8.1</span> Model Changes and Improvements</a></li>
+  <li><a href="#architecture" id="toc-architecture" class="nav-link" data-scroll-target="#architecture"><span class="header-section-number">6.2.4.8.2</span> Architecture</a></li>
   </ul></li>
-  <li><a href="#yolov6" id="toc-yolov6" class="nav-link" data-scroll-target="#yolov6"><span class="header-section-number">4.2.4.9</span> YOLOv6</a>
+  <li><a href="#yolov6" id="toc-yolov6" class="nav-link" data-scroll-target="#yolov6"><span class="header-section-number">6.2.4.9</span> YOLOv6</a>
   <ul class="collapse">
-  <li><a href="#model-changes-and-improvements-1" id="toc-model-changes-and-improvements-1" class="nav-link" data-scroll-target="#model-changes-and-improvements-1"><span class="header-section-number">4.2.4.9.1</span> Model Changes and Improvements</a></li>
+  <li><a href="#model-changes-and-improvements-1" id="toc-model-changes-and-improvements-1" class="nav-link" data-scroll-target="#model-changes-and-improvements-1"><span class="header-section-number">6.2.4.9.1</span> Model Changes and Improvements</a></li>
   </ul></li>
-  <li><a href="#sec-yolov7" id="toc-sec-yolov7" class="nav-link" data-scroll-target="#sec-yolov7"><span class="header-section-number">4.2.4.10</span> YOLOv7</a>
+  <li><a href="#sec-yolov7" id="toc-sec-yolov7" class="nav-link" data-scroll-target="#sec-yolov7"><span class="header-section-number">6.2.4.10</span> YOLOv7</a>
   <ul class="collapse">
-  <li><a href="#model-changes-and-improvements-2" id="toc-model-changes-and-improvements-2" class="nav-link" data-scroll-target="#model-changes-and-improvements-2"><span class="header-section-number">4.2.4.10.1</span> Model Changes and Improvements</a></li>
+  <li><a href="#model-changes-and-improvements-2" id="toc-model-changes-and-improvements-2" class="nav-link" data-scroll-target="#model-changes-and-improvements-2"><span class="header-section-number">6.2.4.10.1</span> Model Changes and Improvements</a></li>
   </ul></li>
-  <li><a href="#damo-yolo" id="toc-damo-yolo" class="nav-link" data-scroll-target="#damo-yolo"><span class="header-section-number">4.2.4.11</span> DAMO-YOLO</a></li>
-  <li><a href="#yolov8" id="toc-yolov8" class="nav-link" data-scroll-target="#yolov8"><span class="header-section-number">4.2.4.12</span> YOLOv8</a></li>
+  <li><a href="#damo-yolo" id="toc-damo-yolo" class="nav-link" data-scroll-target="#damo-yolo"><span class="header-section-number">6.2.4.11</span> DAMO-YOLO</a></li>
+  <li><a href="#yolov8" id="toc-yolov8" class="nav-link" data-scroll-target="#yolov8"><span class="header-section-number">6.2.4.12</span> YOLOv8</a></li>
   </ul></li>
-  <li><a href="#sec-pp_yolo" id="toc-sec-pp_yolo" class="nav-link" data-scroll-target="#sec-pp_yolo"><span class="header-section-number">4.2.5</span> PP-YOLO Models</a>
+  <li><a href="#sec-pp_yolo" id="toc-sec-pp_yolo" class="nav-link" data-scroll-target="#sec-pp_yolo"><span class="header-section-number">6.2.5</span> PP-YOLO Models</a>
   <ul>
-  <li><a href="#pp-yolo" id="toc-pp-yolo" class="nav-link" data-scroll-target="#pp-yolo"><span class="header-section-number">4.2.5.1</span> PP-YOLO</a>
+  <li><a href="#pp-yolo" id="toc-pp-yolo" class="nav-link" data-scroll-target="#pp-yolo"><span class="header-section-number">6.2.5.1</span> PP-YOLO</a>
   <ul class="collapse">
-  <li><a href="#divergence-from-yolov3" id="toc-divergence-from-yolov3" class="nav-link" data-scroll-target="#divergence-from-yolov3"><span class="header-section-number">4.2.5.1.1</span> Divergence from YOLOv3</a></li>
-  <li><a href="#pp-yolo-augmentations-and-preprocessing" id="toc-pp-yolo-augmentations-and-preprocessing" class="nav-link" data-scroll-target="#pp-yolo-augmentations-and-preprocessing"><span class="header-section-number">4.2.5.1.2</span> PP-YOLO Augmentations and Preprocessing</a></li>
+  <li><a href="#divergence-from-yolov3" id="toc-divergence-from-yolov3" class="nav-link" data-scroll-target="#divergence-from-yolov3"><span class="header-section-number">6.2.5.1.1</span> Divergence from YOLOv3</a></li>
+  <li><a href="#pp-yolo-augmentations-and-preprocessing" id="toc-pp-yolo-augmentations-and-preprocessing" class="nav-link" data-scroll-target="#pp-yolo-augmentations-and-preprocessing"><span class="header-section-number">6.2.5.1.2</span> PP-YOLO Augmentations and Preprocessing</a></li>
   </ul></li>
-  <li><a href="#pp-yolov2" id="toc-pp-yolov2" class="nav-link" data-scroll-target="#pp-yolov2"><span class="header-section-number">4.2.5.2</span> PP-YOLOv2</a>
+  <li><a href="#pp-yolov2" id="toc-pp-yolov2" class="nav-link" data-scroll-target="#pp-yolov2"><span class="header-section-number">6.2.5.2</span> PP-YOLOv2</a>
   <ul class="collapse">
-  <li><a href="#changes-and-improvements" id="toc-changes-and-improvements" class="nav-link" data-scroll-target="#changes-and-improvements"><span class="header-section-number">4.2.5.2.1</span> Changes and Improvements</a></li>
+  <li><a href="#changes-and-improvements" id="toc-changes-and-improvements" class="nav-link" data-scroll-target="#changes-and-improvements"><span class="header-section-number">6.2.5.2.1</span> Changes and Improvements</a></li>
   </ul></li>
-  <li><a href="#pp-yoloe" id="toc-pp-yoloe" class="nav-link" data-scroll-target="#pp-yoloe"><span class="header-section-number">4.2.5.3</span> PP-YOLOE</a>
+  <li><a href="#pp-yoloe" id="toc-pp-yoloe" class="nav-link" data-scroll-target="#pp-yoloe"><span class="header-section-number">6.2.5.3</span> PP-YOLOE</a>
   <ul class="collapse">
-  <li><a href="#changes-and-improvements-1" id="toc-changes-and-improvements-1" class="nav-link" data-scroll-target="#changes-and-improvements-1"><span class="header-section-number">4.2.5.3.1</span> Changes and Improvements</a></li>
+  <li><a href="#changes-and-improvements-1" id="toc-changes-and-improvements-1" class="nav-link" data-scroll-target="#changes-and-improvements-1"><span class="header-section-number">6.2.5.3.1</span> Changes and Improvements</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#summary-of-yolo" id="toc-summary-of-yolo" class="nav-link" data-scroll-target="#summary-of-yolo"><span class="header-section-number">4.2.6</span> Summary of YOLO</a></li>
+  <li><a href="#summary-of-yolo" id="toc-summary-of-yolo" class="nav-link" data-scroll-target="#summary-of-yolo"><span class="header-section-number">6.2.6</span> Summary of YOLO</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -322,7 +334,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Object Detection Algorithms</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Object Detection Algorithms</span></h1>
 </div>
 
 
@@ -337,14 +349,14 @@ div.csl-indent {
 
 </header>
 
-<section id="ssd-single-shot-multibox-detector" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="ssd-single-shot-multibox-detector"><span class="header-section-number">4.1</span> SSD: Single Shot MultiBox Detector</h2>
+<section id="ssd-single-shot-multibox-detector" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="ssd-single-shot-multibox-detector"><span class="header-section-number">6.1</span> SSD: Single Shot MultiBox Detector</h2>
 <blockquote class="blockquote">
 <p>The single shot multibox detector is an algorithm presented by <span class="citation" data-cites="liu2016etal">W. Liu (<a href="references.html#ref-liu2016etal" role="doc-biblioref">2016</a>)</span> for the purpose of taking a 300 x 300 input and generating bounding boxes on objects of interest within the image. The paper is linked <a href="https://arxiv.org/abs/1512.02325">here</a></p>
 </blockquote>
 </section>
-<section id="a-comprehensive-review-of-yolo-v1-to-v8" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="a-comprehensive-review-of-yolo-v1-to-v8"><span class="header-section-number">4.2</span> A Comprehensive Review of YOLO (v1 to v8+)</h2>
+<section id="a-comprehensive-review-of-yolo-v1-to-v8" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="a-comprehensive-review-of-yolo-v1-to-v8"><span class="header-section-number">6.2</span> A Comprehensive Review of YOLO (v1 to v8+)</h2>
 <blockquote class="blockquote">
 <p><span class="citation" data-cites="terven2023etal">J. Terven (<a href="references.html#ref-terven2023etal" role="doc-biblioref">2023</a>)</span> present review and analysis of the evolution of the Yolo algorithm, with a focus on the innovations and contributions made by each iteration, as well as the major changes in network architecture (and training tricks) which have been implemented over time.</p>
 </blockquote>
@@ -354,8 +366,8 @@ div.csl-indent {
 <figcaption class="figure-caption">A timeline of YOLO development</figcaption>
 </figure>
 </div>
-<section id="applications-of-yolo" class="level3" data-number="4.2.1">
-<h3 data-number="4.2.1" class="anchored" data-anchor-id="applications-of-yolo"><span class="header-section-number">4.2.1</span> Applications of YOLO</h3>
+<section id="applications-of-yolo" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="applications-of-yolo"><span class="header-section-number">6.2.1</span> Applications of YOLO</h3>
 <p>Yolo has proven invaluable for a number of different applications</p>
 <ul>
 <li>autonomous vehicles
@@ -382,11 +394,11 @@ div.csl-indent {
 <li>robotics and drones</li>
 </ul>
 </section>
-<section id="evaluation-metrics" class="level3" data-number="4.2.2">
-<h3 data-number="4.2.2" class="anchored" data-anchor-id="evaluation-metrics"><span class="header-section-number">4.2.2</span> Evaluation Metrics</h3>
+<section id="evaluation-metrics" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="evaluation-metrics"><span class="header-section-number">6.2.2</span> Evaluation Metrics</h3>
 <p>Average Precision (AP) and Mean Average Precision (mAP) are the most common metrics used in the object detection task. <span style="color:lightGreen"> It measures average precision across all categories, providing a single value to compare different models </span></p>
-<section id="how-ap-works" class="level4" data-number="4.2.2.1">
-<h4 data-number="4.2.2.1" class="anchored" data-anchor-id="how-ap-works"><span class="header-section-number">4.2.2.1</span> How AP works</h4>
+<section id="how-ap-works" class="level4" data-number="6.2.2.1">
+<h4 data-number="6.2.2.1" class="anchored" data-anchor-id="how-ap-works"><span class="header-section-number">6.2.2.1</span> How AP works</h4>
 <ul>
 <li>mAP is the average precision for accuracy of predictions across all classes of objects contained within an image
 <ul>
@@ -406,8 +418,8 @@ div.csl-indent {
 <p>Different methods are used to compute AP when evaluating object detection methods on the COCO and VOC datasets (PASCAL-VOC)</p>
 </section>
 </section>
-<section id="non-maximum-suppression" class="level3" data-number="4.2.3">
-<h3 data-number="4.2.3" class="anchored" data-anchor-id="non-maximum-suppression"><span class="header-section-number">4.2.3</span> Non-Maximum Suppression</h3>
+<section id="non-maximum-suppression" class="level3" data-number="6.2.3">
+<h3 data-number="6.2.3" class="anchored" data-anchor-id="non-maximum-suppression"><span class="header-section-number">6.2.3</span> Non-Maximum Suppression</h3>
 <p>A post-processing technique - reduces number of overlapping boxes and improves detection quality. Object detectors typically generate multiple bounding boxes around the same object. Non-max suppression picks the best ones and gets rid of the others.</p>
 <p>The algorithm for this is defined below:</p>
 <div class="quarto-figure quarto-figure-center">
@@ -424,12 +436,12 @@ div.csl-indent {
 </figure>
 </div>
 </section>
-<section id="yolo" class="level3" data-number="4.2.4">
-<h3 data-number="4.2.4" class="anchored" data-anchor-id="yolo"><span class="header-section-number">4.2.4</span> YOLO</h3>
+<section id="yolo" class="level3" data-number="6.2.4">
+<h3 data-number="6.2.4" class="anchored" data-anchor-id="yolo"><span class="header-section-number">6.2.4</span> YOLO</h3>
 <p>The original authors of YOLO titled it as such for the reason that it only required a single pass on the image to accomplish the detection task. This is contrast to the other approaches used by Fast R-CNN and sliding window methods.</p>
 <p>The output coordinates of the bounding box were detected using more straightforward regression techniques</p>
-<section id="sec-yolo1" class="level4" data-number="4.2.4.1">
-<h4 data-number="4.2.4.1" class="anchored" data-anchor-id="sec-yolo1"><span class="header-section-number">4.2.4.1</span> YOLOv1</h4>
+<section id="sec-yolo1" class="level4" data-number="6.2.4.1">
+<h4 data-number="6.2.4.1" class="anchored" data-anchor-id="sec-yolo1"><span class="header-section-number">6.2.4.1</span> YOLOv1</h4>
 <p><span style="color:Crimson"> PASCAL-VOC AP: 63.4% </span></p>
 <p>YOLOv1 predicted all bounding boxes simultaneously by the following process:</p>
 <ol type="1">
@@ -451,8 +463,8 @@ div.csl-indent {
 <figcaption class="figure-caption">yolo output prediction</figcaption>
 </figure>
 </div>
-<section id="v1-architecture" class="level5" data-number="4.2.4.1.1">
-<h5 data-number="4.2.4.1.1" class="anchored" data-anchor-id="v1-architecture"><span class="header-section-number">4.2.4.1.1</span> v1 Architecture</h5>
+<section id="v1-architecture" class="level5" data-number="6.2.4.1.1">
+<h5 data-number="6.2.4.1.1" class="anchored" data-anchor-id="v1-architecture"><span class="header-section-number">6.2.4.1.1</span> v1 Architecture</h5>
 <p><strong>Normal Architecture</strong></p>
 <ul>
 <li><span style="color:yellow"> 24 conv layers </span>
@@ -477,8 +489,8 @@ div.csl-indent {
 </figure>
 </div>
 </section>
-<section id="v1-training" class="level5" data-number="4.2.4.1.2">
-<h5 data-number="4.2.4.1.2" class="anchored" data-anchor-id="v1-training"><span class="header-section-number">4.2.4.1.2</span> v1 Training</h5>
+<section id="v1-training" class="level5" data-number="6.2.4.1.2">
+<h5 data-number="6.2.4.1.2" class="anchored" data-anchor-id="v1-training"><span class="header-section-number">6.2.4.1.2</span> v1 Training</h5>
 <p>Basic training process:</p>
 <ol type="1">
 <li>pretrain first 20 layers at resolution <span class="math inline">224 \times 224</span> with <em>ImageNet</em> dataset</li>
@@ -515,8 +527,8 @@ div.csl-indent {
 </div>
 </section>
 </section>
-<section id="sec-yolo2" class="level4" data-number="4.2.4.2">
-<h4 data-number="4.2.4.2" class="anchored" data-anchor-id="sec-yolo2"><span class="header-section-number">4.2.4.2</span> YOLOv2 (YOLO 9000)</h4>
+<section id="sec-yolo2" class="level4" data-number="6.2.4.2">
+<h4 data-number="6.2.4.2" class="anchored" data-anchor-id="sec-yolo2"><span class="header-section-number">6.2.4.2</span> YOLOv2 (YOLO 9000)</h4>
 <p><span style="color:Crimson"> PASCAL-VOC AP: 78.6% </span></p>
 <p><strong>Improvements / Changes</strong></p>
 <ol type="1">
@@ -546,8 +558,8 @@ div.csl-indent {
 </ol></li>
 <li>Multi-scale training - train on different input sizes to make model robust to different input types</li>
 </ol>
-<section id="v2-architecture" class="level5" data-number="4.2.4.2.1">
-<h5 data-number="4.2.4.2.1" class="anchored" data-anchor-id="v2-architecture"><span class="header-section-number">4.2.4.2.1</span> v2 Architecture</h5>
+<section id="v2-architecture" class="level5" data-number="6.2.4.2.1">
+<h5 data-number="6.2.4.2.1" class="anchored" data-anchor-id="v2-architecture"><span class="header-section-number">6.2.4.2.1</span> v2 Architecture</h5>
 <ul>
 <li>backbone architecture -&gt; <span style="color:Yellow"> Darknet-19 </span>
 <ul>
@@ -574,15 +586,15 @@ div.csl-indent {
 </div>
 </section>
 </section>
-<section id="sec-yolov3" class="level4" data-number="4.2.4.3">
-<h4 data-number="4.2.4.3" class="anchored" data-anchor-id="sec-yolov3"><span class="header-section-number">4.2.4.3</span> YOLOv3</h4>
+<section id="sec-yolov3" class="level4" data-number="6.2.4.3">
+<h4 data-number="6.2.4.3" class="anchored" data-anchor-id="sec-yolov3"><span class="header-section-number">6.2.4.3</span> YOLOv3</h4>
 <p><span style="color:Crimson"> MS COCO AP: 36.2% AP(50): 60.6% </span></p>
 <p>The code used to run YOLOv3 in <code>Torch</code> is provided at this <a href="https://github.com/ultralytics/yolov3/blob/master/models/yolo.py">repository</a></p>
-<section id="yolov3-architecture" class="level5" data-number="4.2.4.3.1">
-<h5 data-number="4.2.4.3.1" class="anchored" data-anchor-id="yolov3-architecture"><span class="header-section-number">4.2.4.3.1</span> YOLOv3 Architecture</h5>
+<section id="yolov3-architecture" class="level5" data-number="6.2.4.3.1">
+<h5 data-number="6.2.4.3.1" class="anchored" data-anchor-id="yolov3-architecture"><span class="header-section-number">6.2.4.3.1</span> YOLOv3 Architecture</h5>
 <p>YOLOv3 makes use of a larger network architecture (backbone) called Darknet-53.</p>
 <ul>
-<li>replaces all max-pooling layers with <strong>strided convolutions</strong> and added residual connections (what are residual connections?) - see <a href="deeplearn/deep_primitives/residual_connection.html"><span>Chapter&nbsp;3</span></a> for more information on this primitive.</li>
+<li>replaces all max-pooling layers with <strong>strided convolutions</strong> and added residual connections (what are residual connections?) - see <a href="deeplearn/deep_primitives/residual_connection.html"><span>Chapter&nbsp;5</span></a> for more information on this primitive.</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -598,8 +610,8 @@ div.csl-indent {
 </figure>
 </div>
 </section>
-<section id="multi-scale-predictions" class="level5" data-number="4.2.4.3.2">
-<h5 data-number="4.2.4.3.2" class="anchored" data-anchor-id="multi-scale-predictions"><span class="header-section-number">4.2.4.3.2</span> Multi-Scale predictions</h5>
+<section id="multi-scale-predictions" class="level5" data-number="6.2.4.3.2">
+<h5 data-number="6.2.4.3.2" class="anchored" data-anchor-id="multi-scale-predictions"><span class="header-section-number">6.2.4.3.2</span> Multi-Scale predictions</h5>
 <ul>
 <li>enables multi-scale predictions (predictions at multiple grid sizes)</li>
 <li>this helps to obtain finer detailed boxes (improves prediction of smaller boxes)</li>
@@ -611,8 +623,8 @@ div.csl-indent {
 </ul></li>
 </ul>
 </section>
-<section id="backbone-neck-and-head" class="level5" data-number="4.2.4.3.3">
-<h5 data-number="4.2.4.3.3" class="anchored" data-anchor-id="backbone-neck-and-head"><span class="header-section-number">4.2.4.3.3</span> Backbone, Neck, and Head</h5>
+<section id="backbone-neck-and-head" class="level5" data-number="6.2.4.3.3">
+<h5 data-number="6.2.4.3.3" class="anchored" data-anchor-id="backbone-neck-and-head"><span class="header-section-number">6.2.4.3.3</span> Backbone, Neck, and Head</h5>
 <p>After release of YOLOv3, object detectors began to be described in terms of the backbone, neck, and head</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -647,8 +659,8 @@ div.csl-indent {
 </ul>
 </section>
 </section>
-<section id="sec-yolov4" class="level4" data-number="4.2.4.4">
-<h4 data-number="4.2.4.4" class="anchored" data-anchor-id="sec-yolov4"><span class="header-section-number">4.2.4.4</span> YOLOv4</h4>
+<section id="sec-yolov4" class="level4" data-number="6.2.4.4">
+<h4 data-number="6.2.4.4" class="anchored" data-anchor-id="sec-yolov4"><span class="header-section-number">6.2.4.4</span> YOLOv4</h4>
 <p><span style="color:Crimson"> MS COCO AP: 43.5% AP(50): 65.7% </span></p>
 <p>The philosophy of YOLOv4 approaches optimization of the model into two categories: <em>bag of freebies</em> and <em>bag of specials</em></p>
 <p><strong>Bag of Freebies</strong>:</p>
@@ -668,8 +680,8 @@ div.csl-indent {
 <li><span style="color:LightBlue"> post-processing ??? </span></li>
 </ul></li>
 </ul>
-<section id="model-improvements" class="level5" data-number="4.2.4.4.1">
-<h5 data-number="4.2.4.4.1" class="anchored" data-anchor-id="model-improvements"><span class="header-section-number">4.2.4.4.1</span> Model Improvements</h5>
+<section id="model-improvements" class="level5" data-number="6.2.4.4.1">
+<h5 data-number="6.2.4.4.1" class="anchored" data-anchor-id="model-improvements"><span class="header-section-number">6.2.4.4.1</span> Model Improvements</h5>
 <ul>
 <li><strong>Enhanced network architecture with Bag-of-Specials</strong>
 <ul>
@@ -715,8 +727,8 @@ div.csl-indent {
 </ul></li>
 </ul>
 </section>
-<section id="yolov4-architecture" class="level5" data-number="4.2.4.4.2">
-<h5 data-number="4.2.4.4.2" class="anchored" data-anchor-id="yolov4-architecture"><span class="header-section-number">4.2.4.4.2</span> YOLOv4 Architecture</h5>
+<section id="yolov4-architecture" class="level5" data-number="6.2.4.4.2">
+<h5 data-number="6.2.4.4.2" class="anchored" data-anchor-id="yolov4-architecture"><span class="header-section-number">6.2.4.4.2</span> YOLOv4 Architecture</h5>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="deeplearn/imgs/yolov4_arc.png" class="img-fluid figure-img"></p>
@@ -725,8 +737,8 @@ div.csl-indent {
 </div>
 </section>
 </section>
-<section id="sec-yolov5" class="level4" data-number="4.2.4.5">
-<h4 data-number="4.2.4.5" class="anchored" data-anchor-id="sec-yolov5"><span class="header-section-number">4.2.4.5</span> YOLOv5</h4>
+<section id="sec-yolov5" class="level4" data-number="6.2.4.5">
+<h4 data-number="6.2.4.5" class="anchored" data-anchor-id="sec-yolov5"><span class="header-section-number">6.2.4.5</span> YOLOv5</h4>
 <p><span style="color:Crimson"> YOLOv5x MS COCO AP: 50.7% AP(50): X% </span></p>
 <p>No paper exists for YOLOv5 but there are several key advantages to using it</p>
 <ul>
@@ -745,8 +757,8 @@ div.csl-indent {
 </ul>
 <p>This is useful for V2X privacy preserving applications because we will want to make use of smaller networks than might otherwise be used and compare their performance (efficiency) against larger networks.</p>
 <p>This helps to answer the question of whether the accuracy tradeoff is worth the speedup.</p>
-<section id="results" class="level5" data-number="4.2.4.5.1">
-<h5 data-number="4.2.4.5.1" class="anchored" data-anchor-id="results"><span class="header-section-number">4.2.4.5.1</span> Results</h5>
+<section id="results" class="level5" data-number="6.2.4.5.1">
+<h5 data-number="6.2.4.5.1" class="anchored" data-anchor-id="results"><span class="header-section-number">6.2.4.5.1</span> Results</h5>
 <p>YOLOv5x achieves the following results</p>
 <ul>
 <li>AP 50.7% on COCO [batch size = 32, 640 pixels]</li>
@@ -754,36 +766,36 @@ div.csl-indent {
 </ul>
 </section>
 </section>
-<section id="sec-yolov4_scaled" class="level4" data-number="4.2.4.6">
-<h4 data-number="4.2.4.6" class="anchored" data-anchor-id="sec-yolov4_scaled"><span class="header-section-number">4.2.4.6</span> Scaled-YOLOv4</h4>
+<section id="sec-yolov4_scaled" class="level4" data-number="6.2.4.6">
+<h4 data-number="6.2.4.6" class="anchored" data-anchor-id="sec-yolov4_scaled"><span class="header-section-number">6.2.4.6</span> Scaled-YOLOv4</h4>
 <p><span style="color:Crimson"> YOLOv4-large MS COCO AP: 55.6% </span></p>
 <p>Utilized scaling techniques (making larger to increase accuracy at the expense of speed, and scaling down increases speed at the expense of accuracy). <span style="color:LightGreen"> Scaled-down models require less compute power and can run on embedded systems </span></p>
 <p>Like YOLOv5, was developed in <strong>PyTorch</strong> instead of <strong>Darknet</strong></p>
-<section id="results-1" class="level5" data-number="4.2.4.6.1">
-<h5 data-number="4.2.4.6.1" class="anchored" data-anchor-id="results-1"><span class="header-section-number">4.2.4.6.1</span> Results</h5>
+<section id="results-1" class="level5" data-number="6.2.4.6.1">
+<h5 data-number="6.2.4.6.1" class="anchored" data-anchor-id="results-1"><span class="header-section-number">6.2.4.6.1</span> Results</h5>
 <ul>
 <li>YOLOv4-large - MS COCO AP: 56%</li>
 <li>YOLOv4-tiny - MS COCO AP: 22%</li>
 </ul>
 </section>
 </section>
-<section id="sec-yolor" class="level4" data-number="4.2.4.7">
-<h4 data-number="4.2.4.7" class="anchored" data-anchor-id="sec-yolor"><span class="header-section-number">4.2.4.7</span> YOLOR</h4>
+<section id="sec-yolor" class="level4" data-number="6.2.4.7">
+<h4 data-number="6.2.4.7" class="anchored" data-anchor-id="sec-yolor"><span class="header-section-number">6.2.4.7</span> YOLOR</h4>
 <p><span style="color:Crimson"> MS COCO AP: 55.4% AP(50): 73.3% </span></p>
 <p>YOLOR stands for “you only learn one representation” and is novel for introducing multi-task learnin approach which creates a single model for multiple tasks (classification, detection, pose estimation) by learning a general representation and using sub-networks to create task-specific representations!</p>
-<section id="results-2" class="level5" data-number="4.2.4.7.1">
-<h5 data-number="4.2.4.7.1" class="anchored" data-anchor-id="results-2"><span class="header-section-number">4.2.4.7.1</span> Results</h5>
+<section id="results-2" class="level5" data-number="6.2.4.7.1">
+<h5 data-number="6.2.4.7.1" class="anchored" data-anchor-id="results-2"><span class="header-section-number">6.2.4.7.1</span> Results</h5>
 <ul>
 <li>YOLOR - MS COCO AP: 55.4% AP(50): 73.3%</li>
 </ul>
 </section>
 </section>
-<section id="sec-yolox" class="level4" data-number="4.2.4.8">
-<h4 data-number="4.2.4.8" class="anchored" data-anchor-id="sec-yolox"><span class="header-section-number">4.2.4.8</span> YOLOX</h4>
+<section id="sec-yolox" class="level4" data-number="6.2.4.8">
+<h4 data-number="6.2.4.8" class="anchored" data-anchor-id="sec-yolox"><span class="header-section-number">6.2.4.8</span> YOLOX</h4>
 <p><span style="color:Crimson"> MS COCO AP: 50.1% </span></p>
-<p>Was designed off the back of the Ultralytics YOLOv3 (see <a href="#sec-yolov3"><span>Section&nbsp;4.2.4.3</span></a>) in PyTorch.</p>
-<section id="model-changes-and-improvements" class="level5" data-number="4.2.4.8.1">
-<h5 data-number="4.2.4.8.1" class="anchored" data-anchor-id="model-changes-and-improvements"><span class="header-section-number">4.2.4.8.1</span> Model Changes and Improvements</h5>
+<p>Was designed off the back of the Ultralytics YOLOv3 (see <a href="#sec-yolov3"><span>Section&nbsp;6.2.4.3</span></a>) in PyTorch.</p>
+<section id="model-changes-and-improvements" class="level5" data-number="6.2.4.8.1">
+<h5 data-number="6.2.4.8.1" class="anchored" data-anchor-id="model-changes-and-improvements"><span class="header-section-number">6.2.4.8.1</span> Model Changes and Improvements</h5>
 <ul>
 <li>Anchor Free - simplified training and decoding process</li>
 <li>Multi Positives - center sampling (assigned center <span class="math inline">3 \times 3</span> area as positives) to account for imbalances produced by lack of anchors</li>
@@ -795,8 +807,8 @@ div.csl-indent {
 <li>Strong augmentations - <span style="color:LightBlue"> MixUP </span> and <span style="color:LightBlue"> Mosaic augmentations </span> were used</li>
 </ul>
 </section>
-<section id="architecture" class="level5" data-number="4.2.4.8.2">
-<h5 data-number="4.2.4.8.2" class="anchored" data-anchor-id="architecture"><span class="header-section-number">4.2.4.8.2</span> Architecture</h5>
+<section id="architecture" class="level5" data-number="6.2.4.8.2">
+<h5 data-number="6.2.4.8.2" class="anchored" data-anchor-id="architecture"><span class="header-section-number">6.2.4.8.2</span> Architecture</h5>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="deeplearn/imgs/yolox_arc.png" class="img-fluid figure-img"></p>
@@ -805,12 +817,12 @@ div.csl-indent {
 </div>
 </section>
 </section>
-<section id="yolov6" class="level4" data-number="4.2.4.9">
-<h4 data-number="4.2.4.9" class="anchored" data-anchor-id="yolov6"><span class="header-section-number">4.2.4.9</span> YOLOv6</h4>
+<section id="yolov6" class="level4" data-number="6.2.4.9">
+<h4 data-number="6.2.4.9" class="anchored" data-anchor-id="yolov6"><span class="header-section-number">6.2.4.9</span> YOLOv6</h4>
 <p><span style="color:Crimson"> MS COCO AP: 52.5% AP(50): 70% </span></p>
 <p>Adopted an anchor-free detector and provided a series of models at different scales for nuanced applications.</p>
-<section id="model-changes-and-improvements-1" class="level5" data-number="4.2.4.9.1">
-<h5 data-number="4.2.4.9.1" class="anchored" data-anchor-id="model-changes-and-improvements-1"><span class="header-section-number">4.2.4.9.1</span> Model Changes and Improvements</h5>
+<section id="model-changes-and-improvements-1" class="level5" data-number="6.2.4.9.1">
+<h5 data-number="6.2.4.9.1" class="anchored" data-anchor-id="model-changes-and-improvements-1"><span class="header-section-number">6.2.4.9.1</span> Model Changes and Improvements</h5>
 <ul>
 <li>New architecture backbone based on <span style="color:LightBlue"> RepVGG </span>. <span style="color:LightGreen"> higher parallelism </span> and use of neck based on <span style="color:LightBlue"> RepBlocks </span> or <span style="color:LightBlue"> CSPStackRep Blocks </span> and developed an efficient decoupld head</li>
 <li>Label Assignment with <span style="color:LightBlue"> TOOD </span></li>
@@ -820,12 +832,12 @@ div.csl-indent {
 </ul>
 </section>
 </section>
-<section id="sec-yolov7" class="level4" data-number="4.2.4.10">
-<h4 data-number="4.2.4.10" class="anchored" data-anchor-id="sec-yolov7"><span class="header-section-number">4.2.4.10</span> YOLOv7</h4>
+<section id="sec-yolov7" class="level4" data-number="6.2.4.10">
+<h4 data-number="6.2.4.10" class="anchored" data-anchor-id="sec-yolov7"><span class="header-section-number">6.2.4.10</span> YOLOv7</h4>
 <p><span style="color:Crimson"> MS COCO AP: 55.9% AP(50): 73.5% - input 1280 pixels </span></p>
 <p>Compared to YOLOv4 and YOLOR, YOLOv7 achieves a significant reduction in parameters used, and improves average precision by a meaningful increase in average precision as well.</p>
-<section id="model-changes-and-improvements-2" class="level5" data-number="4.2.4.10.1">
-<h5 data-number="4.2.4.10.1" class="anchored" data-anchor-id="model-changes-and-improvements-2"><span class="header-section-number">4.2.4.10.1</span> Model Changes and Improvements</h5>
+<section id="model-changes-and-improvements-2" class="level5" data-number="6.2.4.10.1">
+<h5 data-number="6.2.4.10.1" class="anchored" data-anchor-id="model-changes-and-improvements-2"><span class="header-section-number">6.2.4.10.1</span> Model Changes and Improvements</h5>
 <p><strong>Architectural Changes</strong></p>
 <ul>
 <li>Extended efficient layer aggregation network - <span style="color:LightBlue"> ELAN </span> allows for more efficient training and convergence</li>
@@ -833,16 +845,16 @@ div.csl-indent {
 </ul>
 <p><strong>Bag-of-Freebies</strong></p>
 <ul>
-<li>Planned re-parameterized convolution - Architecture is inspired by <span style="color:LightBlue"> RepConv </span>. <span style="color:LightBlue">Identity connection</span> outperforms residual in Resnet (<a href="deeplearn/deep_primitives/residual_connection.html"><span>Chapter&nbsp;3</span></a>) and <span style="color:LightBlue"> concatenation in DenseNet </span></li>
+<li>Planned re-parameterized convolution - Architecture is inspired by <span style="color:LightBlue"> RepConv </span>. <span style="color:LightBlue">Identity connection</span> outperforms residual in Resnet (<a href="deeplearn/deep_primitives/residual_connection.html"><span>Chapter&nbsp;5</span></a>) and <span style="color:LightBlue"> concatenation in DenseNet </span></li>
 <li>Coarse label assignment for auxiliary head (training) and fine label assignment for the lead head (final out)</li>
 <li>Batch normalization in conv-bn-activation - integrates mean and variance of batch normalization into weight and bias of convolutional layer at inference stage (batch norm folding)</li>
-<li>Implicit knowledge (see <a href="#sec-yolov7"><span>Section&nbsp;4.2.4.10</span></a>)</li>
+<li>Implicit knowledge (see <a href="#sec-yolov7"><span>Section&nbsp;6.2.4.10</span></a>)</li>
 <li>Exponential moving average as final inference model</li>
 </ul>
 </section>
 </section>
-<section id="damo-yolo" class="level4" data-number="4.2.4.11">
-<h4 data-number="4.2.4.11" class="anchored" data-anchor-id="damo-yolo"><span class="header-section-number">4.2.4.11</span> DAMO-YOLO</h4>
+<section id="damo-yolo" class="level4" data-number="6.2.4.11">
+<h4 data-number="6.2.4.11" class="anchored" data-anchor-id="damo-yolo"><span class="header-section-number">6.2.4.11</span> DAMO-YOLO</h4>
 <p><span style="color:Crimson"> MS COCO AP: 50.0% </span></p>
 <p>Was inspired by a series of technologies relevant at the time and provided tiny/small/medium scaled model variants</p>
 <ul>
@@ -866,8 +878,8 @@ div.csl-indent {
 </ul></li>
 </ul>
 </section>
-<section id="yolov8" class="level4" data-number="4.2.4.12">
-<h4 data-number="4.2.4.12" class="anchored" data-anchor-id="yolov8"><span class="header-section-number">4.2.4.12</span> YOLOv8</h4>
+<section id="yolov8" class="level4" data-number="6.2.4.12">
+<h4 data-number="6.2.4.12" class="anchored" data-anchor-id="yolov8"><span class="header-section-number">6.2.4.12</span> YOLOv8</h4>
 <p><span style="color:Crimson"> YOLOv8x MS COCO AP: 53.9% (640 pixels) </span></p>
 <p>A version of YOLO released by ultralytics which is anchor free and uses mosaic augmentation for training up to the last ten epochs. It provides five scaled versions</p>
 <ol type="1">
@@ -879,29 +891,29 @@ div.csl-indent {
 </ol>
 </section>
 </section>
-<section id="sec-pp_yolo" class="level3" data-number="4.2.5">
-<h3 data-number="4.2.5" class="anchored" data-anchor-id="sec-pp_yolo"><span class="header-section-number">4.2.5</span> PP-YOLO Models</h3>
+<section id="sec-pp_yolo" class="level3" data-number="6.2.5">
+<h3 data-number="6.2.5" class="anchored" data-anchor-id="sec-pp_yolo"><span class="header-section-number">6.2.5</span> PP-YOLO Models</h3>
 <p>The PP-YOLO models were developed in parallel with the standard YOLO variants. These models were based on YOLOv3 but were developed in the <span style="color:LightBlue"> PaddlePaddle </span> deep learning platform instead. The goal of their work was to show how an object detector should be constructed step-by-step, not to provide any novel functionality or a new approach.</p>
-<section id="pp-yolo" class="level4" data-number="4.2.5.1">
-<h4 data-number="4.2.5.1" class="anchored" data-anchor-id="pp-yolo"><span class="header-section-number">4.2.5.1</span> PP-YOLO</h4>
+<section id="pp-yolo" class="level4" data-number="6.2.5.1">
+<h4 data-number="6.2.5.1" class="anchored" data-anchor-id="pp-yolo"><span class="header-section-number">6.2.5.1</span> PP-YOLO</h4>
 <p><span style="color:Crimson"> MS COCO AP:45.9% AP(50): 65.2% </span></p>
-<section id="divergence-from-yolov3" class="level5" data-number="4.2.5.1.1">
-<h5 data-number="4.2.5.1.1" class="anchored" data-anchor-id="divergence-from-yolov3"><span class="header-section-number">4.2.5.1.1</span> Divergence from YOLOv3</h5>
+<section id="divergence-from-yolov3" class="level5" data-number="6.2.5.1.1">
+<h5 data-number="6.2.5.1.1" class="anchored" data-anchor-id="divergence-from-yolov3"><span class="header-section-number">6.2.5.1.1</span> Divergence from YOLOv3</h5>
 <ul>
-<li><span style="color:LightBlue"> ResNet50-vd backbone </span> + deformable convolutions replace DarkNet-53 (<a href="#sec-yolov3"><span>Section&nbsp;4.2.4.3</span></a>) - achieves higher classification accuracy on Imagenet</li>
+<li><span style="color:LightBlue"> ResNet50-vd backbone </span> + deformable convolutions replace DarkNet-53 (<a href="#sec-yolov3"><span>Section&nbsp;6.2.4.3</span></a>) - achieves higher classification accuracy on Imagenet</li>
 <li>Larger batch size - improves training stability</li>
 <li>Maintained moving averages for trained parameters</li>
 <li><span style="color:LightBlue"> DropBlock </span> applied on FPN</li>
 <li><span style="color:LightBlue">IoU</span> loss added with L1-Loss for bounding box regression</li>
 <li><span style="color:LightBlue">IoU prediction branch</span> for measuring localization accuracy (and optimization)</li>
-<li>Grid Sensitive Approach like YOLOv4 (<a href="#sec-yolov4"><span>Section&nbsp;4.2.4.4</span></a>) - improves bounding box center prediction at grid boundary</li>
+<li>Grid Sensitive Approach like YOLOv4 (<a href="#sec-yolov4"><span>Section&nbsp;6.2.4.4</span></a>) - improves bounding box center prediction at grid boundary</li>
 <li><span style="color:LightBlue">Matrix NMS</span> (parallelized NMS for faster computation)</li>
 <li><span style="color:LightBlue">CoordConv</span> - <span class="math inline">1\times 1</span> convolution of the <span style="color:LightBlue">FPN</span>. Allows for learning <span style="color:LightBlue"> translational invariance </span></li>
 <li><span style="color:LightBlue">Spatial Pyramid Pooling</span> increases receptive field of the backbone</li>
 </ul>
 </section>
-<section id="pp-yolo-augmentations-and-preprocessing" class="level5" data-number="4.2.5.1.2">
-<h5 data-number="4.2.5.1.2" class="anchored" data-anchor-id="pp-yolo-augmentations-and-preprocessing"><span class="header-section-number">4.2.5.1.2</span> PP-YOLO Augmentations and Preprocessing</h5>
+<section id="pp-yolo-augmentations-and-preprocessing" class="level5" data-number="6.2.5.1.2">
+<h5 data-number="6.2.5.1.2" class="anchored" data-anchor-id="pp-yolo-augmentations-and-preprocessing"><span class="header-section-number">6.2.5.1.2</span> PP-YOLO Augmentations and Preprocessing</h5>
 <ul>
 <li><span style="color:LightBlue">Mixup Training</span> - weights <span class="math inline">\sim Beta(\alpha=1.5, \beta=1.5)</span></li>
 <li><span style="color:LightBlue">Random color distortion</span></li>
@@ -911,11 +923,11 @@ div.csl-indent {
 </ul>
 </section>
 </section>
-<section id="pp-yolov2" class="level4" data-number="4.2.5.2">
-<h4 data-number="4.2.5.2" class="anchored" data-anchor-id="pp-yolov2"><span class="header-section-number">4.2.5.2</span> PP-YOLOv2</h4>
+<section id="pp-yolov2" class="level4" data-number="6.2.5.2">
+<h4 data-number="6.2.5.2" class="anchored" data-anchor-id="pp-yolov2"><span class="header-section-number">6.2.5.2</span> PP-YOLOv2</h4>
 <p><span style="color:Crimson"> MS COCO AP: 49.5% </span></p>
-<section id="changes-and-improvements" class="level5" data-number="4.2.5.2.1">
-<h5 data-number="4.2.5.2.1" class="anchored" data-anchor-id="changes-and-improvements"><span class="header-section-number">4.2.5.2.1</span> Changes and Improvements</h5>
+<section id="changes-and-improvements" class="level5" data-number="6.2.5.2.1">
+<h5 data-number="6.2.5.2.1" class="anchored" data-anchor-id="changes-and-improvements"><span class="header-section-number">6.2.5.2.1</span> Changes and Improvements</h5>
 <ul>
 <li>Backbone changed from <span style="color:LightBlue">ResNet50</span> to <span style="color:LightBlue">ResNet101</span></li>
 <li><span style="color:LightBlue">Path aggregation network</span> instead of <span style="color:LightBlue">FPN</span></li>
@@ -925,16 +937,16 @@ div.csl-indent {
 </ul>
 </section>
 </section>
-<section id="pp-yoloe" class="level4" data-number="4.2.5.3">
-<h4 data-number="4.2.5.3" class="anchored" data-anchor-id="pp-yoloe"><span class="header-section-number">4.2.5.3</span> PP-YOLOE</h4>
+<section id="pp-yoloe" class="level4" data-number="6.2.5.3">
+<h4 data-number="6.2.5.3" class="anchored" data-anchor-id="pp-yoloe"><span class="header-section-number">6.2.5.3</span> PP-YOLOE</h4>
 <p><span style="color:Crimson"> MS COCO AP: 51.4% (78.1 FPS NVIDIA V100) </span></p>
-<section id="changes-and-improvements-1" class="level5" data-number="4.2.5.3.1">
-<h5 data-number="4.2.5.3.1" class="anchored" data-anchor-id="changes-and-improvements-1"><span class="header-section-number">4.2.5.3.1</span> Changes and Improvements</h5>
+<section id="changes-and-improvements-1" class="level5" data-number="6.2.5.3.1">
+<h5 data-number="6.2.5.3.1" class="anchored" data-anchor-id="changes-and-improvements-1"><span class="header-section-number">6.2.5.3.1</span> Changes and Improvements</h5>
 <ul>
 <li>Anchor Free (following trends of other yolo models)</li>
 <li>New backbone and neck - modified neck wtih <span style="color:LightBlue"> RepResBlocks</span> (combine dense and residual connections)</li>
-<li>task alignment learning (see <a href="#sec-yolox"><span>Section&nbsp;4.2.4.8</span></a>)</li>
-<li>efficient task-aligned head (ET-head) - single head based on <span style="color:LightBlue"> TOOD </span> instead of splitting the classification / detection heads like with YOLOX (<a href="#sec-yolox"><span>Section&nbsp;4.2.4.8</span></a>)</li>
+<li>task alignment learning (see <a href="#sec-yolox"><span>Section&nbsp;6.2.4.8</span></a>)</li>
+<li>efficient task-aligned head (ET-head) - single head based on <span style="color:LightBlue"> TOOD </span> instead of splitting the classification / detection heads like with YOLOX (<a href="#sec-yolox"><span>Section&nbsp;6.2.4.8</span></a>)</li>
 <li><span style="color:LightBlue"> varifocal (VFL) </span> and <span style="color:LightBlue">distribution focal loss (DFL)</span>
 <ul>
 <li>VFL weights positive samples using a target score which places a greater importance on high-quality samples during training</li>
@@ -951,8 +963,8 @@ div.csl-indent {
 </section>
 </section>
 </section>
-<section id="summary-of-yolo" class="level3" data-number="4.2.6">
-<h3 data-number="4.2.6" class="anchored" data-anchor-id="summary-of-yolo"><span class="header-section-number">4.2.6</span> Summary of YOLO</h3>
+<section id="summary-of-yolo" class="level3" data-number="6.2.6">
+<h3 data-number="6.2.6" class="anchored" data-anchor-id="summary-of-yolo"><span class="header-section-number">6.2.6</span> Summary of YOLO</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="deeplearn/imgs/yolo_summary.png" class="img-fluid figure-img"></p>
@@ -1209,12 +1221,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./deeplearn/deep_primitives/residual_connection.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Residual connections</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Residual connections</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./deeplearn/_objdet_impl.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Implementation Guides for Yolo Object Detectors</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Implementation Guides for Yolo Object Detectors</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -20,7 +20,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -30,7 +49,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../deep_learning.html" rel="next">
+<link href="../secure_prim/one_way_functions.html" rel="next">
 <link href="../secure_prim/beavers_triples.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -62,6 +81,22 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 </head>
 
@@ -126,6 +161,18 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Oblivious Transfer</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../secure_prim/one_way_functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">One-Way-Functions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../secure_prim/crypten.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">CrypTen</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -140,19 +187,19 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../deeplearn/deep_primitives/residual_connection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Residual connections</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Residual connections</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../object_detection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Object Detection Algorithms</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Object Detection Algorithms</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../deeplearn/_objdet_impl.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Implementation Guides for Yolo Object Detectors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Implementation Guides for Yolo Object Detectors</span></span></a>
   </div>
 </li>
       </ul>
@@ -169,13 +216,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../red_light.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Red Light Violation Detection</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Red Light Violation Detection</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../traffic_flow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Traffic Flow Forecasting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Traffic Flow Forecasting</span></span></a>
   </div>
 </li>
       </ul>
@@ -183,7 +230,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -198,7 +245,18 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#what-is-oblivious-transfer" id="toc-what-is-oblivious-transfer" class="nav-link active" data-scroll-target="#what-is-oblivious-transfer"><span class="header-section-number">2.1</span> What is Oblivious Transfer?</a></li>
+  <li><a href="#extending-oblivious-transfer" id="toc-extending-oblivious-transfer" class="nav-link" data-scroll-target="#extending-oblivious-transfer"><span class="header-section-number">2.2</span> Extending Oblivious Transfer</a></li>
+  <li><a href="#fundamentals-of-oblivious-transfer" id="toc-fundamentals-of-oblivious-transfer" class="nav-link" data-scroll-target="#fundamentals-of-oblivious-transfer"><span class="header-section-number">2.3</span> Fundamentals of Oblivious Transfer</a>
+  <ul>
+  <li><a href="#random-oblivious-transfer-rot" id="toc-random-oblivious-transfer-rot" class="nav-link" data-scroll-target="#random-oblivious-transfer-rot"><span class="header-section-number">2.3.1</span> Random Oblivious Transfer (ROT)</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -220,8 +278,64 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="what-is-oblivious-transfer" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="what-is-oblivious-transfer"><span class="header-section-number">2.1</span> What is Oblivious Transfer?</h2>
+<p>In standard computing practice, we often run into the issue of wanting to transfer values between parties. This problem can be modeled as follows:</p>
+<blockquote class="blockquote">
+<p>Suppose that Alice has a set of values <span class="math inline">\{s_{1},s_{2},\dots,s_{n}\}</span> and Bob holds a selection bit <span class="math inline">i</span>. Bob would like to obtain the value of <span class="math inline">s_{i}</span> from Alice.</p>
+</blockquote>
+<p>Without accounting for security, this can easily be accomplished by Bob sending his selection bit to Alice, and Alice sending the corresponding value <span class="math inline">s_{i}</span> to Bob or Alice sending her entire set of values to Bob, and Bob picking the desired value <span class="math inline">s_{i}</span> from the obtained set.</p>
+<p>However, in Secure MPC (multi-party computation) we are concerned with the security of this process. More specifically, it is important that <em>Bob doesn’t learn anything about</em> Alice’s <span class="math inline">s_{i}\text{'s}</span> <em>other</em> <em>than the one he receives</em> and <em>Alice doesn’t learn anything about Bob’s</em> <em>selection bit</em> <span class="math inline">i</span>. Oblivious transfer is the secure mechanism by which we achieve this outcome. This is an extremely important Secure MPC tool because it has been proven that <strong>OT is complete for all Secure MPC operations</strong> <span class="citation" data-cites="goldrich1987">Killian (<a href="../references.html#ref-kilian1988" role="doc-biblioref">1988</a>)</span>.</p>
+<p>As such, OT forms the basis for many secure computation protocols which have been developed in the past 40 years or so.</p>
+</section>
+<section id="extending-oblivious-transfer" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="extending-oblivious-transfer"><span class="header-section-number">2.2</span> Extending Oblivious Transfer</h2>
+<p>Due to the the time complexity associated with Oblivious Transfer, researchers have been motivated to search for efficiency gains. Towards this end, several important developments have been made over time:</p>
+<ul>
+<li>It was demonstrated by <span class="citation" data-cites="impagliazzo1989">R. Impagliazzo (<a href="../references.html#ref-impagliazzo1989" role="doc-biblioref">1989</a>)</span> that if a reduction of OT to one-way-functions (black-box reduction) could be performed, it would imply that <span class="math inline">P \ne NP</span> (polynomial-class algorithm problems and NP class problems are not complexity-equivalent)
+<ul>
+<li>in other words, OT is harder than one-way-functions which form the basis of symmetric key encryption. See <a href="one_way_functions.html"><span>Chapter&nbsp;3</span></a> for more information on this (OWF) one-way-functions.</li>
+</ul></li>
+<li>Beaver demonstrated one could extend a series of small base OT’s to a large number of OT’s using ONLY OWF’s <span class="citation" data-cites="beaver1996">Beaver (<a href="../references.html#ref-beaver1996" role="doc-biblioref">1996</a>)</span></li>
+<li>IKNP OT - (proposed in <span class="citation" data-cites="ishai2003">Y. Ishai (<a href="../references.html#ref-ishai2003" role="doc-biblioref">2003</a>)</span>)
+<ul>
+<li>uses ROM (random oracle model) and symmetric key primitives to increase security and improve efficiency of OT</li>
+</ul></li>
+<li>Silent OT (Ferret) - (proposed in <span class="citation" data-cites="yang2020">K. Yang (<a href="../references.html#ref-yang2020" role="doc-biblioref">2020</a>)</span>)</li>
+<li>Exponential Correlated OTs based on LPN Assumption (proposed in <span class="citation" data-cites="boyle2020">E. Boyle (<a href="../references.html#ref-boyle2020" role="doc-biblioref">2020</a>)</span>)</li>
+</ul>
+</section>
+<section id="fundamentals-of-oblivious-transfer" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="fundamentals-of-oblivious-transfer"><span class="header-section-number">2.3</span> Fundamentals of Oblivious Transfer</h2>
+<section id="random-oblivious-transfer-rot" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="random-oblivious-transfer-rot"><span class="header-section-number">2.3.1</span> Random Oblivious Transfer (ROT)</h3>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-beaver1996" class="csl-entry" role="listitem">
+Beaver, D. 1996. <span>“Correlated Pseudorandomness and the Complexity of Private Computations.”</span> <em>Proceedings of the Twenty-Eighth Annual ACM Symposium on Theory of Computing</em>, 479–88. <a href="https://dl.acm.org/doi/pdf/10.1145/237814.237996">https://dl.acm.org/doi/pdf/10.1145/237814.237996</a>.
+</div>
+<div id="ref-boyle2020" class="csl-entry" role="listitem">
+E. Boyle, N. Gilboa, G. Couteau. 2020. <span>“Correlated Psuedorandom Functions from Variable-Density Lpn.”</span> <em>Cryptology ePrint Archive</em>. <a href="https://eprint.iacr.org/2020/1417.pdf">https://eprint.iacr.org/2020/1417.pdf</a>.
+</div>
+<div id="ref-yang2020" class="csl-entry" role="listitem">
+K. Yang, X. Lan, C. Weng. 2020. <span>“Ferret: Fast Extension for Correlated Ot with Small Communication.”</span> <em>Proceedings of the 2020 ACM SIGSAC Conference on Computer and Communications Security</em>, 1607–26. <a href="https://eprint.iacr.org/2020/924.pdf">https://eprint.iacr.org/2020/924.pdf</a>.
+</div>
+<div id="ref-kilian1988" class="csl-entry" role="listitem">
+Killian, J. 1988. <span>“Founding Cryptography on Oblivious Transfer.”</span> <a href="https://dl.acm.org/doi/pdf/10.1145/62212.62215">https://dl.acm.org/doi/pdf/10.1145/62212.62215</a>.
+</div>
+<div id="ref-goldrich1987" class="csl-entry" role="listitem">
+O. Golrich, R. Vanish. 1987. <span>“How to Solve Any Protocol Problem - an Efficiency Improvement.”</span> <a href="https://link.springer.com/content/pdf/10.1007/3-540-48184-2_6.pdf">https://link.springer.com/content/pdf/10.1007/3-540-48184-2_6.pdf</a>.
+</div>
+<div id="ref-impagliazzo1989" class="csl-entry" role="listitem">
+R. Impagliazzo, S. Rudich. 1989. <span>“Limits on the Provable Consequences of One-Way Permutations.”</span> <em>Proceedings of the Twenty-First Annual ACM Symposium on Theory of Computing</em>, 44–61. <a href="https://dl.acm.org/doi/pdf/10.1145/73007.73012">https://dl.acm.org/doi/pdf/10.1145/73007.73012</a>.
+</div>
+<div id="ref-ishai2003" class="csl-entry" role="listitem">
+Y. Ishai, K. Nissin, J. Kilian. 2003. <span>“Extending Oblivious Transfers Efficiently.”</span> <em>Annual International Cryptology Conference</em>, 145–61. <a href="https://link.springer.com/content/pdf/10.1007/978-3-540-45146-4_9.pdf">https://link.springer.com/content/pdf/10.1007/978-3-540-45146-4_9.pdf</a>.
+</div>
+</div>
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -464,8 +578,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../deep_learning.html" class="pagination-link">
-        <span class="nav-page-text">Deep Learning</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../secure_prim/one_way_functions.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">One-Way-Functions</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
