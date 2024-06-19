@@ -1,0 +1,55 @@
+## Word Embeddings and Word2Vec
+
+> These notes are based on Josh Starmer's video 
+[Word Embedding and Word2Vec, Clearly Explained!!](https://www.youtube.com/watch?v=viZrOnJclY0) on YouTube.com. 
+
+We need a method for converting words into numeric values. Otherwise, 
+we won't be able to utilize them within a machine learning algorithm.
+We also want a method for representing words that understand the 
+similarity between similar words - and mitigate the distance between
+those representations (they should be close together in a vector
+space if their semantic meanings are similar)
+
+A very simple approach to understanding this problem is as follows:
+
+Suppose you are given two phrases: "Troll 2 is great!" and 
+"Gymkata is great"!. In this case, there are four separate words 
+("Troll 2" is treated as a single word). Then, connect each of 
+the inputs to at least one activation function. The number of activation
+functions for each input is equivalent to the number of components to 
+associate with each word. *The weights on the connection to the each activation function*
+*represents the embedding values for a particular word*. Initially, we use
+random weights, but backpropagation can be used to predict the prior word. 
+
+Our prediction task here is the word which directly follows the input word.
+So, if the input is "Troll 2", then we want "is" to be the output word (the
+strongest predicted value). Then, connect the activation functions to outputs, 
+and add weights to those connections. Then, the outputs are run through
+the softmax classification function. Crossentropy loss can then be used for 
+backpropagation. 
+
+**Additional context** is used to improve the embeddings learned
+
+1. *Continuous Bag of words* - the inputs are the words which occur before and after 
+   the target word, and the output is the word which occurs between them.
+   For example, in "Troll 2 is great!", we want to embed "is" using the 
+   context "Troll 2" and "great!"
+2. *Skip Gram* - the word in the middle is used to predict the surrounding word. 
+
+In practice, more than one activation is used in order to train embeddings for 
+words, and the training dataset will be much larger. This results in much larger
+embeddings for most words.
+
+**Negative Sampling**
+
+Negative sampling is used in order to improve the speed at which 
+embeddings can be trained. Supppose we have the input 
+
+$$
+\langle \text{"A"}=1, \text{ "aardvark"}=0, \dots, {"zigzag"}=0 \rangle
+$$
+
+Then, we can ignore all of the weights which come from each of the 
+other words and only include weights for the word of interest. 
+However, there will still be weights which connect the activation layer
+to the output layer for each word

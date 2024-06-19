@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Secure Multiparty Computation Meets Deep Learning - References</title>
+<title>Secure Multiparty Computation Meets Deep Learning - 5&nbsp; Recurrent Neural Networks</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,45 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./summary.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../deeplearn/deep_primitives/word_embeddings.html" rel="next">
+<link href="../../deep_learning.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -80,6 +62,22 @@ div.csl-indent {
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 </head>
 
@@ -92,7 +90,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../deep_learning.html">Deep Learning</a></li><li class="breadcrumb-item"><a href="../../deeplearn/deep_primitives/RNNs.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Recurrent Neural Networks</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -107,7 +105,7 @@ div.csl-indent {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Secure Multiparty Computation Meets Deep Learning</a> 
+      <a href="../../">Secure Multiparty Computation Meets Deep Learning</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -119,13 +117,13 @@ div.csl-indent {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./secure_primitives.html" class="sidebar-item-text sidebar-link">
+            <a href="../../secure_primitives.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Secure Multiparty Computation Primitives</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -134,25 +132,25 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./secure_prim/beavers_triples.html" class="sidebar-item-text sidebar-link">
+  <a href="../../secure_prim/beavers_triples.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Beaver’s Triples Explained</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./secure_prim/oblivious_transfer.html" class="sidebar-item-text sidebar-link">
+  <a href="../../secure_prim/oblivious_transfer.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Oblivious Transfer</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./secure_prim/one_way_functions.html" class="sidebar-item-text sidebar-link">
+  <a href="../../secure_prim/one_way_functions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">One-Way-Functions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./secure_prim/crypten.html" class="sidebar-item-text sidebar-link">
+  <a href="../../secure_prim/crypten.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">CrypTen</span></span></a>
   </div>
 </li>
@@ -160,7 +158,7 @@ div.csl-indent {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./deep_learning.html" class="sidebar-item-text sidebar-link">
+            <a href="../../deep_learning.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Deep Learning</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -169,37 +167,37 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./deeplearn/deep_primitives/RNNs.html" class="sidebar-item-text sidebar-link">
+  <a href="../../deeplearn/deep_primitives/RNNs.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Recurrent Neural Networks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./deeplearn/deep_primitives/word_embeddings.html" class="sidebar-item-text sidebar-link">
+  <a href="../../deeplearn/deep_primitives/word_embeddings.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Word Embeddings and Word2Vec</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./deeplearn/deep_primitives/residual_connection.html" class="sidebar-item-text sidebar-link">
+  <a href="../../deeplearn/deep_primitives/residual_connection.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Residual connections</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./object_detection.html" class="sidebar-item-text sidebar-link">
+  <a href="../../object_detection.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Object Detection Algorithms</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./deeplearn/_objdet_impl.html" class="sidebar-item-text sidebar-link">
+  <a href="../../deeplearn/_objdet_impl.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Implementation Guides for Yolo Object Detectors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./deeplearn/_addernet.html" class="sidebar-item-text sidebar-link">
+  <a href="../../deeplearn/_addernet.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">AdderNet</span></span></a>
   </div>
 </li>
@@ -207,7 +205,7 @@ div.csl-indent {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./v2x_apps.html" class="sidebar-item-text sidebar-link">
+            <a href="../../v2x_apps.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">V2X Applications</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -216,13 +214,13 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./red_light.html" class="sidebar-item-text sidebar-link">
+  <a href="../../red_light.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Red Light Violation Detection</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./traffic_flow.html" class="sidebar-item-text sidebar-link">
+  <a href="../../traffic_flow.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Traffic Flow Forecasting</span></span></a>
   </div>
 </li>
@@ -230,13 +228,13 @@ div.csl-indent {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+  <a href="../../summary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -253,7 +251,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">References</h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Recurrent Neural Networks</span></h1>
 </div>
 
 
@@ -268,88 +266,17 @@ div.csl-indent {
 
 </header>
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list">
-<div id="ref-knott2022" class="csl-entry" role="listitem">
-B. Knott, A. Hannun, S. Venkataraman. 2022. <span>“CrypTen: Secure
-Multi-Party Computation Meets Machine Learning.”</span> <a href="https://arxiv.org/abs/2109.00984">https://arxiv.org/abs/2109.00984</a>.
-</div>
-<div id="ref-beaver1991" class="csl-entry" role="listitem">
-Beaver, D. 1991. <span>“Efficient Multiparty Protocols Using Circuit
-Randomization.”</span> <em>Advances in Cryptology</em>. <a href="https://link.springer.com/chapter/10.1007/3-540-46766-1_34">https://link.springer.com/chapter/10.1007/3-540-46766-1_34</a>.
-</div>
-<div id="ref-beaver1996" class="csl-entry" role="listitem">
-———. 1996. <span>“Correlated Pseudorandomness and the Complexity of
-Private Computations.”</span> <em>Proceedings of the Twenty-Eighth
-Annual ACM Symposium on Theory of Computing</em>, 479–88. <a href="https://dl.acm.org/doi/pdf/10.1145/237814.237996">https://dl.acm.org/doi/pdf/10.1145/237814.237996</a>.
-</div>
-<div id="ref-dokur2022etal" class="csl-entry" role="listitem">
-Dokur, O., and S. Katkoori. 2022. <span>“Vehicle-to-Infrastructure Based
-Algorithms for Traffic Light Detection, Red Light Violation, and
-Wrong-Way Entry Applications.”</span> <em>IEEE International Symposium
-on Smart Electronic Systems</em>.
-</div>
-<div id="ref-boyle2020" class="csl-entry" role="listitem">
-E. Boyle, N. Gilboa, G. Couteau. 2020. <span>“Correlated Psuedorandom
-Functions from Variable-Density Lpn.”</span> <em>Cryptology ePrint
-Archive</em>. <a href="https://eprint.iacr.org/2020/1417.pdf">https://eprint.iacr.org/2020/1417.pdf</a>.
-</div>
-<div id="ref-goma2020etal" class="csl-entry" role="listitem">
-J. Goma, R. Bautista, M. Eviota. 2020. <span>“Detecting Red-Light
-Runners (RLR) and Speeding Violtion Through Video Capture.”</span>
-<em>IEEE 7th International Conference on Industrial Engineering and
-Applications</em>.
-</div>
-<div id="ref-terven2023etal" class="csl-entry" role="listitem">
-J. Terven, D. Cordova-Esparaza. 2023. <span>“A Comprehensive Review of
-YOLO: From YOLOv1 to YOLOv8 and Beyond.”</span> <em>ACM Computing
-Surveys</em>. <a href="https://arxiv.org/pdf/2304.00501v1.pdf">https://arxiv.org/pdf/2304.00501v1.pdf</a>.
-</div>
-<div id="ref-yang2020" class="csl-entry" role="listitem">
-K. Yang, X. Lan, C. Weng. 2020. <span>“Ferret: Fast Extension for
-Correlated Ot with Small Communication.”</span> <em>Proceedings of the
-2020 ACM SIGSAC Conference on Computer and Communications Security</em>,
-1607–26. <a href="https://eprint.iacr.org/2020/924.pdf">https://eprint.iacr.org/2020/924.pdf</a>.
-</div>
-<div id="ref-kilian1988" class="csl-entry" role="listitem">
-Killian, J. 1988. <span>“Founding Cryptography on Oblivious
-Transfer.”</span> <a href="https://dl.acm.org/doi/pdf/10.1145/62212.62215">https://dl.acm.org/doi/pdf/10.1145/62212.62215</a>.
-</div>
-<div id="ref-thao2022etal" class="csl-entry" role="listitem">
-L. Thao, N. Anh, D. Cuong. 2022. <span>“Automatic Traffic Red-Light
-Violation Detection Using AI.”</span> <em>International Information and
-Engineering Technology Association</em>.
-</div>
-<div id="ref-GauravMaindola21" class="csl-entry" role="listitem">
-Maindola, G. 2021. <span>“Introduction to YOLOv5 Object Detection with
-Tutorial.”</span> <a href="https://machinelearningknowledge.ai/introduction-to-yolov5-object-detection-with-tutorial/">https://machinelearningknowledge.ai/introduction-to-yolov5-object-detection-with-tutorial/</a>.
-</div>
-<div id="ref-goldrich1987" class="csl-entry" role="listitem">
-O. Golrich, R. Vanish. 1987. <span>“How to Solve Any Protocol Problem -
-an Efficiency Improvement.”</span> <a href="https://link.springer.com/content/pdf/10.1007/3-540-48184-2_6.pdf">https://link.springer.com/content/pdf/10.1007/3-540-48184-2_6.pdf</a>.
-</div>
-<div id="ref-impagliazzo1989" class="csl-entry" role="listitem">
-R. Impagliazzo, S. Rudich. 1989. <span>“Limits on the Provable
-Consequences of One-Way Permutations.”</span> <em>Proceedings of the
-Twenty-First Annual ACM Symposium on Theory of Computing</em>, 44–61. <a href="https://dl.acm.org/doi/pdf/10.1145/73007.73012">https://dl.acm.org/doi/pdf/10.1145/73007.73012</a>.
-</div>
-<div id="ref-guo2019etal" class="csl-entry" role="listitem">
-S. Guo, N. Feng, Y. Lin. 2019. <span>“Attention Based Spatial-Temporal
-Graph Convolutional Networks for Traffic Flow Forecasting.”</span>
-<em>The Thirty-Third AAAI Conference on Artificial Intelligence</em>.
-</div>
-<div id="ref-liu2016etal" class="csl-entry" role="listitem">
-W. Liu, D. Erhan, D. Anguelov. 2016. <span>“SSD: Single Shot MultiBox
-Detector.”</span> <em>ECCV</em>.
-</div>
-<div id="ref-wong2021" class="csl-entry" role="listitem">
-Wong, W. 2021. <span>“What Is Residual Connection?”</span> <a href="https://towardsdatascience.com/what-is-residual-connection-efb07cab0d55">https://towardsdatascience.com/what-is-residual-connection-efb07cab0d55</a>.
-</div>
-<div id="ref-ishai2003" class="csl-entry" role="listitem">
-Y. Ishai, K. Nissin, J. Kilian. 2003. <span>“Extending Oblivious
-Transfers Efficiently.”</span> <em>Annual International Cryptology
-Conference</em>, 145–61. <a href="https://link.springer.com/content/pdf/10.1007/978-3-540-45146-4_9.pdf">https://link.springer.com/content/pdf/10.1007/978-3-540-45146-4_9.pdf</a>.
-</div>
-</div>
+<p>In order to work with time series data to predict the following point, we need to use a model which account for a varying amount of inputs. For example, in stock market price prediction, we want to inputs with a varying amount of input values available for each.</p>
+<p>Just like other neural network architectures, RNNs take an input and feed it through an activation. However, RNNs loop the input multiple times through the activation in order to obtain an output.</p>
+<p>Alternatively, we can think of this process as unrolling the network for sequential time series points.</p>
+<p>Suppose:</p>
+<p><span class="math display">\begin{align*}
+    &amp; t_{1} \rightarrow ReLU(W_{11}t_{1} + b_{11}) = y_{1} \\
+    &amp; t_{2} \rightarrow ReLU(W_{12}t_{2} + b_{12} + y_{1}) = y_{2} \\
+    &amp; \mskip 10mu \vdots \\
+    &amp; W_{22}y_{2} + b_{2} = \text{ predicted value}
+\end{align*}</span></p>
+<p>Notice that the output for <span class="math inline">t_{1}</span> is essentially used as a bias for the second input.</p>
 
 
 
@@ -589,11 +516,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./summary.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Summary</span></span>
+      <a href="../../deep_learning.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Deep Learning</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../../deeplearn/deep_primitives/word_embeddings.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Word Embeddings and Word2Vec</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

@@ -1,0 +1,27 @@
+## Recurrent Neural Networks
+
+In order to work with time series data to predict the following 
+point, we need to use a model which account for a varying amount
+of inputs. For example, in stock market price prediction, we want
+to inputs with a varying amount of input values available for each.
+
+Just like other neural network architectures, RNNs take an input and 
+feed it through an activation. However, RNNs loop the input multiple times
+through the activation in order to obtain an output. 
+
+Alternatively, we can think of this process as unrolling the network
+for sequential time series points. 
+
+Suppose:
+
+<!--NOTE: `\mskip{1em}` doesn't work with xelatex. you need to use `\mskip arg` instead-->
+
+\begin{align*}
+    & t_{1} \rightarrow ReLU(W_{11}t_{1} + b_{11}) = y_{1} \\
+    & t_{2} \rightarrow ReLU(W_{12}t_{2} + b_{12} + y_{1}) = y_{2} \\
+    & \mskip 10mu \vdots \\
+    & W_{22}y_{2} + b_{2} = \text{ predicted value}
+\end{align*}
+
+Notice that the output for $t_{1}$ is essentially used as a bias for the 
+second input. 

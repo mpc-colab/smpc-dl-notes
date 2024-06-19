@@ -18,9 +18,12 @@ book:
         - secure_prim/crypten.qmd
     - part: deep_learning.qmd
       chapters:
+        -  deeplearn/deep_primitives/RNNs.qmd
+        -  deeplearn/deep_primitives/word_embeddings.qmd
         -  deeplearn/deep_primitives/residual_connection.qmd
         -  object_detection.qmd
         -  deeplearn/_objdet_impl.qmd
+        -  deeplearn/_addernet.qmd
     - part: v2x_apps.qmd
       chapters:
         - red_light.qmd

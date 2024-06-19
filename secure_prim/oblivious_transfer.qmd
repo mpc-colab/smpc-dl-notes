@@ -2,6 +2,19 @@
 
 ## What is Oblivious Transfer?
 
+If you're not familiar with Boolean operation `XOR`, please 
+reference the following truth table:
+
+$$
+\begin{array}{ccc}
+A & B & A \oplus B \\
+0 & 0 & 0 \\
+1 & 0 & 1 \\
+0 & 1 & 1 \\
+1 & 1 & 0 
+\end{array}
+$$
+
 In standard computing practice, we often run into the issue
 of wanting to transfer values between parties. This problem can 
 be modeled as follows:
@@ -23,7 +36,7 @@ that *Bob doesn't learn anything about* Alice's $s_{i}\text{'s}$ *other*
 *selection bit* $i$. Oblivious transfer is the secure mechanism by 
 which we achieve this outcome. This is an extremely important Secure MPC
 tool because it has been proven that **OT is complete for all Secure MPC 
-operations** [@goldrich1987, @kilian1988]. 
+operations** (see @goldrich1987 and @kilian1988). 
 
 As such, OT forms the basis for many secure computation protocols which 
 have been developed in the past 40 years or so. 
@@ -51,4 +64,8 @@ this end, several important developments have been made over time:
 
 ## Fundamentals of Oblivious Transfer
 
-### Random Oblivious Transfer (ROT)
+{{< include oblivious_transfer/random_ot.qmd >}}
+
+{{< include oblivious_transfer/correlated_ot.qmd >}}
+
+{{< include oblivious_transfer/iknp_ot.qmd >}}

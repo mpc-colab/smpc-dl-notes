@@ -1,0 +1,58 @@
+# AdderNet
+
+What is AdderNet? AdderNet is a novel approach to deep learning, 
+specifically with convolutional neural networks which seeks to 
+reduce computational complexity by replacing multiplication
+operations with additions. Namely, this is accomplished by supplanting
+convolution operations (cross-correlation) with $l_{1}$-norm distance. 
+This substitution can be made specifically because the cross-correlation
+is used to measure the similarity between the input feature and 
+convolution filters. Thus, absolute value can also be used as such a 
+measure. 
+
+Optimizations for the training of such addernetworks have also been 
+developed. Such improvements include enhanced back-propagation schemes 
+with regularized gradients. This helps to ensure sufficient updates of
+templates and better network convergence
+
+## Defining Adder-Networks
+
+Suppose the following setting:
+
++ You have some filter $F \in \mathbb{R}^{d\times d\times c_{in}\times c_{out}}$
+  + $d = \text{kernel size}$
+  + $c_{in} = \text{input channel}$
+  + $c_{out} = \text{output channel}$
++ Input feature: $X \in \mathbb{R}^{H \times W \times c_{in}}$
++ Output $Y(m,n,t) = \sum_{i=0}^{d}\sum_{j=0}^{d}\sum_{k=0}^{c_{in}} S(X(m + i, n+j, k), F(i,j,k,t))$
+
+Here, $S$ is the similarity measure. Adder-Networks use the $l_{1}$ distance 
+as the measure of similarity between two points. 
+Calculate the sum of the absolute differences of two points' vector 
+representations (this does not contain any multiplications)
+
+**Formulation**
+
+The following a presents a general form for a convolution-equivalent layer. Here $S(\cdot,\cdot)$
+is a pre-defined similarity measure. When $S(x,y) = x\times y$, this is simply the convolution 
+operation
+
+\begin{align}
+Y(m,n,t) = \sum_{i=0}^{d}\sum_{j=0}^{d}\sum_{k=0}^{c_{in}}S(X(m+i,n+j,k),F(i,j,k,t))
+\end{align}
+
+The absolute value (l1-norm) replaces the convolution operation (cross-correlation) as the 
+measure of similarity between input features and the filter
+
+\begin{align}
+Y(m,n,t) = -\sum_{i=0}^{d}\sum_{j=0}^{d}\sum_{k=0}^{c_{in}}|X(m + i, n+j, k) - F(i,j,k,t)|
+\end{align}
+
+### Convolution v. L1-Distance
+
+Differences are as follows:
+
++ the convolution filter can exist as a weighted sum of of values in the 
+  feature maps (can take a positive or negative value)
++ adder filters are ALWAYS NEGATIVE
+  + use batch normalization for help (normalize adder outputs to correct range)

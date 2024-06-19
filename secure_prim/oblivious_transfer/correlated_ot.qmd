@@ -1,0 +1,22 @@
+### Correlated Oblivious Transfer (COT)
+
+Correlated Oblivious transfer has functionality defined as follows:
+
++ The sender (Alice) has values $x_{0}, x_{1}$ such that
+  the $\oplus$ of these values together results in $\delta$
++ Alice inputs $\Delta$ and receives $r$ (a random $l$-bit string) and 
+  $r\oplus \Delta$.
++ The receiver (Bob) obtains $r\oplus b \Delta$.
+
+We use the notation $COT_{k}^{m}$ to represent the correlated oblivious 
+tranfer functionality. Here $m$ is the number of 
+OT's to perform, and $k$ is length of the random bit-strings used to mask
+the values exchanged.
+
+In this setting, the $ROT_{l}^{m}$ problem can be reduced to $COT_{k}^{m}$.
+If a random oracle is given, we can hash the output of a $k$ length 
+output to an $l$ length output for $ROT_{l}^{m}$. However, it is not 
+strictly necessary to use a random oracle. A correlation robust hash 
+function may be used given that the joint distribution of hashes
+$(h(t_{1} \oplus s),h(t_{2}\oplus s),\dots h(t_{m}\oplus s))$ for 
+strings $s, t_{1},\dots, t_{m}$ given $t_{1},\dots,t_{m}$ is pseudo-random.

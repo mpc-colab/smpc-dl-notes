@@ -186,20 +186,38 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../deeplearn/deep_primitives/RNNs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Recurrent Neural Networks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../deeplearn/deep_primitives/word_embeddings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Word Embeddings and Word2Vec</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../deeplearn/deep_primitives/residual_connection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Residual connections</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Residual connections</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../object_detection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Object Detection Algorithms</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Object Detection Algorithms</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../deeplearn/_objdet_impl.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Implementation Guides for Yolo Object Detectors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Implementation Guides for Yolo Object Detectors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../deeplearn/_addernet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">AdderNet</span></span></a>
   </div>
 </li>
       </ul>
@@ -216,13 +234,13 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../red_light.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Red Light Violation Detection</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Red Light Violation Detection</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../traffic_flow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Traffic Flow Forecasting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Traffic Flow Forecasting</span></span></a>
   </div>
 </li>
       </ul>
@@ -230,7 +248,7 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -254,6 +272,8 @@ div.csl-indent {
   <li><a href="#fundamentals-of-oblivious-transfer" id="toc-fundamentals-of-oblivious-transfer" class="nav-link" data-scroll-target="#fundamentals-of-oblivious-transfer"><span class="header-section-number">2.3</span> Fundamentals of Oblivious Transfer</a>
   <ul>
   <li><a href="#random-oblivious-transfer-rot" id="toc-random-oblivious-transfer-rot" class="nav-link" data-scroll-target="#random-oblivious-transfer-rot"><span class="header-section-number">2.3.1</span> Random Oblivious Transfer (ROT)</a></li>
+  <li><a href="#correlated-oblivious-transfer-cot" id="toc-correlated-oblivious-transfer-cot" class="nav-link" data-scroll-target="#correlated-oblivious-transfer-cot"><span class="header-section-number">2.3.2</span> Correlated Oblivious Transfer (COT)</a></li>
+  <li><a href="#iknp" id="toc-iknp" class="nav-link" data-scroll-target="#iknp"><span class="header-section-number">2.3.3</span> IKNP</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -280,12 +300,22 @@ div.csl-indent {
 
 <section id="what-is-oblivious-transfer" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="what-is-oblivious-transfer"><span class="header-section-number">2.1</span> What is Oblivious Transfer?</h2>
+<p>If you’re not familiar with Boolean operation <code>XOR</code>, please reference the following truth table:</p>
+<p><span class="math display">
+\begin{array}{ccc}
+A &amp; B &amp; A \oplus B \\
+0 &amp; 0 &amp; 0 \\
+1 &amp; 0 &amp; 1 \\
+0 &amp; 1 &amp; 1 \\
+1 &amp; 1 &amp; 0
+\end{array}
+</span></p>
 <p>In standard computing practice, we often run into the issue of wanting to transfer values between parties. This problem can be modeled as follows:</p>
 <blockquote class="blockquote">
 <p>Suppose that Alice has a set of values <span class="math inline">\{s_{1},s_{2},\dots,s_{n}\}</span> and Bob holds a selection bit <span class="math inline">i</span>. Bob would like to obtain the value of <span class="math inline">s_{i}</span> from Alice.</p>
 </blockquote>
 <p>Without accounting for security, this can easily be accomplished by Bob sending his selection bit to Alice, and Alice sending the corresponding value <span class="math inline">s_{i}</span> to Bob or Alice sending her entire set of values to Bob, and Bob picking the desired value <span class="math inline">s_{i}</span> from the obtained set.</p>
-<p>However, in Secure MPC (multi-party computation) we are concerned with the security of this process. More specifically, it is important that <em>Bob doesn’t learn anything about</em> Alice’s <span class="math inline">s_{i}\text{'s}</span> <em>other</em> <em>than the one he receives</em> and <em>Alice doesn’t learn anything about Bob’s</em> <em>selection bit</em> <span class="math inline">i</span>. Oblivious transfer is the secure mechanism by which we achieve this outcome. This is an extremely important Secure MPC tool because it has been proven that <strong>OT is complete for all Secure MPC operations</strong> <span class="citation" data-cites="goldrich1987">Killian (<a href="../references.html#ref-kilian1988" role="doc-biblioref">1988</a>)</span>.</p>
+<p>However, in Secure MPC (multi-party computation) we are concerned with the security of this process. More specifically, it is important that <em>Bob doesn’t learn anything about</em> Alice’s <span class="math inline">s_{i}\text{'s}</span> <em>other</em> <em>than the one he receives</em> and <em>Alice doesn’t learn anything about Bob’s</em> <em>selection bit</em> <span class="math inline">i</span>. Oblivious transfer is the secure mechanism by which we achieve this outcome. This is an extremely important Secure MPC tool because it has been proven that <strong>OT is complete for all Secure MPC operations</strong> (see <span class="citation" data-cites="goldrich1987">O. Golrich (<a href="../references.html#ref-goldrich1987" role="doc-biblioref">1987</a>)</span> and <span class="citation" data-cites="kilian1988">Killian (<a href="../references.html#ref-kilian1988" role="doc-biblioref">1988</a>)</span>).</p>
 <p>As such, OT forms the basis for many secure computation protocols which have been developed in the past 40 years or so.</p>
 </section>
 <section id="extending-oblivious-transfer" class="level2" data-number="2.2">
@@ -309,6 +339,43 @@ div.csl-indent {
 <h2 data-number="2.3" class="anchored" data-anchor-id="fundamentals-of-oblivious-transfer"><span class="header-section-number">2.3</span> Fundamentals of Oblivious Transfer</h2>
 <section id="random-oblivious-transfer-rot" class="level3" data-number="2.3.1">
 <h3 data-number="2.3.1" class="anchored" data-anchor-id="random-oblivious-transfer-rot"><span class="header-section-number">2.3.1</span> Random Oblivious Transfer (ROT)</h3>
+<blockquote class="blockquote">
+<p>what is the difference between <span class="math inline">ROT_{l}^{m}</span> and <span class="math inline">OT_{l}^{m}</span>?</p>
+</blockquote>
+<p>Random Oblivious Transfer is the most general form of OT. In this setting, we assume that there are two parties involved: Alice and Bob. Here, Alice functions as the <em>sender</em> and Bob functions as the <em>receiver</em>. Additionally, we assume a 1-out-of-2 ROT functionality. Alice and Bob follow the <span class="math inline">ROT_{m}^{l}</span> protocol below:</p>
+<p><em>The receiver (Bob) provides its selection bit</em> <span class="math inline">b</span> <em>to the protocol, and</em> <em>two random strings are generated by the ROT protcol. These are</em> <span class="math inline">r_{0}</span> and <span class="math inline">r_{1}</span>, <em>one of which corresponds to the input bit</em> <span class="math inline">b</span>. <em>The protocol provides these two random strings to the sender, and provides</em> <em>the receiver with a bit</em> <span class="math inline">r_{b} \in \{r_{0},r_{1}\}</span> <em>which corresponds to </em>the receiver’s selection bit*.</p>
+<blockquote class="blockquote">
+<p>How are bits selected by the protocol without assistance of a TTP?</p>
+</blockquote>
+<p><strong>Case 1: Bob uses the same selection bit</strong> <span class="math inline">b</span></p>
+<p>Once the random outputs have been generated for Alice and Bob, they collectively perform an instance of <span class="math inline">{2 \choose 1}\text{-OT}</span>.</p>
+<ol type="1">
+<li>Alice inputs chosen bits <span class="math inline">(x_{0}, x_{1})</span> and Bob inputs selection bit <span class="math inline">b</span></li>
+<li>Alice sends to Bob <span class="math inline">(x_{0} \oplus r_{0}, x_{1} \oplus r_{1})</span></li>
+<li>Bob performs <span class="math inline">(x_{b} \oplus r_{b}) \oplus r_{b}</span> to obtain <span class="math inline">x_{b}</span></li>
+</ol>
+<p>Here, only one message is passed from Alice to Bob <span class="math inline">S \rightarrow R</span></p>
+<p><strong>Case 2: Bob chooses a different selection bit</strong> <span class="math inline">c</span></p>
+<ol type="1">
+<li>Bob sends to Alice <span class="math inline">k = b \oplus c</span> where <span class="math inline">b</span> was the chosen bit input to the <span class="math inline">ROT</span> protocol, and <span class="math inline">c</span> is the chosen bit of the <span class="math inline">{2\choose 1}\text{-OT}</span></li>
+<li>Alice permutes <span class="math inline">k</span> with <span class="math inline">r_{0}</span> and <span class="math inline">r_{1}</span> to get <span class="math inline">r_{k}</span> and <span class="math inline">r_{\overline{k}}</span>.</li>
+<li>Alice sends <span class="math inline">(y_{0}, y_{1}) = (x_{0} \oplus r_{k}, x_{1} \oplus r_{\overline{k}})</span> to Bob</li>
+<li>Bob performs <span class="math inline">y_{c} \oplus r_{b}</span> to obtain <span class="math inline">x_{c}</span></li>
+</ol>
+</section>
+<section id="correlated-oblivious-transfer-cot" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="correlated-oblivious-transfer-cot"><span class="header-section-number">2.3.2</span> Correlated Oblivious Transfer (COT)</h3>
+<p>Correlated Oblivious transfer has functionality defined as follows:</p>
+<ul>
+<li>The sender (Alice) has values <span class="math inline">x_{0}, x_{1}</span> such that the <span class="math inline">\oplus</span> of these values together results in <span class="math inline">\delta</span></li>
+<li>Alice inputs <span class="math inline">\Delta</span> and receives <span class="math inline">r</span> (a random <span class="math inline">l</span>-bit string) and <span class="math inline">r\oplus \Delta</span>.</li>
+<li>The receiver (Bob) obtains <span class="math inline">r\oplus b \Delta</span>.</li>
+</ul>
+<p>We use the notation <span class="math inline">COT_{k}^{m}</span> to represent the correlated oblivious tranfer functionality. Here <span class="math inline">m</span> is the number of OT’s to perform, and <span class="math inline">k</span> is length of the random bit-strings used to mask the values exchanged.</p>
+<p>In this setting, the <span class="math inline">ROT_{l}^{m}</span> problem can be reduced to <span class="math inline">COT_{k}^{m}</span>. If a random oracle is given, we can hash the output of a <span class="math inline">k</span> length output to an <span class="math inline">l</span> length output for <span class="math inline">ROT_{l}^{m}</span>. However, it is not strictly necessary to use a random oracle. A correlation robust hash function may be used given that the joint distribution of hashes <span class="math inline">(h(t_{1} \oplus s),h(t_{2}\oplus s),\dots h(t_{m}\oplus s))</span> for strings <span class="math inline">s, t_{1},\dots, t_{m}</span> given <span class="math inline">t_{1},\dots,t_{m}</span> is pseudo-random.</p>
+</section>
+<section id="iknp" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="iknp"><span class="header-section-number">2.3.3</span> IKNP</h3>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">

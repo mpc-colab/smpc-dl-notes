@@ -12,20 +12,37 @@ features.
 
 Difficulties of the traffic forecasting problem
 
-1. it is difficult to handle unstable and nonlinear data
-2. prediction performance of models require extensive feature engineering
-   1. domain expertise is necessary
-3. cnn - spatial feature extraction from grid-based data, gcn - describe spatial
-   correlation of grid based data
-   1. fails to simultaneously model spatial temporal features and dynamic correlations
-   of traffic data
++ it is difficult to handle unstable and nonlinear data
++ prediction performance of models require extensive feature engineering
+  + domain expertise is necessary
++ cnn - spatial feature extraction from grid-based data, gcn - describe spatial
+correlation of grid based data
+  + fails to simultaneously model spatial temporal features and dynamic correlations
+  of traffic data
+  + The convolution component of the network is meant to capture the neighborhood 
+  feature context surrounding each node - in a spatial temporal model, this means 
+  that a three dimensional kernel is required to account for the time dimension
+  + the spatial-temporal influence of different edges / connections between nodes 
+  varies across different time points. 
 
 Addressing these issues:
 
-1. develop a *spatial-temporal attention mechanism* 
-   1. learns dynamic spatial-temporal correlations of traffic data
-   2. temporal attention is applied to capture dynamic temporal correlations
-    for different times
-2. Design of *spatial-temporal convolution module*
-   1. has graph convolution for modeling graph structure
-   2. has convolution in temporal dimension (kind of like 3-d convolution)
++ develop a *spatial-temporal attention mechanism* 
+  + learns dynamic spatial-temporal correlations of traffic data
+  + temporal attention is applied to capture dynamic temporal correlations
+  for different times
+  + the attention mechanism learns the 
++ Design of *spatial-temporal convolution module*
+  + has graph convolution for modeling graph structure
+  + has convolution in temporal dimension (kind of like 3-d convolution)
+  + the output of the model is a label (for the state of traffic flows) at each node in the
+  traffic network
+
+Related Work: 
+
++ two main types of convolutions for graph data
+  + spatial methods - directly perform convolution filters on a graph's nodes and their
+  neighbors
+    + Niepert et al. propose a heuristic linear method for selecting the neighborhood
+    of every center node
+  + spectral methods - 
