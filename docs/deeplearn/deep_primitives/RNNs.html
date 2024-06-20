@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Secure Multiparty Computation Meets Deep Learning - 5&nbsp; Recurrent Neural Networks</title>
+<title>Secure Multiparty Computation Meets Deep Learning - 6&nbsp; Recurrent Neural Networks</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../deeplearn/deep_primitives/word_embeddings.html" rel="next">
-<link href="../../deep_learning.html" rel="prev">
+<link href="../../deeplearn/deep_primitives/LSTMs.html" rel="next">
+<link href="../../deeplearn/deep_primitives/word_embeddings.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -90,7 +90,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../deep_learning.html">Deep Learning</a></li><li class="breadcrumb-item"><a href="../../deeplearn/deep_primitives/RNNs.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Recurrent Neural Networks</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../deep_learning.html">Deep Learning</a></li><li class="breadcrumb-item"><a href="../../deeplearn/deep_primitives/RNNs.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Recurrent Neural Networks</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -167,38 +167,56 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../deeplearn/deep_primitives/RNNs.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Recurrent Neural Networks</span></span></a>
+  <a href="../../deeplearn/deep_primitives/word_embeddings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Word Embeddings and Word2Vec</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../deeplearn/deep_primitives/word_embeddings.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Word Embeddings and Word2Vec</span></span></a>
+  <a href="../../deeplearn/deep_primitives/RNNs.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Recurrent Neural Networks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../deeplearn/deep_primitives/LSTMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Long Short-Term Memory Networks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../deeplearn/deep_primitives/seq2seq.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Sequence-to-Sequence (seq2seq) Encoder-Decoder Neural Networks</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../deeplearn/deep_primitives/attention.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Attention for Neural Networks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../deeplearn/deep_primitives/residual_connection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Residual connections</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Residual connections</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../object_detection.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Object Detection Algorithms</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Object Detection Algorithms</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../deeplearn/_objdet_impl.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Implementation Guides for Yolo Object Detectors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Implementation Guides for Yolo Object Detectors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../deeplearn/_addernet.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">AdderNet</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">AdderNet</span></span></a>
   </div>
 </li>
       </ul>
@@ -215,13 +233,13 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../red_light.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Red Light Violation Detection</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Red Light Violation Detection</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../traffic_flow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Traffic Flow Forecasting</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Traffic Flow Forecasting</span></span></a>
   </div>
 </li>
       </ul>
@@ -229,7 +247,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -244,14 +262,20 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-vanish-explode" id="toc-sec-vanish-explode" class="nav-link active" data-scroll-target="#sec-vanish-explode"><span class="header-section-number">6.0.1</span> Reasons NOT to use RNNs</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Recurrent Neural Networks</span></h1>
+<h1 class="title"><span id="sec-RNNs" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Recurrent Neural Networks</span></span></h1>
 </div>
 
 
@@ -266,19 +290,41 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<blockquote class="blockquote">
+<p>These notes are based on Josh Starmer’s video</p>
+</blockquote>
 <p>In order to work with time series data to predict the following point, we need to use a model which account for a varying amount of inputs. For example, in stock market price prediction, we want to inputs with a varying amount of input values available for each.</p>
 <p>Just like other neural network architectures, RNNs take an input and feed it through an activation. However, RNNs loop the input multiple times through the activation in order to obtain an output.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../imgs/rnns.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">A simple RNN</figcaption>
+</figure>
+</div>
 <p>Alternatively, we can think of this process as unrolling the network for sequential time series points.</p>
 <p>Suppose:</p>
+<!--NOTE: `\mskip{1em}` doesn't work with xelatex. you need to use `\mskip arg` instead-->
 <p><span class="math display">\begin{align*}
     &amp; t_{1} \rightarrow ReLU(W_{11}t_{1} + b_{11}) = y_{1} \\
     &amp; t_{2} \rightarrow ReLU(W_{12}t_{2} + b_{12} + y_{1}) = y_{2} \\
     &amp; \mskip 10mu \vdots \\
     &amp; W_{22}y_{2} + b_{2} = \text{ predicted value}
 \end{align*}</span></p>
-<p>Notice that the output for <span class="math inline">t_{1}</span> is essentially used as a bias for the second input.</p>
+<p>Notice that the output for <span class="math inline">t_{1}</span> is essentially used as a bias for the second input. This process can be extended to an arbitrary number of sequence numbers. <strong>NOTE</strong>: even though we unroll the network, the weights and biases are shared!! This means that we never increase the number of weights and biases to train.</p>
+<section id="sec-vanish-explode" class="level3" data-number="6.0.1">
+<h3 data-number="6.0.1" class="anchored" data-anchor-id="sec-vanish-explode"><span class="header-section-number">6.0.1</span> Reasons NOT to use RNNs</h3>
+<p>The more we unroll a network, the harder it becomes to train the network. This leads to the <em>vanishing and exploding gradient problem.</em></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../imgs/vanish_explod_grad.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">vanishing and exploding gradient problem</figcaption>
+</figure>
+</div>
+<p>For example, let’s suppose some weight is given for <span class="math inline">W_{1}</span> (in all unrollings of the network) as <span class="math inline">2</span>. Then, every time we run the input, we perform <span class="math inline">2 \times y_{i-1}</span> which eventually gets us <span class="math inline">2^{n} \times inputs</span> which ends up almost always being a gigantic number, especially for values of <span class="math inline">n</span> which any reasonable size, say <span class="math inline">n &gt; 50</span> or so. This huge number makes it extremely difficult to take small steps towards the correct parameter value. This means that instead of taking small steps, we will end up with extremely large jumps, meaning that we will bounce. However, if you use weight values which are less than <span class="math inline">1</span>, then you will obtain values which are extremely small, meaning that the maximum number of training steps will be reached before finding the optimal values.</p>
+<p>LSTMs can be used to largely avoid this problem. See <a href="LSTMs.html"><span>Chapter&nbsp;7</span></a></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -516,13 +562,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../deep_learning.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Deep Learning</span>
+      <a href="../../deeplearn/deep_primitives/word_embeddings.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Word Embeddings and Word2Vec</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../deeplearn/deep_primitives/word_embeddings.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Word Embeddings and Word2Vec</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../deeplearn/deep_primitives/LSTMs.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Long Short-Term Memory Networks</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

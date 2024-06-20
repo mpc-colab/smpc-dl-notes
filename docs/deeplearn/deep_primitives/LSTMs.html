@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Secure Multiparty Computation Meets Deep Learning - 15&nbsp; Traffic Flow Forecasting</title>
+<title>Secure Multiparty Computation Meets Deep Learning - 7&nbsp; Long Short-Term Memory Networks</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,46 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./summary.html" rel="next">
-<link href="./red_light.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../deeplearn/deep_primitives/seq2seq.html" rel="next">
+<link href="../../deeplearn/deep_primitives/RNNs.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -81,6 +62,22 @@ div.csl-indent {
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 </head>
 
@@ -93,7 +90,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./v2x_apps.html">V2X Applications</a></li><li class="breadcrumb-item"><a href="./traffic_flow.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Traffic Flow Forecasting</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../deep_learning.html">Deep Learning</a></li><li class="breadcrumb-item"><a href="../../deeplearn/deep_primitives/LSTMs.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Long Short-Term Memory Networks</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -108,7 +105,7 @@ div.csl-indent {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Secure Multiparty Computation Meets Deep Learning</a> 
+      <a href="../../">Secure Multiparty Computation Meets Deep Learning</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -120,13 +117,13 @@ div.csl-indent {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./secure_primitives.html" class="sidebar-item-text sidebar-link">
+            <a href="../../secure_primitives.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Secure Multiparty Computation Primitives</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -135,25 +132,25 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./secure_prim/beavers_triples.html" class="sidebar-item-text sidebar-link">
+  <a href="../../secure_prim/beavers_triples.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Beaver’s Triples Explained</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./secure_prim/oblivious_transfer.html" class="sidebar-item-text sidebar-link">
+  <a href="../../secure_prim/oblivious_transfer.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Oblivious Transfer</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./secure_prim/one_way_functions.html" class="sidebar-item-text sidebar-link">
+  <a href="../../secure_prim/one_way_functions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">One-Way-Functions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./secure_prim/crypten.html" class="sidebar-item-text sidebar-link">
+  <a href="../../secure_prim/crypten.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">CrypTen</span></span></a>
   </div>
 </li>
@@ -161,7 +158,7 @@ div.csl-indent {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./deep_learning.html" class="sidebar-item-text sidebar-link">
+            <a href="../../deep_learning.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Deep Learning</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -170,55 +167,55 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./deeplearn/deep_primitives/word_embeddings.html" class="sidebar-item-text sidebar-link">
+  <a href="../../deeplearn/deep_primitives/word_embeddings.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Word Embeddings and Word2Vec</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./deeplearn/deep_primitives/RNNs.html" class="sidebar-item-text sidebar-link">
+  <a href="../../deeplearn/deep_primitives/RNNs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Recurrent Neural Networks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./deeplearn/deep_primitives/LSTMs.html" class="sidebar-item-text sidebar-link">
+  <a href="../../deeplearn/deep_primitives/LSTMs.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Long Short-Term Memory Networks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./deeplearn/deep_primitives/seq2seq.html" class="sidebar-item-text sidebar-link">
+  <a href="../../deeplearn/deep_primitives/seq2seq.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Sequence-to-Sequence (seq2seq) Encoder-Decoder Neural Networks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./deeplearn/deep_primitives/attention.html" class="sidebar-item-text sidebar-link">
+  <a href="../../deeplearn/deep_primitives/attention.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Attention for Neural Networks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./deeplearn/deep_primitives/residual_connection.html" class="sidebar-item-text sidebar-link">
+  <a href="../../deeplearn/deep_primitives/residual_connection.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Residual connections</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./object_detection.html" class="sidebar-item-text sidebar-link">
+  <a href="../../object_detection.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Object Detection Algorithms</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./deeplearn/_objdet_impl.html" class="sidebar-item-text sidebar-link">
+  <a href="../../deeplearn/_objdet_impl.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Implementation Guides for Yolo Object Detectors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./deeplearn/_addernet.html" class="sidebar-item-text sidebar-link">
+  <a href="../../deeplearn/_addernet.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">AdderNet</span></span></a>
   </div>
 </li>
@@ -226,7 +223,7 @@ div.csl-indent {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./v2x_apps.html" class="sidebar-item-text sidebar-link">
+            <a href="../../v2x_apps.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">V2X Applications</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -235,13 +232,13 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./red_light.html" class="sidebar-item-text sidebar-link">
+  <a href="../../red_light.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Red Light Violation Detection</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./traffic_flow.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../traffic_flow.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Traffic Flow Forecasting</span></span></a>
   </div>
 </li>
@@ -249,13 +246,13 @@ div.csl-indent {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+  <a href="../../summary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
+  <a href="../../references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -269,10 +266,7 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#attention-based-spatial-temporal-graph-convolutional-networks-for-traffic-flow-forecasting" id="toc-attention-based-spatial-temporal-graph-convolutional-networks-for-traffic-flow-forecasting" class="nav-link active" data-scroll-target="#attention-based-spatial-temporal-graph-convolutional-networks-for-traffic-flow-forecasting"><span class="header-section-number">15.1</span> Attention Based Spatial-Temporal Graph Convolutional Networks for Traffic Flow Forecasting</a>
-  <ul>
-  <li><a href="#core-contributions-of-astgcn" id="toc-core-contributions-of-astgcn" class="nav-link" data-scroll-target="#core-contributions-of-astgcn"><span class="header-section-number">15.1.1</span> Core Contributions of ASTGCN</a></li>
-  </ul></li>
+  <li><a href="#main-ideas" id="toc-main-ideas" class="nav-link active" data-scroll-target="#main-ideas"><span class="header-section-number">7.0.1</span> Main Ideas</a></li>
   </ul>
 </nav>
     </div>
@@ -281,7 +275,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Traffic Flow Forecasting</span></h1>
+<h1 class="title"><span id="sec-LSTMs" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Long Short-Term Memory Networks</span></span></h1>
 </div>
 
 
@@ -296,61 +290,32 @@ div.csl-indent {
 
 </header>
 
-<section id="attention-based-spatial-temporal-graph-convolutional-networks-for-traffic-flow-forecasting" class="level2" data-number="15.1">
-<h2 data-number="15.1" class="anchored" data-anchor-id="attention-based-spatial-temporal-graph-convolutional-networks-for-traffic-flow-forecasting"><span class="header-section-number">15.1</span> Attention Based Spatial-Temporal Graph Convolutional Networks for Traffic Flow Forecasting</h2>
 <blockquote class="blockquote">
-<p>In this paper, <span class="citation" data-cites="guo2019etal">S. Guo (<a href="references.html#ref-guo2019etal" role="doc-biblioref">2019</a>)</span> proposed a method for traffic flow prediction which utilized an <strong>attention based spatial-temporal graph convolutional network</strong>. They aimed to model several time-dependencies: (1) recent, (2) daily-periodic, and (3) weekly-periodic dependencies. The <em>attention mechanism</em> captures spatial-temporal patterns in the traffic data and the <em>spatial-temporal convolution</em> is used to capture spatial patterns while <em>standard convolutions</em> describe temporal features.</p>
+<p>These notes are based on Josh Starmer’s video <a href="https://www.youtube.com/watch?v=YCzL96nL7j0">Long Short-Term Memory (LSTM), Clearly Explained</a> on YouTube.com.</p>
 </blockquote>
-<section id="core-contributions-of-astgcn" class="level3" data-number="15.1.1">
-<h3 data-number="15.1.1" class="anchored" data-anchor-id="core-contributions-of-astgcn"><span class="header-section-number">15.1.1</span> Core Contributions of ASTGCN</h3>
-<p>Difficulties of the traffic forecasting problem</p>
+<p>LSTMs are a type of recurrent neural network which is specifically designed to avoid the exploding and vanishing gradient problem (see <a href="RNNs.html#sec-vanish-explode"><span>Section&nbsp;6.0.1</span></a>).</p>
+<section id="main-ideas" class="level3" data-number="7.0.1">
+<h3 data-number="7.0.1" class="anchored" data-anchor-id="main-ideas"><span class="header-section-number">7.0.1</span> Main Ideas</h3>
+<p>Suppose you have a time series problem, where multiple time stamps are given for each point in sequence. Then for each time stamp in the point, we re-run the output of the <span class="math inline">i-1</span> timestamp through the activation <span class="math inline">ReLU(Wx^{T}+ b)</span> and add it as a bias to the output of the <span class="math inline">i\text{th}</span> timestamp. In the case of LSTMs, a more complex base unit is used in order to achieve the goals of the methodology.</p>
+<p><strong>Main Differences from RNN</strong></p>
 <ul>
-<li>it is difficult to handle unstable and nonlinear data</li>
-<li>prediction performance of models require extensive feature engineering
+<li>Basic units incorporate <em>sigmoid</em> and <em>tanh</em> activation functions</li>
+<li>cell-state - is an unweighted</li>
+<li>hidden-state (short-term memory) has modifiable weights.
 <ul>
-<li>domain expertise is necessary</li>
-</ul></li>
-<li>cnn - spatial feature extraction from grid-based data, gcn - describe spatial correlation of grid based data
-<ul>
-<li>fails to simultaneously model spatial temporal features and dynamic correlations of traffic data</li>
-<li>The convolution component of the network is meant to capture the neighborhood feature context surrounding each node - in a spatial temporal model, this means that a three dimensional kernel is required to account for the time dimension</li>
-<li>the spatial-temporal influence of different edges / connections between nodes varies across different time points.</li>
-</ul></li>
-</ul>
-<p>Addressing these issues:</p>
-<ul>
-<li>develop a <em>spatial-temporal attention mechanism</em>
-<ul>
-<li>learns dynamic spatial-temporal correlations of traffic data</li>
-<li>temporal attention is applied to capture dynamic temporal correlations for different times</li>
-<li>the attention mechanism learns the</li>
-</ul></li>
-<li>Design of <em>spatial-temporal convolution module</em>
-<ul>
-<li>has graph convolution for modeling graph structure</li>
-<li>has convolution in temporal dimension (kind of like 3-d convolution)</li>
-<li>the output of the model is a label (for the state of traffic flows) at each node in the traffic network</li>
+<li>the output from the hidden-state determines how much of the long-term memory is remembered. This is usually called the <em>forget gate</em></li>
+<li>starting with the rightmost block, we determine what memory should be remembered. (<em>tanh</em> activation)<br>
+</li>
+<li>then, the left block determines the percentage of the short-term memory to remember.</li>
+<li>This new long term memory update is called the <em>input gate</em></li>
 </ul></li>
 </ul>
-<p>Related Work:</p>
-<ul>
-<li>two main types of convolutions for graph data
-<ul>
-<li>spatial methods - directly perform convolution filters on a graph’s nodes and their neighbors
-<ul>
-<li>Niepert et al.&nbsp;propose a heuristic linear method for selecting the neighborhood of every center node</li>
-</ul></li>
-<li>spectral methods -</li>
-</ul></li>
-</ul>
+<p><strong>Updating short-term memory</strong></p>
+<p>The output from the long-term memory is used as an input to the short-term memory state. Then, a data (time-series) input is provided, and the output is determined from a <em>tanh</em> activation function. This final step is known as the <em>output gate</em></p>
+<p>When you begin running an LSTM, you set the initial long and short term memory to 0. The final output of the short term memories is the prediction of the associated value.</p>
+<p><em>NOTE</em>: the LSTM uses the same wieghts for every unrolling of the network. This property is preserved from standard RNNs.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
-<div id="ref-guo2019etal" class="csl-entry" role="listitem">
-S. Guo, N. Feng, Y. Lin. 2019. <span>“Attention Based Spatial-Temporal Graph Convolutional Networks for Traffic Flow Forecasting.”</span> <em>The Thirty-Third AAAI Conference on Artificial Intelligence</em>. <a href="https://dl.acm.org/doi/pdf/10.1609/aaai.v33i01.3301922">https://dl.acm.org/doi/pdf/10.1609/aaai.v33i01.3301922</a>.
-</div>
-</div>
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -589,13 +554,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./red_light.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Red Light Violation Detection</span></span>
+      <a href="../../deeplearn/deep_primitives/RNNs.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Recurrent Neural Networks</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./summary.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../deeplearn/deep_primitives/seq2seq.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Sequence-to-Sequence (seq2seq) Encoder-Decoder Neural Networks</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

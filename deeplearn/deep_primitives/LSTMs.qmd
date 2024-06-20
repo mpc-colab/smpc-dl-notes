@@ -1,4 +1,43 @@
-## Long Short-Term Memory Networks
+## Long Short-Term Memory Networks {#sec-LSTMs}
 
 > These notes are based on Josh Starmer's video 
 [Long Short-Term Memory (LSTM), Clearly Explained](https://www.youtube.com/watch?v=YCzL96nL7j0) on YouTube.com. 
+
+LSTMs are a type of recurrent neural network which is specifically 
+designed to avoid the exploding and vanishing gradient problem (see @sec-vanish-explode).
+
+### Main Ideas
+
+Suppose you have a time series problem, where multiple time stamps are given for 
+each point in sequence. Then for each time stamp in the point, we re-run the 
+output of the $i-1$ timestamp through the activation $ReLU(Wx^{T}+ b)$ and 
+add it as a bias to the output of the $i\text{th}$ timestamp. In the case of 
+LSTMs, a more complex base unit is used in order to achieve the goals of the 
+methodology. 
+
+**Main Differences from RNN**
+
++ Basic units incorporate *sigmoid* and *tanh* activation functions
++ cell-state - is an unweighted 
++ hidden-state (short-term memory) has modifiable weights. 
+  + the output from the hidden-state determines how much of the long-term 
+  memory is remembered. This is usually called the *forget gate*
+  + starting with the rightmost block, we determine what memory should be 
+  remembered. (*tanh* activation)   
+  + then, the left block determines the percentage of the short-term memory 
+  to remember. 
+  + This new long term memory update is called the *input gate*
+
+**Updating short-term memory**
+
+The output from the long-term memory is used as an input to the short-term
+memory state. Then, a data (time-series) input is provided, and the output is
+determined from a *tanh* activation function. This final step is known as 
+the *output gate*
+
+When you begin running an LSTM, you set the initial long and short 
+term memory to 0. The final output of the short term memories 
+is the prediction of the associated value. 
+
+*NOTE*: the LSTM uses the same wieghts for every unrolling of the network. 
+This property is preserved from standard RNNs. 

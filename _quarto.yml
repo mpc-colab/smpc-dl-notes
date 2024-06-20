@@ -18,8 +18,11 @@ book:
         - secure_prim/crypten.qmd
     - part: deep_learning.qmd
       chapters:
-        -  deeplearn/deep_primitives/RNNs.qmd
         -  deeplearn/deep_primitives/word_embeddings.qmd
+        -  deeplearn/deep_primitives/RNNs.qmd
+        -  deeplearn/deep_primitives/LSTMs.qmd
+        -  deeplearn/deep_primitives/seq2seq.qmd
+        -  deeplearn/deep_primitives/attention.qmd
         -  deeplearn/deep_primitives/residual_connection.qmd
         -  object_detection.qmd
         -  deeplearn/_objdet_impl.qmd
