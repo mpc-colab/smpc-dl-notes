@@ -38,7 +38,7 @@ Addressing these issues:
   + the output of the model is a label (for the state of traffic flows) at each node in the
   traffic network
 
-Related Work: 
+**Related Work:**
 
 + two main types of convolutions for graph data
   + spatial methods - directly perform convolution filters on a graph's nodes and their
@@ -46,3 +46,75 @@ Related Work:
     + Niepert et al. propose a heuristic linear method for selecting the neighborhood
     of every center node
   + spectral methods - 
++ *Attention Mechanisms* - mechanisms select inofmration important to current task from 
+  all of the inputs. 
+  + Xu et al. -> two mechanisms (image description task) - visualization method used for showing effect of 
+    the attention mechanism
+  + Velickovic et al. -> used "self-attentional layers" for processing graph data by neural networks
+  + Liang et al. -> multi-level attention network for adaptively adjusting correlations among multiple geographic
+    time series. (it is time consuming to train separate models for each time series though)
+
+### Primitives
+
+Traffic networks are defined as undirected graphs $G=(V,E,A)$
+
++ $V = $ set of $|V| = N$ nodes
++ $E$ is a set of edges (connectivity between nodes)
++ $A \in \mathbb{R}^{N \times N}$ - the adjacency matrix of $G$
+  + $F$ measurements are detected with the same sampling frequency 
+  + each node has a feature vector of length $G$ at each time slcie
+
+### Problem Setting
+
+Traffic flow forecasting is formally defined as follows:
+
++ Suppose $F$ time series (states) are recorded for a traffic flow sequence
+  + pick the $f\text{th}$ time series: $f \in (1,\dots,F)$
+  + $x_{t}^{c,i} \in \mathbb{R}$ - value of $c\text{th}$ feature of node $i$ at time $t$
+  + $x_{t}^{i} \in \mathbb{R}^{F}$ - feature vector for node $i$ at time $t$
+  + $X_{t} = \langle x_{t}^{1}, x_{t}^{2},\dots, x_{t}^{N} \rangle ^{T} \in \mathbb{R}^{N \times F}$ - 
+    set of feature vectors associated with all nodes at time $t$
+  + $\chi = (X_{1}, X_{2},\dots, X_{\tau})^{T} \in \mathbb{R}^{N \times F \times \tau}$ - set of 
+    features for all nodes ($X_{t}\text{s}$) over $\tau$ time slices
+
+### The ASTGCN Model Framework
+
+There are three independent componetns to the ASTGCN framework. 
+Each, respectively, is designed for modeling (1) the recent, 
+(2) daily-periodic, and (3) weekly-periodic dependencies of the
+historical data. 
+
+!(The ASTGCN Framework)[imgs/astgcn.png]{fig-align="center"}
+
+Each of the three time segments are grouped into segments of size
+$T_{h}$, $T_{d}$, and $T_{w}$ respectively
+
+![Sample Time Segments of size 1 where Th = Td = Tw = 2](v2x/imgs/astgcn_time_segments.png){fig-align="center"}
+
++ Recent time segments: graph states (features for each node in the graph at a given 
+  time) $(X_{t_{0} - T_{h} + 1}, X_{t_{0}- T_{h} + 2, \dots, X_{t_{0}}})$. In other words, 
+  this segment includes the previous $T_{h} - 1$ times intervals / series. This includes 
+  all of the time series within the segment
++ Daily-periodic segments: a series of intervals of length $T_{p}$, distributed evenly across $T_{d}/T_{p}$ days of 
+  length $q$ ($q$ is the number of samples which are measured per day, so to go to the sample whichw as recorded
+  one day ago at the same time, you need to go to the $t_{0} - q + 1$ sample)
+  
+  \begin{align*}
+    & (X_{t_{0} - (T_{d}/T_{p})\cdot q + 1},\dots,X_{t_{0} - (T_{d}/T_{p})\cdot q + T_{p}}, \\
+    & X_{t_{0} - (T_{d}/T_{p} - 1)\cdot q + 1},\dots,X_{t_{0} - (T_{d}/T_{p})\cdot q + T_{p}}, \\
+    & X_{t_{0} - (T_{d}/T_{p} - 2)\cdot q + 1},\dots,X_{t_{0} - (T_{d}/T_{p})\cdot q + T_{p}}, \\
+    & \mskip 2mu \vdots \\
+    & X_{t_{0} - (1)\cdot q + 1},\dots,X_{t_{0} - (1)\cdot q + T_{p}}\\)
+  \end{align*}
+
++ Weekly-periodic segments:
+
+  \begin{align*}
+    & (X_{t_{0} - 7\cdot (T_{w}/T_{p})\cdot q + 1},\dots,X_{t_{0} - 7\cdot(T_{w}/T_{p})\cdot q + T_{p}}, \\
+    & X_{t_{0} - 7\cdot (T_{w}/T_{p} - 1)\cdot q + 1},\dots,X_{t_{0} - 7\cdot(T_{w}/T_{p})\cdot q + T_{p}}, \\
+    & X_{t_{0} - 7\cdot (T_{w}/T_{p} - 2)\cdot q + 1},\dots,X_{t_{0} - 7\cdot(T_{w}/T_{p})\cdot q + T_{p}}, \\
+    & \mskip 2mu \vdots \\
+    & X_{t_{0} - 7\cdot (1)\cdot q + 1},\dots,X_{t_{0} - 7 \cdot (1) q + T_{p}})
+  \end{align*}
+
+  
