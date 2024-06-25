@@ -318,7 +318,10 @@ div.csl-indent {
   <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><span class="header-section-number">15.3.4</span> Questions</a></li>
   <li><a href="#ideas" id="toc-ideas" class="nav-link" data-scroll-target="#ideas"><span class="header-section-number">15.3.5</span> Ideas</a></li>
   </ul></li>
-  <li><a href="#st-ssl" id="toc-st-ssl" class="nav-link" data-scroll-target="#st-ssl"><span class="header-section-number">15.4</span> ST-SSL</a></li>
+  <li><a href="#st-ssl" id="toc-st-ssl" class="nav-link" data-scroll-target="#st-ssl"><span class="header-section-number">15.4</span> ST-SSL</a>
+  <ul>
+  <li><a href="#model-overview-and-novelty" id="toc-model-overview-and-novelty" class="nav-link" data-scroll-target="#model-overview-and-novelty"><span class="header-section-number">15.4.1</span> Model Overview and Novelty</a></li>
+  </ul></li>
   <li><a href="#stpgcn" id="toc-stpgcn" class="nav-link" data-scroll-target="#stpgcn"><span class="header-section-number">15.5</span> STPGCN</a>
   <ul>
   <li><a href="#contributions-1" id="toc-contributions-1" class="nav-link" data-scroll-target="#contributions-1"><span class="header-section-number">15.5.1</span> Contributions</a></li>
@@ -848,8 +851,24 @@ radius of the convolution from central ndoes.  -->
 <section id="st-ssl" class="level2" data-number="15.4">
 <h2 data-number="15.4" class="anchored" data-anchor-id="st-ssl"><span class="header-section-number">15.4</span> ST-SSL</h2>
 <blockquote class="blockquote">
-<p>Use this as a benchmark for everything else. We want to figure out what were the other top models to evaluate. This paper is very recent, and it comes out of a top conference (AAAI)</p>
+<p>Use this as a benchmark for everything else. We want to figure out what were the other top models to evaluate. This paper is very recent, and it comes out of a top conference (AAAI). Notes for this section based on ST-SSL by Ji et al. <span class="citation" data-cites="ji2023etal">J. Ji (<a href="references.html#ref-ji2023etal" role="doc-biblioref">2023</a>)</span>. The GitHub repository for this model is available <a href="https://github.com/Echo-Ji/ST-SSL">here</a></p>
 </blockquote>
+<p>This work is the current state of the art in traffic flow forecasting and prediction tasks. They evaluate their models on the NYBike1 and other more challenging datasets, instead of the Pems datasets as was the case with most prior works.</p>
+<!--new strategy--
+DO NOT waste a lot of time trying to understand the 
+precise theory of the system. If you are confused about 
+the overall architecture, see if they have a picture, 
+and try to break down the individual building blocks separately
+-->
+<section id="model-overview-and-novelty" class="level3" data-number="15.4.1">
+<h3 data-number="15.4.1" class="anchored" data-anchor-id="model-overview-and-novelty"><span class="header-section-number">15.4.1</span> Model Overview and Novelty</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="v2x/imgs/stssl_arch.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Overview of ST-SSL Architecture</figcaption>
+</figure>
+</div>
+</section>
 </section>
 <section id="stpgcn" class="level2" data-number="15.5">
 <h2 data-number="15.5" class="anchored" data-anchor-id="stpgcn"><span class="header-section-number">15.5</span> STPGCN</h2>
@@ -1100,6 +1119,9 @@ B. Hui, H. Chen, D. Yan. 2021. <span>“Trajectory WaveNet: A Trajectory-Based M
 </div>
 <div id="ref-yu2018etal" class="csl-entry" role="listitem">
 B. Yu, Z. Zhu, H. Yin. 2018. <span>“Spatio-Temporal Graph Convolutional Networks: A Deep Learning Framework for Traffic Forecasting.”</span> <em>IJCAI</em>. <a href="https://doi.org/10.24963/ijcai.2018/505">https://doi.org/10.24963/ijcai.2018/505</a>.
+</div>
+<div id="ref-ji2023etal" class="csl-entry" role="listitem">
+J. Ji, C. Huang, J. Wang. 2023. <span>“Spatio-Temporal Self-Supervised Learning for Traffic Flow Prediction.”</span> <em>The Thirty-Seventh AAAI Conference on Artificial Intelligence</em>. <a href="https://echo-ji.github.io/academicpages/files/STSSL_AAAI23.pdf">https://echo-ji.github.io/academicpages/files/STSSL_AAAI23.pdf</a>.
 </div>
 <div id="ref-guo2019etal" class="csl-entry" role="listitem">
 S. Guo, N. Feng, Y. Lin. 2019. <span>“Attention Based Spatial-Temporal Graph Convolutional Networks for Traffic Flow Forecasting.”</span> <em>The Thirty-Third AAAI Conference on Artificial Intelligence</em>. <a href="https://dl.acm.org/doi/pdf/10.1609/aaai.v33i01.3301922">https://dl.acm.org/doi/pdf/10.1609/aaai.v33i01.3301922</a>.

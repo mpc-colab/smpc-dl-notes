@@ -3,4 +3,22 @@
 > Use this as a benchmark for everything else. We want to 
 figure out what were the other top models to evaluate. 
 This paper is very recent, and it comes out of a top 
-conference (AAAI)
+conference (AAAI). Notes for this section based on ST-SSL by 
+Ji et al. @ji2023etal. The GitHub repository for this model 
+is available [here](https://github.com/Echo-Ji/ST-SSL)
+
+This work is the current state of the art in traffic flow forecasting 
+and prediction tasks. They evaluate their models on the NYBike1 and
+other more challenging datasets, instead of the Pems datasets as 
+was the case with most prior works. 
+
+<!--new strategy--
+DO NOT waste a lot of time trying to understand the 
+precise theory of the system. If you are confused about 
+the overall architecture, see if they have a picture, 
+and try to break down the individual building blocks separately
+-->
+
+### Model Overview and Novelty
+
+![Overview of ST-SSL Architecture](v2x/imgs/stssl_arch.png){fig-align="center"}
