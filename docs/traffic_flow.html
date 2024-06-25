@@ -962,9 +962,10 @@ s_{ij}^{\tau} = \begin{cases}
 </ul></li>
 </ul></li>
 </ul>
+<!--there can be no more than 4 indentations before latex starts complaining-->
 <p><strong>Step 3: Perform Spatial-Temporal Position-Aware Graph Convolution</strong></p>
 <ul>
-<li><em>joint spatial-temporal node feature aggregator</em>
+<li><em>joint spatial-temporal node feature aggregator</em> <span class="math inline">STPGConv</span>
 <ul>
 <li>in each <code>STPGConv</code> layer, the dynamic spatial-temporal edge weights are generated based on the position embedding <span class="math inline">p_{ij}^{\tau}</span></li>
 <li>weight summation function is constructed: <span class="math display">\begin{align*}
@@ -974,33 +975,44 @@ s_{ij}^{\tau} = \begin{cases}
 <ul>
 <li>represent node features output from layer <span class="math inline">l-1</span> on <span class="math inline">\beta + 1</span> time slices</li>
 </ul></li>
+<li>The discrete <span class="math inline">STPGCN</span> operation is given by <span class="math display">\begin{align*}
+\tilde{h}_{i}^{t,l} &amp;= \phi_{stpgcn}(s_{ij}^{\tau,l}, h_{j}^{\tau,l-1}) \\
+                    &amp;= \sum_{j=1}^{N}\sum_{\tau=t-\beta}^{t} s_{ij}^{\tau,l}\cdot h_{j}^{\tau,l-1}
+\end{align*}</span>
+<ul>
+<li><span class="math inline">s_{ij}^{\tau,l}</span> - weight of edge connecting nodes <span class="math inline">v_{i}^{t}</span> and <span class="math inline">v_{j}^{\tau}</span> (in the <span class="math inline">l\text{th}</span> layer)</li>
+<li><span class="math inline">h_{j}^{\tau,l-1}</span> - the features of node <span class="math inline">v_{j}^{\tau}</span> from the previous layer</li>
 </ul></li>
-<li><em>spatial-temporal position-aware gated activation unit</em></li>
+<li>A linear layer is applied on <span class="math inline">\tilde{h}_{i}^{t,l}</span> to obtain the traffic flow signal of node <span class="math inline">v_{j}^{\tau}</span>, <span class="math inline">h_{j}^{\tau,0}</span> <span class="math display">h_{j}^{\tau,0} = W^{0} \cdot x_{j}^{\tau} + b^{0}</span> <span class="math display">h_{i}^{t,l} = \Psi(W^{l} \cdot \tilde{h}_{i}^{t,l} + b^{l})</span>
+<ul>
+<li><span class="math inline">\Psi</span> - the activation function</li>
+</ul></li>
+</ul></li>
+<li><em>spatial-temporal position-aware gated activation unit</em> <span class="math inline">STPGAU</span>
+<ul>
+<li>gating activation units are used to maintain the feature patterns across different time steps for individual nodes.</li>
+<li>formulation: <span class="math display">\begin{align*}
+h_{i}^{t,l} &amp;= \text{STPGAU}(\tilde{h}_{i}^{t,l}, z_{i}^{S}, z_{t}^{T}) \\
+            &amp;= (W_{1}^{l} \cdot \tilde{h}_{i}^{t,l} + W_{2}^{l} \cdot z_{i}^{S} + W_{3}^{l}\cdot z_{t}^{T} + b_{1}^{l}) \\
+            &amp;\mskip 2mu \odot \delta (W_{4}^{l} \cdot \tilde{h}_{i}^{t,l} + W_{5}^{l} \cdot z_{i}^{S} + W_{6}^{l} \cdot z_{t}^{T} + b_{2}^{l})
+\end{align*}</span>
+<ul>
+<li>the spatial and temporal embedding vectors are incorporated into the sums in order to maintain the individual patterns and post-tune the output of the <code>STPGConv</code> layer to generate node-specific pattern features</li>
+</ul></li>
+</ul></li>
 </ul>
-<p><strong>Spatial-Temporal Graph Construction</strong></p>
+<p><strong>Step 4: Gated Feature Selection and Skip Connections</strong></p>
 <ul>
-<li>Mathematical formulation: <span class="math display">\begin{align*} A_{STP} = \begin{array}{ccccccc} &amp; &amp; t &amp; t-1 &amp; \dots &amp; t - \beta &amp; \\
-  t &amp; [ &amp; \hat{A} &amp; \hat{A} &amp; \dots &amp; \hat{A} &amp; ] \end{array} \\
-  A_{ij} = \begin{cases} 1 &amp; \text{if SDist}(v_{i}, v_{j}) \le \alpha \\
-                         0 &amp; \text{otherwise} \end{cases} \end{align*}</span>
-<ul>
-<li><span class="math inline">\hat{A}_{ij}</span> represents an <span class="math inline">\alpha</span>-hop adjacency matrix of the traffic road network
-<ul>
-<li>this means that connections over <span class="math inline">\alpha</span> edges between nodes are represented in the graph structure.</li>
-</ul></li>
-</ul></li>
+<li>avoid gradient vanishing problem by sending outputs of each <code>STPGConv</code> layer to the output via <em>skip connections</em></li>
+<li>a gated feature selection module is used to select (adaptively) important features from multiple layers for the final prediction to avoid the <em>over-smoothing problem</em></li>
 </ul>
-<p><strong>Spatial and Temporal Relative-Position Embedding</strong></p>
+<p><strong>Step 5: Make Predictions</strong></p>
 <ul>
-<li>describes the spatial-temporal proximity between different nodes</li>
-<li>helps identify the relative positions between separate nodes</li>
-<li>relative position embeddings are trained to <em>encode distances</em></li>
-<li><span class="math inline">a = SDist()</span> and <span class="math inline">b = TDist()</span>, where <span class="math inline">a=0</span> means two nodes have the same spatial position, and <span class="math inline">b=0</span> means two nodes have the same temporal position (are taken from the same time slice)
-<ul>
-<li>values <span class="math inline">a</span> and <span class="math inline">b</span> are label tokens which have trainable embedding vectors <span class="math inline">z_{a}^{SD}</span> and <span class="math inline">z_{b}^{TD}</span> for each token</li>
-</ul></li>
+<li>an MLP is used to generate future multi-step results directly - this is done using inputs from the <span class="math inline">L</span> layers of features generated by the network <span class="math display">
+U = \hat{H}^{1} || \cdots || \hat{H}^{L}
+</span></li>
+<li>thes inputs are fed to the MLP to make preidctions</li>
 </ul>
-<p><strong>Spatial-Temporal Position-Aware Relation Inference</strong></p>
 </section>
 <section id="evaluation" class="level3" data-number="15.5.3">
 <h3 data-number="15.5.3" class="anchored" data-anchor-id="evaluation"><span class="header-section-number">15.5.3</span> Evaluation</h3>
