@@ -1,4 +1,4 @@
-##  Attention Based Spatial-Temporal Graph Convolutional Networks for Traffic Flow Forecasting
+##  Attention Based Spatial-Temporal Graph Convolutional Networks for Traffic Flow Forecasting {#sec-astgcn}
 
 > In this paper, @guo2019etal proposed a method for traffic flow prediction
 which utilized an **attention based spatial-temporal graph convolutional network**.
@@ -116,5 +116,20 @@ $T_{h}$, $T_{d}$, and $T_{w}$ respectively
     & \mskip 2mu \vdots \\
     & X_{t_{0} - 7\cdot (1)\cdot q + 1},\dots,X_{t_{0} - 7 \cdot (1) q + T_{p}})
   \end{align*}
+
+> NOTE: Although the ASTGCN models and such can be used through PyTorch geometric (library)
+The original publication and repository includes support for the standard pytorch functions
+which may be more straightforward to convert into a CrypTen (CrypTensor) model. 
+
+### Things I don't Understand ...
+
+1. what is the hadammard product?
+   1. the hadamard product is simply the element-wise matrix multiplication of two matrices
+2. what does it mean to transform the graph convolution setting into the spectral basis, 
+   and why is the fourier transform needed to do this? Is it even important for me
+   to answer this question given the setting of the paper itself?
+   1. Probably not important. We will need to understand this theory when doing the writeups, 
+      for write now, we just need to know the actual polynomial functions used so we can 
+      implement them securely. 
 
   

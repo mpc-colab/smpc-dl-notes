@@ -1,3 +1,18 @@
 # Traffic Flow Forecasting
 
+{{< include v2x/_yu2018etal.qmd >}}
+
 {{< include v2x/_guo2019etal.qmd >}}
+
+{{< include v2x/_wu2019etal.qmd >}}
+
+{{< include v2x/_ji2023etal.qmd >}}
+
+{{< include v3x/_zhao2023etal.qmd >}}
+
+# Trajectory-Based Traffic Forecasting
+
+{{< include v2x/_hui2021etal.qmd >}}
+
+{{< include v2x/_sun2024etal.qmd >}}
+

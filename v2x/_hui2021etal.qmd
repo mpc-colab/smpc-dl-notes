@@ -1,0 +1,19 @@
+## T-Wave
+
+> Notes for T-Wave introduced in @hui2021etal
+
+### Contributions
+
+### Methods
+
+### Experiments
+
+### Questions
+
++ How are trajectory sequences / data actually constructed 
+  as inputs to the model?
++ How can I obtain access to the code for these models?
++ How are the traffic segments structured? They utilize the same 
+  methods of dilate spatial temporal convolutions as Graph-WaveNet, 
+  but use the trajectory data in order to structure the actual graph data. 
+  I don't really understand their representations too well. 

@@ -1,0 +1,89 @@
+## Graph WaveNet
+
+> Notes for *Graph WaveNet for Deep Spatial-Temporal Graph Modeling*
+@wu2019etal
+
+### Contributions
+
++ Methodology uses a stacked dilated 1D convolution in order to 
+  get better temporal representations - longer range time series sequences
+  can be processed effectively
++ Automatically learns new graph structures - showing hidden spatial 
+  dependencies using a "self-adaptive adjacency matrix"
++ [open source git repository](https://github.com/nnzhan/Graph-WaveNet/tree/master)
+
+### Methods 
+
++ Use a graph convolution layer:
+  + incorporates graph signal diffusion with $K$ finite steps
+  + also utilize an adaptive adjacency parameter with learnable
+    embedding parameter dictionaries for nodes in the graph
++ Temporal Convolution Layer: 
+  + uses gating mechanisms and dilated causal convolution networks for 
+    handling long sequences
+  + allows for increased receptive field size (expands range while
+    requiring less depth for the network)
+  + gated TCN layers are stacked in order to improve handling of 
+    spatial dependencies at different temporal levels. 
+
+### Experiments and Evaluation
+
++ experiments conducted on the METR-LA and PEMS-BAY datasets
++ baselines
+  + ARIMA - auto-regressive integrated moving average with Kalman filter
+  + FC-LSTM - RNN with fully connected LSTM hidden units
+  + WaveNet - Conv net for sequence data
+  + DCRNN - diffusion conv recurrent neural nets - combine graph 
+    convs. with RNNs in encoder-decoder manner
+  + GGRU - graph gated recurrent unit network (attention mechanisms used in 
+    graph conv.)
+  + STGCN - spatial-temporal graph convolution network
+
+### Questions
+
++ what is an adaptive dependency matrix (as it relates to the 
+  learning of the model?)
+  + *receptive field* - region of the input image that is used to compute
+    the output of a particular neuron in the feature map. The receptive
+    field is important because it determines the context or the information
+    that the neuron has access to when making a prediction - see 
+    [medium.com](https://medium.com/@rekalantar/receptive-fields-in-deep-convolutional-networks-43871d2ef2e9#:~:text=The%20receptive%20field%20of%20a%20convolutional%20layer%20in,neuron%20has%20access%20to%20when%20making%20a%20prediction.)
++ what is the receptive field of a convolution?
++ What are "stacked dilated 1D convolutions"? See 
+  [WaveNet](https://arxiv.org/abs/1609.03499) for more information
+  on this topic
+  + *dilated convolutions* - dilated convolutions perform convolutions, 
+    but add zeros between the elements of the filter. This 
+    expands the receptive field of a given computation by expanding
+    the region of the input covered by a given convolution, but 
+    doesn't increase the number of parameters required to obtain
+    the output. A nice image of this can be seen below:
+
+    ![Dilated Convolution Representation](imgs/dilated_conv.png)
+
++ What does it mean for the adjacency matrix representation of the 
+  graph to be "self-adaptive", and learnable?
++ Why is a node's representation called a node's "signal" in this work?
++ what is a transition matrix?
+  + I believe this idea originates from this paper: [DCNNs](https://arxiv.org/pdf/1511.02136)
++ What is a power series, and how is it applied to a transition matrix?
++ What is a TCN layer, let alone a "Gated TCN"? (does this just mean 
+  gated temporal convolution?)
++ What are gating mechanisms in RNNs, and what are they used for?
++ How are graph network structures constructed from the data? See
+  the experimental setup section for more information. 
++ What is all of this forward-backward adaptive adjacency matrix learning
+  stuff they mention?
+  + do they train the graph representation of the traffic flow data 
+    separately from the actual graph modeling?
+
+### Ideas
+
++ integrate alternative gated TCN functions $g(\cdot)$ in order 
+  to compare performance in the secure setting. How can this be 
+  used as part of a discussion on theory? Is ther even enough time
+  to do this in the project?
++ compare the performance of spatio-temporal graph networks along
+  different axes ...
++ comparative analysis for grpah models - accuracy (MAE/MAPE/RMSE) 
+  tradeoffs and running time comparisons (especially for a secure implementation)

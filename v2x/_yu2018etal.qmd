@@ -1,0 +1,269 @@
+## Spatio-Temporal Graph Convolutional Networks (STGCN) {#sec-stgcn}
+
+> These notes refer to the conference publication @yu2018etal 
+code implementation is provided at [github.com](https://github.com/hazdzz/STGCN)
+
+### Graph Convolutions
+
+Similar to ASTGCN presented in @sec-astgcn, STGCN utilizes graph convolutions
+and temporal convolutions in order to compute spatial correlations in the 
+graph data representations. 
+
+The graph convolution operator, "$*_{\mathcal{g}}$" is used for identifying
+the spatial correlations in the data: 
+
+$$
+\Theta *_{g} x = \Theta(L)x = \Theta(U \Delta U^{T})x = U\Theta(\Delta)U^{T}x 
+$$
+
+Again, the graph Fourier basis $U \in \mathbb{R}^{n\times n}$ is used in order
+to transform the computation space of the convolution to the spectral space. 
+This Fourier basis is the matrix of eigenvectors of the *normalized graph Laplacian* $L$. 
+See [this lecture](https://www.d.umn.edu/~dfroncek/MCCCC_2018/abstracts/Butler_slides.pdf) 
+on the normalized Laplacian matrix for more information ...
+
+$$
+L = I_{n} - D^{-\frac{1}{2}}WD^{-\frac{1}{2}}
+$$
+
+#### The Normalized Laplacian 
+
+> [The normalized laplacian](https://www.d.umn.edu/~dfroncek/MCCCC_2018/abstracts/Butler_slides.pdf)
+
+**Important Definitions**: 
+
++ multiset: a generalization of the concept of a set. Unlike a set 
+  which allows for only one instance of each of its elements, a multiset
+  may contain multiple instances of the same element. The number of times 
+  a given element appears in the multiset is known as its *multiplicity*. 
+  As with normal sets, the order of elements is not relevant. 
+  + cardinality: the sum of multiplicities for all elements (number of items)
+
+**Spectral Graph Theory**
+
++ What are the relationships between the structure of a given graph 
+  and the eigenvalues of a matrix associated with the graph?
+  + Ajacency matrix: indicates which vertices are adjacent. Eigenvalues can 
+    count closed walks, so can count edges and test bipartite-ness
+  + Laplacian $L=D-A$: positive semi-definite. Eigenvalues can count edges and 
+    number of components
+  + Signless Laplacian $Q = D + A$: unsigned incidence matrix, positive 
+    semi-definite. Eigenvalues can count edges and number of 
+    bipartite components
+  + **Normalized Laplacian** $\mathcal{L} = D^{-1/2}(D-A)D^{-1/2}$: normalizes the 
+    Laplacian matrix, and is tied to the probability transition matrix
+    + eigenvalues $\in [0,2]$
+    + multiplicity of 0 is number of components
+    + multiplicity of 2 is number of bipartite components
+    + tests for bipartite-ness
+    + cannot always detect number of edges
+
+Normalizing matrices is useful. 
+
+### Network Architecture
+
+![STGCN Network Architecture Diagram](imgs/stgcn.png)
+
+**Components**: 
+
++ two spatio-temporal convolutional blocks (ST-Conv Blocks) 
+  and FC output layer $\rightarrow \hat{V}$
+  + residual connections and bottlenecks are applied within each block
+  + ST-Conv Blocks contain 
+    + *one* spatial graph convolution layer (in the middle)
+    + *two* temporal gated convolution layers
+
+**Graph CNNs for Extracting Spatial Features**
+
+Because the kernel computation $\Theta$ in the graph convolution 
+can be expensive due to $O(n^{2})$ multiplications with grpah Fourier
+basis, approximation strategies are utilized: 
+
+1. Chebyshev polynomial approximation
+2. 1st-order approximation
+
+<!-- **Chebyshev Polynomial Approximations**
+
+The kernel $\Theta$ can be restricted to a polynomial $\Lambda$ as
+$\Theta(\Lambda) = \sum_{k=0}^{K-1}\theta_{k}\Lambda^{k}$ where 
+$\theta \in \mathbb{R}^{K}$ is a vector of polynomial coefficients. 
+
+$K$ is the kernel size of graph convolution - determines the maximum 
+radius of the convolution from central ndoes.  -->
+
+<!--backup writeups for STGCN - port to the 
+    project library when back at school, and the 
+    server is available again-->
+
+<!-- ## STGCN 
+
+> Notes are based on "Spatio-Temporal Graph Convolutional Networks: A 
+  Deep Learning Framework for Traffic Forecasting" published by 
+  B. Yu et al. (2018) -->
+
+### Graph Convolution Approximations
+
+**Chebyshev Polynomials Approximation**
+
++ chebyshev polynomials are used in order to reduce the numebr of 
+  parameters required by the kernel $\Theta$. 
++ Chebyshev polynomials usually approximate kernels as 
+  truncated expansion of order $K-1$ 
+  $$\Theta(\Delta) = \sum_{k=0}^{K-1}\theta_{k}T_{k}(\tilde{\Delta})
+  + $\tilde{\Delta} = 2\Delta/\lambda_{max} - I_{n}$
+  + $\lambda_{max}$ is the greatest eigenvalue of the Laplacian
+    matrix
++ Mathematical formulation for the graph convolution: 
+  $$\Theta *_{g} x \sim \sum_{k=0}^{K-1}\theta_{k}T_{k}(\tilde{L})x$$
+  + $T_{k}(\tilde{L}) \in \mathbb{R}^{n \times n}$ - $k\text{th}$ order
+    Chebyshev polynomial, evaluated at the scaled laplacian, $\tilde{L}$
+
+*First Order Chebyshev Approximations*
+
++ first order approximation is used
++ allows for a deeper architecture to be used 
+  + not restricted to a specific parameterization by the polynomials
++ scaling / normalization in Neural Networks ensure $\lambda_{max} \sim 2$
++ assumptions simplify the graph convolution operation: 
+  $$\Theta *_{g}x \sim \theta_{0}x - \theta_{1}(D^{-1/2}WD^{-1/2})x$$
+  + $\theta_{0}$ and $\theta_{1}$ - shared parameters of the kernel
+  + $W$ and $D$ are also renormalized
+  + What does the $D$ matrix indicate?
+
+### Gated CNNs - temporal feature extraction
+
++ prior art uses RNNs (RNN-based models)
++ RNNs have several critical limitations: 
+  + time-consuming iterations
+  + slow response to dynamic changes
+  + complext gate mechanisms
++ convolutional structures employed in entirety on time axis to 
+  capture temporal behaviors of traffic flows
+  + convolutions are faster for training
+  + allows for forming hierarchical representations
++ each node of the graph, $g$, temporal convolutions 
+  explore $K_{t}$ neighbors without padding
+  + reduces length of sequences by $K_{t} - 1$ each time
+    + I don't have any idea what this means though ... 
+  + inputs to temporal convolutions - length- $m$ sequences 
+    with $C_{i}$ channels, $Y \in \mathbb{R}^{m \times C_{i}}$
++ Definition of gated temporal convolution: 
+  $$\Gamma *_{\tau} Y = P \odot \sigm(Q) \in 
+    \mathbb{R}^{M - K_{t} + 1) \times C_{0}$$ 
+  + is generalizable to the 3D convolution 
+
+### Spatio-Temporal Convolutional Block
+
++ (spatial) graph convolutions are combined with gated 
+  (temporal) convolutions 
+  + temporal -> spatial -> temporal 
+  + residual connections applied for improved training / avoid
+    overfitting
+  + layer normalization used to prevent overfitting too
++ General expression: 
+  $$v^{l+1} = \Gamma^{l}_{1} *_{\tau} \text{ReLU}(\Theta^{l} 
+    *_{g}(\Gamma_{0}^{l} *_{\tau} v^{l}))$$ 
+  + $\Gamma_{0}^{l}$ - upper temporal kernel in block $l$
+  + $\Gamma_{1}^{l}$ - lower temporal kernel in block $l$
+  + $\Theta^{l}$ - spectral kernel of graph convolution
++ full structure: 
+  + 2 ST-Conv Blocks
+  + 1 Temporal Convolution 
+  + Fully connected layer to outputs
+
+### Prediction Task
+
++ goal - predict speeds of cars for each of $n$ nodes
++ loss - L2 loss function
+
+### Experimental Evaluation / Study
+
+**Datasets**
+
+datasets contain key info of traffic observations / 
+geographic information with corresponding timestamps
+
++ BJER4 - Beijing Municipal Trafic Commission
++ PeMSD7 - California Department of Transportation
+
+**Data Cleaning**
+
++ linear interpolation used for imputation
++ data inputs normalized (z-score method)
+
+**Data Formatting**
+
++ separate methods are utilized in order to convert
+  traffic data into the proper format for graph network
+  analysis.  
+
+### Topic Study Shortlist 
+
++ gated sequential convolutions 
+	+ what does it mean for these convs. to be gated? [DONE]
++ what are chebyshev polynomials and how are they used to 
+  approximate convolutions?
++ what are first-order approximations of the graph laplacian
+  (see page 3 of STGCN paper) - kipf and welling 2016	
++ what does it mean for graph convolutions to be stacked 
+  vertically as opposed to being computed horizontally like
+  traditional convolution operations
++ what are gated linear units? (GLU) for non-linearity
++ waht is linear interpolation imputation?
+
+actually, understanding the theory behind these mechanisms is
+not especially relevant for my work. I simply need to know
+what the approximation is that they used for their computations.
+i.e. - we need to know the results, not how they were obtained.
+
+### What are Gated Convolutions?
+
+> Notes based on article from [serp.ai](https://serp.ai/gated-convolution/#:~:text=Gated%20Convolution%20is%20a%20type%20of%20convolution%20that,to%20help%20preserve%20long-term%20dependencies%20and%20improve%20interpretability.)
+
++ Gated Convolutions - specific type of convolution that include a *gating mechanism*
++ a sigmoid activation function determines which part of the input should be 
+  passed to the output and which parts should be "gated" or suppressed
+
+**Process**
+
++ input is convolved with a filter (like a regular convolution)
++ before the result is generated, the input (after convolving) is
+  passed through the gating mechanism
+  + sigmoid activation determines the part of the input are passed
+    to the output, and which are suppressed (hence gated)
+  + use zero-padding - ensure output only depends on past inputs
+    and doesn't depend upon future inputs.
++ this strategy might imporove interpretability - it may be easier 
+  to understand why certain predictions are made based on the 
+  results of the gating mechanism 
++ no activation is further applied after the gating mechanism has run
+
+**Gated Convolutions in STGCN**
+
++ Gated convolutions used in the Temporal Convolution Layer
++ when the activation function (gating mechanism) is the "GLU", 
+  the following formula is used: 
+  $$(x_{p} + x_{in}) \odot \sigma(x_{q})
+
+### Approximated Convolutions (Chebyshev Polynomial Approximations)
+
+> Notes based on the youtube video [Convolutions and Polynomial Approximation](https://www.youtube.com/watch?v=4P4Ufumu9ms)
+by kieransquared
+
++ Approximations - finding a sequence of polynomials, $P_{1}, P_{2}, P_{3}$ such that $P_{n}$ 
+  converges to $f$
++ [An introduction to spectral graph theory](https://arxiv.org/pdf/1609.08072)
++ spectral graph theory is based on the idea that specific properties of a given 
+  graph can be extracted from the eigenvalues, or approximate eigenvalues of a 
+  given adjacency or laplacian matrix representation of a graph.
+
+### What is linear interpolation?
+
++ imputation method which assumes a linear relationship between 
+  missing and non-missing values. 
++ Assume you have three points, $A, B$, and $X$ with features $a$ and $b$ (all have the same features). 
+  for $A$ and $B$, the value of $a$ and $b$ are known, but for $X$, only the value of $a$ is known. 
+  in this case, the missing value is calculated as the line between $A$ and $B$, say $f(x)$, such that
+  $f(x) = \frac{A_{b} - B_{b}}{A_{a} - B_{a}}x + c$ and $c$ is some constant (intercept or bias). 
+  Then, $X_{b}$ is approximated by $f(X_{a}) \sim X_{b}$
++ Alternatively, some more specific linear interpolation polynomial can be specified. 

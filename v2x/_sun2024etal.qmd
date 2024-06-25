@@ -1,0 +1,46 @@
+## MA2GCN
+
+> Notes on "MA2GCN: Multi Adjacency Relationship Attention Graph Convolutional
+Networks for Traffic Prediction Using Trajectory Data" @sun2024etal
+
+### Contributions
+
++ authors provide methods for converting trajectory-based datasets for 
+  traffic flows prediction into graph networks. 
++ they also provide code implementations
++ their graph constructions consider entry and exit matrices for the 
+  different grids they construct. 
++ Their graph analysis framework is extremely similar to graph wavenet, but
+  their adaptive graph generator is unique: 
++ multi-adjacency relationship attention?
+
+### Methods
+
++ utilizes a multi-adjacency relationship attention module to 
+  try and accurately learn the spatial information of the input 
+  + focuses on the more important adjacency matrices which are input?
+  + how many adjacency matrices are input to the model? shouldn't there
+    be a single matrix representing the entire graph / range of the data 
+    or do they divide the data / area of coverage into separate grids and then 
+    input them together? The process used here is not very clear. 
+
+### Experiments / Evaluation
+
++ They use the Shanghai taxi GPS trajectory dataset, and convert it into a 
+  graph using their novel trajectory-to-graph conversion methods
++ they test their graph convolution routines against state-of-the-art methods
+  for these converted graph data. 
++ they use the same metrics that all of the GCN analysis papers use. I don't 
+  really like their writeups though. I'm souring on this work a bit. It would 
+  be better if we could get access to T-Wave, then we could perform some 
+  better analysis on a better model potentially. 
+
+### Questions
+
++ How is the actual conversion performed? I.e., how does the 
+  trajectory data look to start, and how is it converted to a graph 
+  format. 
++ What is the $\tilde{X}$ matrix they metnion in the adaptive graph 
+  generator section?
++ what is the notation?
+  + $P, D, N, C$ - what do these symbols denote?
