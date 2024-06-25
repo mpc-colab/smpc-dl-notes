@@ -884,7 +884,8 @@ radius of the convolution from central ndoes.  -->
 </div>
 <p><strong>Step 1: formulate the graph</strong></p>
 <ul>
-<li>the spatio-temporal graph is represented as a series of <span class="math inline">\beta</span> time steps <span class="math inline">t,t-1,\dots,t-\beta</span> where each time step is represented by a graph <span class="math inline">\hat{A} \in \mathbb{R}^{N \times N}</span>.
+<li>the spatio-temporal graph is represented as a series of <span class="math inline">\beta</span> time steps <span class="math inline">t,t-1,\dots,t-\beta</span> where each time step is represented by a graph <span class="math inline">\hat{A} \in \mathbb{R}^{N \times N}</span>. <span class="math display">\begin{align*} A_{STP} = \begin{array}{ccccccc} &amp; &amp; t &amp; t-1 &amp; \dots &amp; t - \beta &amp; \\
+t &amp; [ &amp; \hat{A} &amp; \hat{A} &amp; \dots &amp; \hat{A} &amp; ] \end{array}\end{align*}</span>
 <ul>
 <li><p><span class="math inline">\hat{A}</span> is an <span class="math inline">\alpha</span>-hop adjacency matrix of the road network: a picture of these hops can be seen below:</p>
 <div class="quarto-figure quarto-figure-center">
@@ -898,25 +899,84 @@ radius of the convolution from central ndoes.  -->
   1 &amp; \text{if SDist}(v_{i}, v_{j}) \le \alpha, \\
   0 &amp; \text{if the shortest path between } v_{i} \text{ and } v_{j} &gt; \alpha
 \end{cases}
-</span> in other words, if the shortest path between any two nodes in the spatial direction is of a distance less than <span class="math inline">\alpha</span>, then there is an <span class="math inline">\alpha</span>-hop edge which connects the two nodes - hence a <span class="math inline">1</span> fills that connection label in the matrix $\hat{AGraph Edge Weights**</p></li>
+</span> in other words, if the shortest path between any two nodes in the spatial direction is of a distance less than <span class="math inline">\alpha</span>, then there is an <span class="math inline">\alpha</span>-hop edge which connects the two nodes - hence a <span class="math inline">1</span> fills that connection label in the matrix <span class="math inline">\hat{A}</span> Graph Edge Weights</p></li>
 </ul></li>
 </ul>
 <p><strong>Step 2: Set edge weights for the unweighted graph</strong></p>
 <ul>
 <li><em>spatial and temporal absolute-position embeddings</em>
 <ul>
-<li>spatial embeddings are defined - represent the absolute position of a given vector <span class="math display">Z^{S} = [z_{1}^{S}, Z_{2}^{S}, \dots, Z_{N}^{S}] \in \mathbb{R}^{N \times d}</span></li>
-<li>temporal embeddings are defined similarly <span class="math display">Z^{S} = [z_{1}^{T}, Z_{2}^{T}, \dots, Z_{N}^{T}] \in \mathbb{R}^{T_{d} \times d}</span> where <span class="math inline">Z_{t}^{T} = z_{m}^{D} + z_{n}^{W}</span>.
+<li>spatial embeddings are defined - represent the absolute position of a given vector <span class="math display">z^{S} = [z_{1}^{S}, z_{2}^{S}, \dots, z_{N}^{S}] \in \mathbb{R}^{N \times d}</span></li>
+<li>temporal embeddings are defined similarly <span class="math display">z^{S} = [z_{1}^{T}, z_{2}^{T}, \dots, z_{N}^{T}] \in \mathbb{R}^{T_{d} \times d}</span> where <span class="math inline">Z_{t}^{T} = z_{m}^{D} + z_{n}^{W}</span>.
 <ul>
 <li><span class="math inline">z_{m}^{D}</span> - the temporal position embedding for the day - <span class="math inline">\{1,2,\dots,T_{d}\}</span></li>
-<li><span class="math inline">z_{n}^{W}</span> - the temporal position embedding for the - <span class="math inline">\{1,2,\dots,7\}</span></li>
-<li>these are summed together to obtain the</li>
+<li><span class="math inline">z_{n}^{W}</span> - the temporal position embedding for the week- <span class="math inline">\{1,2,\dots,7\}</span></li>
+<li>these are summed together to obtain the temporal position embedding</li>
 </ul></li>
 </ul></li>
-<li><em>spatial and temporal relative-position embeddings</em></li>
-<li><em>spatial-temporal position-aware relation inference</em></li>
+<li><em>spatial and temporal relative-position embeddings</em>
+<ul>
+<li>these embeddings encode the relative distances between two nodes</li>
+<li>relative spatial and temporal distances between two nodes given as the shortest paths between them across each dimension: <span class="math display">\begin{align*}
+  &amp; \text{SDist}(\cdot,\cdot) \rightarrow a \in \{0,1,\dots,\alpha\} \\
+  &amp; \text{TDist}(\cdot,\cdot) \rightarrow b \in \{0,1,\dots,\beta\}
+\end{align*}</span></li>
+<li>the temporal distance can be no more than <span class="math inline">\beta</span>, and the spatial distance can be no greater than <span class="math inline">\alpha</span>.</li>
+<li>when <span class="math inline">a=0</span>, the two nodes are in the same position (spatially)</li>
+<li>when <span class="math inline">b=0</span>, the two nodes are in the same time slice</li>
+<li>distance values, <span class="math inline">a</span> and <span class="math inline">b</span> -&gt; discrete label tokens and generate trainable embedding vectors</li>
+<li>Spatial and temporal relative-position embedding vectors generated as: <span class="math display">\begin{align*}
+&amp; Z^{SD} = [z_{0}^{SD}, z_{1}^{SD}, z_{2}^{SD},\dots,z_{\alpha}^{SD}] \in \mathbb{R}^{(\alpha + 1) \times d} \\
+&amp; Z^{TD} = [z_{0}^{TD}, z_{1}^{TD}, z_{2}^{SD}, \dots, z_{\beta}^{TD}] \in \mathbb{R}^{(\beta + 1) \times d}
+\end{align*}</span></li>
+<li>it’s not obvious to me what the <span class="math inline">d</span> symbolizes …</li>
+</ul></li>
+<li><em>spatial-temporal position-aware relation inference</em>
+<ul>
+<li>this module takes the embeddings generated for each node, and uses them to map the value of weights for each edge in the graph (dynamic - can change for different time steps)</li>
+<li>you have a node <span class="math inline">v_{i}^{t}</span> with candidate neighbors <span class="math inline">v_{j}^{\tau}</span> in the interaction range <span class="math inline">i,j \in \{1,2,\dots,N\}, t \in \{1,2,\dots,T_{h}\}, \tau \in \{t-\beta, t-\beta+1,\dots,t\}</span> and <span class="math inline">t-\beta &gt; 0</span></li>
+<li><span class="math inline">S^{t} = \{s_{ij}^{\tau}|i,j=1,\dots,N;\tau=t-\beta,\dots,t\}\in \mathbb{R}^{N \times (\beta + 1)N}</span>
+<ul>
+<li>denote dynamic weights for all spatio-temporla edges</li>
+<li><span class="math inline">A^{t}_{STP} = S^{t} \odot A_{STP}</span> - element-wise multiplication of the edge weights by the adjacency matrix.</li>
+<li>each element of <span class="math inline">S^{t}</span>, <span class="math inline">s_{ij}^{\tau}</span> is given by <span class="math display">
+s_{ij}^{\tau} = \begin{cases}
+  g(p_{ij}^{\tau}) &amp; \text{if SDist}(v_{i}^{t}, v_{j}^{\tau}) \le \alpha \\
+  0 &amp; \text{otherwise}
+\end{cases}
+</span></li>
+<li><span class="math inline">p_{ij}^{\tau}</span> is the position feature vector</li>
+<li><span class="math inline">p_{ij}^{\tau} = [z_{i}^{S} || z_{j}^{S} || z_{t}^{T} || z_{\tau}^{T} || z_{a}^{SD} || z_{b}^{SD}] \in \mathbb{R}^{6d}</span>
+<ul>
+<li><span class="math inline">z_{i}^{S}, z_{t}^{T}</span> - spatial / temporal position info of node <span class="math inline">v_{i}^{t}</span></li>
+<li><span class="math inline">z_{j}^{S}, z_{\tau}^{T}</span> - spatial / temporal position information of node <span class="math inline">v_{j}^{\tau}</span></li>
+<li><span class="math inline">z_{a}^{SD}, z_{b}^{TD}</span> - spatial / temporal distance between <span class="math inline">v_{i}^{t}</span> and <span class="math inline">v_{j}^{\tau}</span></li>
+</ul></li>
+<li><span class="math inline">g(\cdot)</span> is a learnable Gaussian kernel for mapping weights from embedding vector inputs</li>
+<li><span class="math inline">g(p_{ij}^{\tau}) = \exp\left(-\frac{1}{2}(p_{ij}^{\tau} - \mu)^{T}\sum^{-1}(p_{ij}^{\tau} - \mu)\right)</span>
+<ul>
+<li><span class="math inline">\sum = \text{diag}(\sigma)</span> - trainable diagonal covariance matrix</li>
+<li><span class="math inline">\mu \in \mathbb{R}^{6d}</span> - trainable mean vector</li>
+<li><span class="math inline">\sigma \in \mathbb{R}^{6d}</span> - trainable variance vector</li>
+</ul></li>
+</ul></li>
+</ul></li>
 </ul>
 <p><strong>Step 3: Perform Spatial-Temporal Position-Aware Graph Convolution</strong></p>
+<ul>
+<li><em>joint spatial-temporal node feature aggregator</em>
+<ul>
+<li>in each <code>STPGConv</code> layer, the dynamic spatial-temporal edge weights are generated based on the position embedding <span class="math inline">p_{ij}^{\tau}</span></li>
+<li>weight summation function is constructed: <span class="math display">\begin{align*}
+&amp; \tilde{H}^{t,l} = \phi_{stpgcn}(A_{STP}^{t,l}, \hat{H}^{t,l-1}) = S^{t,l}\hat{H}^{t,l-1} \\
+&amp; \text{where } \hat{H}^{t,l-1} = [H^{t,l-1};\dots;H^{t-\beta,l-1}] \in \mathbb{R}^{(\beta+1)N \times C}
+\end{align*}</span>
+<ul>
+<li>represent node features output from layer <span class="math inline">l-1</span> on <span class="math inline">\beta + 1</span> time slices</li>
+</ul></li>
+</ul></li>
+<li><em>spatial-temporal position-aware gated activation unit</em></li>
+</ul>
 <p><strong>Spatial-Temporal Graph Construction</strong></p>
 <ul>
 <li>Mathematical formulation: <span class="math display">\begin{align*} A_{STP} = \begin{array}{ccccccc} &amp; &amp; t &amp; t-1 &amp; \dots &amp; t - \beta &amp; \\

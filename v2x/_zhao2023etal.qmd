@@ -37,10 +37,13 @@ traffic flows based on spatio-temporal information:
 + the spatio-temporal graph is represented as a series of $\beta$ time steps 
   $t,t-1,\dots,t-\beta$ where each time step is represented by a graph 
   $\hat{A} \in \mathbb{R}^{N \times N}$. 
+  \begin{align*} A_{STP} = \begin{array}{ccccccc} & & t & t-1 & \dots & t - \beta & \\
+  t & [ & \hat{A} & \hat{A} & \dots & \hat{A} & ] \end{array}\end{align*}
   + $\hat{A}$ is an $\alpha$-hop adjacency 
     matrix of the road network: a picture of these hops can be seen below: 
 
     ![spatio-temporal connection range](v2x/imgs/spatio_temp_range.png){fig-align="center"}
+    
   + each element of $\hat{A}$, the adjacency matrix, is given as follows:
     $$
     \hat{A}_{ij} = \begin{cases}
@@ -50,24 +53,81 @@ traffic flows based on spatio-temporal information:
     $$
     in other words, if the shortest path between any two nodes in the spatial direction
     is of a distance less than $\alpha$, then there is an $\alpha$-hop edge which 
-    connects the two nodes - hence a $1$ fills that connection label in the matrix $\hat{AGraph Edge Weights**
+    connects the two nodes - hence a $1$ fills that connection label in the matrix $\hat{A}$ Graph Edge Weights
 
 **Step 2: Set edge weights for the unweighted graph**
 
 + *spatial and temporal absolute-position embeddings*
   + spatial embeddings are defined - represent the absolute position of a given vector
-    $$Z^{S} = [z_{1}^{S}, Z_{2}^{S}, \dots, Z_{N}^{S}] \in \mathbb{R}^{N \times d}$$
+    $$z^{S} = [z_{1}^{S}, z_{2}^{S}, \dots, z_{N}^{S}] \in \mathbb{R}^{N \times d}$$
   + temporal embeddings are defined similarly
-    $$Z^{S} = [z_{1}^{T}, Z_{2}^{T}, \dots, Z_{N}^{T}] \in \mathbb{R}^{T_{d} \times d}$$
+    $$z^{S} = [z_{1}^{T}, z_{2}^{T}, \dots, z_{N}^{T}] \in \mathbb{R}^{T_{d} \times d}$$
     where $Z_{t}^{T} = z_{m}^{D} + z_{n}^{W}$. 
     + $z_{m}^{D}$ - the temporal position embedding for the day - $\{1,2,\dots,T_{d}\}$
-    + $z_{n}^{W}$ - the temporal position embedding for the - $\{1,2,\dots,7\}$
-    + these are summed together to obtain the 
+    + $z_{n}^{W}$ - the temporal position embedding for the week- $\{1,2,\dots,7\}$
+    + these are summed together to obtain the temporal position embedding
 + *spatial and temporal relative-position embeddings*
+  + these embeddings encode the relative distances between two nodes
+  + relative spatial and temporal distances between two nodes given as the shortest paths
+    between them across each dimension: 
+    \begin{align*}
+      & \text{SDist}(\cdot,\cdot) \rightarrow a \in \{0,1,\dots,\alpha\} \\
+      & \text{TDist}(\cdot,\cdot) \rightarrow b \in \{0,1,\dots,\beta\}
+    \end{align*}
+  + the temporal distance can be no more than $\beta$, and the spatial distance
+    can be no greater than $\alpha$. 
+  + when $a=0$, the two nodes are in the same position (spatially)
+  + when $b=0$, the two nodes are in the same time slice
+  + distance values, $a$ and $b$ -> discrete label tokens and generate 
+    trainable embedding vectors
+  + Spatial and temporal relative-position embedding vectors generated as: 
+    \begin{align*}
+    & Z^{SD} = [z_{0}^{SD}, z_{1}^{SD}, z_{2}^{SD},\dots,z_{\alpha}^{SD}] \in \mathbb{R}^{(\alpha + 1) \times d} \\
+    & Z^{TD} = [z_{0}^{TD}, z_{1}^{TD}, z_{2}^{SD}, \dots, z_{\beta}^{TD}] \in \mathbb{R}^{(\beta + 1) \times d}
+    \end{align*}
+  + it's not obvious to me what the $d$ symbolizes ...
 + *spatial-temporal position-aware relation inference*
+  + this module takes the embeddings generated for each node, and uses them 
+    to map the value of weights for each edge in the graph (dynamic - can 
+    change for different time steps)
+  + you have a node $v_{i}^{t}$ with candidate neighbors $v_{j}^{\tau}$ in the 
+    interaction range 
+    $i,j \in \{1,2,\dots,N\}, t \in \{1,2,\dots,T_{h}\}, \tau \in \{t-\beta, t-\beta+1,\dots,t\}$
+    and $t-\beta > 0$
+  + $S^{t} = \{s_{ij}^{\tau}|i,j=1,\dots,N;\tau=t-\beta,\dots,t\}\in \mathbb{R}^{N \times (\beta + 1)N}$
+    + denote dynamic weights for all spatio-temporla edges
+    + $A^{t}_{STP} = S^{t} \odot A_{STP}$ - element-wise multiplication of the edge weights by 
+      the adjacency matrix. 
+    + each element of $S^{t}$, $s_{ij}^{\tau}$ is given by 
+      $$
+      s_{ij}^{\tau} = \begin{cases}
+        g(p_{ij}^{\tau}) & \text{if SDist}(v_{i}^{t}, v_{j}^{\tau}) \le \alpha \\
+        0 & \text{otherwise}
+      \end{cases}
+      $$
+    + $p_{ij}^{\tau}$ is the position feature vector
+    + $p_{ij}^{\tau} = [z_{i}^{S} || z_{j}^{S} || z_{t}^{T} || z_{\tau}^{T} || z_{a}^{SD} || z_{b}^{SD}] \in \mathbb{R}^{6d}$
+      + $z_{i}^{S}, z_{t}^{T}$ - spatial / temporal position info of node $v_{i}^{t}$
+      + $z_{j}^{S}, z_{\tau}^{T}$ - spatial / temporal position information of node $v_{j}^{\tau}$
+      + $z_{a}^{SD}, z_{b}^{TD}$ - spatial / temporal distance between $v_{i}^{t}$ and $v_{j}^{\tau}$
+    + $g(\cdot)$ is a learnable Gaussian kernel for mapping weights from embedding vector inputs
+    + $g(p_{ij}^{\tau}) = \exp\left(-\frac{1}{2}(p_{ij}^{\tau} - \mu)^{T}\sum^{-1}(p_{ij}^{\tau} - \mu)\right)$
+      + $\sum = \text{diag}(\sigma)$ - trainable diagonal covariance matrix
+      + $\mu \in \mathbb{R}^{6d}$ - trainable mean vector
+      + $\sigma \in \mathbb{R}^{6d}$ - trainable variance vector
 
 **Step 3: Perform Spatial-Temporal Position-Aware Graph Convolution**
   
++ *joint spatial-temporal node feature aggregator*
+  + in each `STPGConv` layer, the dynamic spatial-temporal edge weights are 
+    generated based on the position embedding $p_{ij}^{\tau}$
+  + weight summation function is constructed: 
+    \begin{align*}
+    & \tilde{H}^{t,l} = \phi_{stpgcn}(A_{STP}^{t,l}, \hat{H}^{t,l-1}) = S^{t,l}\hat{H}^{t,l-1} \\
+    & \text{where } \hat{H}^{t,l-1} = [H^{t,l-1};\dots;H^{t-\beta,l-1}] \in \mathbb{R}^{(\beta+1)N \times C}
+    \end{align*}
+    + represent node features output from layer $l-1$ on $\beta + 1$ time slices
++ *spatial-temporal position-aware gated activation unit*
 
 **Spatial-Temporal Graph Construction**
 
