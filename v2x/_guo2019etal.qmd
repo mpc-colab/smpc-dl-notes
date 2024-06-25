@@ -84,7 +84,7 @@ Each, respectively, is designed for modeling (1) the recent,
 (2) daily-periodic, and (3) weekly-periodic dependencies of the
 historical data. 
 
-!(The ASTGCN Framework)[imgs/astgcn.png]{fig-align="center"}
+!(The ASTGCN Framework)[v2x/imgs/astgcn.png]{fig-align="center"}
 
 Each of the three time segments are grouped into segments of size
 $T_{h}$, $T_{d}$, and $T_{w}$ respectively

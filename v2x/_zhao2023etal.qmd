@@ -30,7 +30,7 @@ Convolution Networks for Traffic Flow Forecasting" @zhao2023etal
 Zhao et al. propose a novel model and graph convolution architecture for predicting
 traffic flows based on spatio-temporal information:
 
-![The architecture of STPGCN](imgs/stpgcn_architecture.png){fig-align="center"}
+![The architecture of STPGCN](v2x/imgs/stpgcn_architecture.png){fig-align="center"}
 
 **Step 1: formulate the graph**
 
@@ -40,12 +40,12 @@ traffic flows based on spatio-temporal information:
   + $\hat{A}$ is an $\alpha$-hop adjacency 
     matrix of the road network: a picture of these hops can be seen below: 
 
-    ![spatio-temporal connection range](imgs/spatio_temp_range.png){fig-align="center"}
+    ![spatio-temporal connection range](v2x/imgs/spatio_temp_range.png){fig-align="center"}
   + each element of $\hat{A}$, the adjacency matrix, is given as follows:
     $$
     \hat{A}_{ij} = \begin{cases}
       1 & \text{if SDist}(v_{i}, v_{j}) \le \alpha, \\
-      0 & \text{if the shortest path between } v_{i} \text{ and } v_{j} \gt \alpha
+      0 & \text{if the shortest path between } v_{i} \text{ and } v_{j} > \alpha
     \end{cases}
     $$
     in other words, if the shortest path between any two nodes in the spatial direction
@@ -62,6 +62,7 @@ traffic flows based on spatio-temporal information:
     where $Z_{t}^{T} = z_{m}^{D} + z_{n}^{W}$. 
     + $z_{m}^{D}$ - the temporal position embedding for the day - $\{1,2,\dots,T_{d}\}$
     + $z_{n}^{W}$ - the temporal position embedding for the - $\{1,2,\dots,7\}$
+    + these are summed together to obtain the 
 + *spatial and temporal relative-position embeddings*
 + *spatial-temporal position-aware relation inference*
 

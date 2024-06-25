@@ -59,7 +59,7 @@
     doesn't increase the number of parameters required to obtain
     the output. A nice image of this can be seen below:
 
-    ![Dilated Convolution Representation](imgs/dilated_conv.png)
+    ![Dilated Convolution Representation](v2x/imgs/dilated_conv.png)
 
 + What does it mean for the adjacency matrix representation of the 
   graph to be "self-adaptive", and learnable?

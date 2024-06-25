@@ -285,12 +285,63 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#attention-based-spatial-temporal-graph-convolutional-networks-for-traffic-flow-forecasting" id="toc-attention-based-spatial-temporal-graph-convolutional-networks-for-traffic-flow-forecasting" class="nav-link active" data-scroll-target="#attention-based-spatial-temporal-graph-convolutional-networks-for-traffic-flow-forecasting"><span class="header-section-number">15.1</span> Attention Based Spatial-Temporal Graph Convolutional Networks for Traffic Flow Forecasting</a>
+  <li><a href="#sec-stgcn" id="toc-sec-stgcn" class="nav-link active" data-scroll-target="#sec-stgcn"><span class="header-section-number">15.1</span> Spatio-Temporal Graph Convolutional Networks (STGCN)</a>
   <ul>
-  <li><a href="#core-contributions-of-astgcn" id="toc-core-contributions-of-astgcn" class="nav-link" data-scroll-target="#core-contributions-of-astgcn"><span class="header-section-number">15.1.1</span> Core Contributions of ASTGCN</a></li>
-  <li><a href="#primitives" id="toc-primitives" class="nav-link" data-scroll-target="#primitives"><span class="header-section-number">15.1.2</span> Primitives</a></li>
-  <li><a href="#problem-setting" id="toc-problem-setting" class="nav-link" data-scroll-target="#problem-setting"><span class="header-section-number">15.1.3</span> Problem Setting</a></li>
-  <li><a href="#the-astgcn-model-framework" id="toc-the-astgcn-model-framework" class="nav-link" data-scroll-target="#the-astgcn-model-framework"><span class="header-section-number">15.1.4</span> The ASTGCN Model Framework</a></li>
+  <li><a href="#graph-convolutions" id="toc-graph-convolutions" class="nav-link" data-scroll-target="#graph-convolutions"><span class="header-section-number">15.1.1</span> Graph Convolutions</a>
+  <ul>
+  <li><a href="#the-normalized-laplacian" id="toc-the-normalized-laplacian" class="nav-link" data-scroll-target="#the-normalized-laplacian"><span class="header-section-number">15.1.1.1</span> The Normalized Laplacian</a></li>
+  </ul></li>
+  <li><a href="#network-architecture" id="toc-network-architecture" class="nav-link" data-scroll-target="#network-architecture"><span class="header-section-number">15.1.2</span> Network Architecture</a></li>
+  <li><a href="#graph-convolution-approximations" id="toc-graph-convolution-approximations" class="nav-link" data-scroll-target="#graph-convolution-approximations"><span class="header-section-number">15.1.3</span> Graph Convolution Approximations</a></li>
+  <li><a href="#gated-cnns---temporal-feature-extraction" id="toc-gated-cnns---temporal-feature-extraction" class="nav-link" data-scroll-target="#gated-cnns---temporal-feature-extraction"><span class="header-section-number">15.1.4</span> Gated CNNs - temporal feature extraction</a></li>
+  <li><a href="#spatio-temporal-convolutional-block" id="toc-spatio-temporal-convolutional-block" class="nav-link" data-scroll-target="#spatio-temporal-convolutional-block"><span class="header-section-number">15.1.5</span> Spatio-Temporal Convolutional Block</a></li>
+  <li><a href="#prediction-task" id="toc-prediction-task" class="nav-link" data-scroll-target="#prediction-task"><span class="header-section-number">15.1.6</span> Prediction Task</a></li>
+  <li><a href="#experimental-evaluation-study" id="toc-experimental-evaluation-study" class="nav-link" data-scroll-target="#experimental-evaluation-study"><span class="header-section-number">15.1.7</span> Experimental Evaluation / Study</a></li>
+  <li><a href="#topic-study-shortlist" id="toc-topic-study-shortlist" class="nav-link" data-scroll-target="#topic-study-shortlist"><span class="header-section-number">15.1.8</span> Topic Study Shortlist</a></li>
+  <li><a href="#what-are-gated-convolutions" id="toc-what-are-gated-convolutions" class="nav-link" data-scroll-target="#what-are-gated-convolutions"><span class="header-section-number">15.1.9</span> What are Gated Convolutions?</a></li>
+  <li><a href="#approximated-convolutions-chebyshev-polynomial-approximations" id="toc-approximated-convolutions-chebyshev-polynomial-approximations" class="nav-link" data-scroll-target="#approximated-convolutions-chebyshev-polynomial-approximations"><span class="header-section-number">15.1.10</span> Approximated Convolutions (Chebyshev Polynomial Approximations)</a></li>
+  <li><a href="#what-is-linear-interpolation" id="toc-what-is-linear-interpolation" class="nav-link" data-scroll-target="#what-is-linear-interpolation"><span class="header-section-number">15.1.11</span> What is linear interpolation?</a></li>
+  </ul></li>
+  <li><a href="#sec-astgcn" id="toc-sec-astgcn" class="nav-link" data-scroll-target="#sec-astgcn"><span class="header-section-number">15.2</span> Attention Based Spatial-Temporal Graph Convolutional Networks for Traffic Flow Forecasting</a>
+  <ul>
+  <li><a href="#core-contributions-of-astgcn" id="toc-core-contributions-of-astgcn" class="nav-link" data-scroll-target="#core-contributions-of-astgcn"><span class="header-section-number">15.2.1</span> Core Contributions of ASTGCN</a></li>
+  <li><a href="#primitives" id="toc-primitives" class="nav-link" data-scroll-target="#primitives"><span class="header-section-number">15.2.2</span> Primitives</a></li>
+  <li><a href="#problem-setting" id="toc-problem-setting" class="nav-link" data-scroll-target="#problem-setting"><span class="header-section-number">15.2.3</span> Problem Setting</a></li>
+  <li><a href="#the-astgcn-model-framework" id="toc-the-astgcn-model-framework" class="nav-link" data-scroll-target="#the-astgcn-model-framework"><span class="header-section-number">15.2.4</span> The ASTGCN Model Framework</a></li>
+  <li><a href="#things-i-dont-understand" id="toc-things-i-dont-understand" class="nav-link" data-scroll-target="#things-i-dont-understand"><span class="header-section-number">15.2.5</span> Things I don’t Understand …</a></li>
+  </ul></li>
+  <li><a href="#graph-wavenet" id="toc-graph-wavenet" class="nav-link" data-scroll-target="#graph-wavenet"><span class="header-section-number">15.3</span> Graph WaveNet</a>
+  <ul>
+  <li><a href="#contributions" id="toc-contributions" class="nav-link" data-scroll-target="#contributions"><span class="header-section-number">15.3.1</span> Contributions</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods"><span class="header-section-number">15.3.2</span> Methods</a></li>
+  <li><a href="#experiments-and-evaluation" id="toc-experiments-and-evaluation" class="nav-link" data-scroll-target="#experiments-and-evaluation"><span class="header-section-number">15.3.3</span> Experiments and Evaluation</a></li>
+  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><span class="header-section-number">15.3.4</span> Questions</a></li>
+  <li><a href="#ideas" id="toc-ideas" class="nav-link" data-scroll-target="#ideas"><span class="header-section-number">15.3.5</span> Ideas</a></li>
+  </ul></li>
+  <li><a href="#st-ssl" id="toc-st-ssl" class="nav-link" data-scroll-target="#st-ssl"><span class="header-section-number">15.4</span> ST-SSL</a></li>
+  <li><a href="#stpgcn" id="toc-stpgcn" class="nav-link" data-scroll-target="#stpgcn"><span class="header-section-number">15.5</span> STPGCN</a>
+  <ul>
+  <li><a href="#contributions-1" id="toc-contributions-1" class="nav-link" data-scroll-target="#contributions-1"><span class="header-section-number">15.5.1</span> Contributions</a></li>
+  <li><a href="#methods-1" id="toc-methods-1" class="nav-link" data-scroll-target="#methods-1"><span class="header-section-number">15.5.2</span> Methods</a></li>
+  <li><a href="#evaluation" id="toc-evaluation" class="nav-link" data-scroll-target="#evaluation"><span class="header-section-number">15.5.3</span> Evaluation</a></li>
+  <li><a href="#questions-1" id="toc-questions-1" class="nav-link" data-scroll-target="#questions-1"><span class="header-section-number">15.5.4</span> Questions</a></li>
+  </ul></li>
+  <li><a href="#trajectory-based-traffic-forecasting" id="toc-trajectory-based-traffic-forecasting" class="nav-link" data-scroll-target="#trajectory-based-traffic-forecasting"><span class="header-section-number">16</span> Trajectory-Based Traffic Forecasting</a>
+  <ul>
+  <li><a href="#t-wave" id="toc-t-wave" class="nav-link" data-scroll-target="#t-wave"><span class="header-section-number">16.1</span> T-Wave</a>
+  <ul>
+  <li><a href="#contributions-2" id="toc-contributions-2" class="nav-link" data-scroll-target="#contributions-2"><span class="header-section-number">16.1.1</span> Contributions</a></li>
+  <li><a href="#methods-2" id="toc-methods-2" class="nav-link" data-scroll-target="#methods-2"><span class="header-section-number">16.1.2</span> Methods</a></li>
+  <li><a href="#experiments" id="toc-experiments" class="nav-link" data-scroll-target="#experiments"><span class="header-section-number">16.1.3</span> Experiments</a></li>
+  <li><a href="#questions-2" id="toc-questions-2" class="nav-link" data-scroll-target="#questions-2"><span class="header-section-number">16.1.4</span> Questions</a></li>
+  </ul></li>
+  <li><a href="#ma2gcn" id="toc-ma2gcn" class="nav-link" data-scroll-target="#ma2gcn"><span class="header-section-number">16.2</span> MA2GCN</a>
+  <ul>
+  <li><a href="#contributions-3" id="toc-contributions-3" class="nav-link" data-scroll-target="#contributions-3"><span class="header-section-number">16.2.1</span> Contributions</a></li>
+  <li><a href="#methods-3" id="toc-methods-3" class="nav-link" data-scroll-target="#methods-3"><span class="header-section-number">16.2.2</span> Methods</a></li>
+  <li><a href="#experiments-evaluation" id="toc-experiments-evaluation" class="nav-link" data-scroll-target="#experiments-evaluation"><span class="header-section-number">16.2.3</span> Experiments / Evaluation</a></li>
+  <li><a href="#questions-3" id="toc-questions-3" class="nav-link" data-scroll-target="#questions-3"><span class="header-section-number">16.2.4</span> Questions</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -315,13 +366,276 @@ div.csl-indent {
 
 </header>
 
-<section id="attention-based-spatial-temporal-graph-convolutional-networks-for-traffic-flow-forecasting" class="level2" data-number="15.1">
-<h2 data-number="15.1" class="anchored" data-anchor-id="attention-based-spatial-temporal-graph-convolutional-networks-for-traffic-flow-forecasting"><span class="header-section-number">15.1</span> Attention Based Spatial-Temporal Graph Convolutional Networks for Traffic Flow Forecasting</h2>
+<section id="sec-stgcn" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="sec-stgcn"><span class="header-section-number">15.1</span> Spatio-Temporal Graph Convolutional Networks (STGCN)</h2>
+<blockquote class="blockquote">
+<p>These notes refer to the conference publication <span class="citation" data-cites="yu2018etal">B. Yu (<a href="references.html#ref-yu2018etal" role="doc-biblioref">2018</a>)</span> code implementation is provided at <a href="https://github.com/hazdzz/STGCN">github.com</a></p>
+</blockquote>
+<section id="graph-convolutions" class="level3" data-number="15.1.1">
+<h3 data-number="15.1.1" class="anchored" data-anchor-id="graph-convolutions"><span class="header-section-number">15.1.1</span> Graph Convolutions</h3>
+<p>Similar to ASTGCN presented in <a href="#sec-astgcn"><span>Section&nbsp;15.2</span></a>, STGCN utilizes graph convolutions and temporal convolutions in order to compute spatial correlations in the graph data representations.</p>
+<p>The graph convolution operator, “<span class="math inline">*_{\mathcal{g}}</span>” is used for identifying the spatial correlations in the data:</p>
+<p><span class="math display">
+\Theta *_{g} x = \Theta(L)x = \Theta(U \Delta U^{T})x = U\Theta(\Delta)U^{T}x
+</span></p>
+<p>Again, the graph Fourier basis <span class="math inline">U \in \mathbb{R}^{n\times n}</span> is used in order to transform the computation space of the convolution to the spectral space. This Fourier basis is the matrix of eigenvectors of the <em>normalized graph Laplacian</em> <span class="math inline">L</span>. See <a href="https://www.d.umn.edu/~dfroncek/MCCCC_2018/abstracts/Butler_slides.pdf">this lecture</a> on the normalized Laplacian matrix for more information …</p>
+<p><span class="math display">
+L = I_{n} - D^{-\frac{1}{2}}WD^{-\frac{1}{2}}
+</span></p>
+<section id="the-normalized-laplacian" class="level4" data-number="15.1.1.1">
+<h4 data-number="15.1.1.1" class="anchored" data-anchor-id="the-normalized-laplacian"><span class="header-section-number">15.1.1.1</span> The Normalized Laplacian</h4>
+<blockquote class="blockquote">
+<p><a href="https://www.d.umn.edu/~dfroncek/MCCCC_2018/abstracts/Butler_slides.pdf">The normalized laplacian</a></p>
+</blockquote>
+<p><strong>Important Definitions</strong>:</p>
+<ul>
+<li>multiset: a generalization of the concept of a set. Unlike a set which allows for only one instance of each of its elements, a multiset may contain multiple instances of the same element. The number of times a given element appears in the multiset is known as its <em>multiplicity</em>. As with normal sets, the order of elements is not relevant.
+<ul>
+<li>cardinality: the sum of multiplicities for all elements (number of items)</li>
+</ul></li>
+</ul>
+<p><strong>Spectral Graph Theory</strong></p>
+<ul>
+<li>What are the relationships between the structure of a given graph and the eigenvalues of a matrix associated with the graph?
+<ul>
+<li>Ajacency matrix: indicates which vertices are adjacent. Eigenvalues can count closed walks, so can count edges and test bipartite-ness</li>
+<li>Laplacian <span class="math inline">L=D-A</span>: positive semi-definite. Eigenvalues can count edges and number of components</li>
+<li>Signless Laplacian <span class="math inline">Q = D + A</span>: unsigned incidence matrix, positive semi-definite. Eigenvalues can count edges and number of bipartite components</li>
+<li><strong>Normalized Laplacian</strong> <span class="math inline">\mathcal{L} = D^{-1/2}(D-A)D^{-1/2}</span>: normalizes the Laplacian matrix, and is tied to the probability transition matrix
+<ul>
+<li>eigenvalues <span class="math inline">\in [0,2]</span></li>
+<li>multiplicity of 0 is number of components</li>
+<li>multiplicity of 2 is number of bipartite components</li>
+<li>tests for bipartite-ness</li>
+<li>cannot always detect number of edges</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>Normalizing matrices is useful.</p>
+</section>
+</section>
+<section id="network-architecture" class="level3" data-number="15.1.2">
+<h3 data-number="15.1.2" class="anchored" data-anchor-id="network-architecture"><span class="header-section-number">15.1.2</span> Network Architecture</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="v2x/imgs/stgcn.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">STGCN Network Architecture Diagram</figcaption>
+</figure>
+</div>
+<p><strong>Components</strong>:</p>
+<ul>
+<li>two spatio-temporal convolutional blocks (ST-Conv Blocks) and FC output layer <span class="math inline">\rightarrow \hat{V}</span>
+<ul>
+<li>residual connections and bottlenecks are applied within each block</li>
+<li>ST-Conv Blocks contain
+<ul>
+<li><em>one</em> spatial graph convolution layer (in the middle)</li>
+<li><em>two</em> temporal gated convolution layers</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><strong>Graph CNNs for Extracting Spatial Features</strong></p>
+<p>Because the kernel computation <span class="math inline">\Theta</span> in the graph convolution can be expensive due to <span class="math inline">O(n^{2})</span> multiplications with grpah Fourier basis, approximation strategies are utilized:</p>
+<ol type="1">
+<li>Chebyshev polynomial approximation</li>
+<li>1st-order approximation</li>
+</ol>
+<!-- **Chebyshev Polynomial Approximations**
+
+The kernel $\Theta$ can be restricted to a polynomial $\Lambda$ as
+$\Theta(\Lambda) = \sum_{k=0}^{K-1}\theta_{k}\Lambda^{k}$ where 
+$\theta \in \mathbb{R}^{K}$ is a vector of polynomial coefficients. 
+
+$K$ is the kernel size of graph convolution - determines the maximum 
+radius of the convolution from central ndoes.  -->
+<!--backup writeups for STGCN - port to the 
+    project library when back at school, and the 
+    server is available again-->
+<!-- ## STGCN 
+
+> Notes are based on "Spatio-Temporal Graph Convolutional Networks: A 
+  Deep Learning Framework for Traffic Forecasting" published by 
+  B. Yu et al. (2018) -->
+</section>
+<section id="graph-convolution-approximations" class="level3" data-number="15.1.3">
+<h3 data-number="15.1.3" class="anchored" data-anchor-id="graph-convolution-approximations"><span class="header-section-number">15.1.3</span> Graph Convolution Approximations</h3>
+<p><strong>Chebyshev Polynomials Approximation</strong></p>
+<ul>
+<li>chebyshev polynomials are used in order to reduce the numebr of parameters required by the kernel <span class="math inline">\Theta</span>.</li>
+<li>Chebyshev polynomials usually approximate kernels as truncated expansion of order <span class="math inline">K-1</span> <span class="math display">\Theta(\Delta) = \sum_{k=0}^{K-1}\theta_{k}T_{k}(\tilde{\Delta})</span>
+<ul>
+<li><span class="math inline">\tilde{\Delta} = 2\Delta/\lambda_{max} - I_{n}</span></li>
+<li><span class="math inline">\lambda_{max}</span> is the greatest eigenvalue of the Laplacian matrix</li>
+</ul></li>
+<li>Mathematical formulation for the graph convolution: <span class="math display">\Theta *_{g} x \sim \sum_{k=0}^{K-1}\theta_{k}T_{k}(\tilde{L})x</span>
+<ul>
+<li><span class="math inline">T_{k}(\tilde{L}) \in \mathbb{R}^{n \times n}</span> - <span class="math inline">k\text{th}</span> order Chebyshev polynomial, evaluated at the scaled laplacian, <span class="math inline">\tilde{L}</span></li>
+</ul></li>
+</ul>
+<p><em>First Order Chebyshev Approximations</em></p>
+<ul>
+<li>first order approximation is used</li>
+<li>allows for a deeper architecture to be used
+<ul>
+<li>not restricted to a specific parameterization by the polynomials</li>
+</ul></li>
+<li>scaling / normalization in Neural Networks ensure <span class="math inline">\lambda_{max} \sim 2</span></li>
+<li>assumptions simplify the graph convolution operation: <span class="math display">\Theta *_{g}x \sim \theta_{0}x - \theta_{1}(D^{-1/2}WD^{-1/2})x</span>
+<ul>
+<li><span class="math inline">\theta_{0}</span> and <span class="math inline">\theta_{1}</span> - shared parameters of the kernel</li>
+<li><span class="math inline">W</span> and <span class="math inline">D</span> are also renormalized</li>
+<li>What does the <span class="math inline">D</span> matrix indicate?</li>
+</ul></li>
+</ul>
+</section>
+<section id="gated-cnns---temporal-feature-extraction" class="level3" data-number="15.1.4">
+<h3 data-number="15.1.4" class="anchored" data-anchor-id="gated-cnns---temporal-feature-extraction"><span class="header-section-number">15.1.4</span> Gated CNNs - temporal feature extraction</h3>
+<ul>
+<li>prior art uses RNNs (RNN-based models)</li>
+<li>RNNs have several critical limitations:
+<ul>
+<li>time-consuming iterations</li>
+<li>slow response to dynamic changes</li>
+<li>complext gate mechanisms</li>
+</ul></li>
+<li>convolutional structures employed in entirety on time axis to capture temporal behaviors of traffic flows
+<ul>
+<li>convolutions are faster for training</li>
+<li>allows for forming hierarchical representations</li>
+</ul></li>
+<li>each node of the graph, <span class="math inline">g</span>, temporal convolutions explore <span class="math inline">K_{t}</span> neighbors without padding
+<ul>
+<li>reduces length of sequences by <span class="math inline">K_{t} - 1</span> each time
+<ul>
+<li>I don’t have any idea what this means though …</li>
+</ul></li>
+<li>inputs to temporal convolutions - length- <span class="math inline">m</span> sequences with <span class="math inline">C_{i}</span> channels, <span class="math inline">Y \in \mathbb{R}^{m \times C_{i}}</span></li>
+</ul></li>
+<li>Definition of gated temporal convolution: <span class="math display">\Gamma *_{\tau} Y = P \odot \sigma(Q) \in
+  \mathbb{R}^{M - K_{t} + 1} \times C_{0}</span>
+<ul>
+<li>is generalizable to the 3D convolution</li>
+</ul></li>
+</ul>
+</section>
+<section id="spatio-temporal-convolutional-block" class="level3" data-number="15.1.5">
+<h3 data-number="15.1.5" class="anchored" data-anchor-id="spatio-temporal-convolutional-block"><span class="header-section-number">15.1.5</span> Spatio-Temporal Convolutional Block</h3>
+<ul>
+<li>(spatial) graph convolutions are combined with gated (temporal) convolutions
+<ul>
+<li>temporal -&gt; spatial -&gt; temporal</li>
+<li>residual connections applied for improved training / avoid overfitting</li>
+<li>layer normalization used to prevent overfitting too</li>
+</ul></li>
+<li>General expression: <span class="math display">v^{l+1} = \Gamma^{l}_{1} *_{\tau} \text{ReLU}(\Theta^{l}
+  *_{g}(\Gamma_{0}^{l} *_{\tau} v^{l}))</span>
+<ul>
+<li><span class="math inline">\Gamma_{0}^{l}</span> - upper temporal kernel in block <span class="math inline">l</span></li>
+<li><span class="math inline">\Gamma_{1}^{l}</span> - lower temporal kernel in block <span class="math inline">l</span></li>
+<li><span class="math inline">\Theta^{l}</span> - spectral kernel of graph convolution</li>
+</ul></li>
+<li>full structure:
+<ul>
+<li>2 ST-Conv Blocks</li>
+<li>1 Temporal Convolution</li>
+<li>Fully connected layer to outputs</li>
+</ul></li>
+</ul>
+</section>
+<section id="prediction-task" class="level3" data-number="15.1.6">
+<h3 data-number="15.1.6" class="anchored" data-anchor-id="prediction-task"><span class="header-section-number">15.1.6</span> Prediction Task</h3>
+<ul>
+<li>goal - predict speeds of cars for each of <span class="math inline">n</span> nodes</li>
+<li>loss - L2 loss function</li>
+</ul>
+</section>
+<section id="experimental-evaluation-study" class="level3" data-number="15.1.7">
+<h3 data-number="15.1.7" class="anchored" data-anchor-id="experimental-evaluation-study"><span class="header-section-number">15.1.7</span> Experimental Evaluation / Study</h3>
+<p><strong>Datasets</strong></p>
+<p>datasets contain key info of traffic observations / geographic information with corresponding timestamps</p>
+<ul>
+<li>BJER4 - Beijing Municipal Trafic Commission</li>
+<li>PeMSD7 - California Department of Transportation</li>
+</ul>
+<p><strong>Data Cleaning</strong></p>
+<ul>
+<li>linear interpolation used for imputation</li>
+<li>data inputs normalized (z-score method)</li>
+</ul>
+<p><strong>Data Formatting</strong></p>
+<ul>
+<li>separate methods are utilized in order to convert traffic data into the proper format for graph network analysis.</li>
+</ul>
+</section>
+<section id="topic-study-shortlist" class="level3" data-number="15.1.8">
+<h3 data-number="15.1.8" class="anchored" data-anchor-id="topic-study-shortlist"><span class="header-section-number">15.1.8</span> Topic Study Shortlist</h3>
+<ul>
+<li>gated sequential convolutions
+<ul>
+<li>what does it mean for these convs. to be gated? [DONE]</li>
+</ul></li>
+<li>what are chebyshev polynomials and how are they used to approximate convolutions?</li>
+<li>what are first-order approximations of the graph laplacian (see page 3 of STGCN paper) - kipf and welling 2016<br>
+</li>
+<li>what does it mean for graph convolutions to be stacked vertically as opposed to being computed horizontally like traditional convolution operations</li>
+<li>what are gated linear units? (GLU) for non-linearity</li>
+<li>waht is linear interpolation imputation?</li>
+</ul>
+<p>actually, understanding the theory behind these mechanisms is not especially relevant for my work. I simply need to know what the approximation is that they used for their computations. i.e.&nbsp;- we need to know the results, not how they were obtained.</p>
+</section>
+<section id="what-are-gated-convolutions" class="level3" data-number="15.1.9">
+<h3 data-number="15.1.9" class="anchored" data-anchor-id="what-are-gated-convolutions"><span class="header-section-number">15.1.9</span> What are Gated Convolutions?</h3>
+<blockquote class="blockquote">
+<p>Notes based on article from <a href="https://serp.ai/gated-convolution/#:~:text=Gated%20Convolution%20is%20a%20type%20of%20convolution%20that,to%20help%20preserve%20long-term%20dependencies%20and%20improve%20interpretability.">serp.ai</a></p>
+</blockquote>
+<ul>
+<li>Gated Convolutions - specific type of convolution that include a <em>gating mechanism</em></li>
+<li>a sigmoid activation function determines which part of the input should be passed to the output and which parts should be “gated” or suppressed</li>
+</ul>
+<p><strong>Process</strong></p>
+<ul>
+<li>input is convolved with a filter (like a regular convolution)</li>
+<li>before the result is generated, the input (after convolving) is passed through the gating mechanism
+<ul>
+<li>sigmoid activation determines the part of the input are passed to the output, and which are suppressed (hence gated)</li>
+<li>use zero-padding - ensure output only depends on past inputs and doesn’t depend upon future inputs.</li>
+</ul></li>
+<li>this strategy might imporove interpretability - it may be easier to understand why certain predictions are made based on the results of the gating mechanism</li>
+<li>no activation is further applied after the gating mechanism has run</li>
+</ul>
+<p><strong>Gated Convolutions in STGCN</strong></p>
+<ul>
+<li>Gated convolutions used in the Temporal Convolution Layer</li>
+<li>when the activation function (gating mechanism) is the “GLU”, the following formula is used: $$(x_{p} + x_{in}) (x_{q})</li>
+</ul>
+</section>
+<section id="approximated-convolutions-chebyshev-polynomial-approximations" class="level3" data-number="15.1.10">
+<h3 data-number="15.1.10" class="anchored" data-anchor-id="approximated-convolutions-chebyshev-polynomial-approximations"><span class="header-section-number">15.1.10</span> Approximated Convolutions (Chebyshev Polynomial Approximations)</h3>
+<blockquote class="blockquote">
+<p>Notes based on the youtube video <a href="https://www.youtube.com/watch?v=4P4Ufumu9ms">Convolutions and Polynomial Approximation</a> by kieransquared</p>
+</blockquote>
+<ul>
+<li>Approximations - finding a sequence of polynomials, <span class="math inline">P_{1}, P_{2}, P_{3}</span> such that <span class="math inline">P_{n}</span> converges to <span class="math inline">f</span></li>
+<li><a href="https://arxiv.org/pdf/1609.08072">An introduction to spectral graph theory</a></li>
+<li>spectral graph theory is based on the idea that specific properties of a given graph can be extracted from the eigenvalues, or approximate eigenvalues of a given adjacency or laplacian matrix representation of a graph.</li>
+</ul>
+</section>
+<section id="what-is-linear-interpolation" class="level3" data-number="15.1.11">
+<h3 data-number="15.1.11" class="anchored" data-anchor-id="what-is-linear-interpolation"><span class="header-section-number">15.1.11</span> What is linear interpolation?</h3>
+<ul>
+<li>imputation method which assumes a linear relationship between missing and non-missing values.</li>
+<li>Assume you have three points, <span class="math inline">A, B</span>, and <span class="math inline">X</span> with features <span class="math inline">a</span> and <span class="math inline">b</span> (all have the same features). for <span class="math inline">A</span> and <span class="math inline">B</span>, the value of <span class="math inline">a</span> and <span class="math inline">b</span> are known, but for <span class="math inline">X</span>, only the value of <span class="math inline">a</span> is known. in this case, the missing value is calculated as the line between <span class="math inline">A</span> and <span class="math inline">B</span>, say <span class="math inline">f(x)</span>, such that <span class="math inline">f(x) = \frac{A_{b} - B_{b}}{A_{a} - B_{a}}x + c</span> and <span class="math inline">c</span> is some constant (intercept or bias). Then, <span class="math inline">X_{b}</span> is approximated by <span class="math inline">f(X_{a}) \sim X_{b}</span></li>
+<li>Alternatively, some more specific linear interpolation polynomial can be specified.</li>
+</ul>
+</section>
+</section>
+<section id="sec-astgcn" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="sec-astgcn"><span class="header-section-number">15.2</span> Attention Based Spatial-Temporal Graph Convolutional Networks for Traffic Flow Forecasting</h2>
 <blockquote class="blockquote">
 <p>In this paper, <span class="citation" data-cites="guo2019etal">S. Guo (<a href="references.html#ref-guo2019etal" role="doc-biblioref">2019</a>)</span> proposed a method for traffic flow prediction which utilized an <strong>attention based spatial-temporal graph convolutional network</strong>. They aimed to model several time-dependencies: (1) recent, (2) daily-periodic, and (3) weekly-periodic dependencies. The <em>attention mechanism</em> captures spatial-temporal patterns in the traffic data and the <em>spatial-temporal convolution</em> is used to capture spatial patterns while <em>standard convolutions</em> describe temporal features.</p>
 </blockquote>
-<section id="core-contributions-of-astgcn" class="level3" data-number="15.1.1">
-<h3 data-number="15.1.1" class="anchored" data-anchor-id="core-contributions-of-astgcn"><span class="header-section-number">15.1.1</span> Core Contributions of ASTGCN</h3>
+<section id="core-contributions-of-astgcn" class="level3" data-number="15.2.1">
+<h3 data-number="15.2.1" class="anchored" data-anchor-id="core-contributions-of-astgcn"><span class="header-section-number">15.2.1</span> Core Contributions of ASTGCN</h3>
 <p>Difficulties of the traffic forecasting problem</p>
 <ul>
 <li>it is difficult to handle unstable and nonlinear data</li>
@@ -369,8 +683,8 @@ div.csl-indent {
 </ul></li>
 </ul>
 </section>
-<section id="primitives" class="level3" data-number="15.1.2">
-<h3 data-number="15.1.2" class="anchored" data-anchor-id="primitives"><span class="header-section-number">15.1.2</span> Primitives</h3>
+<section id="primitives" class="level3" data-number="15.2.2">
+<h3 data-number="15.2.2" class="anchored" data-anchor-id="primitives"><span class="header-section-number">15.2.2</span> Primitives</h3>
 <p>Traffic networks are defined as undirected graphs <span class="math inline">G=(V,E,A)</span></p>
 <ul>
 <li>$V = $ set of <span class="math inline">|V| = N</span> nodes</li>
@@ -382,8 +696,8 @@ div.csl-indent {
 </ul></li>
 </ul>
 </section>
-<section id="problem-setting" class="level3" data-number="15.1.3">
-<h3 data-number="15.1.3" class="anchored" data-anchor-id="problem-setting"><span class="header-section-number">15.1.3</span> Problem Setting</h3>
+<section id="problem-setting" class="level3" data-number="15.2.3">
+<h3 data-number="15.2.3" class="anchored" data-anchor-id="problem-setting"><span class="header-section-number">15.2.3</span> Problem Setting</h3>
 <p>Traffic flow forecasting is formally defined as follows:</p>
 <ul>
 <li>Suppose <span class="math inline">F</span> time series (states) are recorded for a traffic flow sequence
@@ -396,10 +710,10 @@ div.csl-indent {
 </ul></li>
 </ul>
 </section>
-<section id="the-astgcn-model-framework" class="level3" data-number="15.1.4">
-<h3 data-number="15.1.4" class="anchored" data-anchor-id="the-astgcn-model-framework"><span class="header-section-number">15.1.4</span> The ASTGCN Model Framework</h3>
+<section id="the-astgcn-model-framework" class="level3" data-number="15.2.4">
+<h3 data-number="15.2.4" class="anchored" data-anchor-id="the-astgcn-model-framework"><span class="header-section-number">15.2.4</span> The ASTGCN Model Framework</h3>
 <p>There are three independent componetns to the ASTGCN framework. Each, respectively, is designed for modeling (1) the recent, (2) daily-periodic, and (3) weekly-periodic dependencies of the historical data.</p>
-<p>!(The ASTGCN Framework)<span data-fig-align="center">imgs/astgcn.png</span></p>
+<p>!(The ASTGCN Framework)<span data-fig-align="center">v2x/imgs/astgcn.png</span></p>
 <p>Each of the three time segments are grouped into segments of size <span class="math inline">T_{h}</span>, <span class="math inline">T_{d}</span>, and <span class="math inline">T_{w}</span> respectively</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -426,13 +740,309 @@ div.csl-indent {
   &amp; X_{t_{0} - 7\cdot (1)\cdot q + 1},\dots,X_{t_{0} - 7 \cdot (1) q + T_{p}})
 \end{align*}</span></p></li>
 </ul>
+<blockquote class="blockquote">
+<p>NOTE: Although the ASTGCN models and such can be used through PyTorch geometric (library) The original publication and repository includes support for the standard pytorch functions which may be more straightforward to convert into a CrypTen (CrypTensor) model.</p>
+</blockquote>
+</section>
+<section id="things-i-dont-understand" class="level3" data-number="15.2.5">
+<h3 data-number="15.2.5" class="anchored" data-anchor-id="things-i-dont-understand"><span class="header-section-number">15.2.5</span> Things I don’t Understand …</h3>
+<ol type="1">
+<li>what is the hadammard product?
+<ol type="1">
+<li>the hadamard product is simply the element-wise matrix multiplication of two matrices</li>
+</ol></li>
+<li>what does it mean to transform the graph convolution setting into the spectral basis, and why is the fourier transform needed to do this? Is it even important for me to answer this question given the setting of the paper itself?
+<ol type="1">
+<li>Probably not important. We will need to understand this theory when doing the writeups, for write now, we just need to know the actual polynomial functions used so we can implement them securely.</li>
+</ol></li>
+</ol>
+</section>
+</section>
+<section id="graph-wavenet" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="graph-wavenet"><span class="header-section-number">15.3</span> Graph WaveNet</h2>
+<blockquote class="blockquote">
+<p>Notes for <em>Graph WaveNet for Deep Spatial-Temporal Graph Modeling</em> <span class="citation" data-cites="wu2019etal">Z. Wu (<a href="references.html#ref-wu2019etal" role="doc-biblioref">2019</a>)</span></p>
+</blockquote>
+<section id="contributions" class="level3" data-number="15.3.1">
+<h3 data-number="15.3.1" class="anchored" data-anchor-id="contributions"><span class="header-section-number">15.3.1</span> Contributions</h3>
+<ul>
+<li>Methodology uses a stacked dilated 1D convolution in order to get better temporal representations - longer range time series sequences can be processed effectively</li>
+<li>Automatically learns new graph structures - showing hidden spatial dependencies using a “self-adaptive adjacency matrix”</li>
+<li><a href="https://github.com/nnzhan/Graph-WaveNet/tree/master">open source git repository</a></li>
+</ul>
+</section>
+<section id="methods" class="level3" data-number="15.3.2">
+<h3 data-number="15.3.2" class="anchored" data-anchor-id="methods"><span class="header-section-number">15.3.2</span> Methods</h3>
+<ul>
+<li>Use a graph convolution layer:
+<ul>
+<li>incorporates graph signal diffusion with <span class="math inline">K</span> finite steps</li>
+<li>also utilize an adaptive adjacency parameter with learnable embedding parameter dictionaries for nodes in the graph</li>
+</ul></li>
+<li>Temporal Convolution Layer:
+<ul>
+<li>uses gating mechanisms and dilated causal convolution networks for handling long sequences</li>
+<li>allows for increased receptive field size (expands range while requiring less depth for the network)</li>
+<li>gated TCN layers are stacked in order to improve handling of spatial dependencies at different temporal levels.</li>
+</ul></li>
+</ul>
+</section>
+<section id="experiments-and-evaluation" class="level3" data-number="15.3.3">
+<h3 data-number="15.3.3" class="anchored" data-anchor-id="experiments-and-evaluation"><span class="header-section-number">15.3.3</span> Experiments and Evaluation</h3>
+<ul>
+<li>experiments conducted on the METR-LA and PEMS-BAY datasets</li>
+<li>baselines
+<ul>
+<li>ARIMA - auto-regressive integrated moving average with Kalman filter</li>
+<li>FC-LSTM - RNN with fully connected LSTM hidden units</li>
+<li>WaveNet - Conv net for sequence data</li>
+<li>DCRNN - diffusion conv recurrent neural nets - combine graph convs. with RNNs in encoder-decoder manner</li>
+<li>GGRU - graph gated recurrent unit network (attention mechanisms used in graph conv.)</li>
+<li>STGCN - spatial-temporal graph convolution network</li>
+</ul></li>
+</ul>
+</section>
+<section id="questions" class="level3" data-number="15.3.4">
+<h3 data-number="15.3.4" class="anchored" data-anchor-id="questions"><span class="header-section-number">15.3.4</span> Questions</h3>
+<ul>
+<li>what is an adaptive dependency matrix (as it relates to the learning of the model?)
+<ul>
+<li><em>receptive field</em> - region of the input image that is used to compute the output of a particular neuron in the feature map. The receptive field is important because it determines the context or the information that the neuron has access to when making a prediction - see <a href="https://medium.com/@rekalantar/receptive-fields-in-deep-convolutional-networks-43871d2ef2e9#:~:text=The%20receptive%20field%20of%20a%20convolutional%20layer%20in,neuron%20has%20access%20to%20when%20making%20a%20prediction.">medium.com</a></li>
+</ul></li>
+<li>what is the receptive field of a convolution?</li>
+<li>What are “stacked dilated 1D convolutions”? See <a href="https://arxiv.org/abs/1609.03499">WaveNet</a> for more information on this topic
+<ul>
+<li><p><em>dilated convolutions</em> - dilated convolutions perform convolutions, but add zeros between the elements of the filter. This expands the receptive field of a given computation by expanding the region of the input covered by a given convolution, but doesn’t increase the number of parameters required to obtain the output. A nice image of this can be seen below:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="v2x/imgs/dilated_conv.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Dilated Convolution Representation</figcaption>
+</figure>
+</div></li>
+</ul></li>
+<li>What does it mean for the adjacency matrix representation of the graph to be “self-adaptive”, and learnable?</li>
+<li>Why is a node’s representation called a node’s “signal” in this work?</li>
+<li>what is a transition matrix?
+<ul>
+<li>I believe this idea originates from this paper: <a href="https://arxiv.org/pdf/1511.02136">DCNNs</a></li>
+</ul></li>
+<li>What is a power series, and how is it applied to a transition matrix?</li>
+<li>What is a TCN layer, let alone a “Gated TCN”? (does this just mean gated temporal convolution?)</li>
+<li>What are gating mechanisms in RNNs, and what are they used for?</li>
+<li>How are graph network structures constructed from the data? See the experimental setup section for more information.</li>
+<li>What is all of this forward-backward adaptive adjacency matrix learning stuff they mention?
+<ul>
+<li>do they train the graph representation of the traffic flow data separately from the actual graph modeling?</li>
+</ul></li>
+</ul>
+</section>
+<section id="ideas" class="level3" data-number="15.3.5">
+<h3 data-number="15.3.5" class="anchored" data-anchor-id="ideas"><span class="header-section-number">15.3.5</span> Ideas</h3>
+<ul>
+<li>integrate alternative gated TCN functions <span class="math inline">g(\cdot)</span> in order to compare performance in the secure setting. How can this be used as part of a discussion on theory? Is ther even enough time to do this in the project?</li>
+<li>compare the performance of spatio-temporal graph networks along different axes …</li>
+<li>comparative analysis for grpah models - accuracy (MAE/MAPE/RMSE) tradeoffs and running time comparisons (especially for a secure implementation)</li>
+</ul>
+</section>
+</section>
+<section id="st-ssl" class="level2" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="st-ssl"><span class="header-section-number">15.4</span> ST-SSL</h2>
+<blockquote class="blockquote">
+<p>Use this as a benchmark for everything else. We want to figure out what were the other top models to evaluate. This paper is very recent, and it comes out of a top conference (AAAI)</p>
+</blockquote>
+</section>
+<section id="stpgcn" class="level2" data-number="15.5">
+<h2 data-number="15.5" class="anchored" data-anchor-id="stpgcn"><span class="header-section-number">15.5</span> STPGCN</h2>
+<blockquote class="blockquote">
+<p><a href="https://github.com/yijizhao/STPGCN/tree/main">PyTorch repository for this model</a> The Notes from this section are based on the paper: “Spatial-Temporal Position-Aware Graph Convolution Networks for Traffic Flow Forecasting” <span class="citation" data-cites="zhao2023etal">Y. Zhao (<a href="references.html#ref-zhao2023etal" role="doc-biblioref">2023</a>)</span></p>
+</blockquote>
+<section id="contributions-1" class="level3" data-number="15.5.1">
+<h3 data-number="15.5.1" class="anchored" data-anchor-id="contributions-1"><span class="header-section-number">15.5.1</span> Contributions</h3>
+<ul>
+<li>introduce a spatial-temporal graph representation - models (1) spatial, (2) temporal, and (3) joint spatial-temporal correlations</li>
+<li>develop a position embedding module - encodes spatial-temporal position factors and relation inference module - learn dynamic spatial temporal edge weights</li>
+<li>the authors try to incorporate node-specific patterns and information (from historical data) to improve prediction accuracy at each node. They propose a graph operator, <code>STPGConv</code> for this purpose, as it captures a wide range of spatial, temporal, and joint spatial-temporal correlations</li>
+<li>the network computes spatial-temporal relations in using a pure graph convolution approach. no external temporal components are required, which improves overall efficiency (at least according to their experimental results)</li>
+<li>design an <span class="math inline">L</span>-layer network based on the <code>STPGConv</code> operation
+<ul>
+<li>includes skip connections</li>
+<li>gated selection modules</li>
+<li>these additions help to overcome problem of vanishing gradient and <em>feature over-smoothing</em></li>
+</ul></li>
+<li>concatenate features generated by multiple network layers to get an MLP predictor that directly predicts multi-step traffic flows</li>
+<li>typical layer count is <span class="math inline">L=3</span>. possesses fewer parameters, is computationally efficient</li>
+</ul>
+</section>
+<section id="methods-1" class="level3" data-number="15.5.2">
+<h3 data-number="15.5.2" class="anchored" data-anchor-id="methods-1"><span class="header-section-number">15.5.2</span> Methods</h3>
+<p>Zhao et al.&nbsp;propose a novel model and graph convolution architecture for predicting traffic flows based on spatio-temporal information:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="v2x/imgs/stpgcn_architecture.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">The architecture of STPGCN</figcaption>
+</figure>
+</div>
+<p><strong>Step 1: formulate the graph</strong></p>
+<ul>
+<li>the spatio-temporal graph is represented as a series of <span class="math inline">\beta</span> time steps <span class="math inline">t,t-1,\dots,t-\beta</span> where each time step is represented by a graph <span class="math inline">\hat{A} \in \mathbb{R}^{N \times N}</span>.
+<ul>
+<li><p><span class="math inline">\hat{A}</span> is an <span class="math inline">\alpha</span>-hop adjacency matrix of the road network: a picture of these hops can be seen below:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="v2x/imgs/spatio_temp_range.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">spatio-temporal connection range</figcaption>
+</figure>
+</div></li>
+<li><p>each element of <span class="math inline">\hat{A}</span>, the adjacency matrix, is given as follows: <span class="math display">
+\hat{A}_{ij} = \begin{cases}
+  1 &amp; \text{if SDist}(v_{i}, v_{j}) \le \alpha, \\
+  0 &amp; \text{if the shortest path between } v_{i} \text{ and } v_{j} &gt; \alpha
+\end{cases}
+</span> in other words, if the shortest path between any two nodes in the spatial direction is of a distance less than <span class="math inline">\alpha</span>, then there is an <span class="math inline">\alpha</span>-hop edge which connects the two nodes - hence a <span class="math inline">1</span> fills that connection label in the matrix $\hat{AGraph Edge Weights**</p></li>
+</ul></li>
+</ul>
+<p><strong>Step 2: Set edge weights for the unweighted graph</strong></p>
+<ul>
+<li><em>spatial and temporal absolute-position embeddings</em>
+<ul>
+<li>spatial embeddings are defined - represent the absolute position of a given vector <span class="math display">Z^{S} = [z_{1}^{S}, Z_{2}^{S}, \dots, Z_{N}^{S}] \in \mathbb{R}^{N \times d}</span></li>
+<li>temporal embeddings are defined similarly <span class="math display">Z^{S} = [z_{1}^{T}, Z_{2}^{T}, \dots, Z_{N}^{T}] \in \mathbb{R}^{T_{d} \times d}</span> where <span class="math inline">Z_{t}^{T} = z_{m}^{D} + z_{n}^{W}</span>.
+<ul>
+<li><span class="math inline">z_{m}^{D}</span> - the temporal position embedding for the day - <span class="math inline">\{1,2,\dots,T_{d}\}</span></li>
+<li><span class="math inline">z_{n}^{W}</span> - the temporal position embedding for the - <span class="math inline">\{1,2,\dots,7\}</span></li>
+<li>these are summed together to obtain the</li>
+</ul></li>
+</ul></li>
+<li><em>spatial and temporal relative-position embeddings</em></li>
+<li><em>spatial-temporal position-aware relation inference</em></li>
+</ul>
+<p><strong>Step 3: Perform Spatial-Temporal Position-Aware Graph Convolution</strong></p>
+<p><strong>Spatial-Temporal Graph Construction</strong></p>
+<ul>
+<li>Mathematical formulation: <span class="math display">\begin{align*} A_{STP} = \begin{array}{ccccccc} &amp; &amp; t &amp; t-1 &amp; \dots &amp; t - \beta &amp; \\
+  t &amp; [ &amp; \hat{A} &amp; \hat{A} &amp; \dots &amp; \hat{A} &amp; ] \end{array} \\
+  A_{ij} = \begin{cases} 1 &amp; \text{if SDist}(v_{i}, v_{j}) \le \alpha \\
+                         0 &amp; \text{otherwise} \end{cases} \end{align*}</span>
+<ul>
+<li><span class="math inline">\hat{A}_{ij}</span> represents an <span class="math inline">\alpha</span>-hop adjacency matrix of the traffic road network
+<ul>
+<li>this means that connections over <span class="math inline">\alpha</span> edges between nodes are represented in the graph structure.</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><strong>Spatial and Temporal Relative-Position Embedding</strong></p>
+<ul>
+<li>describes the spatial-temporal proximity between different nodes</li>
+<li>helps identify the relative positions between separate nodes</li>
+<li>relative position embeddings are trained to <em>encode distances</em></li>
+<li><span class="math inline">a = SDist()</span> and <span class="math inline">b = TDist()</span>, where <span class="math inline">a=0</span> means two nodes have the same spatial position, and <span class="math inline">b=0</span> means two nodes have the same temporal position (are taken from the same time slice)
+<ul>
+<li>values <span class="math inline">a</span> and <span class="math inline">b</span> are label tokens which have trainable embedding vectors <span class="math inline">z_{a}^{SD}</span> and <span class="math inline">z_{b}^{TD}</span> for each token</li>
+</ul></li>
+</ul>
+<p><strong>Spatial-Temporal Position-Aware Relation Inference</strong></p>
+</section>
+<section id="evaluation" class="level3" data-number="15.5.3">
+<h3 data-number="15.5.3" class="anchored" data-anchor-id="evaluation"><span class="header-section-number">15.5.3</span> Evaluation</h3>
+</section>
+<section id="questions-1" class="level3" data-number="15.5.4">
+<h3 data-number="15.5.4" class="anchored" data-anchor-id="questions-1"><span class="header-section-number">15.5.4</span> Questions</h3>
+<ul>
+<li>I still don’t know what “Gated Activation Units” are</li>
+</ul>
+</section>
+</section>
+<section id="trajectory-based-traffic-forecasting" class="level1" data-number="16">
+<h1 data-number="16"><span class="header-section-number">16</span> Trajectory-Based Traffic Forecasting</h1>
+<section id="t-wave" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="t-wave"><span class="header-section-number">16.1</span> T-Wave</h2>
+<blockquote class="blockquote">
+<p>Notes for T-Wave introduced in <span class="citation" data-cites="hui2021etal">B. Hui (<a href="references.html#ref-hui2021etal" role="doc-biblioref">2021</a>)</span></p>
+</blockquote>
+<section id="contributions-2" class="level3" data-number="16.1.1">
+<h3 data-number="16.1.1" class="anchored" data-anchor-id="contributions-2"><span class="header-section-number">16.1.1</span> Contributions</h3>
+</section>
+<section id="methods-2" class="level3" data-number="16.1.2">
+<h3 data-number="16.1.2" class="anchored" data-anchor-id="methods-2"><span class="header-section-number">16.1.2</span> Methods</h3>
+</section>
+<section id="experiments" class="level3" data-number="16.1.3">
+<h3 data-number="16.1.3" class="anchored" data-anchor-id="experiments"><span class="header-section-number">16.1.3</span> Experiments</h3>
+</section>
+<section id="questions-2" class="level3" data-number="16.1.4">
+<h3 data-number="16.1.4" class="anchored" data-anchor-id="questions-2"><span class="header-section-number">16.1.4</span> Questions</h3>
+<ul>
+<li>How are trajectory sequences / data actually constructed as inputs to the model?</li>
+<li>How can I obtain access to the code for these models?</li>
+<li>How are the traffic segments structured? They utilize the same methods of dilate spatial temporal convolutions as Graph-WaveNet, but use the trajectory data in order to structure the actual graph data. I don’t really understand their representations too well.</li>
+</ul>
+</section>
+</section>
+<section id="ma2gcn" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="ma2gcn"><span class="header-section-number">16.2</span> MA2GCN</h2>
+<blockquote class="blockquote">
+<p>Notes on “MA2GCN: Multi Adjacency Relationship Attention Graph Convolutional Networks for Traffic Prediction Using Trajectory Data” <span class="citation" data-cites="sun2024etal">Z. Sun (<a href="references.html#ref-sun2024etal" role="doc-biblioref">2024</a>)</span></p>
+</blockquote>
+<section id="contributions-3" class="level3" data-number="16.2.1">
+<h3 data-number="16.2.1" class="anchored" data-anchor-id="contributions-3"><span class="header-section-number">16.2.1</span> Contributions</h3>
+<ul>
+<li>authors provide methods for converting trajectory-based datasets for traffic flows prediction into graph networks.</li>
+<li>they also provide code implementations</li>
+<li>their graph constructions consider entry and exit matrices for the different grids they construct.</li>
+<li>Their graph analysis framework is extremely similar to graph wavenet, but their adaptive graph generator is unique:</li>
+<li>multi-adjacency relationship attention?</li>
+</ul>
+</section>
+<section id="methods-3" class="level3" data-number="16.2.2">
+<h3 data-number="16.2.2" class="anchored" data-anchor-id="methods-3"><span class="header-section-number">16.2.2</span> Methods</h3>
+<ul>
+<li>utilizes a multi-adjacency relationship attention module to try and accurately learn the spatial information of the input
+<ul>
+<li>focuses on the more important adjacency matrices which are input?</li>
+<li>how many adjacency matrices are input to the model? shouldn’t there be a single matrix representing the entire graph / range of the data or do they divide the data / area of coverage into separate grids and then input them together? The process used here is not very clear.</li>
+</ul></li>
+</ul>
+</section>
+<section id="experiments-evaluation" class="level3" data-number="16.2.3">
+<h3 data-number="16.2.3" class="anchored" data-anchor-id="experiments-evaluation"><span class="header-section-number">16.2.3</span> Experiments / Evaluation</h3>
+<ul>
+<li>They use the Shanghai taxi GPS trajectory dataset, and convert it into a graph using their novel trajectory-to-graph conversion methods</li>
+<li>they test their graph convolution routines against state-of-the-art methods for these converted graph data.</li>
+<li>they use the same metrics that all of the GCN analysis papers use. I don’t really like their writeups though. I’m souring on this work a bit. It would be better if we could get access to T-Wave, then we could perform some better analysis on a better model potentially.</li>
+</ul>
+</section>
+<section id="questions-3" class="level3" data-number="16.2.4">
+<h3 data-number="16.2.4" class="anchored" data-anchor-id="questions-3"><span class="header-section-number">16.2.4</span> Questions</h3>
+<ul>
+<li>How is the actual conversion performed? I.e., how does the trajectory data look to start, and how is it converted to a graph format.</li>
+<li>What is the <span class="math inline">\tilde{X}</span> matrix they metnion in the adaptive graph generator section?</li>
+<li>what is the notation?
+<ul>
+<li><span class="math inline">P, D, N, C</span> - what do these symbols denote?</li>
+</ul></li>
+</ul>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-hui2021etal" class="csl-entry" role="listitem">
+B. Hui, H. Chen, D. Yan. 2021. <span>“Trajectory WaveNet: A Trajectory-Based Model for Traffic Forecasting.”</span> <em>IEEE International Conference on Data Mining</em>. <a href="https://ieeexplore.ieee.org/document/9679147">https://ieeexplore.ieee.org/document/9679147</a>.
+</div>
+<div id="ref-yu2018etal" class="csl-entry" role="listitem">
+B. Yu, Z. Zhu, H. Yin. 2018. <span>“Spatio-Temporal Graph Convolutional Networks: A Deep Learning Framework for Traffic Forecasting.”</span> <em>IJCAI</em>. <a href="https://doi.org/10.24963/ijcai.2018/505">https://doi.org/10.24963/ijcai.2018/505</a>.
+</div>
 <div id="ref-guo2019etal" class="csl-entry" role="listitem">
 S. Guo, N. Feng, Y. Lin. 2019. <span>“Attention Based Spatial-Temporal Graph Convolutional Networks for Traffic Flow Forecasting.”</span> <em>The Thirty-Third AAAI Conference on Artificial Intelligence</em>. <a href="https://dl.acm.org/doi/pdf/10.1609/aaai.v33i01.3301922">https://dl.acm.org/doi/pdf/10.1609/aaai.v33i01.3301922</a>.
 </div>
+<div id="ref-zhao2023etal" class="csl-entry" role="listitem">
+Y. Zhao, H. Wen, Y. Lin. 2023. <span>“Spatial-Temporal Position-Aware Graph Convolution Networks for Traffic Flow Forecasting.”</span> <em>IEEE Transactions on Intelligent Transportation Systems</em>. <a href="https://ieeexplore.ieee.org/abstract/document/9945663">https://ieeexplore.ieee.org/abstract/document/9945663</a>.
 </div>
+<div id="ref-sun2024etal" class="csl-entry" role="listitem">
+Z. Sun, Y. Ma. 2024. <span>“MA2GCN: Multi Adjacency Relationship Attention Graph Convolutional Networks for Traffic Prediction Using Trajectory Data.”</span> <em>arXiv Preprint</em>. <a href="https://arxiv.org/pdf/2401.08727">https://arxiv.org/pdf/2401.08727</a>.
+</div>
+<div id="ref-wu2019etal" class="csl-entry" role="listitem">
+Z. Wu, G. Long, S. Pan. 2019. <span>“Graph WaveNet for Deep Spatial-Temporal Graph Modeling.”</span> <em>IJCAI</em>. <a href="https://doi.org/10.48550/arXiv.1906.00121">https://doi.org/10.48550/arXiv.1906.00121</a>.
+</div>
+</div>
+</section>
 </section>
 </section>
 

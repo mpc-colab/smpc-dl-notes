@@ -62,7 +62,7 @@ Normalizing matrices is useful.
 
 ### Network Architecture
 
-![STGCN Network Architecture Diagram](imgs/stgcn.png)
+![STGCN Network Architecture Diagram](v2x/imgs/stgcn.png)
 
 **Components**: 
 
@@ -109,7 +109,7 @@ radius of the convolution from central ndoes.  -->
   parameters required by the kernel $\Theta$. 
 + Chebyshev polynomials usually approximate kernels as 
   truncated expansion of order $K-1$ 
-  $$\Theta(\Delta) = \sum_{k=0}^{K-1}\theta_{k}T_{k}(\tilde{\Delta})
+  $$\Theta(\Delta) = \sum_{k=0}^{K-1}\theta_{k}T_{k}(\tilde{\Delta})$$
   + $\tilde{\Delta} = 2\Delta/\lambda_{max} - I_{n}$
   + $\lambda_{max}$ is the greatest eigenvalue of the Laplacian
     matrix
@@ -148,8 +148,8 @@ radius of the convolution from central ndoes.  -->
   + inputs to temporal convolutions - length- $m$ sequences 
     with $C_{i}$ channels, $Y \in \mathbb{R}^{m \times C_{i}}$
 + Definition of gated temporal convolution: 
-  $$\Gamma *_{\tau} Y = P \odot \sigm(Q) \in 
-    \mathbb{R}^{M - K_{t} + 1) \times C_{0}$$ 
+  $$\Gamma *_{\tau} Y = P \odot \sigma(Q) \in 
+    \mathbb{R}^{M - K_{t} + 1} \times C_{0}$$ 
   + is generalizable to the 3D convolution 
 
 ### Spatio-Temporal Convolutional Block
