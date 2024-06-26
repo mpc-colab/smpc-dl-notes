@@ -18,7 +18,102 @@ precise theory of the system. If you are confused about
 the overall architecture, see if they have a picture, 
 and try to break down the individual building blocks separately
 -->
+### Contributions
+
+ST-SSL was designed to address two key limitations of existing 
+methods for traffic flow prediction: 
+
+1. lack of modeling spatial heterogeneity exhibited with *skewed traffic distributions*
+   across different regions
+   + different regions (urban versus residential) can have very different traffic flow 
+     from one another
+   + leads to biasing towards regions with higher traffic volume
+   + prior solutions [Pan et al. 2019b; Bai et al. 2020] required large parameter sizes, 
+     and were computationally expensive - meaning that they were unable to handle 
+     larger datasets
+   + other solutions consider differences across regional traffic distributions, but this
+     requires considerable hand engineering, making it difficult to generalize such 
+     solutions to other problems and datasets. 
+2. Current traffic prediction methods model temporal dynamics using a shared parameter 
+   space for all time periods - does not preserve temporal heterogeneity. 
+   + e.g.) the difference between morning and night, holidays, workdays, etc.
+
+Solutions: 
+
++ spatial-temporal pattern capture: 
+  + ST-SSL is a graph neural network - uses temporal and spatial convolutions for 
+    information aggregation. 
++ Spatial heterogeneity capture: 
+  + self-supervised supervised learning paradigm for augmenting traffic flow 
+    graph (data-level and structure-level) - adapts well to heterogeneous 
+    regions and traffic distributions
++ Temporal heterogeneity: 
+  + auxiliiary self-supervision with clustering 
+  + indicates diverse spatial patterns across regions
+  + ST-SSL maintains dedicated representations of temporal traffic dynamics 
+    with a self-supervised learning paradigm
 
 ### Model Overview and Novelty
 
-![Overview of ST-SSL Architecture](v2x/imgs/stssl_arch.png){fig-align="center"}
+![Overview of ST-SSL Architecture](v2x/imgs/stssl_arch.png){fig-align="center"}{.lightbox}
+
+**Spatio-Temporal Encoder (ST Encoder)**
+
++ jointly preserves the spatio-temporal contextual information over the traffic flow 
+  graph - enables modeling of sequential patterns of traffic data (across different 
+  time steps) and the *geographic correlations among spatial regions*
++ *temporal convolution and graph convolution* is backbone for spatial-temporal relational representation
++ Temporal convolutions: 
+  + 1D causal convolution along the tiem dimension + gated mechanism
+  + $(B_{t-T_{out}},\dots,B_{t}) = TC(X_{t-T},\dots,X_{t})$ - $B_{t}\in \mathbb{R}^{N \times N}$ denotes the 
+    region embedding for $r_{n}$
+  + $D$ - embedding dimensionality
+  + $T_{out}$ - length of embedding sequence after conv. operations in TC encoder
++ Spatial Convolutions:
+  + $E_{t} = SC(B_{t}, A)$
+  + $A$ - region adjancency matrix of $g$
+  + results in refined embeddings $(E_{t - T_{out}},\dots,E_{t})$
++ `STEncoder` has a sandwhich block structure: 
+  + `TC -> SC -> TC`
+  + output: sequence of embedding matrices - $(H_{t-T'},\dots,H_{t})$
+
+**Adaptive Graph Augmentation**
+
++ Adaptive augmentation is performed on $(B_{t-T_{out}},\dots,B_{t})$ - the region 
+  embeddings for timesteps $t-T_{out}$ to $t$.
++ There are two modes of graph augmentation used: (1) *graph topology-level augmentation* and 
+  (2) *traffic-level data augmentation*
+  
+*Measuring region-wise heterogeneity*
+
+A given region, $r_{n}$ has an embedding sequence $(b_{t-T_{out},n},\dots,b_{t,n})$. The 
+aggregated representation of region $r_{n}$ across time steps based on aggregation 
+weight $p_{\tau,n}$
+
+$$
+u_{n} = \sum_{r=t-T}^{t} p_{\tau,n} \cdot b_{\tau,n}, \text{ where } p_{\tau,n}=b_{\tau,n}^{T}\cdot w_{0}
+$$
+
+The graph augmentation step is important since it allows for identifying heterogeneity 
+across the different regions both spatially and temporally. The degree of heterogeneity
+between any two regions (the traffic distribution difference over time) is given by:
+
+$$
+q_{m,n} = \frac{u_{m}^{T}u_{n}}{||u_{m}||||u_{n}||}
+$$
+
+Larger values of $q_{m,n}$ indicate a greater traffic pattern dependency (stronger correlation)
+between regions $r_{m}$ and $r_{n}$. The observed degree of heterogeneity guides
+the augmentation of graph topology and traffic data alike ...
+
+*Traffic-Level Augmentation*
+
++ $X_{t-T:t}$ is the constructed traffic tensor. An *augmentation operator* is 
+  designed to operate over this tensor and adapt to the time-correlated traffic patterns
+  for each region. 
+
+*Graph Topology-Level Augmentation*
+
+**SSL for Spatial Heterogeneity Modeling (a)**
+
+**SSL for Temporal Heterogeneity Modeling (b)**
