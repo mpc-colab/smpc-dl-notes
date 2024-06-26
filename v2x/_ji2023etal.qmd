@@ -55,7 +55,7 @@ Solutions:
 
 ### Model Overview and Novelty
 
-![Overview of ST-SSL Architecture](v2x/imgs/stssl_arch.png){fig-align="center"}{.lightbox}
+![Overview of ST-SSL Architecture](v2x/imgs/stssl_arch.png){fig-align="center"}
 
 **Spatio-Temporal Encoder (ST Encoder)**
 
@@ -81,39 +81,119 @@ Solutions:
 
 + Adaptive augmentation is performed on $(B_{t-T_{out}},\dots,B_{t})$ - the region 
   embeddings for timesteps $t-T_{out}$ to $t$.
-+ There are two modes of graph augmentation used: (1) *graph topology-level augmentation* and 
-  (2) *traffic-level data augmentation*
++ There are two modes of graph augmentation used: (1) *graph topology-level augmentation* 
+  and (2) *traffic-level data augmentation*
   
 *Measuring region-wise heterogeneity*
 
-A given region, $r_{n}$ has an embedding sequence $(b_{t-T_{out},n},\dots,b_{t,n})$. The 
-aggregated representation of region $r_{n}$ across time steps based on aggregation 
-weight $p_{\tau,n}$
++ A given region, $r_{n}$ has an embedding sequence $(b_{t-T_{out},n},\dots,b_{t,n})$. The 
+  aggregated representation of region $r_{n}$ across time steps based on aggregation 
+  weight $p_{\tau,n}$
 
 $$
 u_{n} = \sum_{r=t-T}^{t} p_{\tau,n} \cdot b_{\tau,n}, \text{ where } p_{\tau,n}=b_{\tau,n}^{T}\cdot w_{0}
 $$
 
-The graph augmentation step is important since it allows for identifying heterogeneity 
-across the different regions both spatially and temporally. The degree of heterogeneity
-between any two regions (the traffic distribution difference over time) is given by:
++ The graph augmentation step is important since it allows for identifying heterogeneity 
+  across the different regions both spatially and temporally. The degree of heterogeneity
+  between any two regions (the traffic distribution difference over time) is given by:
 
 $$
 q_{m,n} = \frac{u_{m}^{T}u_{n}}{||u_{m}||||u_{n}||}
 $$
 
-Larger values of $q_{m,n}$ indicate a greater traffic pattern dependency (stronger correlation)
-between regions $r_{m}$ and $r_{n}$. The observed degree of heterogeneity guides
-the augmentation of graph topology and traffic data alike ...
++ Larger values of $q_{m,n}$ indicate a greater traffic pattern dependency (stronger correlation)
+  between regions $r_{m}$ and $r_{n}$. The observed degree of heterogeneity guides
+  the augmentation of graph topology and traffic data alike. High values of $q_{m,n}$ also 
+  indicate a low level of heterogeneity between the two regions. 
 
 *Traffic-Level Augmentation*
 
 + $X_{t-T:t}$ is the constructed traffic tensor. An *augmentation operator* is 
   designed to operate over this tensor and adapt to the time-correlated traffic patterns
   for each region. 
++ the *augmentation operator* **masks less relevant traffic volume** at the $\tau\text{th}$ 
+  time step of region $r_{n}$ against noise perturbation
+  + this is given by a derived masking probability $p_{\tau,n} \sim \text{Bern}(1-p_{\tau,n})$
+  + higher $p_{\tau,n} \rightarrow$ region $r_{n}$ has traffic volume $x_{\tau,n}$ at the $\tau$-th
+    timestep which will more likely be masekd due to its lower relevance  for traffic regularities 
+    of region $r_{n}$
++ augmented data: $\tilde{X}_{t-T:t}$
 
 *Graph Topology-Level Augmentation*
 
++ for any two **adjacent** regions, $r_{m}$ and $r_{n}$, if their respective value of $q_{m,n}$ 
+  is low, the edge connecting the two regions will be masked. 
+  + mask probability: $p_{m,n} \sim \text{Bern}(q_{m,n})$
++ for **non-adjacent** regions, $r_{m}$ and $r_{n}$, if there is low heterogeneity (high $q_{m,n}$)
+  for the two nodes, an edge will be added based on the masking probability $p_{m,n}$. 
+  i.e. the probability of adding an edge is given by $q_{m,n}^{y}(1-q_{m,n})^{1-y}$, where $y=0,1$
+  ($0$ indicates the edge will not be added, and $1$ indicates it will)
++ graph topology augmentations help to *debias* traffic volume input and *denoise* the graph structure
+
 **SSL for Spatial Heterogeneity Modeling (a)**
 
++ soft clustering is used to group different regions into $K$ latent categories
+  + generate $K$ cluster embeddings $\{c_{1},\dots,c_{K}\}$ (indexed by $k$)
+  + clustering is performed as 
+    $$
+    \tilde{z}_{n,k} = c_{k}^{T}\tilde{h}_{n}
+    $$
+    + $\tilde{z}_{n,k}$ is a measure of the estimated relevance / connection 
+      between 
+    + $\tilde{h_{n}}$ - the region embedding of a region $r_{n}$ from the augmented graph
+    + $c_{k}$ embedding on the $k\text{th}$ cluster. 
+  + The cluster assignment is generated based on this score
++ the self-supervised augmented task is optimized for the following:
+  $$
+  \ell(h_{n}, \tilde{z}_{n}) = -\sum_{k}\tilde{z}_{n,k}\log \frac{\exp(\hat{z}_{n,k}/\gamma)}{\sum_{j}\exp(\hat{z}_{n,j}/\gamma)}
+  $$
+  + $\gamma$ - temperature parameter to control smoothing of softmax output
++ overall self-supervised objective function:
+  $$
+  L_{s} = \sum_{n=1}^{N}\ell(h_{n},\tilde{z}_{n})
+  $$
+  + this caues the region embedding $h_{n}$ to be reflective of spatial heterogeneity within the
+    global urban space
+
+*Distribution Regularization*
+
++ two main issues to address with this formulation
++ *Issue 1:* because of how the cluster assignment matrix is generated, 
+  there is no guarantee that the sum of the cluster assignment
+  will be $1$ for each region. 
++ *Issue 2:* we want to avoid the trivial solution that all regions are 
+  assigned to the same cluster. 
++ *solution 1:* the principle of maximum entropy is used to encourage 
+  regions to be equally partitioned by clusters
+
 **SSL for Temporal Heterogeneity Modeling (b)**
+
+Temporal heterogeneity is modeled in four steps:
+
++ Step 1: fuse the *original* and *augmented* encoded time-aware region embeddings 
+  $$
+  v_{t,n} = w_{1} \odot h_{t,n} + w_{2} \odot \tilde{h}_{t,n}
+  $$
++ Step 2: aggregate the region level embeddings to generate a city-level embedding 
+  representation at time step $t$: 
+  $$
+  s_{t} = \sigma\left(\frac{1}{N}\sum_{n=1}^{N}v_{t,n}\right)
+  $$
++ Step 3: Represent pairs of region and city level embeddings as **positive** if 
+  the region and city-level embeddings are from the **same** time step, and **negative**
+  if the embeddings are from **different** time steps
++ Step 4: Optimize the cross-entropy losss:
+  $$
+  L_{t} = -\left(-\sum_{n=1}^{N}\log g(v_{t,n},s_{t}) + \sum_{n=1}^{N}\log(1-g(v_{t',n},s_{t}))\right)
+  $$
+  + $t$ and $t'$ denote two different time steps
+  + $g$ is the criterion function $g(v_{t,n},s_{t}) = \sigma(v_{t,n}W_{3}s_{t})$
+    + $W_{3} \in \mathbb{R}^{N \times N}$ - a learnable transformation matrix
+  
+The effect of this temporal heterogeneity modeling is two-fold:
+
+1. labeling of pairs with the same time-step encourages the *consistency of time-specific*
+   *citywide traffic trends*
+2. labeling pairs from different time steps as negative *captures the temporal heterogeneity*
+   *across different time steps*

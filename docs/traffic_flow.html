@@ -897,7 +897,12 @@ and try to break down the individual building blocks separately
 </section>
 <section id="model-overview-and-novelty" class="level3" data-number="15.4.2">
 <h3 data-number="15.4.2" class="anchored" data-anchor-id="model-overview-and-novelty"><span class="header-section-number">15.4.2</span> Model Overview and Novelty</h3>
-<p><img src="v2x/imgs/stssl_arch.png" class="img-fluid" data-fig-align="center" alt="Overview of ST-SSL Architecture">{.lightbox}</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="v2x/imgs/stssl_arch.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Overview of ST-SSL Architecture</figcaption>
+</figure>
+</div>
 <p><strong>Spatio-Temporal Encoder (ST Encoder)</strong></p>
 <ul>
 <li>jointly preserves the spatio-temporal contextual information over the traffic flow graph - enables modeling of sequential patterns of traffic data (across different time steps) and the <em>geographic correlations among spatial regions</em></li>
@@ -924,28 +929,104 @@ and try to break down the individual building blocks separately
 <p><strong>Adaptive Graph Augmentation</strong></p>
 <ul>
 <li>Adaptive augmentation is performed on <span class="math inline">(B_{t-T_{out}},\dots,B_{t})</span> - the region embeddings for timesteps <span class="math inline">t-T_{out}</span> to <span class="math inline">t</span>.</li>
-<li>There are two modes of graph augmentation used: (1) <em>graph topology-level augmentation</em> and
-<ol start="2" type="1">
-<li><em>traffic-level data augmentation</em></li>
-</ol></li>
+<li>There are two modes of graph augmentation used: (1) <em>graph topology-level augmentation</em> and (2) <em>traffic-level data augmentation</em></li>
 </ul>
 <p><em>Measuring region-wise heterogeneity</em></p>
-<p>A given region, <span class="math inline">r_{n}</span> has an embedding sequence <span class="math inline">(b_{t-T_{out},n},\dots,b_{t,n})</span>. The aggregated representation of region <span class="math inline">r_{n}</span> across time steps based on aggregation weight <span class="math inline">p_{\tau,n}</span></p>
+<ul>
+<li>A given region, <span class="math inline">r_{n}</span> has an embedding sequence <span class="math inline">(b_{t-T_{out},n},\dots,b_{t,n})</span>. The aggregated representation of region <span class="math inline">r_{n}</span> across time steps based on aggregation weight <span class="math inline">p_{\tau,n}</span></li>
+</ul>
 <p><span class="math display">
 u_{n} = \sum_{r=t-T}^{t} p_{\tau,n} \cdot b_{\tau,n}, \text{ where } p_{\tau,n}=b_{\tau,n}^{T}\cdot w_{0}
 </span></p>
-<p>The graph augmentation step is important since it allows for identifying heterogeneity across the different regions both spatially and temporally. The degree of heterogeneity between any two regions (the traffic distribution difference over time) is given by:</p>
+<ul>
+<li>The graph augmentation step is important since it allows for identifying heterogeneity across the different regions both spatially and temporally. The degree of heterogeneity between any two regions (the traffic distribution difference over time) is given by:</li>
+</ul>
 <p><span class="math display">
 q_{m,n} = \frac{u_{m}^{T}u_{n}}{||u_{m}||||u_{n}||}
 </span></p>
-<p>Larger values of <span class="math inline">q_{m,n}</span> indicate a greater traffic pattern dependency (stronger correlation) between regions <span class="math inline">r_{m}</span> and <span class="math inline">r_{n}</span>. The observed degree of heterogeneity guides the augmentation of graph topology and traffic data alike …</p>
+<ul>
+<li>Larger values of <span class="math inline">q_{m,n}</span> indicate a greater traffic pattern dependency (stronger correlation) between regions <span class="math inline">r_{m}</span> and <span class="math inline">r_{n}</span>. The observed degree of heterogeneity guides the augmentation of graph topology and traffic data alike. High values of <span class="math inline">q_{m,n}</span> also indicate a low level of heterogeneity between the two regions.</li>
+</ul>
 <p><em>Traffic-Level Augmentation</em></p>
 <ul>
 <li><span class="math inline">X_{t-T:t}</span> is the constructed traffic tensor. An <em>augmentation operator</em> is designed to operate over this tensor and adapt to the time-correlated traffic patterns for each region.</li>
+<li>the <em>augmentation operator</em> <strong>masks less relevant traffic volume</strong> at the <span class="math inline">\tau\text{th}</span> time step of region <span class="math inline">r_{n}</span> against noise perturbation
+<ul>
+<li>this is given by a derived masking probability <span class="math inline">p_{\tau,n} \sim \text{Bern}(1-p_{\tau,n})</span></li>
+<li>higher <span class="math inline">p_{\tau,n} \rightarrow</span> region <span class="math inline">r_{n}</span> has traffic volume <span class="math inline">x_{\tau,n}</span> at the <span class="math inline">\tau</span>-th timestep which will more likely be masekd due to its lower relevance for traffic regularities of region <span class="math inline">r_{n}</span></li>
+</ul></li>
+<li>augmented data: <span class="math inline">\tilde{X}_{t-T:t}</span></li>
 </ul>
 <p><em>Graph Topology-Level Augmentation</em></p>
+<ul>
+<li>for any two <strong>adjacent</strong> regions, <span class="math inline">r_{m}</span> and <span class="math inline">r_{n}</span>, if their respective value of <span class="math inline">q_{m,n}</span> is low, the edge connecting the two regions will be masked.
+<ul>
+<li>mask probability: <span class="math inline">p_{m,n} \sim \text{Bern}(q_{m,n})</span></li>
+</ul></li>
+<li>for <strong>non-adjacent</strong> regions, <span class="math inline">r_{m}</span> and <span class="math inline">r_{n}</span>, if there is low heterogeneity (high <span class="math inline">q_{m,n}</span>) for the two nodes, an edge will be added based on the masking probability <span class="math inline">p_{m,n}</span>. i.e.&nbsp;the probability of adding an edge is given by <span class="math inline">q_{m,n}^{y}(1-q_{m,n})^{1-y}</span>, where <span class="math inline">y=0,1</span> (<span class="math inline">0</span> indicates the edge will not be added, and <span class="math inline">1</span> indicates it will)</li>
+<li>graph topology augmentations help to <em>debias</em> traffic volume input and <em>denoise</em> the graph structure</li>
+</ul>
 <p><strong>SSL for Spatial Heterogeneity Modeling (a)</strong></p>
+<ul>
+<li>soft clustering is used to group different regions into <span class="math inline">K</span> latent categories
+<ul>
+<li>generate <span class="math inline">K</span> cluster embeddings <span class="math inline">\{c_{1},\dots,c_{K}\}</span> (indexed by <span class="math inline">k</span>)</li>
+<li>clustering is performed as <span class="math display">
+\tilde{z}_{n,k} = c_{k}^{T}\tilde{h}_{n}
+</span>
+<ul>
+<li><span class="math inline">\tilde{z}_{n,k}</span> is a measure of the estimated relevance / connection between</li>
+<li><span class="math inline">\tilde{h_{n}}</span> - the region embedding of a region <span class="math inline">r_{n}</span> from the augmented graph</li>
+<li><span class="math inline">c_{k}</span> embedding on the <span class="math inline">k\text{th}</span> cluster.</li>
+</ul></li>
+<li>The cluster assignment is generated based on this score</li>
+</ul></li>
+<li>the self-supervised augmented task is optimized for the following: <span class="math display">
+\ell(h_{n}, \tilde{z}_{n}) = -\sum_{k}\tilde{z}_{n,k}\log \frac{\exp(\hat{z}_{n,k}/\gamma)}{\sum_{j}\exp(\hat{z}_{n,j}/\gamma)}
+</span>
+<ul>
+<li><span class="math inline">\gamma</span> - temperature parameter to control smoothing of softmax output</li>
+</ul></li>
+<li>overall self-supervised objective function: <span class="math display">
+L_{s} = \sum_{n=1}^{N}\ell(h_{n},\tilde{z}_{n})
+</span>
+<ul>
+<li>this caues the region embedding <span class="math inline">h_{n}</span> to be reflective of spatial heterogeneity within the global urban space</li>
+</ul></li>
+</ul>
+<p><em>Distribution Regularization</em></p>
+<ul>
+<li>two main issues to address with this formulation</li>
+<li><em>Issue 1:</em> because of how the cluster assignment matrix is generated, there is no guarantee that the sum of the cluster assignment will be <span class="math inline">1</span> for each region.</li>
+<li><em>Issue 2:</em> we want to avoid the trivial solution that all regions are assigned to the same cluster.</li>
+<li><em>solution 1:</em> the principle of maximum entropy is used to encourage regions to be equally partitioned by clusters</li>
+</ul>
 <p><strong>SSL for Temporal Heterogeneity Modeling (b)</strong></p>
+<p>Temporal heterogeneity is modeled in four steps:</p>
+<ul>
+<li>Step 1: fuse the <em>original</em> and <em>augmented</em> encoded time-aware region embeddings <span class="math display">
+v_{t,n} = w_{1} \odot h_{t,n} + w_{2} \odot \tilde{h}_{t,n}
+</span></li>
+<li>Step 2: aggregate the region level embeddings to generate a city-level embedding representation at time step <span class="math inline">t</span>: <span class="math display">
+s_{t} = \sigma\left(\frac{1}{N}\sum_{n=1}^{N}v_{t,n}\right)
+</span></li>
+<li>Step 3: Represent pairs of region and city level embeddings as <strong>positive</strong> if the region and city-level embeddings are from the <strong>same</strong> time step, and <strong>negative</strong> if the embeddings are from <strong>different</strong> time steps</li>
+<li>Step 4: Optimize the cross-entropy losss: <span class="math display">
+L_{t} = -\left(-\sum_{n=1}^{N}\log g(v_{t,n},s_{t}) + \sum_{n=1}^{N}\log(1-g(v_{t',n},s_{t}))\right)
+</span>
+<ul>
+<li><span class="math inline">t</span> and <span class="math inline">t'</span> denote two different time steps</li>
+<li><span class="math inline">g</span> is the criterion function <span class="math inline">g(v_{t,n},s_{t}) = \sigma(v_{t,n}W_{3}s_{t})</span>
+<ul>
+<li><span class="math inline">W_{3} \in \mathbb{R}^{N \times N}</span> - a learnable transformation matrix</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>The effect of this temporal heterogeneity modeling is two-fold:</p>
+<ol type="1">
+<li>labeling of pairs with the same time-step encourages the <em>consistency of time-specific</em> <em>citywide traffic trends</em></li>
+<li>labeling pairs from different time steps as negative <em>captures the temporal heterogeneity</em> <em>across different time steps</em></li>
+</ol>
 </section>
 </section>
 <section id="stpgcn" class="level2" data-number="15.5">
