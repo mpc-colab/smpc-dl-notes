@@ -1,0 +1,56 @@
+## Upsampling (ONNX Resize OP.)
+
+Important notes: 
+
++ [yolov5 architectural summary](https://docs.ultralytics.com/yolov5/tutorials/architecture_description/#1-model-structure)
++ [netron - an onnx model visualization app](https://netron.app/)
+
+Upsampling is the process of increasing sampling rate, and taking those 
+samples and using a discrete time interpolation to 
+
+The way upsampling is achieved is as follows:
+
++ take the signal $x[n]$ at the lower sampling rate, insert $m-1$ zeros 
+  between each sample to get $x_{z}[n]$
++ pass this through a low-pass filter, $H_{i}(e^{jw})$ to obtain the 
+  upsampled signal $\tilde{x}[n]$
+
+Basically, you have to interpolate the missing values between points. 
+
+import the torch.nn module
+```{python}
+from torch import nn
+import torch
+```
+
+generate some random tensors and upsample
+
+```{python}
+import numpy as np
+input_data1 = np.array([[1.1,2.4,3.4,4],
+                        [2,3,4,5],
+                        [3,4,5,6],
+                        [1,2,3,4]]).astype(np.float32) 
+t1 = torch.tensor(input_data1).view(1,1,4,4)
+```
+
+perform the upsampling process:
+
+```{python}
+m = nn.Upsample(size=(6,6), mode='nearest')
+m(t1)
+```
+
+Here is the pytorch implementation for upsampling in C++
+
++ [UpSampleNearest3d.cpp](https://github.com/pytorch/pytorch/blob/e9902358df14dc4809e4f50b12088a5200a1862d/aten/src/ATen/native/UpSampleNearest3d.cpp)
++ [UpSampleNearest2d.cpp]
++ [implementations for some of the PyTorch source code](https://github.com/pytorch/pytorch/tree/e9902358df14dc4809e4f50b12088a5200a1862d/aten/src/ATen/native)
++ [the upsample kernel in pytorch](https://github.com/pytorch/pytorch/blob/e9902358df14dc4809e4f50b12088a5200a1862d/aten/src/ATen/native/cpu/UpSampleKernel.cpp)
++ [deconvolution and better upsampling](https://distill.pub/2016/deconv-checkerboard/)
++ [pytorch upsampling](https://pytorch.org/docs/stable/generated/torch.nn.Upsample.html)
++ [finding pytorch source function definitions](https://discuss.pytorch.org/t/source-code-f-conv2d-definition-location/81569/6)
++ [crypten repo](https://github.com/facebookresearch/CrypTen/tree/main)
++ [actual onnxruntime upsampling implementation](https://github.com/microsoft/onnxruntime/blob/rel-1.16.0/onnxruntime/core/providers/cpu/tensor/upsample.cc)
+
+make liberal use of the github search feature in the future :')

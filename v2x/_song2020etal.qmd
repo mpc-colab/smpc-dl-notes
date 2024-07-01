@@ -1,0 +1,175 @@
+## STSGCN
+
+> Notes based on the paper Spatial-Temporal 
+[Synchronous Graph Convolutional Networks: A New Framework for 
+Spatial-Temporal Network Data Forecasting](https://ojs.aaai.org/index.php/AAAI/article/view/5438). The associated 
+GitHub repository is linked [here](https://github.com/Davidham3/STSGCN)
+
+### Contributions
+
+Prior to the introduction of STSGCN, other works had separately 
+considered the effect of spatial and temporal correlations in traffic 
+flow patterns. However, none had successfully incorporated the 
+spatial-temporal (interacting) correlations and patterns. This
+contribution, or attempted contribution, is similar to that of ST-SSL 
+(@sec-stssl). However, the way in which they achieve this effect is 
+slightly different: 
+
++ they propose a *spatial-temporal graph convolutional module* to 
+  directly capture *localized spatial-temporal correlations* instead
+  of using separate modules separately (to indirectly monitor this
+  correlation)
++ capture heterogeneity in long-range spatial-temporal graphs
+  + multiple modules are deployed on each time period 
+    (spatial-temporal correlations are captured on each localized
+    spatial-temporal graph)
++ experiments for four dataset (PeMS-03,04,07,08) to validate model 
+  performance. 
+
+## Methods 
+
+An overview of the network architecture is given in the graphic below:
+
+![STSGCN Network Architecture](v2x/imgs/stsgcn.png){fig-align="center"}
+
+There are three core points underlying the construction of STSGCN:
+
+1. each node is connected to itself at the previous and 
+   next time steps to construct a localized spatial-temporal graph
+2. a spatial-temporal synchronous graph convolutional module is developed to
+   capture the localized spatial-temporal correlations
+3. deploy multiple modules to *model heterogeneities* in spatial-temporal
+   network series.
+
+**Localized Spatial-Temporal Graph Construction**
+
++ Capture impact of each node on its neighbors belonging to the 
+  current and adjacent time steps
+  + connect all nodes with themselves at adjacent time steps
+  + get localized spatial-temporal graph as result
++ $A \in \mathbb{R}^{N \times N}$ - adjacency matrix of spatial graph
++ $A' \in \mathbb{R}^{3N \times 3N}$ - adjacency matrix of localized spatial-temporal graph
+  + the diagonal of $A'$ are the adjacency matrices of three contiguous time steps
+  + two sides of diagonal indicate connectivity of each node to itself (belonging to 
+    adjacent time steps)
+
+*Spatial-Temporal Embeddings*
+
++ The base initialization of the Spatial-Temporal graph does not 
+  distinguish between nodes at different time steps
++ spatial and temporal embedding matrices are trained, and 
+  added to the *temporal network series* in order to obtain new
+  representations for the network series. 
+
+**Spatial-Temporal Synchronous Graph Convolutional Module**
+
+![A visual representation of the STSGCM](v2x/imgs/stsgcn_mod.png)
++ STSGCM (module) consists of:
+  + a series of graph convolution operators: 
+    $$
+    GCN(h^{(l-1)}) = h^{(l)} = \sigma(A'h^{(l-1)}W + b) \in \mathbb{R}^{3N \times C'}
+    $$
+    + $\sigma$ denotes the GLU activation function utilized
+  + Graph convolutional layer is formulated as:
+    $$
+    h^{(l)} = (A'h^{(l-1)}W_{1} + b_{1}) \odot sigmoid(A'h^{(l-1)}W_{2} + b_{2})
+    $$
+    + the gated linear unit controls which node's information is passed to the next layer
+  + graph conv op. defined over vertice domain: does not need to compute graph laplacian
+  + self-loops added to eac node in the localized spatial-temporal graph so that 
+    nodes can take in information about themselves when aggregating features
+  + a series of graph convolution operators are stacked to increase the receptive field
+  + outputs of the graph convolution layers are fed to the aggregation layer (compacts outputs)
+    + involves cropping and aggregating
+  + *aggregation operation*: max pooling
+  + *cropping operation*: removes features of nodes at *previous and next time steps*, 
+    so only the middle time step remains. Since the graph conv. operations have already 
+    aggregated information from other nodes (in the spatial-temporal graph) to these
+    nodes by this point, the remaining nodes still store spatial-temporal information
+    relevant to the other time steps. 
+
+**STSGCL - Using Multiple Modules to model Heterogeneities**
+
+> Note: STSGCL stands for Spatial-Temporal Synchronous Graph Convolutional Layer
+
++ a sliding window is used to cut out different periods (time) 
+  + spatial-temporal data is heterogeneous, so it is better to use 
+    several STSGCMs to model each of the spatial-termporal corrleations in the
+    localized graph
++ First, spatial-temporal embeddings are added to the input (as discussed above)
++ Then, the sliding window divides the input into $T-2$ spatial-temporal network series
+  ($T$ - the number of time steps in the input series $X \in \mathbb{R}^{T\times N\times C}$)
++ $T-2$ STSGCM modules are used on the $T-2$ spatial-temporal network series - each of the
+  spatial-temporal network series has three time steps ...
++ outputs are concatenated togehter into a single matrix:
+  $$
+  M = [M_{1},M_{2},\dots,M_{T-2}] \in \mathbb{R}^{(T-2) \times N \times C_{out}}
+  $$
+  + $M_{i} \in \mathbb{R}^{N \times C_{out}}$ - the outputs of the $i\text{th}$ STSGCM
++ multiple STSGCLs are stacked (as shown in the figure below) to build a 
+  hierarchical model. 
+
+![STSGCN Architecture](v2x/imgs/stsgcn_arch.png){fig-align="center"}
+
+**Additional Components**
+
++ *Masking matrix:*
+  + a weight mask matrix $W_{mask}$ is trained to adjust the 
+    aggregation weights to improve the aggregation step of the STSGCM
+    $$
+    A'_{adjusted} = W_{mask} \otimes A' \in \mathbb{R}^{3N \times 3N}
+    $$
++ *Input Layer*:
+  + FC layer added at top of network to transform input into a higher dimensional space
++ *Output Layer*:
+  + Two FC layers are used to geerate final predictions (input is the output
+    of the last STSGCL). 
+    $$
+    \hat{y}^{(i)} = ReLU\left(X^{T}W_{1}^{(i)} + b_{1}^{(i)}\right)\cdot W_{2}^{(i)} + b_{2}^{(i)}
+    $$
+    Here, $\hat{y}^{(i)}$ indicates the prediction in time step $i$. 
+  + predictions $\hat{y}^{(1)}, \hat{y}^{(2)}, \dots, \hat{y}^{(T)}$ are concatenated 
+    to obtain the overall output
++ *Training*:
+  + The *Huber Loss* function is used for optimization
+  + has a $\delta$ parameter to control for range of squared errror loss (reduces
+    sensitivity of loss to outliers)
+
+### Evaluation
+
++ *Datasets*
+  + use four datasets:
+    + PEMS03
+    + PEMS04
+    + PEMS07
+    + PEMS08
+  + flow data is aggregated to 5 minute intervals
+  + the past hour of data points are used to predict the next hour's behavior
+  + If two sensors are on the same road, they are considered to be connected in the 
+    spatial network (add an edge)
+  + features of the graph are standardized by centering and scaling
++ *Baselines*
+  + VAR (vector auto-regression)
+  + SVR 
+  + LSTM
+  + STGCN
+  + ASTGCN(r)
+  + STG2Seq
+  + Graph WaveNet
++ *Results*
+  
+![STSGCN Comparative Results](v2x/imgs/stsgcn_eval.png){fig-align="center"}
+
+### Comments
+
++ I don't find this work particularly inspiring. It might be interesting
+  to evaluate, purely as a point of comparison to other models. It's not 
+  clear to me that the architecture of this model is any simpler, or 
+  more efficient than any of the other grpah models which were presented
+  as an alternative.
+
+
+
+
+
+

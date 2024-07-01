@@ -1,0 +1,160 @@
+## STFGCN
+
+> Notes are based on the paper 
+[Spatial-Temporal Fusion Graph Neural Networks for Traffic Flow Forecasting](https://arxiv.org/abs/2012.09641)
+published in @li2021etal for AAAI2021. The GitHub repository for their model is available 
+[here](https://github.com/MengzhangLI/STFGNN/tree/master)
+
+### Contributions
+
++ Prior limitations of spatial-temporal traffic forecasting models 
+  + *lack of informative graph construction* (un-represented correlations between distant nodes). 
+    E.g.) at rush hour, roads near office buildings will encounter traffic jams in the same period. 
+    Most graph constructions only account for spatial information, but ignore temporal 
+    similarity between nodes
+  + studies of spatial-temporal data forecasting, ineffective at capturing dependencies
+    between local / global correlations
+    + RNN / LSTM methods - slow and suffer vanishing / exploding gradient
+    + CNN - require stacking of many layers to capture global correlations
+      (for long sequences). local information is lost when dilation rate increases ...
+
+Novelty and Innovations: 
+
++ new, data-driven method for graph construction (temporal graph is learned 
+  based on similarities between time series) - this method is motivated 
+  by the dynamic time warping problem/algorithm
+  + *note*: dynamic time warping is an algorithm used for measuring the 
+    similarity between two time series, $X = (x_{1},x_{2},\dots,x_{n})$ and 
+    $Y = (y_{1},y_{2},\dots,y_{m})$. It uses a dynaic programming approach
+    in order to iteratively construct the optimal distance matrix $M_{n \times m}$. 
+    The core of the problem is solving the warping curve (matchup of series points 
+    $x_{i}$ and $y_{j}$)
+    $$
+    \Omega = (\omega_{1},\omega_{2},\dots,\omega_{\lambda}), \mskip 1mu \max(n,m) \le \lambda \le n + m
+    $$
+    elements $\omega_{\lambda} = (i,j)$ is the matchup of $x_{i}$ and $y_{j}$
++ gated dilated convolution module introduced (large dilation rate captures long-range 
+  sequences) - *how does it avoid losing local correlations?*
+
+Secure Setting: 
+
++ use plaintext, learned models for constructing the graph, submit the learned
+  graph to the private model for inference on future time steps
+  i.e., the user preprocesses their data and then sends it to the server. 
+
+### Methods
+
+**Basic Overview of STFGNN**
+
+A visual representation of the STFGNN architecture is given below:
+
+![STFGNN Architecture](v2x/imgs/stfgnn.png){fig-align="center"}
+
+\begin{align*}
+& \text{input layer} \rightarrow \text{FCC} + ReLU \\
+& \downarrow \\
+& \text{stacked spatial-temporal fusion graph neural layers} \\
+& \mskip 2mu \text{STFGN Modules} + \text{Gated CNN} \\
+& \downarrow \\
+& \text{output layer} \rightarrow 2\times\text{FCC} + ReLU
+\end{align*}
+
+**Temporal Graph Construction**
+
+A visual representation of the *dynamic time warping* algorithm
+used to construct spatial-temporal fusion graphs: 
+
+![Fast DTW v. DTW](v2x/imgs/stfgnn_dtw.png){fig-align="center"}
+
++ light-DTW is used to generate the temporal graph based 
+  on the similarity of two time-series. Bascicaly, the 
+  search space of the algorithm is limited in order to make 
+  its use feasible in larger scale time-series data
+  + the warping path between two time-series is restricted by the 
+    bound $T$
++ three elements to the spatial-temporal fusion graph $A_{STFG} \in \mathbb{R}^{KN \times KN}$: 
+  + $A_{TG}$ - the temporal graph - is weighted and givn by **alg 1.**
+  + $A_{TC}$ - elements are nonzero if and only if previous and next time 
+    steps are the same node 
+  + $A_{SG}$ - the spatial graph component - this is given by the dataset
+    itself.
+
+**Spatial-Temporal Fusion Graph Neural Module (STFGN Modules)**
+
++ spatial-temporal dependencies extracted via several matrix multiplciations
+  over the fusion graph $A_{STFG}$. residual connections and max pooling 
+  are incorporated as well (training efficiency, etc.)
++ matrix multiplication *replaces* less efficient **laplacian spectral graph convolutions**
+  
+*Graph Multiplication Blocks*
+
++ utilize a gating mechanism (like LSTM/RNN)
+  + GLU is used for generalization in graph multiplciations by its nonlinear activation
++ mathematical formulation:
+  $$
+  h^{l+1} = (A_{STFG}h^{l}W_{1} +b_{1}) \odot \sigma(A_{STFG}h^{l}W_{2} + b_{2})
+  $$
+  + $h^{l}$ is the $l$-th hidden state of the STFGN module
+  + $\odot$ is element-wise multiplication (hadamard product)
+  
+*Pooling and Cropping*
+
++ outputs / hidden states for each graph multiplication block is concatenated
+  and passed through max pooling. The output is then cropped 
+
+Multiple STFGN modules process the input independently (in parallel), and their
+outputs are concatenated together, along with the output of the gated 
+CNN layer. This concatenated output is passed to the next STFGN layer 
+(STGFN modules and a gated CNN make up each STFGN layer)
+
+**Gated Convolution (Gated CNN)**
+
++ dilated convolutions are used with a large dilation rate
++ mathematical formulation:
+  $$
+  Y = \phi(\Theta_{1} * X + a) \odot \sigma(\Theta_{2} * X + b)
+  $$
+
+**Training**
+
+The Huber loss is used as the loss function for training the model.
+A parameter $\delta$ is used to control sensitivity of the squared 
+error loss.
+
+### Evaluation
+
++ datasets: 
+  + PEMS03
+  + PEMS04
+  + PEMS07
+  + PEMS08
+  + data collected from the Caltrans Performance Measurement system
+    and aggregated into 5-minute windows (288 points in the traffic 
+    flow for one day)
+  + spatial adjacency networks are constructed by the actual road network 
+    based on distance
+  + z-score normalization is used to standardize inputs
++ compare against the following methods
+  + FC-LSTM
+  + DCRNN
+  + STGCN
+  + ASTGCN(r)
+  + GraphWaveNet
+  + STSGCN
+  
+![evaluation of STFGNN and baselines on several standard traffic datasets](v2x/imgs/stfgnn_eval.png){fig-align="center"}
+
+### Comments and Thoughts
+
++ This model may be stronger for smpc applications since it is lightweight. Namely
+  it doesn't require spectral graph convolutions which are time consuming. The 
+  size and depth of the architecture can also be compared with other models. 
+  Moreover, some of the graph formulation and preprocessing is done beforehand, 
+  which might make the inference stage more efficient as well.
+
+### Questions
+
++ How does the DTW algorithm work?
++ How is the graph analyzed when formulated as they do (the concatenation of 
+  a series of subgraphs represented as a single matrix)
+
