@@ -1,0 +1,6 @@
+## GMAN
+
+> These notes are based on the paper 
+[GMAN: A Graph Multi-Attention Network for Traffic Prediction](https://arxiv.org/pdf/1911.08415)
+published by @zheng2019etal
+

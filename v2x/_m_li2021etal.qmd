@@ -1,4 +1,4 @@
-## STFGCN
+## STFGNN
 
 > Notes are based on the paper 
 [Spatial-Temporal Fusion Graph Neural Networks for Traffic Flow Forecasting](https://arxiv.org/abs/2012.09641)

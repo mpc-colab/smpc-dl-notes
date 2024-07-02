@@ -30,7 +30,7 @@ slightly different:
 
 An overview of the network architecture is given in the graphic below:
 
-![STSGCN Network Architecture](v2x/imgs/stsgcn.png){fig-align="center"}
+![STSGCN Network Architecture](v2x/imgs/stsgcn_arch.png){fig-align="center"}
 
 There are three core points underlying the construction of STSGCN:
 
