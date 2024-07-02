@@ -26,7 +26,7 @@ slightly different:
 + experiments for four dataset (PeMS-03,04,07,08) to validate model 
   performance. 
 
-## Methods 
+### Methods 
 
 An overview of the network architecture is given in the graphic below:
 
@@ -63,7 +63,8 @@ There are three core points underlying the construction of STSGCN:
 
 **Spatial-Temporal Synchronous Graph Convolutional Module**
 
-![A visual representation of the STSGCM](v2x/imgs/stsgcn_mod.png)
+![A visual representation of the STSGCM](v2x/imgs/stsgcn_mod.png){fig-align="center"}
+
 + STSGCM (module) consists of:
   + a series of graph convolution operators: 
     $$

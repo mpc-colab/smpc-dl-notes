@@ -1,0 +1,114 @@
+## ST-ResNet
+
+> These notes are based on the paper 
+[Deep Spatio-Temporal Residual Networks for Citywide Crowd Flows Prediction](https://arxiv.org/pdf/1610.00081)
+published by @zhang2017etal. The original open-source repository is available [here](https://github.com/KL4805/STResNet-PyTorch).
+An updated repository with preprocessing optimizations is available [here](https://github.com/KL4805/STResNet-PyTorch)
+
+### Contributions
+
++ present ST-ResNet: convolution-based residual networks for modeling local and distance 
+  spatial dependencies between any two regions of a city
++ temporal properties grouped into three categories - each is modeled by a separate
+  residual network
+  + temporal closeness
+  + period
+  + trend
++ external factors (weather, holiday info, etc.) are modeled by an additional resnet 
++ outputs of the resnets are aggregated (with diff. weights for branches / regions)
++ evaluate the model on 
+  + Beijing Taxicabs
+  + NYC bike trajectory data
+
+### Methods
+
+![visual representation of the ST-ResNet Architecture](v2x/imgs/st-resnet_arch.png){fig-align="center"}
+
+**Overview**
+
++ First, the inflow / outflow throughout a city is converted to a 2-channel image-like matrix 
+  (hence the appropriateness of using conv-nets)
++ divide time axis into three components:
+  + recent past
+  + near history
+  + distant history
++ traffic flow matrices at each time fragment are fed into the separate components to 
+  model closeness, period, and trend respectively
++ first three components share the same network structure
++ external factors are modeled by a separate two-layer fully-connected network
++ output of three spatial-temporal components given by $X_{Res}$, and output of 
+  external influence network by $X_{Ext}$
++ outputs $X_{Res}$ and $X_{Ext}$ are inegrated together and mapped into $[-1,1]$ by 
+  the $Tanh$ function
+
+**Spatial-Temporal Components (First Three)**
+
++ each of the time resnets are given by the following structure:
+
+  ![visual rep. of the residual networks](v2x/imgs/st-resnet_res_comps.png){fig-align="center"}
+
+  + a series of convolutions are used to capture nearbye spatial dependencies. 
+  + stacking convolutions helps to capture distant spatial dependencies since 
+    convolutions on low-level features are limited by the size of the kernel. 
+  + convolving over extracted features enables the network to examine higher level
+    features which represent more distant, global relationships in the spatial grid.
+  + because the network must be deep to represent global patterns, residual connections
+    are used to aid in the training of the model
++ closeness, period, and trend networks:
+  + several 2-channel traffic flow matrices of intervals in the respective time 
+    are concatenated together along the time axis. 
+  + a convolution operation is conducted over the tensor, and an activation is given
+    to produce the output
+  + $L$ residual units are then stakced on top of this convolution (see fig 4) 
+  + a final convolution is performed on the output of the $L\text{-th}$ residual unit 
+    to obtain the respective time component output
+
+**External Component (Fourth)**
+
++ three external factors are considered 
+  + holiday event
+  + weather (thunderstorms, etc.)
+  + metadata (day of week, weekend, weekday)
++ two fc layers are stacked on top the feature vector, $E_{t}$ (contains the external features)
+  for the predicted time interval $t$
+  + the first layer embeds each sub-factor and is followed by an activation
+  + the second layer transforms the low-dimensional representation into a high-dimensional feature
+    tensor $X_{Ext}$ which can be fused with the outputs of the spatial-temporal components, $X_{t}$
+
+**Fusion**
+
++ The three temporal $X_{t}$ output tensors are multiplied element-wise by a 
+  learned weight tensor, and added together to generate $X_{res}$
++ $X_{res}$ and $X_{Ext}$ are directly fused and run through the Tanh activation function
+
+**Loss**
+
+The mean squared error is minimized as the goal of optimization for the ST-ResNet model  
+
+### Evaluation
+
++ Datasets:
+  + TaxiBJ
+  + BikeNYC
++ Compare against the following methods:
+  + HA: historical average flows
+  + ARIMA:
+  + SARIMA: seasonal arima
+  + VAR
+  + ST-ANN
+  + DeepST
+
+![comparative results ST-ResNet v. Baselines on TaxiBJ dataset](v2x/imgs/st-resnet_taxibj.png){fig-align="center"}
+
+![comparative results ST-ResNet v. Baselines on BikeNYC dataset](v2x/imgs/st-resnet_bikenyc.png){fig-align="center"}
+
+### Comments
+
++ this is a very good baseline, because it uses primarily convolutional
+  structures which we might be able to implement using a SOTA secure framework,
+  specifically CrypTflow2, which will be another good baseline for comparison
++ should be very easy to implement in crypten
+
+### Questions
+
++ no questions

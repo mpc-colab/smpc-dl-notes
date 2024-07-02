@@ -1,6 +1,216 @@
-## GMAN
+## GMAN {#sec-gman}
 
 > These notes are based on the paper 
 [GMAN: A Graph Multi-Attention Network for Traffic Prediction](https://arxiv.org/pdf/1911.08415)
-published by @zheng2019etal
+published by @zheng2019etal. The code associated with this model is available through this 
+[repository](https://github.com/zhengchuanpan/GMAN)
+
+### Contributions
+
+**Challenges with Long-Term (a few hours ahead) Predictions**
+
++ dynamic spatial correlations - correlations of traffic 
+  conditions change significantly over time
++ non-linear temporal correlations - traffic conditions at sensors fluctuate 
+  drastically and suddenly. Modeling long-term nonlinear relationships is a 
+  challenging problem
++ sensitivity to error propagation - small errors at each time step 
+  propagate, meaning that long-term predictions suffer from accumulated errors. 
+
+**Innovations and Solutions to Aforementioned Challenges**
+
++ Proposed GMAN (Graph Multi-Attention Network)
+  + features encoder-decoder architecture
+    + encoder encodes features of the traffic network
+    + decoder makes predictions based on the features
+  + encoder and decoder are built on *ST-Attention Blocks*
+  + A *transform attention layer* is added between the encoder
+    and the decoder to convert historical features to 
+    generate future representations
++ spatial and temporal attention mechanisms for modeling dynamic spatial
+  and non-linear temporal correlations
+  + a gated fusion combines information extracted by said mechansims
++ transform attention mechanism - converts past traffic features to future 
+  representations
++ model is evaluated on two real-world traffic datasets (comparative
+  evaluation)
+
+### Methods
+
+![A visual representation of the GMAN architecture](v2x/imgs/gman_arch.png){fig-align="center"}
+
+GMAN is constructed from the following components:
+
++ spatio-temporal embedding - incorporates graph structure 
+  and time information into the multi-attention mechanism
++ encoder
+  + uses $L$ ST-Attention blocks + residual connections
+    + ST-Attention has spatial / temporal attention mechansims
+    + also has gated fusion 
++ transform attention layer
+  + convert encoded features to decoder
++ decoder
+  + also has $L$ ST-Attention blocks and residual connections
+
+**Spatio-Temporal Embedding**
+
++ spatial embedding is generated from graph data (node2vec approach). 
+  this embedding is learned and co-trained with the whole model
+  + spatial embedding given by $e_{v_{i}}^{S} \in \mathbb{R}^{D}, v_{i} \in \mathcal{V}$
++ temporal embedding is based on a one-hot encoding approach
+  + $T$ time steps (marked as $1$ if the time step is the corresponding one, all zeros
+    for the other $T-1$ time steps in the vector), and $7$ days (using the same 
+    embedding approach). 
+  + A two layer fully-connected network transforms this embedding into $\mathbb{R}^{D}$
+  + time embeddings are generated for the $P$ past and $Q$ future time steps
+  + concatentate these time step (per day) and week embeddings to get a single vector embedding
+    of the time (day and the hour*)
+  + the temporal embedding is given by $e_{t_{j}}^{T} \in \mathbb{R}^{D}, t_{j} = t_{1},\dots,t_{P},\dots,t_{P+Q}$
++ spatial and temporal embeddings are fused to get a spatial-temporal embedding
+  + spatial-temporal embedding: $e_{v_{i},t_{j}} = e_{v_{i}}^{S} + e_{t_{j}}^{T}$
+
+***ST-Attention Block***
+
+There are three elements to each ST-Attention Block
+
++ *Spatial Attention*
+
+![Spatial Attention](v2x/imgs/gman_att.png){fig-align="center"}
+
+  + captures correlations between sensors in the road network (dynamic 
+    assignment of weights to different vertices [sensors] at different
+    time steps)
+  + a weighted sum of all vertices is given for computing the effect
+    of spatial correlations: 
+    $$
+    hs_{v_{i},t_{j}}^{(l)} = \sum_{v\in \mathcal{V}} \alpha_{v_{i},v} \cdot h_{v,t_{j}}^{(l-1)}
+    $$
+  + The summation of attention scores is equal to 1: 
+    $\sum_{v \in \mathcal{V}} \alpha_{v_{i},v} = 1$ 
+  + both graph features, and the graph structure are used in order to learn the 
+    attention score $\alpha$: this logic is derived from the intuition that, for 
+    example, congestion on a road may significantly affect the traffic conditions 
+    of its adjacent roads. 
+  + relevance between vertex $v_{i}$ and $v$ given as: 
+    $$
+    s_{v_{i},v} = \frac{\langle h_{v_{i},t_{j}}^{(l-1)} || e_{v_{i},t_{j}},h_{v,t_{j}}^{(l-1)} || e_{v,t_{j}} \rangle}{\sqrt{2D}}
+    $$
+    + $||$ is the concatentation op.
+    + $\langle \cdot, \cdot \rangle$ is the inner dot product op. 
+    + $2D$ is the dimension of $h_{v_{i},t_{j}}^{(l-1)} || e_{v_{i},t_{j}}$
+  + $s_{v_{i},v}$ is normalized via softmax to obtain the attention score
+    $$
+    \alpha_{v_{i},v} = \frac{\exp(s_{v_{i},v})}{\sum_{v_{r} \in \mathcal{V}} \exp(s_{v_{i}v_{r}})}
+    $$
+  + the spatial attention is extended to a *multi-head attention mechanism* (to stabilize learning)
+    + $K$ parallel attention mechanisms are concatenated together
+      $$
+      s_{v_{i},v}^{(k)} = \frac{\langle f_{s,1}^{(k)}(h_{v_{i},t_{j}} || e_{v_{i},t_{j}}), f_{s,2}^{(k)}(h_{v,t_{j}}^{(l-1)} || e_{v,t_{j}})\rangle}{\sqrt{d}}
+      $$
+    + see the paper for more details on these equations
+  + group spatial attention used to address memory and time constraints associated with a 
+    high number of vertices (large graph network). Includes intra and inter group attention.
+    $N$ vertices partitioned into $G$ groups
+    + *intra-group attention*
+      + models *local spatial correlations among vertices*
+    + *inter-group attention*
+      + max pooling is applied to obtain a single representation
+        for each group
+      + inter-group attention models correlations between different groups - outputs 
+        global feature for each group
+
+    ![grouped spatial attention mechanism](v2x/imgs/gman_spat_att.png){fig-align="center"}
+
++ *Temporal Attention*
+  
+  ![temporal attention](v2x/imgs/gman_temp_att.png){fig-align="center"}
+
+  + non-linear correlations exist between the current and previous traffic 
+    states for a given location. (e.g. congestion occuring in morning peak
+    hours may affect traffic conditions for several hours after)
+  + a temporal mechanism is proposed for modeling this correlation
+  + traffic step and time are considered for computing relevance between 
+    two time steps (similarity?)
+  + a multi-head attention approach is used:
+    
+    \begin{align*}
+    & \mu_{t_{t},t}^{(k)} = \frac{\langle f_{t,1}^{(k)}(h_{v_{i},t_{j}}^{(l-1)} || e_{v_{i},t_{j}}),f_{t,2}^{(k)}(h_{v_{i},t}^{(l-1)} || e_{v_{i},t})\rangle}{\sqrt{d}} \\ 
+    & \beta_{t_{j},t}^{(k)} = \frac{\exp(u_{t_{j},t}^{(k)})}{\sum_{t_{r} \in \mathcal{N}_{t_{j}} \exp(u_{t_{j},t_{r}}^{(k)})}}
+    \end{align*}
+
+    + $u_{t_{j},t}^{(k)}$ - relevance between time step $t_{j}$ and $t$
+    + $\beta_{t_{j},t}^{(k)}$ - attention score in the $k\text{-th}$ head (the importance of time 
+      step $t$ to $t_{j}$)
+    + $\mathcal{N}_{t_{j}}$ - set of time steps before $t_{j}$
+  + hidden state of vertex $v_{i}$ at time step $t_{j}$ given by: 
+    $$
+    ht_{v_{i},t_{j}}^{(l)} = ||_{k=1}^{K} \left\{\sum_{t\in \mathcal{N}_{t_{j}}}\beta_{t_{j},t}^{(k)}\cdot f_{t,3}^{(k)}(h_{v_{i},t}^{(l-1)})\right\}
+    $$
+    + $f_{t,3}^{(k)}, f_{t,2}^{(k)}$, and $f_{t_{1}^{(k)}}$ - learnable non-linear projections
++ *Gated Fusion*
+  + traffic is dependent upon previous traffic flows (temporal) and 
+    the traffic at other roads (spatial)
+  + gated fusion fuses the temporal and spatial representations
+  + these representations are fused in the decoder as:
+    
+    \begin{align*}
+    & H^{(l)} = z \odot H_{s}^{(l)} + (1-z) \odot H_{T}^{(l)} \\
+    & z = \sigma(H_{S}^{(l)} + (1-z)\odot H_{T}^{(l)})  
+    \end{align*}
+
+    + $H_{S}^{(l)}$ and $H_{T}^{(l)}$ are the spatial and temporal outputs
+      of the network at the $l\text{-th}$ block
+
+**Transform Attention**
+
+![transform attention layer](v2x/imgs/gman_trans.png){fig-align="center"}
+
++ A transform attention layer is added between the encoder and decoder
++ it determines relationship between past time steps and future 
+  representations - passed as input to the decoder
++ relevance between prediction time step $t_{j}$ and historical 
+  time step $t$ given by spatio-temporal embedding $\lambda_{t_{j},t}^{(k)}$
++ $\lambda_{t_{j},t}^{(k)}$ is used to calculate the attention score $\gamma_{t_{j},t}^{(k)}$
++ relevant features are selected from across $P$ time steps and transmitted to the decoder
+
+**Encoder-Decoder**
+
+1. historical observations are transformed into the vertex embedding space: $X \rightarrow H^{(0)}$
+2. the embedding is passed to the encoder with $L$ ST-Attention blocks: $H^{(L)}$ is output
+3. transformer attention layer converts encoded features $H^{(L)}$ to future representation $H^{(L+1)}$
+4. decoder stacks $L$ ST-Attention blocks on $H^{(L+1)}$ to get $H^{(2L + 1)}$
+
+### Evaluation
+
++ datasets:
+  + Xiamen
+  + PeMSBay
++ compare against the following methods:
+  + ARIMA
+  + SVR
+  + FNN
+  + FC-LSTM
+  + DCRNN
+  + Graph WaveNet
++ preprocessing:
+  + time steps denote 5 minute intervals
+  + data normalized by z-score method
+  + 70%, 10%, 20% - train, val, test data split
+  + if the distance between two sensors in the road network is beneath
+    some threshold, then an edge is added to the graph connecting the 
+    two nodes in question. Otherwise, no edge is added to connect two 
+    points directly.
+  
+![evaluation results](v2x/imgs/gman_results.png){fig-align="center"}
+
+### Comments
+
++ this is a interesting point of evaluation as models go. 
++ not a super high priority for me to implement this
+
+### Questions
+
++ are the attention mechanisms more computationally efficient in smpc 
+  than other modes or no? this might be the most interesting question
+  to answer.
 
